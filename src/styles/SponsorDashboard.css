@@ -5,6 +5,49 @@
   overflow-y: auto;
 }
 
+.dashboard-header {
+  background: white;
+  padding: 24px 32px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-browse-events,
+.btn-view-history {
+  background: #4F7DFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-browse-events:hover,
+.btn-view-history:hover {
+  background: #3d5fd9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+}
+
 .dashboard-content {
   padding: 24px 32px;
   display: grid;
