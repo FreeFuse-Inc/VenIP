@@ -5,7 +5,6 @@ import '../styles/EventDetailsVendor.css';
 const EventDetailsVendor = () => {
   const navigate = useNavigate();
   const { eventId } = useParams();
-  const [showProposalForm, setShowProposalForm] = useState(false);
 
   const event = {
     id: eventId,
