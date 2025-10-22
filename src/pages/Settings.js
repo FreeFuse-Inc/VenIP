@@ -11,7 +11,7 @@ const Settings = () => {
     language: 'English',
   });
 
-  const [userProfile, setUserProfile] = useState({
+  const [userProfile] = useState({
     firstName: 'John',
     lastName: 'Smith',
     email: 'john.smith@venip.com',
