@@ -42,7 +42,7 @@ const NPODashboard = () => {
                 <div className="event-status" data-status={event.status.toLowerCase().replace(' ', '-')}>
                   {event.status}
                 </div>
-                <button className="event-action-btn">View Details →</button>
+                <button className="event-action-btn" onClick={() => navigate(`/event-management/${event.id}`)}>View Details →</button>
               </div>
             ))}
           </div>
