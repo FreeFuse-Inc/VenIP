@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import '../styles/VendorDashboard.css';
 
 const VendorDashboard = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('browse');
 
   const availableEvents = [
