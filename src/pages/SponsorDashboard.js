@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import '../styles/SponsorDashboard.css';
 
 const SponsorDashboard = () => {
+  const navigate = useNavigate();
   const sponsoredEvents = [
     {
       id: 1,
@@ -12,6 +14,7 @@ const SponsorDashboard = () => {
       amount: '$5,000',
       date: 'Dec 15, 2024',
       engagement: '2,450',
+      status: 'Active',
     },
     {
       id: 2,
@@ -21,6 +24,7 @@ const SponsorDashboard = () => {
       amount: '$10,000',
       date: 'Feb 20, 2025',
       engagement: '4,800',
+      status: 'Active',
     },
   ];
 
