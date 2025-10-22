@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { RoleContext } from '../context/RoleContext';
 import '../styles/Sidebar.css';
 
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
+  const navigate = useNavigate();
+  const { userRole } = useContext(RoleContext);
+
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '🏠' },
     { id: 'venues', label: 'Venues', icon: '📍' },
     { id: 'bookings', label: 'Bookings', icon: '📅' },
     { id: 'vendors', label: 'Vendors', icon: '👥' },
     { id: 'settings', label: 'Settings', icon: '⚙️' },
+  ];
+
+  const roles = [
+    { id: 'npo', name: 'NPO', icon: '🎯', color: '#FF6B6B' },
+    { id: 'vendor', name: 'Vendor', icon: '🛠️', color: '#4F7DFF' },
+    { id: 'sponsor', name: 'Sponsor', icon: '⭐', color: '#FFD93D' },
   ];
 
   return (
@@ -19,21 +30,47 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         </div>
       </div>
 
-      <nav className="sidebar-nav">
-        {menuItems.map((item) => (
-          <button
-            key={item.id}
-            className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
-            onClick={() => setActiveTab(item.id)}
-          >
-            <span className="nav-icon">{item.icon}</span>
-            <span className="nav-label">{item.label}</span>
-          </button>
-        ))}
-      </nav>
+      {!showRoleSelection && (
+        <nav className="sidebar-nav">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(item.id)}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-label">{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      )}
 
       <div className="sidebar-footer">
-        <span className="powered-by">Powered by FreeFuse</span>
+        {showRoleSelection ? (
+          <div className="role-selection-cards">
+            <p className="role-label">Choose Your Role</p>
+            {roles.map((role) => (
+              <button
+                key={role.id}
+                className={`role-card-small ${userRole === role.id ? 'active' : ''}`}
+                onClick={() => navigate(`/dashboard/${role.id}`)}
+                style={{ borderColor: userRole === role.id ? role.color : '#e5e7eb' }}
+              >
+                <span className="role-icon-small" style={{ backgroundColor: role.color }}>
+                  {role.icon}
+                </span>
+                <span className="role-name-small">{role.name}</span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <>
+            <button className="change-role-btn" onClick={() => navigate('/')}>
+              Change Role
+            </button>
+            <span className="powered-by">Powered by FreeFuse</span>
+          </>
+        )}
       </div>
     </aside>
   );
