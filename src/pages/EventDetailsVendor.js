@@ -71,20 +71,18 @@ const EventDetailsVendor = () => {
           </div>
         </div>
 
-        {!showProposalForm && (
-          <div className="action-section">
-            <h3>Ready to submit a quote?</h3>
-            <p className="action-description">
-              Click below to submit your proposal with pricing, timeline, and portfolio details.
-            </p>
-            <div className="action-buttons">
-              <button className="btn-submit-quote" onClick={handleSubmitQuote}>
-                Submit Quote
-              </button>
-              <button className="btn-propose-service">Propose Different Service</button>
-            </div>
+        <div className="action-section">
+          <h3>Ready to submit a quote?</h3>
+          <p className="action-description">
+            Click below to submit your proposal with pricing, timeline, and portfolio details.
+          </p>
+          <div className="action-buttons">
+            <button className="btn-submit-quote" onClick={handleSubmitQuote}>
+              Submit Quote
+            </button>
+            <button className="btn-propose-service">Propose Different Service</button>
           </div>
-        )}
+        </div>
       </div>
     </main>
   );
