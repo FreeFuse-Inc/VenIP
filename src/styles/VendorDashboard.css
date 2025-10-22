@@ -275,10 +275,6 @@
   .metrics-section {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .events-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
 }
 
 @media (max-width: 768px) {
@@ -305,6 +301,31 @@
   .events-grid,
   .proposals-list {
     grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .event-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .event-header {
+    grid-column: 1;
+  }
+
+  .event-description {
+    grid-column: 1;
+  }
+
+  .event-details {
+    grid-template-columns: 1fr;
+    grid-column: 1;
+  }
+
+  .submit-quote-btn {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
   }
 
   .proposal-header {
