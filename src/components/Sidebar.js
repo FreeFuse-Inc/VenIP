@@ -7,8 +7,13 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const navigate = useNavigate();
   const { userRole } = useContext(RoleContext);
 
+  const getDashboardPath = () => {
+    if (!userRole) return '/';
+    return `/dashboard/${userRole}`;
+  };
+
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: '/dashboard/analytics' },
+    { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: getDashboardPath() },
     { id: 'venues', label: 'Venues', icon: '📍', path: '/venues' },
     { id: 'bookings', label: 'Bookings', icon: '📅', path: '/bookings' },
     { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
