@@ -39,6 +39,7 @@ function AppContent() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/vendors" element={<Vendors />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/event-management/:eventId" element={<EventManagement />} />
         <Route
           path="/dashboard/analytics"
           element={
