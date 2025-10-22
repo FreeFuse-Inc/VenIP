@@ -90,8 +90,8 @@
 }
 
 .events-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
   padding: 24px;
 }
