@@ -16,6 +16,7 @@ import Venues from './pages/Venues';
 import Bookings from './pages/Bookings';
 import Vendors from './pages/Vendors';
 import Settings from './pages/Settings';
+import EventManagement from './pages/EventManagement';
 import './App.css';
 
 function AppContent() {
