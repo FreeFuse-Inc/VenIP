@@ -18,7 +18,6 @@ function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
-  const isPublicPage = location.pathname === '/' || location.pathname === '/role-selection';
 
   return (
     <div className="app-container">
