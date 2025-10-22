@@ -8,11 +8,11 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const { userRole } = useContext(RoleContext);
 
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: '🏠' },
-    { id: 'venues', label: 'Venues', icon: '📍' },
-    { id: 'bookings', label: 'Bookings', icon: '📅' },
-    { id: 'vendors', label: 'Vendors', icon: '👥' },
-    { id: 'settings', label: 'Settings', icon: '⚙️' },
+    { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: '/dashboard/analytics' },
+    { id: 'venues', label: 'Venues', icon: '📍', path: '/venues' },
+    { id: 'bookings', label: 'Bookings', icon: '📅', path: '/bookings' },
+    { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
+    { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
   ];
 
   const roles = [
