@@ -17,6 +17,9 @@ import Bookings from './pages/Bookings';
 import Vendors from './pages/Vendors';
 import Settings from './pages/Settings';
 import EventManagement from './pages/EventManagement';
+import EventDetailsVendor from './pages/EventDetailsVendor';
+import SubmitQuote from './pages/SubmitQuote';
+import VendorChecklist from './pages/VendorChecklist';
 import './App.css';
 
 function AppContent() {
