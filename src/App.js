@@ -12,6 +12,10 @@ import NPODashboard from './pages/NPODashboard';
 import VendorDashboard from './pages/VendorDashboard';
 import SponsorDashboard from './pages/SponsorDashboard';
 import CreateEvent from './pages/CreateEvent';
+import Venues from './pages/Venues';
+import Bookings from './pages/Bookings';
+import Vendors from './pages/Vendors';
+import Settings from './pages/Settings';
 import './App.css';
 
 function AppContent() {
