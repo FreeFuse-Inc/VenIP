@@ -90,10 +90,11 @@
 }
 
 .events-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
   gap: 16px;
   padding: 24px;
+  width: 100%;
 }
 
 .event-card {
@@ -103,9 +104,10 @@
   padding: 20px;
   transition: all 0.2s ease;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 180px;
   gap: 20px;
   align-items: start;
+  width: 100%;
 }
 
 .event-card:hover {
