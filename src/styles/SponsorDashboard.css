@@ -1,0 +1,247 @@
+.sponsor-dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.dashboard-content {
+  padding: 24px 32px;
+  display: grid;
+  gap: 24px;
+}
+
+.metrics-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.sponsored-section,
+.available-events-section {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.sponsored-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.sponsored-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.sponsored-card:hover {
+  border-color: #4F7DFF;
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+}
+
+.sponsored-card .event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.sponsored-card .event-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.sponsorship-level {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.event-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.event-info-grid p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.event-info-grid .label {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.analytics-btn {
+  width: 100%;
+  background: #4F7DFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.analytics-btn:hover {
+  background: #3d5fd9;
+  transform: translateY(-2px);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.event-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.event-card:hover {
+  border-color: #4F7DFF;
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+}
+
+.event-card .event-header {
+  margin-bottom: 12px;
+}
+
+.event-card .event-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.event-description {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 12px 0;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.event-details p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+}
+
+.packages-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.packages-section h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.packages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.package-btn {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.package-btn:hover {
+  background: #4F7DFF;
+  color: white;
+  border-color: #4F7DFF;
+}
+
+@media (max-width: 1200px) {
+  .metrics-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sponsored-grid,
+  .events-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+
+  .metrics-section {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsored-grid,
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsored-card .event-header,
+  .event-card .event-header {
+    flex-direction: column;
+  }
+
+  .sponsorship-level {
+    align-self: flex-start;
+  }
+}

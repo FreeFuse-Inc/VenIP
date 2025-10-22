@@ -1,0 +1,268 @@
+.vendor-dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.dashboard-content {
+  padding: 24px 32px;
+  display: grid;
+  gap: 24px;
+}
+
+.metrics-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.tabs-section {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.tabs-header {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 16px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: #1f2937;
+  background: white;
+}
+
+.tab-btn.active {
+  color: #4F7DFF;
+  border-bottom-color: #4F7DFF;
+  background: white;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.event-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.event-card:hover {
+  border-color: #4F7DFF;
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.event-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.service-badge {
+  background: #dbeafe;
+  color: #0c4a6e;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.event-description {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 12px 0;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.event-details p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.submit-quote-btn {
+  width: 100%;
+  background: #4F7DFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-quote-btn:hover {
+  background: #3d5fd9;
+  transform: translateY(-2px);
+}
+
+.proposals-list {
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.proposal-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.proposal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.proposal-event {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.proposal-service {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.proposal-status {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.proposal-status[data-status="pending-review"] {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.proposal-status[data-status="accepted"] {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.proposal-details {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.proposal-details p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.view-proposal-btn {
+  background: none;
+  border: none;
+  color: #4F7DFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.view-proposal-btn:hover {
+  color: #3d5fd9;
+}
+
+@media (max-width: 1200px) {
+  .metrics-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .events-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs-header {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    border-bottom: none;
+    border-right: 3px solid transparent;
+    margin-right: -1px;
+    margin-bottom: 0;
+  }
+
+  .tab-btn.active {
+    border-right-color: #4F7DFF;
+    border-bottom: none;
+  }
+
+  .metrics-section {
+    grid-template-columns: 1fr;
+  }
+
+  .events-grid,
+  .proposals-list {
+    grid-template-columns: 1fr;
+  }
+
+  .proposal-header {
+    flex-direction: column;
+  }
+
+  .proposal-details {
+    flex-direction: column;
+  }
+}
