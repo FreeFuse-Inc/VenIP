@@ -1,0 +1,382 @@
+.vendor-checklist {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #f9fafb;
+  padding: 24px 32px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #4F7DFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  color: #3d5fd9;
+}
+
+.checklist-header {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.checklist-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.event-info {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.checklist-content {
+  display: grid;
+  gap: 24px;
+}
+
+.steps-indicator {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.step {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+
+.step:hover {
+  border-color: #4F7DFF;
+  background: #f0f4ff;
+}
+
+.step.active {
+  background: #4F7DFF;
+  border-color: #4F7DFF;
+  color: white;
+}
+
+.step.completed {
+  background: #dcfce7;
+  border-color: #10b981;
+}
+
+.step.completed .step-circle {
+  background: #10b981;
+  color: white;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.step.active .step-circle {
+  background: white;
+  color: #4F7DFF;
+}
+
+.step.completed .step-circle::after {
+  content: '✓';
+  font-size: 16px;
+}
+
+.step-label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.checklist-card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.checklist-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.step-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.items-list {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.checklist-item input[type='checkbox'] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  accent-color: #4F7DFF;
+}
+
+.checklist-item label {
+  flex: 1;
+  cursor: pointer;
+  font-size: 14px;
+  color: #1f2937;
+  margin: 0;
+  transition: all 0.2s ease;
+}
+
+.checklist-item label.completed {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.checklist-item:hover {
+  background: #f3f4f6;
+}
+
+.milestones-list {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.milestones-list::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.milestone-item {
+  position: relative;
+  padding: 16px 0;
+  padding-left: 24px;
+}
+
+.milestone-item::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e5e7eb;
+  z-index: 2;
+}
+
+.milestone-item.completed::before {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.milestone-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.milestone-content h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.milestone-content p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.milestone-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: #10b981;
+  white-space: nowrap;
+}
+
+.milestone-item:not(.completed) .milestone-status {
+  color: #f59e0b;
+}
+
+.invoice-section {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.invoice-details {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.invoice-row:last-child {
+  border-bottom: none;
+}
+
+.invoice-row .label {
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.invoice-row .value {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.invoice-row .value.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.invoice-row .value.status.paid {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.btn-submit-invoice {
+  background: #4F7DFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-submit-invoice:hover {
+  background: #3d5fd9;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.btn-secondary,
+.btn-primary,
+.btn-complete {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.btn-primary,
+.btn-complete {
+  background: #4F7DFF;
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-complete:hover {
+  background: #3d5fd9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .vendor-checklist {
+    padding: 16px;
+  }
+
+  .steps-indicator {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .milestone-content {
+    flex-direction: column;
+  }
+
+  .milestone-status {
+    display: block;
+    margin-top: 4px;
+  }
+}

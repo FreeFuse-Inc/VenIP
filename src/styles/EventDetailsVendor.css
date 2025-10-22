@@ -1,0 +1,213 @@
+.event-details-vendor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #f9fafb;
+  padding: 24px 32px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #4F7DFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  color: #3d5fd9;
+}
+
+.event-details-header {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.event-title-section {
+  flex: 1;
+}
+
+.event-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.event-meta {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.service-badge-large {
+  background: #dbeafe;
+  color: #0c4a6e;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.event-details-content {
+  display: grid;
+  gap: 24px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.details-card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.details-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.detail-value {
+  color: #1f2937;
+  text-align: right;
+}
+
+.budget-highlight {
+  color: #4F7DFF;
+  font-weight: 600;
+}
+
+.description-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b7280;
+  margin: 0 0 12px 0;
+}
+
+.description-text.additional {
+  margin-bottom: 0;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.action-section {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.action-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.action-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-submit-quote,
+.btn-propose-service {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-submit-quote {
+  background: #4F7DFF;
+  color: white;
+}
+
+.btn-submit-quote:hover {
+  background: #3d5fd9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+}
+
+.btn-propose-service {
+  background: white;
+  color: #4F7DFF;
+  border: 2px solid #4F7DFF;
+}
+
+.btn-propose-service:hover {
+  background: #f0f4ff;
+}
+
+@media (max-width: 768px) {
+  .event-details-vendor {
+    padding: 16px;
+  }
+
+  .event-details-header {
+    flex-direction: column;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-submit-quote,
+  .btn-propose-service {
+    width: 100%;
+  }
+}
