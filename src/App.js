@@ -21,6 +21,13 @@ import EventDetailsVendor from './pages/EventDetailsVendor';
 import SubmitQuote from './pages/SubmitQuote';
 import VendorChecklist from './pages/VendorChecklist';
 import SuggestEvent from './pages/SuggestEvent';
+import EventsFeed from './pages/EventsFeed';
+import SponsorEventDetails from './pages/SponsorEventDetails';
+import SponsorshipPackageSelection from './pages/SponsorshipPackageSelection';
+import PaymentConfirmation from './pages/PaymentConfirmation';
+import SponsorshipAnalytics from './pages/SponsorshipAnalytics';
+import ModifySponsor from './pages/ModifySponsor';
+import RenewalDecision from './pages/RenewalDecision';
 import './App.css';
 
 function AppContent() {
