@@ -47,6 +47,7 @@ function AppContent() {
         <Route path="/event-details-vendor/:eventId" element={<EventDetailsVendor />} />
         <Route path="/submit-quote/:eventId" element={<SubmitQuote />} />
         <Route path="/vendor-checklist" element={<VendorChecklist />} />
+        <Route path="/suggest-event" element={<SuggestEvent />} />
         <Route
           path="/dashboard/analytics"
           element={
