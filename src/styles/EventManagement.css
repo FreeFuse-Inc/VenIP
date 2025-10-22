@@ -457,7 +457,10 @@
   position: relative;
   padding-left: 60px;
   margin-bottom: 24px;
-  last-child: margin-bottom: 0;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
 }
 
 .timeline-marker {
