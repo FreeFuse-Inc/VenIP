@@ -60,6 +60,9 @@ const VendorDashboard = () => {
     <main className="vendor-dashboard">
       <header className="dashboard-header">
         <h1 className="dashboard-title">Vendor Dashboard</h1>
+        <button className="suggest-event-btn" onClick={() => navigate('/suggest-event')}>
+          💡 Suggest Event
+        </button>
       </header>
 
       <div className="dashboard-content">
