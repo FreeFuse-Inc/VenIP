@@ -64,9 +64,9 @@ const VendorDashboard = () => {
 
       <div className="dashboard-content">
         <section className="metrics-section">
-          <MetricCard label="Available Events" value="8" />
-          <MetricCard label="Active Proposals" value="5" />
-          <MetricCard label="Accepted Quotes" value="2" />
+          <MetricCard label="Total Active Quotes" value="5" />
+          <MetricCard label="Quotes Awaiting Response" value="2" />
+          <MetricCard label="Jobs in Progress" value="1" />
         </section>
 
         <section className="tabs-section">
