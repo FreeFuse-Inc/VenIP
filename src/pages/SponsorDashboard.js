@@ -58,6 +58,14 @@ const SponsorDashboard = () => {
     <main className="sponsor-dashboard">
       <header className="dashboard-header">
         <h1 className="dashboard-title">Sponsor Dashboard</h1>
+        <div className="header-buttons">
+          <button className="btn-browse-events" onClick={() => navigate('/events-feed')}>
+            Browse Events
+          </button>
+          <button className="btn-view-history" onClick={() => navigate('/sponsorship-analytics')}>
+            View Analytics
+          </button>
+        </div>
       </header>
 
       <div className="dashboard-content">
