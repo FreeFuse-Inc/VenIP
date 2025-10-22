@@ -20,6 +20,7 @@ import EventManagement from './pages/EventManagement';
 import EventDetailsVendor from './pages/EventDetailsVendor';
 import SubmitQuote from './pages/SubmitQuote';
 import VendorChecklist from './pages/VendorChecklist';
+import SuggestEvent from './pages/SuggestEvent';
 import './App.css';
 
 function AppContent() {
