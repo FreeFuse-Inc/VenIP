@@ -34,6 +34,10 @@ function AppContent() {
         <Route path="/dashboard/vendor" element={<VendorDashboard />} />
         <Route path="/dashboard/sponsor" element={<SponsorDashboard />} />
         <Route path="/create-event" element={<CreateEvent />} />
+        <Route path="/venues" element={<Venues />} />
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/vendors" element={<Vendors />} />
+        <Route path="/settings" element={<Settings />} />
         <Route
           path="/dashboard/analytics"
           element={
