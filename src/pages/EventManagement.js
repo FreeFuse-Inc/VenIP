@@ -6,7 +6,7 @@ const EventManagement = () => {
   const navigate = useNavigate();
   const { eventId } = useParams();
 
-  const [event, setEvent] = useState({
+  const [event] = useState({
     id: eventId || 1,
     name: 'Annual Gala 2024',
     date: 'Dec 15, 2024',
@@ -63,7 +63,7 @@ const EventManagement = () => {
         <div className="event-header-content">
           <h1 className="event-title">{event.name}</h1>
           <div className="event-meta">
-            <span className="event-date">��� {event.date} at {event.time}</span>
+            <span className="event-date">📅 {event.date} at {event.time}</span>
             <span className="event-location">📍 {event.location}</span>
             <span className={`event-status-badge ${event.status.toLowerCase().replace(' ', '-')}`}>
               {event.status}
