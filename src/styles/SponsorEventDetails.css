@@ -1,0 +1,241 @@
+.sponsor-event-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #f9fafb;
+  padding: 24px 32px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #4F7DFF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  color: #3d5fd9;
+}
+
+.sponsor-event-details h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.event-meta {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+}
+
+.event-details-content {
+  display: grid;
+  gap: 24px;
+}
+
+.event-info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.info-card,
+.impact-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.info-card h3,
+.impact-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.info-card p,
+.impact-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.event-stats {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.stat-label {
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.stat-value {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.impact-list {
+  margin: 12px 0 0 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.impact-list li {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 8px 0;
+}
+
+.impact-list li::before {
+  content: '✓ ';
+  color: #10b981;
+  font-weight: 600;
+}
+
+.sponsorship-tiers {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.sponsorship-tiers h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.tiers-intro {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tier-card {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.tier-card:hover {
+  border-color: #4F7DFF;
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+}
+
+.tier-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tier-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.tier-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #4F7DFF;
+  margin: 0;
+}
+
+.tier-features {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4F7DFF;
+  margin: 0 0 12px 0;
+}
+
+.tier-benefits {
+  list-style: none;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.tier-benefits li {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 8px 0;
+}
+
+.select-tier-btn {
+  width: 100%;
+  background: #4F7DFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select-tier-btn:hover {
+  background: #3d5fd9;
+  transform: translateY(-2px);
+}
+
+.custom-note {
+  background: #f0f4ff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.custom-note p {
+  font-size: 13px;
+  color: #0c4a6e;
+  margin: 0;
+}
+
+.custom-note a {
+  color: #4F7DFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .sponsor-event-details {
+    padding: 16px;
+  }
+
+  .event-info-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tiers-grid {
+    grid-template-columns: 1fr;
+  }
+}
