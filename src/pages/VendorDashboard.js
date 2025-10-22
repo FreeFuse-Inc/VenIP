@@ -105,7 +105,7 @@ const VendorDashboard = () => {
                       <span className="detail-label">💰 Budget:</span> {event.budget}
                     </p>
                   </div>
-                  <button className="submit-quote-btn">Submit Quote →</button>
+                  <button className="submit-quote-btn" onClick={() => navigate(`/event-details-vendor/${event.id}`)}>View & Submit Quote →</button>
                 </div>
               ))}
             </div>
