@@ -97,7 +97,7 @@ const SponsorDashboard = () => {
                     <span className="label">Engagement:</span> {event.engagement} people
                   </p>
                 </div>
-                <button className="analytics-btn" onClick={() => navigate('/sponsorship-analytics')}>View Analytics →</button>
+                <button className="analytics-btn" onClick={() => navigate(`/sponsorship-analytics/${event.id}`)}>View Analytics →</button>
               </div>
             ))}
           </div>
