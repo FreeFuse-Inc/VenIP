@@ -1,32 +1,62 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/SponsorshipAnalytics.css';
 
 const SponsorshipAnalytics = () => {
   const navigate = useNavigate();
+  const { sponsorshipId } = useParams();
   const [showRenewalDecision, setShowRenewalDecision] = useState(false);
 
-  const analytics = {
-    eventName: 'Annual Gala 2024',
-    sponsorshipTier: 'Gold',
-    sponsorshipAmount: '$10,000',
-    eventDate: 'Dec 15, 2024',
-    metrics: {
-      impressions: '45,230',
-      eventAttendees: '287',
-      logoViews: '12,450',
-      websiteClicks: '892',
-      conversions: '34',
-      socialReach: '125,680',
-      emailReaches: '28,940',
+  const sponsorshipData = {
+    1: {
+      analytics: {
+        eventName: 'Annual Gala 2024',
+        sponsorshipTier: 'Gold',
+        sponsorshipAmount: '$5,000',
+        eventDate: 'Dec 15, 2024',
+        metrics: {
+          impressions: '45,230',
+          eventAttendees: '287',
+          logoViews: '12,450',
+          websiteClicks: '892',
+          conversions: '34',
+          socialReach: '125,680',
+          emailReaches: '28,940',
+        },
+      },
+      roi: {
+        costs: 5000,
+        contactsMade: 287,
+        estimatedValue: 28500,
+      },
+    },
+    2: {
+      analytics: {
+        eventName: 'Tech Conference 2025',
+        sponsorshipTier: 'Platinum',
+        sponsorshipAmount: '$10,000',
+        eventDate: 'Feb 20, 2025',
+        metrics: {
+          impressions: '78,450',
+          eventAttendees: '512',
+          logoViews: '23,890',
+          websiteClicks: '1,567',
+          conversions: '67',
+          socialReach: '198,340',
+          emailReaches: '45,680',
+        },
+      },
+      roi: {
+        costs: 10000,
+        contactsMade: 512,
+        estimatedValue: 61440,
+      },
     },
   };
 
-  const roi = {
-    costs: 10000,
-    contactsMade: 287,
-    estimatedValue: 45000,
-  };
+  const currentSponsorship = sponsorshipData[sponsorshipId] || sponsorshipData[1];
+  const analytics = currentSponsorship.analytics;
+  const roi = currentSponsorship.roi;
 
   return (
     <main className="sponsorship-analytics">
