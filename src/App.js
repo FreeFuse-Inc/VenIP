@@ -28,6 +28,8 @@ import PaymentConfirmation from './pages/PaymentConfirmation';
 import SponsorshipAnalytics from './pages/SponsorshipAnalytics';
 import ModifySponsor from './pages/ModifySponsor';
 import RenewalDecision from './pages/RenewalDecision';
+import InviteAttendees from './pages/InviteAttendees';
+import RequestVendors from './pages/RequestVendors';
 import './App.css';
 
 function AppContent() {
