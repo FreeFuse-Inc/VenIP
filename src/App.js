@@ -64,6 +64,8 @@ function AppContent() {
         <Route path="/sponsorship-analytics" element={<SponsorshipAnalytics />} />
         <Route path="/modify-sponsorship/:sponsorshipId" element={<ModifySponsor />} />
         <Route path="/renewal-decision/:sponsorshipId" element={<RenewalDecision />} />
+        <Route path="/invite-attendees/:eventId" element={<InviteAttendees />} />
+        <Route path="/request-vendors/:eventId" element={<RequestVendors />} />
         <Route
           path="/dashboard/analytics"
           element={
