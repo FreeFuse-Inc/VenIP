@@ -147,9 +147,9 @@ const EventManagement = () => {
             </div>
 
             <div className="action-buttons">
-              <button className="btn-primary">Edit Event Details</button>
-              <button className="btn-secondary">Request More Vendors</button>
-              <button className="btn-secondary">Invite Attendees</button>
+              <button className="btn-primary" onClick={() => navigate(`/create-event/${eventId}?mode=edit`)}>Edit Event Details</button>
+              <button className="btn-secondary" onClick={() => navigate(`/request-vendors/${eventId}`)}>Request More Vendors</button>
+              <button className="btn-secondary" onClick={() => navigate(`/invite-attendees/${eventId}`)}>Invite Attendees</button>
             </div>
           </div>
         )}
