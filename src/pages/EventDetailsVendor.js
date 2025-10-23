@@ -24,6 +24,10 @@ const EventDetailsVendor = () => {
     navigate(`/submit-quote/${eventId}`);
   };
 
+  const handleProposeService = () => {
+    navigate(`/suggest-event?eventId=${eventId}`);
+  };
+
   return (
     <main className="event-details-vendor">
       <button className="back-btn" onClick={() => navigate('/dashboard/vendor')}>
