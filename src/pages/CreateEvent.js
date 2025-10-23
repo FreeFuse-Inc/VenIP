@@ -4,6 +4,10 @@ import '../styles/CreateEvent.css';
 
 const CreateEvent = () => {
   const navigate = useNavigate();
+  const { eventId } = useParams();
+  const [searchParams] = useSearchParams();
+  const isEditMode = searchParams.get('mode') === 'edit' && eventId;
+
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     title: '',
@@ -12,6 +16,19 @@ const CreateEvent = () => {
     location: '',
     budget: '',
   });
+
+  useEffect(() => {
+    if (isEditMode) {
+      const eventData = {
+        title: 'Annual Gala 2024',
+        description: 'Annual fundraising gala to support local communities',
+        date: '2024-12-15',
+        location: 'Downtown Convention Center',
+        budget: '15000',
+      };
+      setFormData(eventData);
+    }
+  }, [isEditMode]);
 
   const steps = [
     { number: 1, title: 'Enter Event Details' },
