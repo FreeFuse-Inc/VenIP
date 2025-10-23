@@ -47,13 +47,17 @@ const CreateEvent = () => {
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
     } else {
-      navigate('/dashboard/npo');
+      navigate(`/event-management/${eventId || 1}`);
     }
   };
 
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+    } else if (isEditMode) {
+      navigate(`/event-management/${eventId}`);
+    } else {
+      navigate('/dashboard/npo');
     }
   };
 
