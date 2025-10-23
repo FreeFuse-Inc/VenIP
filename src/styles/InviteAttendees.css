@@ -1,0 +1,360 @@
+.invite-attendees-container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 40px 20px;
+}
+
+.invite-header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.invite-header .back-btn {
+  background: none;
+  border: none;
+  color: #374151;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.invite-header .back-btn:hover {
+  color: #1f2937;
+}
+
+.invite-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px;
+}
+
+.event-id-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.invite-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.invitee-form-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-add-invitee {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.btn-add-invitee:hover {
+  background-color: #2563eb;
+}
+
+.invite-form {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.invite-form h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 24px;
+}
+
+.invite-form .form-group {
+  margin-bottom: 20px;
+}
+
+.invite-form .form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.invite-form .form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.invite-form .form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.invite-form .form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.invite-form .form-actions .btn-secondary,
+.invite-form .form-actions .btn-primary {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.invite-form .form-actions .btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.invite-form .form-actions .btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.invite-form .form-actions .btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.invite-form .form-actions .btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.invitees-list-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.invitees-list-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 20px;
+}
+
+.empty-state {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  border: 2px dashed #d1d5db;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 8px;
+}
+
+.empty-state .subtext {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.invitees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.invitee-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.invitee-info {
+  flex: 1;
+}
+
+.invitee-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px;
+}
+
+.invitee-email {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.invitee-status-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.invitee-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.invitee-status.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.invitee-status.invited {
+  background-color: #dbeafe;
+  color: #0c4a6e;
+}
+
+.invitee-status.accepted {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.btn-remove:hover {
+  color: #ef4444;
+}
+
+.invite-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.invite-actions .btn-secondary,
+.invite-actions .btn-primary {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.invite-actions .btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.invite-actions .btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.invite-actions .btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.invite-actions .btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.success-message {
+  max-width: 500px;
+  margin: 100px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #dcfce7;
+  color: #16a34a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 20px;
+  font-weight: bold;
+}
+
+.success-message h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 12px;
+}
+
+.success-message p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.redirect-message {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .invite-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .invite-header h1 {
+    font-size: 24px;
+  }
+
+  .invitee-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .invitee-status-section {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .invite-actions {
+    flex-direction: column;
+  }
+
+  .invite-actions .btn-secondary,
+  .invite-actions .btn-primary {
+    width: 100%;
+  }
+}
