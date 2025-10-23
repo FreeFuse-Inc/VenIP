@@ -84,7 +84,7 @@ const EventDetailsVendor = () => {
             <button className="btn-submit-quote" onClick={handleSubmitQuote}>
               Submit Quote
             </button>
-            <button className="btn-propose-service">Propose Different Service</button>
+            <button className="btn-propose-service" onClick={handleProposeService}>Propose Different Service</button>
           </div>
         </div>
       </div>
