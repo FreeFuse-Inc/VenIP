@@ -156,13 +156,13 @@ const SponsorshipAnalytics = () => {
               <div className="renewal-buttons">
                 <button
                   className="btn-renew"
-                  onClick={() => navigate(`/modify-sponsorship/1`)}
+                  onClick={() => navigate(`/modify-sponsorship/${sponsorshipId || 1}`)}
                 >
                   Renew or Upgrade Sponsorship →
                 </button>
                 <button
                   className="btn-end"
-                  onClick={() => navigate(`/renewal-decision/1`)}
+                  onClick={() => navigate(`/renewal-decision/${sponsorshipId || 1}`)}
                 >
                   End Sponsorship
                 </button>
