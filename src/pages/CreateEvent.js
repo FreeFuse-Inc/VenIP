@@ -226,11 +226,11 @@ const CreateEvent = () => {
           )}
 
           <div className="form-actions">
-            <button className="btn-secondary" onClick={handleBack} disabled={currentStep === 1}>
+            <button className="btn-secondary" onClick={handleBack} disabled={currentStep === 1 && !isEditMode}>
               ← Back
             </button>
             <button className="btn-primary" onClick={handleNext}>
-              {currentStep === 5 ? 'Publish Event' : 'Next'} →
+              {currentStep === 5 ? (isEditMode ? 'Save Changes' : 'Publish Event') : 'Next'} →
             </button>
           </div>
         </div>
