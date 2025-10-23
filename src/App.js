@@ -63,6 +63,7 @@ function AppContent() {
         <Route path="/sponsorship-package-selection/:eventId/:tier" element={<SponsorshipPackageSelection />} />
         <Route path="/payment-confirmation/:eventId/:tier/:amount" element={<PaymentConfirmation />} />
         <Route path="/sponsorship-analytics" element={<SponsorshipAnalytics />} />
+        <Route path="/sponsorship-analytics/:sponsorshipId" element={<SponsorshipAnalytics />} />
         <Route path="/modify-sponsorship/:sponsorshipId" element={<ModifySponsor />} />
         <Route path="/renewal-decision/:sponsorshipId" element={<RenewalDecision />} />
         <Route path="/invite-attendees/:eventId" element={<InviteAttendees />} />
