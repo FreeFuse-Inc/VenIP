@@ -64,10 +64,10 @@ const CreateEvent = () => {
   return (
     <main className="create-event-container">
       <header className="create-event-header">
-        <button className="back-btn" onClick={() => navigate('/dashboard/npo')}>
+        <button className="back-btn" onClick={handleBack}>
           ← Back
         </button>
-        <h1>Create Event</h1>
+        <h1>{isEditMode ? 'Edit Event' : 'Create Event'}</h1>
       </header>
 
       <div className="create-event-content">
