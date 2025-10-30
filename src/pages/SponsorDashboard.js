@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import '../styles/SponsorDashboard.css';
 
-const SponsorDashboard = () => {
+const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
   const navigate = useNavigate();
   const sponsoredEvents = [
     {
@@ -13,6 +13,7 @@ const SponsorDashboard = () => {
       sponsorshipLevel: 'Gold',
       amount: '$5,000',
       date: 'Dec 15, 2024',
+      eventDate: '2024-12-15',
       engagement: '2,450',
       status: 'Active',
     },
@@ -23,10 +24,15 @@ const SponsorDashboard = () => {
       sponsorshipLevel: 'Platinum',
       amount: '$10,000',
       date: 'Feb 20, 2025',
+      eventDate: '2025-02-20',
       engagement: '4,800',
       status: 'Active',
     },
   ];
+
+  const filteredSponsoredEvents = selectedDate
+    ? sponsoredEvents.filter((event) => event.eventDate === selectedDate)
+    : sponsoredEvents;
 
   const availableEvents = [
     {
