@@ -26,20 +26,21 @@
 }
 
 .nav-btn {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
   font-weight: 600;
-  color: #1f2937;
+  color: white;
   cursor: pointer;
   transition: all 0.2s ease;
+  flex: 1;
+  min-width: 0;
 }
 
 .nav-btn:hover {
-  background: #4F7DFF;
-  color: white;
+  background: rgba(79, 125, 255, 0.8);
   border-color: #4F7DFF;
 }
 
