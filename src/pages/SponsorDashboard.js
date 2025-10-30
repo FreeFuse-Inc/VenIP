@@ -83,10 +83,24 @@ const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
 
         <section className="sponsored-section">
           <div className="section-header">
-            <h2>Your Sponsorships</h2>
+            <div className="section-header-with-filter">
+              <h2>Your Sponsorships</h2>
+              {selectedDate && (
+                <span className="filter-badge">
+                  Filtered by: {selectedDate}
+                  <button
+                    onClick={() => onDateSelect(null)}
+                    className="clear-filter-btn"
+                  >
+                    Clear
+                  </button>
+                </span>
+              )}
+            </div>
           </div>
           <div className="sponsored-grid">
-            {sponsoredEvents.map((event) => (
+            {filteredSponsoredEvents.length > 0 ? (
+              filteredSponsoredEvents.map((event) => (
               <div key={event.id} className="sponsored-card">
                 <div className="event-header">
                   <h3 className="event-name">{event.name}</h3>
@@ -105,7 +119,12 @@ const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
                 </div>
                 <button className="analytics-btn" onClick={() => navigate(`/sponsorship-analytics/${event.id}`)}>View Analytics →</button>
               </div>
-            ))}
+            ))
+            ) : (
+              <div className="no-events-message">
+                <p>No sponsorships found for the selected date.</p>
+              </div>
+            )}
           </div>
         </section>
 
