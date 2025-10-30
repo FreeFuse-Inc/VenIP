@@ -38,21 +38,50 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection, onDateSelect, sel
       </div>
 
       {!showRoleSelection && (
-        <nav className="sidebar-nav">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
-              onClick={() => {
-                setActiveTab(item.id);
-                navigate(item.path);
-              }}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-label">{item.label}</span>
-            </button>
-          ))}
-        </nav>
+        <>
+          <nav className="sidebar-nav">
+            {menuItems.map((item) => {
+              if (item.id === 'bookings' && userRole === 'sponsor') {
+                return (
+                  <button
+                    key={item.id}
+                    className={`nav-item ${showCalendar ? 'active' : ''}`}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setShowCalendar(!showCalendar);
+                    }}
+                  >
+                    <span className="nav-icon">{item.icon}</span>
+                    <span className="nav-label">{item.label}</span>
+                  </button>
+                );
+              }
+              return (
+                <button
+                  key={item.id}
+                  className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    navigate(item.path);
+                  }}
+                >
+                  <span className="nav-icon">{item.icon}</span>
+                  <span className="nav-label">{item.label}</span>
+                </button>
+              );
+            })}
+          </nav>
+          {showCalendar && userRole === 'sponsor' && (
+            <div className="sidebar-calendar-container">
+              <SponsorshipCalendar
+                onDateSelect={(date) => {
+                  onDateSelect(date);
+                }}
+                selectedDate={selectedDate}
+              />
+            </div>
+          )}
+        </>
       )}
 
       <div className="sidebar-footer">
