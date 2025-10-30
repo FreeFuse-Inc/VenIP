@@ -140,25 +140,11 @@
 }
 
 .activity-tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #1f2937;
-  color: white;
-  padding: 8px 10px;
-  border-radius: 4px;
-  font-size: 11px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  margin-bottom: 8px;
-  z-index: 10;
+  display: none;
 }
 
 .calendar-day:hover .activity-tooltip {
-  opacity: 1;
+  display: none;
 }
 
 .tooltip-title {
