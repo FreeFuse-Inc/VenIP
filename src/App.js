@@ -34,12 +34,17 @@ import './App.css';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [selectedDate, setSelectedDate] = useState(null);
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
 
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+
   return (
     <div className="app-container">
-      {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} />}
+      {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} onDateSelect={handleDateSelect} selectedDate={selectedDate} />}
       
       <Routes>
         <Route path="/" element={<RoleSelection />} />
