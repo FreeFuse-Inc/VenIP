@@ -212,28 +212,29 @@
 
 @media (max-width: 768px) {
   .sponsorship-calendar {
-    padding: 16px;
+    padding: 12px;
   }
 
   .calendar-header {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    gap: 6px;
   }
 
   .nav-btn {
     flex: 1;
+    min-width: 45px;
   }
 
   .calendar-day {
-    min-height: 70px;
-    padding: 6px;
+    min-height: 0;
+    padding: 4px;
   }
 
   .day-number {
-    font-size: 12px;
+    font-size: 9px;
   }
 
   .activity-indicator {
-    font-size: 16px;
+    font-size: 9px;
   }
 }
