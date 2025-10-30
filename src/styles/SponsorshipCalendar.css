@@ -85,19 +85,18 @@
 }
 
 .calendar-day:hover {
-  border-color: #4F7DFF;
-  background: #f0f4ff;
-  box-shadow: 0 2px 8px rgba(79, 125, 255, 0.15);
+  border-color: rgba(79, 125, 255, 0.8);
+  background: rgba(79, 125, 255, 0.2);
 }
 
 .calendar-day.has-activity {
-  background: #fef3c7;
-  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.3);
+  border-color: rgba(251, 191, 36, 0.6);
 }
 
 .calendar-day.has-activity:hover {
-  background: #fcd34d;
-  border-color: #f59e0b;
+  background: rgba(251, 191, 36, 0.5);
+  border-color: rgba(245, 158, 11, 0.8);
 }
 
 .calendar-day.selected {
@@ -112,14 +111,14 @@
 }
 
 .calendar-day.selected .activity-indicator {
-  background: white;
+  color: white;
 }
 
 .day-number {
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 4px;
+  color: white;
+  margin: 0;
 }
 
 .calendar-day.selected .day-number {
@@ -127,8 +126,9 @@
 }
 
 .activity-indicator {
-  font-size: 18px;
-  margin-top: auto;
+  font-size: 10px;
+  margin: 0;
+  margin-top: 2px;
 }
 
 .activity-indicator.event {
