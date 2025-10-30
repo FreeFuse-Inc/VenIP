@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoleContext } from '../context/RoleContext';
+import SponsorshipCalendar from './SponsorshipCalendar';
 import '../styles/Sidebar.css';
 
-const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
+const Sidebar = ({ activeTab, setActiveTab, showRoleSelection, onDateSelect, selectedDate }) => {
   const navigate = useNavigate();
   const { userRole } = useContext(RoleContext);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const getDashboardPath = () => {
     if (!userRole) return '/';
