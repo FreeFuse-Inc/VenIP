@@ -51,7 +51,7 @@ function AppContent() {
         <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/dashboard/npo" element={<NPODashboard />} />
         <Route path="/dashboard/vendor" element={<VendorDashboard />} />
-        <Route path="/dashboard/sponsor" element={<SponsorDashboard />} />
+        <Route path="/dashboard/sponsor" element={<SponsorDashboard selectedDate={selectedDate} onDateSelect={handleDateSelect} />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/create-event/:eventId" element={<CreateEvent />} />
         <Route path="/venues" element={<Venues />} />
