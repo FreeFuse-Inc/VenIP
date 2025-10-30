@@ -10,17 +10,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  gap: 16px;
+  margin-bottom: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .month-year {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: white;
   margin: 0;
-  min-width: 180px;
+  min-width: 140px;
   text-align: center;
+  flex: 1;
 }
 
 .nav-btn {
