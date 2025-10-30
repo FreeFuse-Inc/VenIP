@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import '../styles/SponsorshipCalendar.css';
 
 const SponsorshipCalendar = ({ sponsorshipData, onDateSelect, selectedDate }) => {
@@ -77,7 +77,7 @@ const SponsorshipCalendar = ({ sponsorshipData, onDateSelect, selectedDate }) =>
         </button>
         <h3 className="month-year">{monthName}</h3>
         <button className="nav-btn next-btn" onClick={handleNextMonth}>
-          Next ���
+          Next →
         </button>
       </div>
 
