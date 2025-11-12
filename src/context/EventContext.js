@@ -149,7 +149,8 @@ export const EventProvider = ({ children }) => {
     const eventDate = eventData.date || getLocalDateString();
 
     // Pre-calculate event ID based on current state
-    const newEventId = Math.max(...events.map((e) => e.id), 0) + 1;
+    const maxEventId = events && events.length > 0 ? Math.max(...events.map((e) => e.id || 0)) : 0;
+    const newEventId = maxEventId + 1;
 
     // Create the event
     const newEvent = {
@@ -162,41 +163,37 @@ export const EventProvider = ({ children }) => {
       name: eventData.name || eventData.eventName,
     };
 
+    // Pre-calculate sponsorship ID (will be recalculated in setState if needed)
+    const maxSponsorshipId = sponsorships && sponsorships.length > 0 ? Math.max(...sponsorships.map((s) => s.id || 0)) : 0;
+
     // Update events state
     setEvents((prev) => [...prev, newEvent]);
 
-    // Update sponsorships state and calculate ID within the state updater
-    let newSponsorship = null;
+    // Create sponsorship object
+    const newSponsorship = {
+      id: maxSponsorshipId + 1,
+      eventName: newEvent.name,
+      eventId: newEvent.id,
+      sponsorshipLevel: 'Gold',
+      amount: '$10,000',
+      date: eventDate,
+      status: 'Active',
+      description: `Sponsorship for ${newEvent.name}`,
+    };
+
+    // Update sponsorships state
     setSponsorships((prev) => {
-      const newSponsorshipId = Math.max(...prev.map((s) => s.id), 0) + 1;
-      newSponsorship = {
-        id: newSponsorshipId,
-        eventName: newEvent.name,
-        eventId: newEvent.id,
-        sponsorshipLevel: 'Gold',
-        amount: '$10,000',
-        date: eventDate,
-        status: 'Active',
-        description: `Sponsorship for ${newEvent.name}`,
-      };
-      return [...prev, newSponsorship];
+      // Recalculate ID based on actual current state
+      const actualMaxId = prev && prev.length > 0 ? Math.max(...prev.map((s) => s.id || 0)) : 0;
+      return [...prev, { ...newSponsorship, id: actualMaxId + 1 }];
     });
 
-    // Return event and sponsorship structure
-    // Note: sponsorship object may be null initially but will be created via setState
+    // Return both
     return {
       event: newEvent,
-      sponsorship: {
-        eventName: newEvent.name,
-        eventId: newEvent.id,
-        sponsorshipLevel: 'Gold',
-        amount: '$10,000',
-        date: eventDate,
-        status: 'Active',
-        description: `Sponsorship for ${newEvent.name}`,
-      },
+      sponsorship: newSponsorship,
     };
-  }, [events]);
+  }, [events, sponsorships]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
     let relevantItems = [];
