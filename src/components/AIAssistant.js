@@ -419,8 +419,9 @@ Provide helpful guidance and always confirm actions.`;
             console.error('Delete error:', err);
             responseText = `❌ Error deleting event: ${err.message}`;
           }
-        } else {
-          responseText = `❌ I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
+        } else if (!eventNameToDelete) {
+          // No date and no event name - can't delete anything
+          responseText = `❌ Please specify which event to delete by name (e.g., "delete Summer Charity Gala") or provide a date.`;
         }
       }
 
