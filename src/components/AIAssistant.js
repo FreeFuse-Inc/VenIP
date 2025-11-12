@@ -66,11 +66,11 @@ Available Functions:
    - Parameters: name (string), date (YYYY-MM-DD), type (string), location (string), description (string), attendees (number)
    - Returns: Newly created event object
 
-When user asks about their events, use get_events function.
-When user wants to create an event, use create_event function with appropriate parameters.
-IMPORTANT: Today's date is ${new Date().toLocaleDateString()}. Always use today's date (${new Date().toISOString().split('T')[0]}) unless the user explicitly specifies a different date.
-Provide links to view event details using format: "View details: /event-management/{eventId}"
-Always confirm actions and provide summaries.`;
+When user asks about their events, respond helpfully and mention you can fetch their calendar.
+When user wants to create an event, create it with their specified details.
+IMPORTANT: Today's date is ${getLocalDateString()}. Always assume today's date unless the user explicitly specifies a different date.
+When confirming event creation, be clear about the date and title.
+Provide helpful guidance and always confirm actions.`;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
