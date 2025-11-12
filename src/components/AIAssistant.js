@@ -313,13 +313,15 @@ Provide helpful guidance and always confirm actions.`;
       }
 
       // Handle delete event requests
-      if (responseText.includes('delete_event') || input.toLowerCase().match(/\b(delete|remove|cancel)\b.*\b(event|the)\b/i)) {
+      const inputLower = input.toLowerCase();
+      const hasDeleteIntent = /\b(delete|remove|cancel)\b/i.test(input) && /(event|the|from|on)/i.test(input);
+
+      if (hasDeleteIntent) {
         // Parse event name if specified (but not "all" or generic terms)
         let eventNameToDelete = null;
 
         // Check if user is trying to delete all events
-        const deleteAllPattern = /(?:delete|remove|cancel)\s+(?:all\s+)?events?/i;
-        const isDeleteAll = deleteAllPattern.test(input);
+        const isDeleteAll = /(delete|remove|cancel)\s+(all\s+)?events?/i.test(input);
 
         if (!isDeleteAll) {
           // Try to extract a specific event name
@@ -327,7 +329,7 @@ Provide helpful guidance and always confirm actions.`;
           if (match) {
             const extracted = match[1].trim();
             // Make sure we didn't extract generic terms
-            if (!extracted.toLowerCase().match(/^(all|events?|for|on|at|today|tomorrow|the|this).*/) && extracted.length > 0) {
+            if (!extracted.toLowerCase().match(/^(all|events?|for|on|at|today|tomorrow|the|this)/) && extracted.length > 0) {
               eventNameToDelete = extracted;
             }
           }
@@ -348,6 +350,8 @@ Provide helpful guidance and always confirm actions.`;
           } else {
             responseText += `\n\n❌ ${deleteResult.message}`;
           }
+        } else {
+          responseText += `\n\n❌ I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
         }
       }
 
