@@ -148,9 +148,8 @@ export const EventProvider = ({ children }) => {
   const createEventWithSponsorship = useCallback((eventData) => {
     const eventDate = eventData.date || getLocalDateString();
 
-    // Pre-calculate IDs based on current state
+    // Pre-calculate event ID based on current state
     const newEventId = Math.max(...events.map((e) => e.id), 0) + 1;
-    const newSponsorshipId = Math.max(...sponsorships.map((s) => s.id), 0) + 1;
 
     // Create the event
     const newEvent = {
@@ -163,28 +162,41 @@ export const EventProvider = ({ children }) => {
       name: eventData.name || eventData.eventName,
     };
 
-    // Create the sponsorship
-    const newSponsorship = {
-      id: newSponsorshipId,
-      eventName: newEvent.name,
-      eventId: newEvent.id,
-      sponsorshipLevel: 'Gold',
-      amount: '$10,000',
-      date: eventDate,
-      status: 'Active',
-      description: `Sponsorship for ${newEvent.name}`,
-    };
-
-    // Update both states
+    // Update events state
     setEvents((prev) => [...prev, newEvent]);
-    setSponsorships((prev) => [...prev, newSponsorship]);
 
-    // Return both immediately
+    // Update sponsorships state and calculate ID within the state updater
+    let newSponsorship = null;
+    setSponsorships((prev) => {
+      const newSponsorshipId = Math.max(...prev.map((s) => s.id), 0) + 1;
+      newSponsorship = {
+        id: newSponsorshipId,
+        eventName: newEvent.name,
+        eventId: newEvent.id,
+        sponsorshipLevel: 'Gold',
+        amount: '$10,000',
+        date: eventDate,
+        status: 'Active',
+        description: `Sponsorship for ${newEvent.name}`,
+      };
+      return [...prev, newSponsorship];
+    });
+
+    // Return event and sponsorship structure
+    // Note: sponsorship object may be null initially but will be created via setState
     return {
       event: newEvent,
-      sponsorship: newSponsorship,
+      sponsorship: {
+        eventName: newEvent.name,
+        eventId: newEvent.id,
+        sponsorshipLevel: 'Gold',
+        amount: '$10,000',
+        date: eventDate,
+        status: 'Active',
+        description: `Sponsorship for ${newEvent.name}`,
+      },
     };
-  }, [events, sponsorships]);
+  }, [events]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
     let relevantItems = [];
