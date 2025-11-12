@@ -191,19 +191,20 @@ const SponsorshipBookings = () => {
               }
 
               const dateStr = formatDate(currentDate.getFullYear(), currentDate.getMonth(), day);
+              const activities = getActivitiesForDate(dateStr);
               const activity = getActivityForDate(dateStr);
               const isSelected = selectedDate === dateStr;
 
               return (
                 <div
                   key={day}
-                  className={`calendar-day ${activity ? 'has-activity' : ''} ${isSelected ? 'selected' : ''}`}
+                  className={`calendar-day ${activities.length > 0 ? 'has-activity' : ''} ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleDateClick(day)}
                 >
                   <div className="day-number">{day}</div>
-                  {activity && (
+                  {activities.length > 0 && (
                     <div className="event-title-box">
-                      {activity.title}
+                      {activities.length > 1 ? `${activities.length} events` : activity.title}
                     </div>
                   )}
                 </div>
