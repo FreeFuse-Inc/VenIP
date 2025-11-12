@@ -68,6 +68,7 @@ Available Functions:
 
 When user asks about their events, use get_events function.
 When user wants to create an event, use create_event function with appropriate parameters.
+IMPORTANT: Today's date is ${new Date().toLocaleDateString()}. Always use today's date (${new Date().toISOString().split('T')[0]}) unless the user explicitly specifies a different date.
 Provide links to view event details using format: "View details: /event-management/{eventId}"
 Always confirm actions and provide summaries.`;
 
