@@ -98,6 +98,37 @@ Provide helpful guidance and always confirm actions.`;
           sponsorship: result.sponsorship,
           message: `Event "${result.event.name}" created successfully for ${result.event.date}!`,
         };
+      } else if (functionName === 'delete_event') {
+        const { eventName, date } = functionInput;
+
+        // Find sponsorships to delete based on date and optionally event name
+        const sponsorshipsToDelete = sponsorships.filter((s) => {
+          const dateMatch = s.date === date;
+          const nameMatch = !eventName || s.eventName.toLowerCase() === eventName.toLowerCase();
+          return dateMatch && nameMatch;
+        });
+
+        if (sponsorshipsToDelete.length === 0) {
+          return {
+            success: false,
+            message: eventName
+              ? `No event named "${eventName}" found on ${date}`
+              : `No events found on ${date}`,
+          };
+        }
+
+        // Delete all matching sponsorships
+        sponsorshipsToDelete.forEach((s) => {
+          deleteSponsorship(s.id);
+        });
+
+        return {
+          success: true,
+          data: sponsorshipsToDelete,
+          message: sponsorshipsToDelete.length === 1
+            ? `Event "${sponsorshipsToDelete[0].eventName}" deleted successfully!`
+            : `${sponsorshipsToDelete.length} events deleted successfully!`,
+        };
       }
       return { success: false, message: 'Unknown function' };
     } catch (error) {
