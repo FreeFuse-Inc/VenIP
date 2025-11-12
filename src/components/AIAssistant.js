@@ -229,23 +229,87 @@ Provide helpful guidance and always confirm actions.`;
       // Function to parse various date formats (used for both create and delete)
       const parseEventDate = (inputText) => {
         const now = new Date();
-        const currentYear = now.getFullYear();
+        let currentYear = now.getFullYear();
+        let targetYear = currentYear;
+
+        // Check for year specification (e.g., "2026", "next year", "2025")
+        let yearMatch = inputText.match(/\b(20\d{2}|next\s+year|this\s+year)\b/i);
+        if (yearMatch) {
+          if (yearMatch[1].toLowerCase() === 'next year') {
+            targetYear = currentYear + 1;
+          } else if (yearMatch[1].toLowerCase() === 'this year') {
+            targetYear = currentYear;
+          } else {
+            targetYear = parseInt(yearMatch[1]);
+          }
+        }
 
         // Check for "today" keyword
         if (/\btoday\b/i.test(inputText)) {
           return getLocalDateString();
         }
 
+        // Check for "tomorrow" keyword
+        if (/\btomorrow\b/i.test(inputText)) {
+          const tomorrow = new Date(now);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          const year = tomorrow.getFullYear();
+          const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+          const day = String(tomorrow.getDate()).padStart(2, '0');
+          return `${year}-${month}-${day}`;
+        }
+
+        // Check for "next [day]" pattern (e.g., "next Monday", "next Friday")
+        const dayOfWeekPattern = /next\s+(monday|tuesday|wednesday|thursday|friday|saturday|sunday|week|month)/i;
+        let dayMatch = inputText.match(dayOfWeekPattern);
+        if (dayMatch) {
+          const dayName = dayMatch[1].toLowerCase();
+          const daysOfWeek = {
+            'monday': 1, 'tuesday': 2, 'wednesday': 3, 'thursday': 4,
+            'friday': 5, 'saturday': 6, 'sunday': 0
+          };
+
+          if (dayName === 'week') {
+            const nextWeek = new Date(now);
+            nextWeek.setDate(nextWeek.getDate() + 7);
+            const year = nextWeek.getFullYear();
+            const month = String(nextWeek.getMonth() + 1).padStart(2, '0');
+            const day = String(nextWeek.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+          } else if (dayName === 'month') {
+            const nextMonth = new Date(now);
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            const year = nextMonth.getFullYear();
+            const month = String(nextMonth.getMonth() + 1).padStart(2, '0');
+            const day = String(nextMonth.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+          } else if (daysOfWeek[dayName] !== undefined) {
+            const targetDayOfWeek = daysOfWeek[dayName];
+            const currentDayOfWeek = now.getDay();
+            let daysAhead = targetDayOfWeek - currentDayOfWeek;
+            if (daysAhead <= 0) {
+              daysAhead += 7; // Move to next week if day has passed
+            }
+            const nextDate = new Date(now);
+            nextDate.setDate(nextDate.getDate() + daysAhead);
+            const year = nextDate.getFullYear();
+            const month = String(nextDate.getMonth() + 1).padStart(2, '0');
+            const day = String(nextDate.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+          }
+        }
+
         // Check for explicit YYYY-MM-DD format
         let dateMatch = inputText.match(/(\d{4})-(\d{2})-(\d{2})/);
         if (dateMatch) return `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
 
-        // Check for month name or abbreviation with day
-        const monthPattern = /(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{1,2})(?:st|nd|rd|th)?/i;
+        // Check for month name or abbreviation with day (with optional year)
+        const monthPattern = /(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s+(\d{4}))?/i;
         dateMatch = inputText.match(monthPattern);
         if (dateMatch) {
           const monthStr = dateMatch[0].split(/\s+/)[0];
           const day = parseInt(dateMatch[1]);
+          const specifiedYear = dateMatch[2] ? parseInt(dateMatch[2]) : targetYear;
           const months = {
             'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
             'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11,
@@ -253,35 +317,54 @@ Provide helpful guidance and always confirm actions.`;
           };
           const month = months[monthStr.toLowerCase()];
           if (month !== undefined) {
-            const eventDate = new Date(currentYear, month, day);
-            const year = eventDate.getFullYear();
             const m = String(month + 1).padStart(2, '0');
             const d = String(day).padStart(2, '0');
-            return `${year}-${m}-${d}`;
+            return `${specifiedYear}-${m}-${d}`;
           }
         }
 
-        // Check for slash format (MM/DD or M/D)
-        dateMatch = inputText.match(/(\d{1,2})\/(\d{1,2})/);
+        // Check for slash format (MM/DD or M/D) with optional year
+        dateMatch = inputText.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{4}))?/);
         if (dateMatch) {
           const month = parseInt(dateMatch[1]);
           const day = parseInt(dateMatch[2]);
+          const specifiedYear = dateMatch[3] ? parseInt(dateMatch[3]) : targetYear;
           if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
             const m = String(month).padStart(2, '0');
             const d = String(day).padStart(2, '0');
-            return `${currentYear}-${m}-${d}`;
+            return `${specifiedYear}-${m}-${d}`;
           }
         }
 
-        // Check for "the Xth" pattern
-        dateMatch = inputText.match(/(?:the\s+)?(\d{1,2})(?:st|nd|rd|th)?/i);
+        // Check for "the Xth [of] [month]" pattern
+        const thPatternFull = /(?:the\s+)?(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i;
+        dateMatch = inputText.match(thPatternFull);
+        if (dateMatch) {
+          const fullMatch = dateMatch[0];
+          const day = parseInt(dateMatch[1]);
+          const monthStr = fullMatch.split(/\s+/).pop().toLowerCase();
+          const months = {
+            'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+            'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11,
+            'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'jun': 5, 'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+          };
+          const month = months[monthStr];
+          if (month !== undefined && day >= 1 && day <= 31) {
+            const m = String(month + 1).padStart(2, '0');
+            const d = String(day).padStart(2, '0');
+            return `${targetYear}-${m}-${d}`;
+          }
+        }
+
+        // Check for "the Xth" pattern (just day number)
+        dateMatch = inputText.match(/(?:the\s+)?(\d{1,2})(?:st|nd|rd|th)?(?:\s+(?:of|in))?/i);
         if (dateMatch) {
           const day = parseInt(dateMatch[1]);
-          if (day >= 1 && day <= 31) {
+          if (day >= 1 && day <= 31 && !inputText.match(/(\d{1,2})\/(\d{1,2})/)) {
             const currentMonth = now.getMonth();
             const m = String(currentMonth + 1).padStart(2, '0');
             const d = String(day).padStart(2, '0');
-            return `${currentYear}-${m}-${d}`;
+            return `${targetYear}-${m}-${d}`;
           }
         }
 
