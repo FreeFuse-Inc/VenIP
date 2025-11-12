@@ -386,7 +386,7 @@ const AccommodationBookings = () => {
     setFilteredResults([]);
   };
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
 
     if (!searchParams.destination) {
@@ -403,7 +403,7 @@ const AccommodationBookings = () => {
     }
 
     setHasSearched(true);
-    const results = getResultsForTab(activeTab);
+    const results = await getResultsForTab(activeTab);
     setFilteredResults(results);
   };
 
