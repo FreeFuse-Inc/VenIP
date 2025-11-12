@@ -35,7 +35,7 @@ import AccommodationBookings from './pages/AccommodationBookings';
 import AIAssistant from './components/AIAssistant';
 import './App.css';
 
-function AppContent() {
+function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, chatGPTKey }) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
@@ -66,8 +66,8 @@ function AppContent() {
           element={
             <Settings
               chatGPTConnected={chatGPTConnected}
-              onChatGPTConnect={handleChatGPTConnect}
-              onChatGPTDisconnect={handleChatGPTDisconnect}
+              onChatGPTConnect={onChatGPTConnect}
+              onChatGPTDisconnect={onChatGPTDisconnect}
             />
           }
         />
@@ -168,7 +168,12 @@ function App() {
     <RoleProvider>
       <Router>
         <div style={{ position: 'relative' }}>
-          <AppContent />
+          <AppContent
+            chatGPTConnected={chatGPTConnected}
+            onChatGPTConnect={handleChatGPTConnect}
+            onChatGPTDisconnect={handleChatGPTDisconnect}
+            chatGPTKey={chatGPTKey}
+          />
           <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
         </div>
       </Router>
