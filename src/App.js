@@ -12,6 +12,7 @@ import RoleSelection from './pages/RoleSelection';
 import NPODashboard from './pages/NPODashboard';
 import VendorDashboard from './pages/VendorDashboard';
 import SponsorDashboard from './pages/SponsorDashboard';
+import SuperAdminDashboard from './pages/SuperAdminDashboard';
 import CreateEvent from './pages/CreateEvent';
 import Venues from './pages/Venues';
 import Bookings from './pages/Bookings';
@@ -62,6 +63,7 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
         <Route path="/dashboard/npo" element={<NPODashboard />} />
         <Route path="/dashboard/vendor" element={<VendorDashboard />} />
         <Route path="/dashboard/sponsor" element={<SponsorDashboard />} />
+        <Route path="/dashboard/super-admin" element={<SuperAdminDashboard />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/create-event/:eventId" element={<CreateEvent />} />
         <Route path="/venues" element={<Venues />} />
