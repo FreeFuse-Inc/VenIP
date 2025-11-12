@@ -345,16 +345,20 @@ Provide helpful guidance and always confirm actions.`;
         const dateToDelete = parseEventDate(input);
 
         if (dateToDelete) {
-          const deleteResult = await processFunctionCall('delete_event', {
-            eventName: eventNameToDelete,
-            date: dateToDelete,
-          });
+          try {
+            const deleteResult = await processFunctionCall('delete_event', {
+              eventName: eventNameToDelete,
+              date: dateToDelete,
+            });
 
-          if (deleteResult.success) {
-            responseText = deleteResult.message;
-            responseText += `\n📅 Deleted from ${dateToDelete}`;
-          } else {
-            responseText = deleteResult.message;
+            if (deleteResult.success) {
+              responseText = deleteResult.message;
+              responseText += `\n📅 Deleted from ${dateToDelete}`;
+            } else {
+              responseText = deleteResult.message;
+            }
+          } catch (err) {
+            responseText = `❌ Error deleting event: ${err.message}`;
           }
         } else {
           responseText = `I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
