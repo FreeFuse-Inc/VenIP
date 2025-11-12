@@ -71,6 +71,16 @@ function AppContent() {
       {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} />}
       
       <Routes>
+        <Route
+          path="/settings"
+          element={
+            <Settings
+              chatGPTConnected={chatGPTConnected}
+              onChatGPTConnect={handleChatGPTConnect}
+              onChatGPTDisconnect={handleChatGPTDisconnect}
+            />
+          }
+        />
         <Route path="/" element={<RoleSelection />} />
         <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/dashboard/npo" element={<NPODashboard />} />
@@ -154,13 +164,36 @@ function AppContent() {
 }
 
 function App() {
+  const [chatGPTConnected, setChatGPTConnected] = useState(() => {
+    return localStorage.getItem('chatgpt_connected') === 'true';
+  });
+  const [chatGPTKey, setChatGPTKey] = useState(() => {
+    return localStorage.getItem('chatgpt_key') || '';
+  });
+
+  const handleChatGPTConnect = (apiKey) => {
+    setChatGPTKey(apiKey);
+    setChatGPTConnected(true);
+    localStorage.setItem('chatgpt_key', apiKey);
+    localStorage.setItem('chatgpt_connected', 'true');
+  };
+
+  const handleChatGPTDisconnect = () => {
+    setChatGPTKey('');
+    setChatGPTConnected(false);
+    localStorage.removeItem('chatgpt_key');
+    localStorage.setItem('chatgpt_connected', 'false');
+  };
+
   return (
     <RoleProvider>
       <Router>
         <AppContent />
+        <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
       </Router>
     </RoleProvider>
   );
 }
 
+export { handleChatGPTConnect, handleChatGPTDisconnect };
 export default App;
