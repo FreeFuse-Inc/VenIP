@@ -2,7 +2,7 @@ import React, { createContext, useState, useCallback } from 'react';
 
 export const EventContext = createContext();
 
-const getLocalDateString = () => {
+export const getLocalDateString = () => {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, '0');
