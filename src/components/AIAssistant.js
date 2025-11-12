@@ -83,7 +83,11 @@ Always confirm actions and provide summaries.`;
   const processFunctionCall = async (functionName, functionInput) => {
     try {
       if (functionName === 'get_events') {
-        const currentDate = new Date().toISOString().split('T')[0];
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const currentDate = `${year}-${month}-${day}`;
         const roleEvents = getEventsByRole(userRole, currentDate);
         return {
           success: true,
