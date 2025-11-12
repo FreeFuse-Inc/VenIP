@@ -303,18 +303,73 @@ const AccommodationBookings = () => {
     },
   ];
 
-  const getResultsForTab = (tab) => {
-    // TODO: Integrate real APIs here based on tab
-    // For now, return mock data
-    const mockDataMap = {
-      hotels: mockHotels,
-      homes: mockHomes,
-      longstays: mockLongStays,
-      flights: mockFlights,
-      activities: mockActivities,
-      transfers: mockTransfers,
-    };
-    return mockDataMap[tab] || [];
+  const getApiKey = (apiName) => {
+    return localStorage.getItem(`${apiName}_api_key`);
+  };
+
+  const getResultsForTab = async (tab) => {
+    // Check if API keys are available and make real API calls
+    // Otherwise, return mock data for demonstration
+
+    switch (tab) {
+      case 'hotels':
+        // Combine Airbnb + Booking.com results
+        const airbnbKey = getApiKey('airbnb');
+        const bookingKey = getApiKey('booking');
+        if (airbnbKey || bookingKey) {
+          // TODO: Make real API calls to Airbnb and Booking.com
+          // const airbnbResults = await fetchFromAirbnb(searchParams, airbnbKey);
+          // const bookingResults = await fetchFromBooking(searchParams, bookingKey);
+          // return [...airbnbResults, ...bookingResults];
+        }
+        return mockHotels;
+
+      case 'homes':
+        const airbnbHomeKey = getApiKey('airbnb');
+        if (airbnbHomeKey) {
+          // TODO: Make real API call to Airbnb for homes
+          // return await fetchFromAirbnbHomes(searchParams, airbnbHomeKey);
+        }
+        return mockHomes;
+
+      case 'longstays':
+        const furnishedKey = getApiKey('airbnb');
+        if (furnishedKey) {
+          // TODO: Make real API call for long-stay rentals
+          // return await fetchLongStayRentals(searchParams, furnishedKey);
+        }
+        return mockLongStays;
+
+      case 'flights':
+        const flightsKey = getApiKey('googleFlights');
+        if (flightsKey) {
+          // TODO: Make real API call to Google Flights
+          // return await fetchFlights(searchParams, flightsKey);
+        }
+        return mockFlights;
+
+      case 'activities':
+        const viatorKey = getApiKey('viator');
+        const getYourGuideKey = getApiKey('getYourGuide');
+        if (viatorKey || getYourGuideKey) {
+          // TODO: Make real API calls to Viator and GetYourGuide
+          // const viatorResults = await fetchFromViator(searchParams, viatorKey);
+          // const gygResults = await fetchFromGetYourGuide(searchParams, getYourGuideKey);
+          // return [...viatorResults, ...gygResults];
+        }
+        return mockActivities;
+
+      case 'transfers':
+        const uberKey = getApiKey('uber');
+        if (uberKey) {
+          // TODO: Make real API call to Uber
+          // return await fetchUberTransfers(searchParams, uberKey);
+        }
+        return mockTransfers;
+
+      default:
+        return [];
+    }
   };
 
   const handleInputChange = (e) => {
