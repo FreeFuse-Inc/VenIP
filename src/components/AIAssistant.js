@@ -363,13 +363,36 @@ Provide helpful guidance and always confirm actions.`;
 
         if (!isDeleteAll) {
           // Try to extract a specific event name
-          let nameMatch = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?(?:event\s+)?(?:called\s+)?['"]?([^'"]+?)['"]?(?:\s+(?:on|for|at|from)|$)/i);
+          // Try multiple patterns to find the event name
+          let extracted = null;
+
+          // Pattern 1: "delete [the] "EventName" [from/on ...]"
+          let nameMatch = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?['"]([^'"]+)['"]/i);
           if (nameMatch) {
-            const extracted = nameMatch[1].trim();
-            // Make sure we didn't extract generic terms
-            if (!extracted.toLowerCase().match(/^(all|events?|for|on|at|today|tomorrow|the|this)$/) && extracted.length > 1) {
-              eventNameToDelete = extracted;
+            extracted = nameMatch[1].trim();
+          }
+
+          // Pattern 2: "delete [the] EventName [event/sponsorship] [from/on ...]"
+          if (!extracted) {
+            nameMatch = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?([^"']+?)(?:\s+(?:event|sponsorship|activity|from|for|on|at)|$)/i);
+            if (nameMatch) {
+              extracted = nameMatch[1].trim();
+              // Remove trailing "event", "sponsorship", "activity" if they were included
+              extracted = extracted.replace(/\s+(?:event|sponsorship|activity|from|for|on|at).*$/i, '').trim();
             }
+          }
+
+          // Pattern 3: Fallback - extract anything that looks like an event name
+          if (!extracted) {
+            nameMatch = input.match(/(?:delete|remove|cancel).*?(?:called|named|the)?\s+([A-Z][^,\n]+?)(?:\s+(?:event|sponsorship|from|on|for|at)|$)/i);
+            if (nameMatch) {
+              extracted = nameMatch[1].trim();
+            }
+          }
+
+          // Validate extracted name
+          if (extracted && !extracted.toLowerCase().match(/^(all|events?|sponsorships?|for|on|at|from|today|tomorrow|the|this|calendar)$/) && extracted.length > 1) {
+            eventNameToDelete = extracted;
           }
         }
 
