@@ -312,6 +312,216 @@ input:checked + .slider:before {
   transform: translateX(22px);
 }
 
+.integrations-container {
+  display: grid;
+  gap: 16px;
+}
+
+.integration-item {
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.integration-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.integration-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.integration-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.integration-details h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.integration-details p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.connection-status.connected {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.connection-status.disconnected {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.connection-status.connected .status-indicator {
+  background-color: #16a34a;
+}
+
+.connection-status.disconnected .status-indicator {
+  background-color: #dc2626;
+}
+
+.integration-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-connect,
+.btn-disconnect {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-connect {
+  background-color: #4f7dff;
+  color: white;
+}
+
+.btn-connect:hover {
+  background-color: #3f63d9;
+}
+
+.btn-disconnect {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn-disconnect:hover {
+  background-color: #fecaca;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #1f2937;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.airbnb-instructions {
+  background-color: #eff6ff;
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 4px solid #4f7dff;
+}
+
+.airbnb-instructions p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.airbnb-instructions ol {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.airbnb-instructions li {
+  margin-bottom: 8px;
+}
+
+.airbnb-instructions strong {
+  color: #4f7dff;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
 @media (max-width: 768px) {
   .page-content {
     padding: 16px;
