@@ -367,23 +367,40 @@ Provide helpful guidance and always confirm actions.`;
 
         if (dateToDelete) {
           try {
+            // Ensure sponsorships is an array
+            const sponsorshipsArray = Array.isArray(sponsorships) ? sponsorships : [];
+
             // Find matching sponsorships manually first to verify they exist
-            const matchingSponsorships = sponsorships.filter(s =>
-              s && s.date === dateToDelete && (!eventNameToDelete || s.eventName.toLowerCase() === eventNameToDelete.toLowerCase())
-            );
+            const matchingSponsorships = sponsorshipsArray.filter(s => {
+              if (!s || !s.date) return false;
+              const dateMatches = s.date === dateToDelete;
+              const nameMatches = !eventNameToDelete || (s.eventName && s.eventName.toLowerCase() === eventNameToDelete.toLowerCase());
+              return dateMatches && nameMatches;
+            });
 
             if (matchingSponsorships.length > 0) {
               // Delete them one by one
+              let deletedCount = 0;
               matchingSponsorships.forEach(s => {
-                deleteSponsorship(s.id);
+                try {
+                  deleteSponsorship(s.id);
+                  deletedCount++;
+                } catch (deleteErr) {
+                  console.error('Error deleting sponsorship:', deleteErr);
+                }
               });
 
-              responseText = `✅ Successfully deleted ${matchingSponsorships.length} event(s) from ${dateToDelete}`;
+              responseText = `✅ Successfully deleted ${deletedCount} event(s) from ${dateToDelete}`;
               responseText += '\n📅 The calendar has been updated.';
             } else {
-              responseText = `❌ No events found on ${dateToDelete}.\nAvailable events: ${availableSponsorships}`;
+              // No matches found - show diagnostic info
+              responseText = `❌ No events found on ${dateToDelete}.`;
+              if (availableSponsorships !== 'none') {
+                responseText += `\nAvailable events: ${availableSponsorships}`;
+              }
             }
           } catch (err) {
+            console.error('Delete error:', err);
             responseText = `❌ Error deleting event: ${err.message}`;
           }
         } else {
