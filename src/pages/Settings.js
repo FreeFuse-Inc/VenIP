@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Settings.css';
 
 const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconnect }) => {
+  const navigate = useNavigate();
   const [settings, setSettings] = useState({
     organizationName: 'VenIP Events',
     contactEmail: 'admin@venip.com',
