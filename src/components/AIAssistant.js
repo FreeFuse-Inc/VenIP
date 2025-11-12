@@ -78,10 +78,28 @@ Available Functions:
    - Parameters: name (string), date (YYYY-MM-DD), type (string), location (string), description (string), attendees (number)
    - Returns: Newly created event object
 
+3. "delete_event" - Delete an existing event
+   - Parameters: eventName (string, optional), date (YYYY-MM-DD, optional)
+   - Returns: Confirmation of deletion
+
+SUPPORTED DATE FORMATS FOR EVENT CREATION AND DELETION:
+- "today" → Uses today's date
+- "tomorrow" → Uses tomorrow's date
+- "next Monday/Tuesday/etc" → Uses the next occurrence of that day
+- "next week" → Uses 7 days from today
+- "next month" → Uses same day next month
+- "March 15" or "March 15 2026" → Specific month and day
+- "3/15" or "3/15/2026" → Slash format with optional year
+- "the 15th" or "the 15th of March" → Written format
+- "2026-03-15" → ISO format YYYY-MM-DD
+- Year can be specified with any date format (defaults to current year if not specified)
+
 When user asks about their events, respond helpfully and mention you can fetch their calendar.
-When user wants to create an event, create it with their specified details.
-IMPORTANT: Always use ${currentDate} for new events unless the user explicitly specifies a different date.
+When user wants to create an event, create it with their specified details using the date they provide.
+IMPORTANT: Parse dates carefully from user input. Support all common date formats listed above.
+When user specifies a date like "tomorrow" or "next Friday", use that exact date for the event.
 When confirming event creation, be clear about the date and title.
+When deleting events, support deletion by event name, date, or both.
 Provide helpful guidance and always confirm actions.`;
   };
 
