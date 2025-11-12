@@ -50,7 +50,11 @@ const SponsorshipBookings = () => {
   };
 
   const getActivityForDate = (dateStr) => {
-    return activityData[dateStr] || null;
+    return activityData[dateStr] && activityData[dateStr].length > 0 ? activityData[dateStr][0] : null;
+  };
+
+  const getActivitiesForDate = (dateStr) => {
+    return activityData[dateStr] || [];
   };
 
   const handlePrevMonth = () => {
