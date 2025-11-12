@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
+import { FeedbackContext } from '../context/FeedbackContext';
 import '../styles/SponsorDashboard.css';
 
 const SponsorDashboard = () => {
