@@ -137,26 +137,28 @@ export const EventProvider = ({ children }) => {
       status: 'Planning',
       vendors: [],
       date: eventDate,
+      name: eventData.name || eventData.eventName,
     };
 
     setEvents((prev) => [...prev, newEvent]);
 
-    const newSponsorshipId = Math.max(...sponsorships.map((s) => s.id), 0) + 1;
-    const newSponsorship = {
-      id: newSponsorshipId,
-      eventName: newEvent.name,
-      eventId: newEvent.id,
-      sponsorshipLevel: 'Gold',
-      amount: '$10,000',
-      date: eventDate,
-      status: 'Active',
-      description: `Sponsorship for ${newEvent.name}`,
-    };
+    setSponsorships((prevSponsors) => {
+      const newSponsorshipId = Math.max(...prevSponsors.map((s) => s.id), 0) + 1;
+      const newSponsorship = {
+        id: newSponsorshipId,
+        eventName: newEvent.name,
+        eventId: newEvent.id,
+        sponsorshipLevel: 'Gold',
+        amount: '$10,000',
+        date: eventDate,
+        status: 'Active',
+        description: `Sponsorship for ${newEvent.name}`,
+      };
+      return [...prevSponsors, newSponsorship];
+    });
 
-    setSponsorships((prevSponsors) => [...prevSponsors, newSponsorship]);
-
-    return { event: newEvent, sponsorship: newSponsorship };
-  }, [events, sponsorships]);
+    return newEvent;
+  }, [events]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
     let relevantItems = [];
