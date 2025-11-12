@@ -78,7 +78,8 @@
   margin: 0;
 }
 
-.status-badge {
+.status-badge,
+.role-badge {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -86,6 +87,11 @@
   font-weight: 600;
   padding: 4px 8px;
   border-radius: 12px;
+}
+
+.role-badge {
+  background-color: #dbeafe;
+  color: #0c4a6e;
 }
 
 .status-badge.connected {
@@ -96,6 +102,12 @@
 .status-badge.disconnected {
   color: #b91c1c;
   background-color: #fee2e2;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .close-assistant-btn {
