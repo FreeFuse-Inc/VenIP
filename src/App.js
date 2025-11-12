@@ -37,12 +37,6 @@ import './App.css';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [chatGPTConnected, setChatGPTConnected] = useState(() => {
-    return localStorage.getItem('chatgpt_connected') === 'true';
-  });
-  const [chatGPTKey, setChatGPTKey] = useState(() => {
-    return localStorage.getItem('chatgpt_key') || '';
-  });
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
 
@@ -51,20 +45,6 @@ function AppContent() {
       setActiveTab('dashboard');
     }
   }, [location.pathname]);
-
-  const handleChatGPTConnect = (apiKey) => {
-    setChatGPTKey(apiKey);
-    setChatGPTConnected(true);
-    localStorage.setItem('chatgpt_key', apiKey);
-    localStorage.setItem('chatgpt_connected', 'true');
-  };
-
-  const handleChatGPTDisconnect = () => {
-    setChatGPTKey('');
-    setChatGPTConnected(false);
-    localStorage.removeItem('chatgpt_key');
-    localStorage.setItem('chatgpt_connected', 'false');
-  };
 
   return (
     <div className="app-container">
@@ -187,12 +167,13 @@ function App() {
   return (
     <RoleProvider>
       <Router>
-        <AppContent />
-        <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
+        <div style={{ position: 'relative' }}>
+          <AppContent />
+          <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
+        </div>
       </Router>
     </RoleProvider>
   );
 }
 
-export { handleChatGPTConnect, handleChatGPTDisconnect };
 export default App;
