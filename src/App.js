@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { RoleProvider } from './context/RoleContext';
+import { EventProvider } from './context/EventContext';
 import Sidebar from './components/Sidebar';
 import MetricCard from './components/MetricCard';
 import TrafficChart from './components/TrafficChart';
@@ -166,17 +167,19 @@ function App() {
 
   return (
     <RoleProvider>
-      <Router>
-        <div style={{ position: 'relative' }}>
-          <AppContent
-            chatGPTConnected={chatGPTConnected}
-            onChatGPTConnect={handleChatGPTConnect}
-            onChatGPTDisconnect={handleChatGPTDisconnect}
-            chatGPTKey={chatGPTKey}
-          />
-          <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
-        </div>
-      </Router>
+      <EventProvider>
+        <Router>
+          <div style={{ position: 'relative' }}>
+            <AppContent
+              chatGPTConnected={chatGPTConnected}
+              onChatGPTConnect={handleChatGPTConnect}
+              onChatGPTDisconnect={handleChatGPTDisconnect}
+              chatGPTKey={chatGPTKey}
+            />
+            <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
+          </div>
+        </Router>
+      </EventProvider>
     </RoleProvider>
   );
 }
