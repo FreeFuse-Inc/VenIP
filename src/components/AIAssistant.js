@@ -314,11 +314,23 @@ Provide helpful guidance and always confirm actions.`;
 
       // Handle delete event requests
       if (responseText.includes('delete_event') || input.toLowerCase().match(/\b(delete|remove|cancel)\b.*\b(event|the)\b/i)) {
-        // Parse event name if specified
+        // Parse event name if specified (but not "all" or generic terms)
         let eventNameToDelete = null;
-        let match = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?(?:event\s+)?(?:called\s+)?['"]?([^'"]+?)['"]?(?:\s+(?:on|for|at)|$)/i);
-        if (match) {
-          eventNameToDelete = match[1].trim();
+
+        // Check if user is trying to delete all events
+        const deleteAllPattern = /(?:delete|remove|cancel)\s+(?:all\s+)?events?/i;
+        const isDeleteAll = deleteAllPattern.test(input);
+
+        if (!isDeleteAll) {
+          // Try to extract a specific event name
+          let match = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?(?:event\s+)?(?:called\s+)?['"]?([^'"]+?)['"]?(?:\s+(?:on|for|at|from)|$)/i);
+          if (match) {
+            const extracted = match[1].trim();
+            // Make sure we didn't extract generic terms
+            if (!extracted.toLowerCase().match(/^(all|events?|for|on|at|today|tomorrow|the|this).*/) && extracted.length > 0) {
+              eventNameToDelete = extracted;
+            }
+          }
         }
 
         // Parse the date
