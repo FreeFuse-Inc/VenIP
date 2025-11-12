@@ -129,8 +129,21 @@ export const EventProvider = ({ children }) => {
       date: eventData.date || new Date().toISOString().split('T')[0],
     };
     setEvents((prev) => [...prev, newEvent]);
+
+    const newSponsorship = {
+      id: Math.max(...sponsorships.map((s) => s.id), 0) + 1,
+      eventName: newEvent.name,
+      eventId: newEvent.id,
+      sponsorshipLevel: 'Gold',
+      amount: '$10,000',
+      date: newEvent.date,
+      status: 'Active',
+      description: `Sponsorship for ${newEvent.name}`,
+    };
+    setSponsorships((prev) => [...prev, newSponsorship]);
+
     return newEvent;
-  }, [events]);
+  }, [events, sponsorships]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
     let relevantItems = [];
