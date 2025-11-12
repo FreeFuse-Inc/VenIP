@@ -257,9 +257,11 @@ Provide helpful guidance and always confirm actions.`;
         return getLocalDateString();
       };
 
-      // Check if response contains function call hints (but not if they're trying to delete or create)
-      const isNotDeleteOrCreate = !/(delete|remove|cancel|create|new)\b/i.test(input);
-      if ((responseText.includes('get_events') || input.toLowerCase().includes('show') && input.toLowerCase().includes('event')) && isNotDeleteOrCreate) {
+      // Check if user explicitly asks to see/view events (but don't fetch if creating or deleting)
+      const askingToViewEvents = /(show|view|list|tell|get)\b.*\b(events?|schedule|calendar)/i.test(input);
+      const isDeletingOrCreating = /(delete|remove|cancel|create|new|add)\b/i.test(input);
+
+      if ((responseText.includes('get_events') || askingToViewEvents) && !isDeletingOrCreating) {
         const eventsResult = await processFunctionCall('get_events', {});
         if (eventsResult.success) {
           if (eventsResult.data.length > 0) {
@@ -411,7 +413,7 @@ Provide helpful guidance and always confirm actions.`;
                 <div className="message-content">
                   {message.type === 'bot' && <span className="message-icon">🤖</span>}
                   <p>{message.text}</p>
-                  {message.type === 'user' && <span className="message-icon">👤</span>}
+                  {message.type === 'user' && <span className="message-icon">����</span>}
                 </div>
               </div>
             ))}
