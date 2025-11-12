@@ -297,7 +297,8 @@ Provide helpful guidance and always confirm actions.`;
         }
       }
 
-      if (responseText.includes('create_event') || input.toLowerCase().includes('create')) {
+      // Only handle create if it's not a delete request
+      if (!isDeleteRequest && (responseText.includes('create_event') || input.toLowerCase().includes('create'))) {
         // Parse event details from user input
         let eventName = null;
 
