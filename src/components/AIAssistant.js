@@ -13,7 +13,7 @@ const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
     {
       id: 1,
       type: 'bot',
-      text: 'Hello! 👋 I\'m VenIP Assistant. I can help you navigate the app, answer questions about your role, and guide you through features. What would you like to know?',
+      text: 'Hello! 👋 I\'m VenIP Assistant. I can help you:\n• View your events and sponsorships\n• Create new events\n• Navigate the app\n• Answer questions about your role\n\nWhat would you like help with?',
     },
   ]);
   const [input, setInput] = useState('');
@@ -226,9 +226,16 @@ Always confirm actions and provide summaries.`;
           <div className="assistant-header">
             <div className="header-content">
               <h3>VenIP Assistant</h3>
-              <span className={`status-badge ${chatGPTConnected ? 'connected' : 'disconnected'}`}>
-                {chatGPTConnected ? '● Connected' : '● Disconnected'}
-              </span>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {userRole && (
+                  <span className="role-badge">
+                    {userRole.charAt(0).toUpperCase() + userRole.slice(1)}
+                  </span>
+                )}
+                <span className={`status-badge ${chatGPTConnected ? 'connected' : 'disconnected'}`}>
+                  {chatGPTConnected ? '● Connected' : '● Disconnected'}
+                </span>
+              </div>
             </div>
             <button
               className="close-assistant-btn"
