@@ -203,6 +203,18 @@ Always confirm actions and provide summaries.`;
           });
           if (newEventResult.success) {
             responseText += `\n\n✅ ${newEventResult.message}`;
+
+            // After creating an event, fetch today's events to show the updated list
+            const eventsResult = await processFunctionCall('get_events', {});
+            if (eventsResult.success && eventsResult.data.length > 0) {
+              responseText += '\n\n📋 Your Events for Today:\n';
+              eventsResult.data.forEach((event) => {
+                const displayName = event.name || event.eventName;
+                const displayDate = event.date;
+                const displayStatus = event.status;
+                responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
+              });
+            }
           }
         }
       }
