@@ -3,9 +3,23 @@ import React, { createContext, useState, useCallback } from 'react';
 export const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
+  const today = new Date().toISOString().split('T')[0];
+
   const [events, setEvents] = useState([
     {
       id: 1,
+      name: 'Summer Charity Gala',
+      type: 'charity',
+      date: today,
+      status: 'Active',
+      description: 'Fundraising event for local charities',
+      createdBy: 'npo',
+      location: 'Downtown Convention Center',
+      attendees: 500,
+      vendors: ['Caterer', 'DJ', 'Decorator'],
+    },
+    {
+      id: 2,
       name: 'Annual Gala 2024',
       type: 'charity',
       date: '2024-12-15',
@@ -17,7 +31,7 @@ export const EventProvider = ({ children }) => {
       vendors: ['Caterer', 'DJ', 'Decorator'],
     },
     {
-      id: 2,
+      id: 3,
       name: 'Tech Conference 2025',
       type: 'business',
       date: '2025-02-20',
@@ -29,7 +43,7 @@ export const EventProvider = ({ children }) => {
       vendors: ['AV Company', 'Security'],
     },
     {
-      id: 3,
+      id: 4,
       name: 'Community Wellness Summit',
       type: 'health',
       date: '2025-01-15',
@@ -45,8 +59,18 @@ export const EventProvider = ({ children }) => {
   const [sponsorships] = useState([
     {
       id: 1,
-      eventName: 'Annual Gala 2024',
+      eventName: 'Summer Charity Gala',
       eventId: 1,
+      sponsorshipLevel: 'Gold',
+      amount: '$5,000',
+      date: today,
+      status: 'Active',
+      description: 'Gold sponsor for Summer Charity Gala',
+    },
+    {
+      id: 2,
+      eventName: 'Annual Gala 2024',
+      eventId: 2,
       sponsorshipLevel: 'Gold',
       amount: '$5,000',
       date: '2024-12-15',
@@ -54,9 +78,9 @@ export const EventProvider = ({ children }) => {
       description: 'Gold sponsor for Annual Gala',
     },
     {
-      id: 2,
+      id: 3,
       eventName: 'Tech Conference 2025',
-      eventId: 2,
+      eventId: 3,
       sponsorshipLevel: 'Platinum',
       amount: '$10,000',
       date: '2025-02-20',
@@ -68,17 +92,26 @@ export const EventProvider = ({ children }) => {
   const [vendorQuotes] = useState([
     {
       id: 1,
-      eventName: 'Annual Gala 2024',
+      eventName: 'Summer Charity Gala',
       eventId: 1,
+      service: 'Catering',
+      quoteAmount: '$2,500',
+      status: 'Pending',
+      date: today,
+    },
+    {
+      id: 2,
+      eventName: 'Annual Gala 2024',
+      eventId: 2,
       service: 'Catering',
       quoteAmount: '$2,500',
       status: 'Pending',
       date: '2024-12-15',
     },
     {
-      id: 2,
+      id: 3,
       eventName: 'Tech Conference 2025',
-      eventId: 2,
+      eventId: 3,
       service: 'AV Equipment',
       quoteAmount: '$5,000',
       status: 'Accepted',
