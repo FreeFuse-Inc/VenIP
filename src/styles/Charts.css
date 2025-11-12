@@ -29,3 +29,77 @@
 .engagement-chart {
   grid-column: 1 / -1;
 }
+
+.system-kpi-chart,
+.revenue-trend-chart,
+.role-distribution-chart {
+  min-height: 350px;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.distribution-chart-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.distribution-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.distribution-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 6px;
+}
+
+.legend-color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legend-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.legend-count {
+  font-size: 12px;
+  color: #6b7280;
+}
