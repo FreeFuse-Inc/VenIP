@@ -131,35 +131,66 @@ Provide helpful guidance and always confirm actions.`;
         };
       } else if (functionName === 'delete_event') {
         const { eventName, date } = functionInput;
+        let deletedEvents = [];
+        let deletedSponsorships = [];
 
-        // Find sponsorships to delete based on date and optionally event name
-        const sponsorshipsToDelete = sponsorships.filter((s) => {
-          if (!s || !s.date) return false;
-          const dateMatch = s.date === date;
-          const nameMatch = !eventName || (s.eventName && s.eventName.toLowerCase() === eventName.toLowerCase());
-          return dateMatch && nameMatch;
-        });
+        // Try to find and delete matching events
+        if (events && events.length > 0) {
+          const eventsToDelete = events.filter((e) => {
+            if (!e) return false;
+            const dateMatch = !date || e.date === date;
+            const nameMatch = !eventName || (e.name && e.name.toLowerCase() === eventName.toLowerCase());
+            return dateMatch && nameMatch;
+          });
 
-        if (sponsorshipsToDelete.length === 0) {
+          eventsToDelete.forEach((e) => {
+            try {
+              deleteEvent(e.id);
+              deletedEvents.push(e);
+            } catch (err) {
+              console.error('Error deleting event:', err);
+            }
+          });
+        }
+
+        // Try to find and delete matching sponsorships
+        if (sponsorships && sponsorships.length > 0) {
+          const sponsorshipsToDelete = sponsorships.filter((s) => {
+            if (!s || !s.date) return false;
+            const dateMatch = !date || s.date === date;
+            const nameMatch = !eventName || (s.eventName && s.eventName.toLowerCase() === eventName.toLowerCase());
+            return dateMatch && nameMatch;
+          });
+
+          sponsorshipsToDelete.forEach((s) => {
+            try {
+              deleteSponsorship(s.id);
+              deletedSponsorships.push(s);
+            } catch (err) {
+              console.error('Error deleting sponsorship:', err);
+            }
+          });
+        }
+
+        const totalDeleted = deletedEvents.length + deletedSponsorships.length;
+
+        if (totalDeleted === 0) {
+          const availableEvents = events?.map(e => e.name + ' on ' + e.date).join(', ') || 'none';
+          const availableSponsorships = sponsorships?.map(s => s.eventName + ' on ' + s.date).join(', ') || 'none';
           return {
             success: false,
             message: eventName
-              ? `No event named "${eventName}" found on ${date}`
-              : `No events found on ${date}. Current sponsorships: ${sponsorships.map(s => s.eventName + ' on ' + s.date).join(', ') || 'none'}`,
+              ? `No event named "${eventName}" found${date ? ` on ${date}` : ''}`
+              : `No events found${date ? ` on ${date}` : ''}\nAvailable: ${availableEvents || availableSponsorships}`,
           };
         }
 
-        // Delete all matching sponsorships
-        sponsorshipsToDelete.forEach((s) => {
-          deleteSponsorship(s.id);
-        });
-
         return {
           success: true,
-          data: sponsorshipsToDelete,
-          message: sponsorshipsToDelete.length === 1
-            ? `Event "${sponsorshipsToDelete[0].eventName}" deleted successfully!`
-            : `${sponsorshipsToDelete.length} events deleted successfully!`,
+          data: { events: deletedEvents, sponsorships: deletedSponsorships },
+          message: totalDeleted === 1
+            ? `Event deleted successfully!`
+            : `${totalDeleted} events deleted successfully!`,
         };
       }
       return { success: false, message: 'Unknown function' };
