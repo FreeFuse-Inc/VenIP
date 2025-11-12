@@ -32,10 +32,17 @@ import InviteAttendees from './pages/InviteAttendees';
 import RequestVendors from './pages/RequestVendors';
 import SponsorshipBookings from './pages/SponsorshipBookings';
 import AccommodationBookings from './pages/AccommodationBookings';
+import AIAssistant from './components/AIAssistant';
 import './App.css';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [chatGPTConnected, setChatGPTConnected] = useState(() => {
+    return localStorage.getItem('chatgpt_connected') === 'true';
+  });
+  const [chatGPTKey, setChatGPTKey] = useState(() => {
+    return localStorage.getItem('chatgpt_key') || '';
+  });
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
 
@@ -44,6 +51,20 @@ function AppContent() {
       setActiveTab('dashboard');
     }
   }, [location.pathname]);
+
+  const handleChatGPTConnect = (apiKey) => {
+    setChatGPTKey(apiKey);
+    setChatGPTConnected(true);
+    localStorage.setItem('chatgpt_key', apiKey);
+    localStorage.setItem('chatgpt_connected', 'true');
+  };
+
+  const handleChatGPTDisconnect = () => {
+    setChatGPTKey('');
+    setChatGPTConnected(false);
+    localStorage.removeItem('chatgpt_key');
+    localStorage.setItem('chatgpt_connected', 'false');
+  };
 
   return (
     <div className="app-container">
