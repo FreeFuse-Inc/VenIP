@@ -24,6 +24,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
         { id: 'calander', label: 'Calander', icon: '📅', path: '/sponsorship-bookings' },
         { id: 'bookings', label: 'Bookings', icon: '🏨', path: '/accommodation-bookings' },
         { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
+        { id: 'feedback-testing', label: 'Feedback Testing', icon: '🧪', path: '/feedback-testing' },
         { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
       ];
     }
