@@ -257,8 +257,9 @@ Provide helpful guidance and always confirm actions.`;
         return getLocalDateString();
       };
 
-      // Check if response contains function call hints
-      if (responseText.includes('get_events') || input.toLowerCase().includes('event')) {
+      // Check if response contains function call hints (but not if they're trying to delete or create)
+      const isNotDeleteOrCreate = !/(delete|remove|cancel|create|new)\b/i.test(input);
+      if ((responseText.includes('get_events') || input.toLowerCase().includes('show') && input.toLowerCase().includes('event')) && isNotDeleteOrCreate) {
         const eventsResult = await processFunctionCall('get_events', {});
         if (eventsResult.success) {
           if (eventsResult.data.length > 0) {
