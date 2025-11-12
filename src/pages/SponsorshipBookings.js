@@ -235,30 +235,34 @@ const SponsorshipBookings = () => {
                   day: 'numeric',
                 })}
               </h3>
-              {getActivityForDate(selectedDate) ? (
+              {getActivitiesForDate(selectedDate).length > 0 ? (
                 <>
-                  <div className="activity-details">
-                    <div className="activity-icon">
-                      {getActivityForDate(selectedDate).type === 'event' ? '🎯' : '🔄'}
+                  {getActivitiesForDate(selectedDate).map((activity) => (
+                    <div key={activity.id} className="activity-details">
+                      <div className="activity-icon">
+                        {activity.type === 'event' ? '🎯' : '🔄'}
+                      </div>
+                      <div className="activity-content">
+                        <p className="activity-type">
+                          {activity.type === 'event' ? 'Sponsored Event' : 'Renewal'}
+                        </p>
+                        <h4 className="activity-title">{activity.title}</h4>
+                        <p className="activity-level">
+                          <strong>Level:</strong> {activity.level}
+                        </p>
+                      </div>
                     </div>
-                    <div className="activity-content">
-                      <p className="activity-type">
-                        {getActivityForDate(selectedDate).type === 'event' ? 'Sponsored Event' : 'Renewal'}
-                      </p>
-                      <h4 className="activity-title">{getActivityForDate(selectedDate).title}</h4>
-                      <p className="activity-level">
-                        <strong>Level:</strong> {getActivityForDate(selectedDate).level}
-                      </p>
+                  ))}
+                  {getActivitiesForDate(selectedDate).length === 1 && (
+                    <div className="action-buttons">
+                      <button className="edit-btn" onClick={handleEditEvent}>
+                        Edit
+                      </button>
+                      <button className="delete-btn" onClick={handleDeleteEvent}>
+                        Delete
+                      </button>
                     </div>
-                  </div>
-                  <div className="action-buttons">
-                    <button className="edit-btn" onClick={handleEditEvent}>
-                      Edit
-                    </button>
-                    <button className="delete-btn" onClick={handleDeleteEvent}>
-                      Delete
-                    </button>
-                  </div>
+                  )}
                 </>
               ) : (
                 <div className="no-activity">
