@@ -328,6 +328,8 @@ Provide helpful guidance and always confirm actions.`;
       const eventKeywordMatch = /\b(event|sponsorship|activity)\b/i.test(input);
 
       if (deleteKeywordMatch && eventKeywordMatch) {
+        isDeleteRequest = true;
+
         // Parse event name if specified (but not "all" or generic terms)
         let eventNameToDelete = null;
 
@@ -357,16 +359,19 @@ Provide helpful guidance and always confirm actions.`;
             });
 
             if (deleteResult.success) {
-              responseText = deleteResult.message;
-              responseText += `\n📅 Deleted from ${dateToDelete}`;
+              responseText = `✅ ${deleteResult.message}`;
+              if (deleteResult.data && deleteResult.data.length > 0) {
+                responseText += `\n📅 Deleted from ${dateToDelete}`;
+                responseText += '\nThe calendar has been updated.';
+              }
             } else {
-              responseText = deleteResult.message;
+              responseText = `❌ ${deleteResult.message}`;
             }
           } catch (err) {
             responseText = `❌ Error deleting event: ${err.message}`;
           }
         } else {
-          responseText = `I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
+          responseText = `❌ I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
         }
       }
 
