@@ -63,7 +63,10 @@ const NPODashboard = () => {
               {recentFeedback.map((item) => (
                 <div key={item.id} className="feedback-card">
                   <div className="feedback-info">
-                    <h4 className="feedback-event">{item.eventName}</h4>
+                    <div className="feedback-title-row">
+                      <h4 className="feedback-event">{item.eventName}</h4>
+                      {item.isTestFeedback && <span className="test-badge">🧪 TEST</span>}
+                    </div>
                     <p className="feedback-meta">
                       {item.type === 'venue' ? '🏢 Venue' : '🎯 Service'} • By {item.submittedBy}
                     </p>
