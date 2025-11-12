@@ -19,7 +19,19 @@ const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const systemPrompt = `You are VenIP Assistant, a helpful AI guide for the VenIP event management platform with access to event management functions. 
+  const getSystemPrompt = () => {
+    const currentDate = getLocalDateString();
+    const dateObj = new Date();
+    const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+    const monthName = dateObj.toLocaleDateString('en-US', { month: 'long' });
+    const dayNum = dateObj.getDate();
+    const year = dateObj.getFullYear();
+
+    return `You are VenIP Assistant, a helpful AI guide for the VenIP event management platform with access to event management functions.
+
+CURRENT DATE: ${dayName}, ${monthName} ${dayNum}, ${year}
+Today's date in YYYY-MM-DD format: ${currentDate}
+Always use "${currentDate}" when the user refers to "today" or the current date.
 
 VenIP has three main roles:
 
@@ -68,9 +80,10 @@ Available Functions:
 
 When user asks about their events, respond helpfully and mention you can fetch their calendar.
 When user wants to create an event, create it with their specified details.
-IMPORTANT: Always use today's date for new events unless the user explicitly specifies a different date.
+IMPORTANT: Always use ${currentDate} for new events unless the user explicitly specifies a different date.
 When confirming event creation, be clear about the date and title.
 Provide helpful guidance and always confirm actions.`;
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -177,7 +190,7 @@ Provide helpful guidance and always confirm actions.`;
           messages: [
             {
               role: 'system',
-              content: systemPrompt,
+              content: getSystemPrompt(),
             },
             ...messages.map((msg) => ({
               role: msg.type === 'user' ? 'user' : 'assistant',
