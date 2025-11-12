@@ -7,6 +7,14 @@ const VendorDashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('browse');
 
+  const vendorProfile = {
+    name: 'Premium Catering Co.',
+    missionStatement: 'Delivering exceptional catering services that transform events into memorable experiences through quality ingredients, creative presentations, and outstanding customer service.',
+    email: 'contact@premiumcatering.com',
+    phone: '+1 (555) 123-4567',
+    website: 'www.premiumcatering.com',
+  };
+
   const availableEvents = [
     {
       id: 1,
@@ -66,6 +74,30 @@ const VendorDashboard = () => {
       </header>
 
       <div className="dashboard-content">
+        <section className="profile-section">
+          <div className="profile-header">
+            <div className="profile-avatar">🏢</div>
+            <div className="profile-main">
+              <h2 className="profile-name">{vendorProfile.name}</h2>
+              <p className="profile-mission">{vendorProfile.missionStatement}</p>
+            </div>
+          </div>
+          <div className="profile-contact-grid">
+            <div className="contact-item">
+              <span className="contact-label">📧 Email</span>
+              <p className="contact-value">{vendorProfile.email}</p>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">📞 Phone</span>
+              <p className="contact-value">{vendorProfile.phone}</p>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">🌐 Website</span>
+              <p className="contact-value">{vendorProfile.website}</p>
+            </div>
+          </div>
+        </section>
+
         <section className="metrics-section">
           <MetricCard label="Total Active Quotes" value="5" />
           <MetricCard label="Quotes Awaiting Response" value="2" />
