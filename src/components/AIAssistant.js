@@ -471,10 +471,14 @@ Provide helpful guidance and always confirm actions.`;
 
             // Show the newly created event and sponsorship
             responseText += '\n\n📋 Event Successfully Created:\n';
-            responseText += `• ${newEventResult.data.name} (${newEventResult.data.date}) - ${newEventResult.data.status}\n`;
+            responseText += `• Event: ${newEventResult.data.name}\n`;
+            responseText += `• Date: ${newEventResult.data.date}\n`;
+            responseText += `• Status: ${newEventResult.data.status}\n`;
 
-            if (eventDate === currentDate) {
-              responseText += '\n✅ The event has been added to your calendar for today!';
+            // Parse the user's date request to show what they asked for
+            const dateRequestText = input.match(/(?:on|for|tomorrow|today|next\s+\w+|\d{1,2}\/\d{1,2}|\w+\s+\d{1,2})[^.!?,]*(?=[.!?,]|$)/i);
+            if (dateRequestText) {
+              responseText += `\n✅ Created for: ${dateRequestText[0].trim()}`;
             }
           }
         }
