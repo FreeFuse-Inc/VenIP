@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { RoleProvider } from './context/RoleContext';
 import Sidebar from './components/Sidebar';
@@ -37,6 +37,12 @@ function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
+
+  useEffect(() => {
+    if (location.pathname.match(/^\/dashboard\/(npo|vendor|sponsor)$/)) {
+      setActiveTab('dashboard');
+    }
+  }, [location.pathname]);
 
   return (
     <div className="app-container">
