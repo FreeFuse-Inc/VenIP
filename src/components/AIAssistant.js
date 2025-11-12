@@ -191,26 +191,33 @@ Always confirm actions and provide summaries.`;
 
       if (responseText.includes('create_event') || input.toLowerCase().includes('create')) {
         // Parse event details from user input
-        const eventMatch = input.match(/event.*?name[:\s]+([^,\n]+)/i) ||
-                          input.match(/(?:create|new)\s+(?:an\s+)?event.*?called?\s+([^,\n.]+)/i) ||
-                          input.match(/(?:create|new)\s+(?:event|event\s+called?)\s+([^,\n.]+)/i);
+        let eventName = null;
+
+        // Try various patterns to extract event name
+        let match = input.match(/called\s+['"]?([^'"]+)['"]?(?:\s|$|\.)/i);
+        if (!match) match = input.match(/(?:create|new)\s+(?:an?\s+)?event\s+(?:called\s+)?['"]?([^'",.]+)['"]?(?:\s|$|\.)/i);
+        if (!match) match = input.match(/(?:create|new)\s+['"]([^'"]+)['"]/i);
+        if (match) eventName = match[1].trim();
+
         const dateMatch = input.match(/date[:\s]+(\d{4}-\d{2}-\d{2})/i);
 
-        if (eventMatch) {
+        if (eventName) {
           const now = new Date();
           const year = now.getFullYear();
           const month = String(now.getMonth() + 1).padStart(2, '0');
           const day = String(now.getDate()).padStart(2, '0');
           const currentDate = `${year}-${month}-${day}`;
           const eventDate = dateMatch ? dateMatch[1] : currentDate;
+
           const newEventResult = await processFunctionCall('create_event', {
-            name: eventMatch[1].trim(),
+            name: eventName,
             date: eventDate,
             type: 'general',
             location: 'TBD',
             description: input,
             attendees: 100,
           });
+
           if (newEventResult.success) {
             responseText += `\n\n✅ ${newEventResult.message}`;
 
