@@ -34,6 +34,9 @@ import RequestVendors from './pages/RequestVendors';
 import SponsorshipBookings from './pages/SponsorshipBookings';
 import AccommodationBookings from './pages/AccommodationBookings';
 import BookingConfirmation from './pages/BookingConfirmation';
+import EventFeedback from './pages/EventFeedback';
+import FeedbackSettings from './pages/FeedbackSettings';
+import { FeedbackProvider } from './context/FeedbackContext';
 import AIAssistant from './components/AIAssistant';
 import './App.css';
 
