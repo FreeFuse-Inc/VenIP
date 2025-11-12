@@ -335,13 +335,12 @@ Provide helpful guidance and always confirm actions.`;
         }
       }
 
-      // Handle delete event requests - check BEFORE ChatGPT response is processed
-      // This ensures we intercept delete requests regardless of what ChatGPT says
+      // Handle delete event requests - only if it's marked as a delete request from early check
+      // OR if we detect delete keywords without create keywords
       const deleteKeywordMatch = /\b(delete|remove|cancel)\b/i.test(input);
       const eventKeywordMatch = /(event|sponsorship|activity)/i.test(input);
 
-      if (deleteKeywordMatch && eventKeywordMatch) {
-        isDeleteRequest = true;
+      if ((deleteKeywordMatch && eventKeywordMatch) || isDeleteRequest) {
 
         // Check available sponsorships for debugging
         const availableSponsorships = sponsorships && sponsorships.length > 0
