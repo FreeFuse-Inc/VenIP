@@ -353,7 +353,15 @@ const SponsorshipBookings = () => {
               </div>
 
               <div className="form-actions">
-                <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={() => {
+                    setShowForm(false);
+                    setIsEditing(false);
+                    setEditingActivityId(null);
+                  }}
+                >
                   Cancel
                 </button>
                 <button type="submit" className="submit-btn">
