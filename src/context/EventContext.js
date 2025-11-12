@@ -56,7 +56,7 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
-  const [sponsorships] = useState([
+  const [sponsorships, setSponsorships] = useState([
     {
       id: 1,
       eventName: 'Summer Charity Gala',
@@ -166,15 +166,38 @@ export const EventProvider = ({ children }) => {
     setEvents((prev) => prev.filter((e) => e.id !== id));
   }, []);
 
+  const createSponsorship = useCallback((sponsorshipData) => {
+    const newSponsorship = {
+      id: Math.max(...sponsorships.map((s) => s.id), 0) + 1,
+      ...sponsorshipData,
+      date: sponsorshipData.date || new Date().toISOString().split('T')[0],
+    };
+    setSponsorships((prev) => [...prev, newSponsorship]);
+    return newSponsorship;
+  }, [sponsorships]);
+
+  const updateSponsorship = useCallback((id, updatedData) => {
+    setSponsorships((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, ...updatedData } : s))
+    );
+  }, []);
+
+  const deleteSponsorship = useCallback((id) => {
+    setSponsorships((prev) => prev.filter((s) => s.id !== id));
+  }, []);
+
   const value = {
     events,
     sponsorships,
     vendorQuotes,
     createEvent,
+    createSponsorship,
     getEventsByRole,
     getEventById,
     updateEvent,
+    updateSponsorship,
     deleteEvent,
+    deleteSponsorship,
   };
 
   return <EventContext.Provider value={value}>{children}</EventContext.Provider>;
