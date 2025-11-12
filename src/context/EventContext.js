@@ -2,15 +2,15 @@ import React, { createContext, useState, useCallback } from 'react';
 
 export const EventContext = createContext();
 
-export const EventProvider = ({ children }) => {
-  const getLocalDateString = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
+const getLocalDateString = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
 
+export const EventProvider = ({ children }) => {
   const today = getLocalDateString();
 
   const [events, setEvents] = useState([
