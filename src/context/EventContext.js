@@ -127,14 +127,6 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
-  const getLocalDateString = useCallback(() => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }, []);
-
   const createEvent = useCallback((eventData) => {
     const eventDate = eventData.date || getLocalDateString();
     const newEvent = {
@@ -164,7 +156,7 @@ export const EventProvider = ({ children }) => {
     });
 
     return newEvent;
-  }, [events, getLocalDateString]);
+  }, [events]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
     let relevantItems = [];
