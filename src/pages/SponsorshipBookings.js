@@ -5,7 +5,7 @@ import '../styles/SponsorshipBookings.css';
 
 const SponsorshipBookings = () => {
   const navigate = useNavigate();
-  const { sponsorships } = useContext(EventContext);
+  const { sponsorships, createSponsorship, updateSponsorship, deleteSponsorship } = useContext(EventContext);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [activityData, setActivityData] = useState({});
@@ -88,9 +88,10 @@ const SponsorshipBookings = () => {
   };
 
   const handleDeleteEvent = () => {
-    const newActivityData = { ...activityData };
-    delete newActivityData[selectedDate];
-    setActivityData(newActivityData);
+    const sponsorshipToDelete = sponsorships.find((s) => s.date === selectedDate);
+    if (sponsorshipToDelete) {
+      deleteSponsorship(sponsorshipToDelete.id);
+    }
     setSelectedDate(null);
   };
 
@@ -103,19 +104,25 @@ const SponsorshipBookings = () => {
       return;
     }
 
-    const newActivityData = { ...activityData };
-
-    if (isEditing && selectedDate !== date) {
-      delete newActivityData[selectedDate];
+    if (isEditing && selectedDate) {
+      const sponsorshipToUpdate = sponsorships.find((s) => s.date === selectedDate);
+      if (sponsorshipToUpdate) {
+        updateSponsorship(sponsorshipToUpdate.id, {
+          eventName: title,
+          sponsorshipLevel: level,
+          date: date,
+        });
+      }
+    } else {
+      createSponsorship({
+        eventName: title,
+        sponsorshipLevel: level,
+        date: date,
+        status: 'Active',
+        amount: `$${level === 'Bronze' ? 2000 : level === 'Silver' ? 5000 : level === 'Gold' ? 10000 : 20000}`,
+      });
     }
 
-    newActivityData[date] = {
-      type,
-      title,
-      level,
-    };
-
-    setActivityData(newActivityData);
     setSelectedDate(date);
     setShowForm(false);
   };
