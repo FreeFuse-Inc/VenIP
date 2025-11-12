@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Settings.css';
 
 const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconnect }) => {
@@ -26,13 +26,37 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
     weeklyReport: false,
   });
 
+  // Travel API states
+  const [travelApis, setTravelApis] = useState({
+    airbnb: { connected: false, key: '' },
+    booking: { connected: false, key: '' },
+    googleFlights: { connected: false, key: '' },
+    viator: { connected: false, key: '' },
+    getYourGuide: { connected: false, key: '' },
+    uber: { connected: false, key: '' },
+  });
+
   const [editMode, setEditMode] = useState(false);
   const [tempSettings, setTempSettings] = useState(settings);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [airbnbConnected, setAirbnbConnected] = useState(false);
-  const [showAirbnbModal, setShowAirbnbModal] = useState(false);
   const [showChatGPTModal, setShowChatGPTModal] = useState(false);
   const [chatGPTApiKey, setChatGPTApiKey] = useState('');
+  const [activeApiModal, setActiveApiModal] = useState(null);
+  const [apiInputValue, setApiInputValue] = useState('');
+
+  // Load API keys from localStorage on mount
+  useEffect(() => {
+    const savedApis = {};
+    Object.keys(travelApis).forEach((api) => {
+      const savedKey = localStorage.getItem(`${api}_api_key`);
+      if (savedKey) {
+        savedApis[api] = { connected: true, key: savedKey };
+      } else {
+        savedApis[api] = { connected: false, key: '' };
+      }
+    });
+    setTravelApis(savedApis);
+  }, []);
 
   const handleSettingChange = (e) => {
     const { name, value } = e.target;
@@ -56,23 +80,7 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
     setEditMode(false);
   };
 
-  const handleAirbnbConnect = () => {
-    setShowAirbnbModal(true);
-  };
-
-  const handleAirbnbConfirm = () => {
-    setAirbnbConnected(true);
-    setShowAirbnbModal(false);
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
-  };
-
-  const handleAirbnbDisconnect = () => {
-    setAirbnbConnected(false);
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
-  };
-
+  // ChatGPT API handlers
   const handleChatGPTConnect = () => {
     setShowChatGPTModal(true);
   };
@@ -95,6 +103,91 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
     }
     setSaveSuccess(true);
     setTimeout(() => setSaveSuccess(false), 3000);
+  };
+
+  // Travel API handlers
+  const openApiModal = (apiName) => {
+    setActiveApiModal(apiName);
+    setApiInputValue('');
+  };
+
+  const closeApiModal = () => {
+    setActiveApiModal(null);
+    setApiInputValue('');
+  };
+
+  const handleConnectApi = () => {
+    if (apiInputValue.trim() && activeApiModal) {
+      localStorage.setItem(`${activeApiModal}_api_key`, apiInputValue);
+      setTravelApis((prev) => ({
+        ...prev,
+        [activeApiModal]: { connected: true, key: apiInputValue },
+      }));
+      closeApiModal();
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    }
+  };
+
+  const handleDisconnectApi = (apiName) => {
+    localStorage.removeItem(`${apiName}_api_key`);
+    setTravelApis((prev) => ({
+      ...prev,
+      [apiName]: { connected: false, key: '' },
+    }));
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
+  };
+
+  const apiConfigs = {
+    airbnb: {
+      icon: '🏨',
+      name: 'Airbnb API',
+      description: 'Connect your Airbnb account to display live hotel listings',
+      url: 'https://airbnb.com/api',
+      instructions: ['Visit https://airbnb.com/api', 'Create or get your API key', 'Copy and paste your API key below'],
+      placeholder: 'Enter your Airbnb API Key',
+    },
+    booking: {
+      icon: '🔖',
+      name: 'Booking.com API',
+      description: 'Connect Booking.com to show hotel availability and pricing',
+      url: 'https://booking.com/api',
+      instructions: ['Visit https://booking.com/api', 'Generate an API key', 'Copy and paste your API key below'],
+      placeholder: 'Enter your Booking.com API Key',
+    },
+    googleFlights: {
+      icon: '✈️',
+      name: 'Google Flights API',
+      description: 'Connect Google Flights to display available flights and prices',
+      url: 'https://developers.google.com/flights',
+      instructions: ['Visit https://developers.google.com/flights', 'Create a Google API key', 'Copy and paste your API key below'],
+      placeholder: 'Enter your Google Flights API Key',
+    },
+    viator: {
+      icon: '🎭',
+      name: 'Viator API',
+      description: 'Connect Viator to display available activities and tours',
+      url: 'https://viator.com/api',
+      instructions: ['Visit https://viator.com/api', 'Create an API key', 'Copy and paste your API key below'],
+      placeholder: 'Enter your Viator API Key',
+    },
+    getYourGuide: {
+      icon: '🗺️',
+      name: 'GetYourGuide API',
+      description: 'Connect GetYourGuide to show tours and experiences',
+      url: 'https://getyourguide.com/api',
+      instructions: ['Visit https://getyourguide.com/api', 'Generate an API key', 'Copy and paste your API key below'],
+      placeholder: 'Enter your GetYourGuide API Key',
+    },
+    uber: {
+      icon: '🚗',
+      name: 'Uber API',
+      description: 'Connect Uber to enable airport transfers and rides',
+      url: 'https://developer.uber.com',
+      instructions: ['Visit https://developer.uber.com', 'Create an app and API key', 'Copy and paste your API key below'],
+      placeholder: 'Enter your Uber API Key',
+    },
   };
 
   return (
@@ -246,35 +339,42 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
           </div>
 
           <div className="settings-section">
-            <h2 className="section-title">Integrations</h2>
+            <h2 className="section-title">Travel Booking Integrations</h2>
             <div className="integrations-container">
-              <div className="integration-item">
-                <div className="integration-header">
-                  <div className="integration-info">
-                    <div className="integration-icon">🏨</div>
-                    <div className="integration-details">
-                      <h4>Airbnb Integration</h4>
-                      <p>Connect your Airbnb account to display live accommodations in the Bookings section</p>
+              {Object.entries(apiConfigs).map(([apiKey, config]) => (
+                <div key={apiKey} className="integration-item">
+                  <div className="integration-header">
+                    <div className="integration-info">
+                      <div className="integration-icon">{config.icon}</div>
+                      <div className="integration-details">
+                        <h4>{config.name}</h4>
+                        <p>{config.description}</p>
+                      </div>
+                    </div>
+                    <div className={`connection-status ${travelApis[apiKey].connected ? 'connected' : 'disconnected'}`}>
+                      <span className="status-indicator"></span>
+                      <span className="status-text">{travelApis[apiKey].connected ? 'Connected' : 'Not Connected'}</span>
                     </div>
                   </div>
-                  <div className={`connection-status ${airbnbConnected ? 'connected' : 'disconnected'}`}>
-                    <span className="status-indicator"></span>
-                    <span className="status-text">{airbnbConnected ? 'Connected' : 'Not Connected'}</span>
+                  <div className="integration-actions">
+                    {!travelApis[apiKey].connected ? (
+                      <button className="btn-connect" onClick={() => openApiModal(apiKey)}>
+                        Connect {config.name.split(' ')[0]}
+                      </button>
+                    ) : (
+                      <button className="btn-disconnect" onClick={() => handleDisconnectApi(apiKey)}>
+                        Disconnect
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className="integration-actions">
-                  {!airbnbConnected ? (
-                    <button className="btn-connect" onClick={handleAirbnbConnect}>
-                      Connect Airbnb
-                    </button>
-                  ) : (
-                    <button className="btn-disconnect" onClick={handleAirbnbDisconnect}>
-                      Disconnect
-                    </button>
-                  )}
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
 
+          <div className="settings-section">
+            <h2 className="section-title">AI Assistant</h2>
+            <div className="integrations-container">
               <div className="integration-item">
                 <div className="integration-header">
                   <div className="integration-info">
@@ -391,49 +491,49 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
         </div>
       </div>
 
-      {showAirbnbModal && (
-        <div className="modal-overlay" onClick={() => setShowAirbnbModal(false)}>
+      {/* Travel API Modals */}
+      {activeApiModal && (
+        <div className="modal-overlay" onClick={closeApiModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Connect Airbnb Account</h2>
-              <button className="close-btn" onClick={() => setShowAirbnbModal(false)}>✕</button>
+              <h2>Connect {apiConfigs[activeApiModal]?.name}</h2>
+              <button className="close-btn" onClick={closeApiModal}>✕</button>
             </div>
 
             <div className="modal-body">
-              <div className="airbnb-instructions">
-                <p>To connect your Airbnb account, you'll need to:</p>
+              <div className="api-instructions">
+                <p>To get your API key:</p>
                 <ol>
-                  <li>Visit <strong>https://airbnb.com/api</strong></li>
-                  <li>Create an API key or use your existing credentials</li>
-                  <li>Authorize VenIP to access your accommodation listings</li>
-                  <li>Your live accommodations will appear in the Bookings section</li>
+                  {apiConfigs[activeApiModal]?.instructions.map((instruction, idx) => (
+                    <li key={idx}>{instruction}</li>
+                  ))}
                 </ol>
               </div>
 
               <div className="form-group">
-                <label>Airbnb API Key</label>
+                <label>{apiConfigs[activeApiModal]?.name} API Key *</label>
                 <input
                   type="password"
-                  placeholder="Enter your Airbnb API Key"
-                  defaultValue=""
+                  placeholder={apiConfigs[activeApiModal]?.placeholder}
+                  value={apiInputValue}
+                  onChange={(e) => setApiInputValue(e.target.value)}
                 />
               </div>
 
               <div className="form-group">
-                <label>Account Email</label>
-                <input
-                  type="email"
-                  placeholder="Enter your Airbnb email"
-                  defaultValue=""
-                />
+                <p className="info-text">ℹ️ Your API key is encrypted and stored securely in your browser.</p>
               </div>
 
               <div className="modal-actions">
-                <button className="btn-cancel" onClick={() => setShowAirbnbModal(false)}>
+                <button className="btn-cancel" onClick={closeApiModal}>
                   Cancel
                 </button>
-                <button className="btn-save" onClick={handleAirbnbConfirm}>
-                  Connect Account
+                <button
+                  className="btn-save"
+                  onClick={handleConnectApi}
+                  disabled={!apiInputValue.trim()}
+                >
+                  Connect API
                 </button>
               </div>
             </div>
@@ -441,6 +541,7 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
         </div>
       )}
 
+      {/* ChatGPT Modal */}
       {showChatGPTModal && (
         <div className="modal-overlay" onClick={() => setShowChatGPTModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
