@@ -312,6 +312,33 @@ Provide helpful guidance and always confirm actions.`;
         }
       }
 
+      // Handle delete event requests
+      if (responseText.includes('delete_event') || input.toLowerCase().match(/\b(delete|remove|cancel)\b.*\b(event|the)\b/i)) {
+        // Parse event name if specified
+        let eventNameToDelete = null;
+        let match = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?(?:event\s+)?(?:called\s+)?['"]?([^'"]+?)['"]?(?:\s+(?:on|for|at)|$)/i);
+        if (match) {
+          eventNameToDelete = match[1].trim();
+        }
+
+        // Parse the date
+        const dateToDelete = parseEventDate(input);
+
+        if (dateToDelete) {
+          const deleteResult = await processFunctionCall('delete_event', {
+            eventName: eventNameToDelete,
+            date: dateToDelete,
+          });
+
+          if (deleteResult.success) {
+            responseText += `\n\n✅ ${deleteResult.message}`;
+            responseText += `\n📅 Events deleted from ${dateToDelete}`;
+          } else {
+            responseText += `\n\n❌ ${deleteResult.message}`;
+          }
+        }
+      }
+
       const botMessage = {
         id: Date.now() + 1,
         type: 'bot',
