@@ -532,60 +532,37 @@ Provide helpful guidance and always confirm actions.`;
           }
         }
 
-        // Parse the date
+        // Parse the date - use the improved parseEventDate function
         const dateToDelete = parseEventDate(input);
 
         if (dateToDelete || eventNameToDelete) {
           try {
-            // Ensure sponsorships is an array
-            const sponsorshipsArray = Array.isArray(sponsorships) ? sponsorships : [];
+            const deleteResult = await processFunctionCall('delete_event', {
+              eventName: eventNameToDelete,
+              date: dateToDelete,
+            });
 
-            // First, if a specific event name was provided, try to find it on ANY date
-            let matchingSponsorships = [];
-            if (eventNameToDelete) {
-              matchingSponsorships = sponsorshipsArray.filter(s => {
-                if (!s || !s.eventName) return false;
-                return s.eventName.toLowerCase() === eventNameToDelete.toLowerCase();
-              });
-            }
+            if (deleteResult.success) {
+              responseText = `✅ ${deleteResult.message}`;
 
-            // If no match found by name, or no name specified, try by date
-            if (matchingSponsorships.length === 0 && dateToDelete) {
-              matchingSponsorships = sponsorshipsArray.filter(s => {
-                if (!s || !s.date) return false;
-                const dateMatches = s.date === dateToDelete;
-                const nameMatches = !eventNameToDelete || (s.eventName && s.eventName.toLowerCase() === eventNameToDelete.toLowerCase());
-                return dateMatches && nameMatches;
-              });
-            }
+              // Show what was deleted
+              if (deleteResult.data?.events?.length > 0) {
+                responseText += '\n\n📋 Deleted Events:\n';
+                deleteResult.data.events.forEach(e => {
+                  responseText += `• ${e.name} (${e.date})\n`;
+                });
+              }
 
-            if (matchingSponsorships.length > 0) {
-              // Delete them one by one
-              let deletedCount = 0;
-              matchingSponsorships.forEach(s => {
-                try {
-                  deleteSponsorship(s.id);
-                  deletedCount++;
-                } catch (deleteErr) {
-                  console.error('Error deleting sponsorship:', deleteErr);
-                }
-              });
+              if (deleteResult.data?.sponsorships?.length > 0) {
+                responseText += '\n📋 Deleted Sponsorships:\n';
+                deleteResult.data.sponsorships.forEach(s => {
+                  responseText += `• ${s.eventName} (${s.date})\n`;
+                });
+              }
 
-              const dateStr = dateToDelete ? ` from ${dateToDelete}` : '';
-              responseText = `✅ Successfully deleted ${deletedCount} event(s)${dateStr}`;
               responseText += '\n📅 The calendar has been updated.';
             } else {
-              // No matches found - show diagnostic info
-              if (eventNameToDelete) {
-                responseText = `❌ No events found matching "${eventNameToDelete}".`;
-              } else if (dateToDelete) {
-                responseText = `❌ No events found on ${dateToDelete}.`;
-              } else {
-                responseText = `❌ Could not find any matching events.`;
-              }
-              if (availableSponsorships !== 'none') {
-                responseText += `\nAvailable events: ${availableSponsorships}`;
-              }
+              responseText = deleteResult.message || '❌ Could not delete the event.';
             }
           } catch (err) {
             console.error('Delete error:', err);
@@ -593,7 +570,7 @@ Provide helpful guidance and always confirm actions.`;
           }
         } else {
           // No date and no event name - can't delete anything
-          responseText = `❌ Please specify which event to delete by name (e.g., "delete Summer Charity Gala") or provide a date.`;
+          responseText = `❌ Please specify which event to delete by name (e.g., "delete VenIP Tech Demo") or provide a date (e.g., "delete tomorrow's event").`;
         }
       }
 
