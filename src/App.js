@@ -94,6 +94,8 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
         <Route path="/sponsorship-bookings" element={<SponsorshipBookings />} />
         <Route path="/accommodation-bookings" element={<AccommodationBookings />} />
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
+        <Route path="/event-feedback/:eventId" element={<EventFeedback />} />
+        <Route path="/feedback-settings" element={<FeedbackSettings />} />
         <Route
           path="/dashboard/analytics"
           element={
