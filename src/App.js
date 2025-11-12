@@ -30,6 +30,7 @@ import ModifySponsor from './pages/ModifySponsor';
 import RenewalDecision from './pages/RenewalDecision';
 import InviteAttendees from './pages/InviteAttendees';
 import RequestVendors from './pages/RequestVendors';
+import SponsorshipBookings from './pages/SponsorshipBookings';
 import './App.css';
 
 function AppContent() {
@@ -73,6 +74,7 @@ function AppContent() {
         <Route path="/renewal-decision/:sponsorshipId" element={<RenewalDecision />} />
         <Route path="/invite-attendees/:eventId" element={<InviteAttendees />} />
         <Route path="/request-vendors/:eventId" element={<RequestVendors />} />
+        <Route path="/sponsorship-bookings" element={<SponsorshipBookings />} />
         <Route
           path="/dashboard/analytics"
           element={

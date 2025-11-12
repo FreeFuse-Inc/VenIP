@@ -1,13 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoleContext } from '../context/RoleContext';
-import SponsorshipCalendar from './SponsorshipCalendar';
 import '../styles/Sidebar.css';
 
-const Sidebar = ({ activeTab, setActiveTab, showRoleSelection, onDateSelect, selectedDate }) => {
+const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const navigate = useNavigate();
   const { userRole } = useContext(RoleContext);
-  const [showCalendar, setShowCalendar] = useState(false);
 
   const getDashboardPath = () => {
     if (!userRole) return '/';
@@ -41,29 +39,20 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection, onDateSelect, sel
         <>
           <nav className="sidebar-nav">
             {menuItems.map((item) => {
-              if (item.id === 'bookings' && userRole === 'sponsor') {
-                return (
-                  <button
-                    key={item.id}
-                    className={`nav-item ${showCalendar ? 'active' : ''}`}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setShowCalendar(!showCalendar);
-                    }}
-                  >
-                    <span className="nav-icon">{item.icon}</span>
-                    <span className="nav-label">{item.label}</span>
-                  </button>
-                );
-              }
+              const handleClick = () => {
+                setActiveTab(item.id);
+                if (item.id === 'bookings' && userRole === 'sponsor') {
+                  navigate('/sponsorship-bookings');
+                } else {
+                  navigate(item.path);
+                }
+              };
+
               return (
                 <button
                   key={item.id}
                   className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    navigate(item.path);
-                  }}
+                  onClick={handleClick}
                 >
                   <span className="nav-icon">{item.icon}</span>
                   <span className="nav-label">{item.label}</span>
@@ -71,16 +60,6 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection, onDateSelect, sel
               );
             })}
           </nav>
-          {showCalendar && userRole === 'sponsor' && (
-            <div className="sidebar-calendar-container">
-              <SponsorshipCalendar
-                onDateSelect={(date) => {
-                  onDateSelect(date);
-                }}
-                selectedDate={selectedDate}
-              />
-            </div>
-          )}
         </>
       )}
 
