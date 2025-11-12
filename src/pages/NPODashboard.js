@@ -52,6 +52,42 @@ const NPODashboard = () => {
             ))}
           </div>
         </section>
+
+        <section className="feedback-section">
+          <div className="section-header">
+            <h2>Event Feedback</h2>
+            {newFeedbackCount > 0 && <span className="feedback-badge">{newFeedbackCount} new</span>}
+          </div>
+          {recentFeedback.length > 0 ? (
+            <div className="feedback-list">
+              {recentFeedback.map((item) => (
+                <div key={item.id} className="feedback-card">
+                  <div className="feedback-info">
+                    <h4 className="feedback-event">{item.eventName}</h4>
+                    <p className="feedback-meta">
+                      {item.type === 'venue' ? '🏢 Venue' : '🎯 Service'} • By {item.submittedBy}
+                    </p>
+                    <p className="feedback-date">{item.submittedAt}</p>
+                  </div>
+                  <div className="feedback-rating">
+                    <span className="rating-stars">★★★★★</span>
+                    <span className={`status-badge ${item.status}`}>{item.status}</span>
+                  </div>
+                  <button className="view-feedback-btn" onClick={() => navigate(`/event-management/${item.eventId}`)}>
+                    View Details →
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <p>No feedback received yet. Feedback will appear after your events conclude.</p>
+              <button className="setup-btn" onClick={() => navigate('/feedback-settings')}>
+                ⚙️ Set Up Feedback Automation
+              </button>
+            </div>
+          )}
+        </section>
       </div>
     </main>
   );
