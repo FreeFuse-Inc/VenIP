@@ -201,6 +201,15 @@ Provide helpful guidance and always confirm actions.`;
       let responseText = data.choices[0].message.content;
       let isDeleteRequest = false;
 
+      // FIRST: Check if this is a delete request BEFORE anything else
+      // This ensures delete always takes priority
+      const hasDeleteKeyword = /\b(delete|remove|cancel)\b/i.test(input);
+      if (hasDeleteKeyword && input.toLowerCase().includes('event')) {
+        isDeleteRequest = true;
+        // For now, override the response immediately
+        responseText = '⏳ Processing delete request...';
+      }
+
       // Function to parse various date formats (used for both create and delete)
       const parseEventDate = (inputText) => {
         const now = new Date();
