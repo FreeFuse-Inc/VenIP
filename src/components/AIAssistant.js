@@ -6,7 +6,7 @@ import '../styles/AIAssistant.css';
 
 const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
   const { userRole } = useContext(RoleContext);
-  const { getEventsByRole, createEvent } = useContext(EventContext);
+  const { getEventsByRole, createEvent, createEventWithSponsorship } = useContext(EventContext);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -91,11 +91,12 @@ Always confirm actions and provide summaries.`;
           message: `Found ${roleEvents.length} events for ${userRole} role on ${currentDate}`,
         };
       } else if (functionName === 'create_event') {
-        const newEvent = createEvent(functionInput);
+        const result = createEventWithSponsorship(functionInput);
         return {
           success: true,
-          data: newEvent,
-          message: `Event "${newEvent.name}" created successfully!`,
+          data: result.event,
+          sponsorship: result.sponsorship,
+          message: `Event "${result.event.name}" created successfully for ${result.event.date}!`,
         };
       }
       return { success: false, message: 'Unknown function' };
