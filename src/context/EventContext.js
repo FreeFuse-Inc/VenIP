@@ -256,6 +256,7 @@ export const EventProvider = ({ children }) => {
     sponsorships,
     vendorQuotes,
     createEvent,
+    createEventWithSponsorship,
     createSponsorship,
     getEventsByRole,
     getEventById,
