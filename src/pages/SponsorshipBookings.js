@@ -23,11 +23,15 @@ const SponsorshipBookings = () => {
     const newActivityData = {};
     if (sponsorships && sponsorships.length > 0) {
       sponsorships.forEach((sponsorship) => {
-        newActivityData[sponsorship.date] = {
+        if (!newActivityData[sponsorship.date]) {
+          newActivityData[sponsorship.date] = [];
+        }
+        newActivityData[sponsorship.date].push({
           type: 'event',
           title: sponsorship.eventName,
           level: sponsorship.sponsorshipLevel,
-        };
+          id: sponsorship.id,
+        });
       });
     }
     setActivityData(newActivityData);
