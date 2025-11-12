@@ -217,12 +217,20 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.activity-details {
+.activity-details-with-actions {
   display: flex;
   gap: 12px;
+  align-items: flex-start;
   padding: 12px;
   background-color: #f9fafb;
   border-radius: 6px;
+}
+
+.activity-details {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
 }
 
 .activity-icon {
