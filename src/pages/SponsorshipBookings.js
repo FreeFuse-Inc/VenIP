@@ -12,6 +12,7 @@ const SponsorshipBookings = () => {
 
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [editingActivityId, setEditingActivityId] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
     type: 'event',
@@ -81,10 +82,11 @@ const SponsorshipBookings = () => {
     setShowForm(true);
   };
 
-  const handleEditEvent = () => {
-    const activity = getActivityForDate(selectedDate);
+  const handleEditEvent = (activityId) => {
+    const activity = getActivitiesForDate(selectedDate).find((a) => a.id === activityId);
     if (activity) {
       setIsEditing(true);
+      setEditingActivityId(activityId);
       setFormData({
         title: activity.title,
         type: activity.type,
@@ -95,11 +97,8 @@ const SponsorshipBookings = () => {
     }
   };
 
-  const handleDeleteEvent = () => {
-    const sponsorshipToDelete = sponsorships.find((s) => s.date === selectedDate);
-    if (sponsorshipToDelete) {
-      deleteSponsorship(sponsorshipToDelete.id);
-    }
+  const handleDeleteEvent = (activityId) => {
+    deleteSponsorship(activityId);
     setSelectedDate(null);
   };
 
@@ -112,15 +111,13 @@ const SponsorshipBookings = () => {
       return;
     }
 
-    if (isEditing && selectedDate) {
-      const sponsorshipToUpdate = sponsorships.find((s) => s.date === selectedDate);
-      if (sponsorshipToUpdate) {
-        updateSponsorship(sponsorshipToUpdate.id, {
-          eventName: title,
-          sponsorshipLevel: level,
-          date: date,
-        });
-      }
+    if (isEditing && editingActivityId) {
+      updateSponsorship(editingActivityId, {
+        eventName: title,
+        sponsorshipLevel: level,
+        date: date,
+      });
+      setEditingActivityId(null);
     } else {
       createSponsorship({
         eventName: title,
@@ -133,6 +130,7 @@ const SponsorshipBookings = () => {
 
     setSelectedDate(date);
     setShowForm(false);
+    setIsEditing(false);
   };
 
   const handleFormChange = (e) => {
