@@ -186,12 +186,15 @@ Always confirm actions and provide summaries.`;
 
       if (responseText.includes('create_event') || input.toLowerCase().includes('create')) {
         // Parse event details from user input
-        const eventMatch = input.match(/event.*?name[:\s]+([^,\n]+)/i);
+        const eventMatch = input.match(/event.*?name[:\s]+([^,\n]+)/i) ||
+                          input.match(/(?:create|new)\s+(?:event|event\s+called?)\s+([^,\n.]+)/i);
         const dateMatch = input.match(/date[:\s]+(\d{4}-\d{2}-\d{2})/i);
-        if (eventMatch && dateMatch) {
+
+        if (eventMatch) {
+          const currentDate = new Date().toISOString().split('T')[0];
           const newEventResult = await processFunctionCall('create_event', {
             name: eventMatch[1].trim(),
-            date: dateMatch[1],
+            date: dateMatch ? dateMatch[1] : currentDate,
             type: 'general',
             location: 'TBD',
             description: input,
