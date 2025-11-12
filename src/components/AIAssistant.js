@@ -5,7 +5,6 @@ import { RoleContext } from '../context/RoleContext';
 import '../styles/AIAssistant.css';
 
 const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
-  const navigate = useNavigate();
   const { userRole } = useContext(RoleContext);
   const { getEventsByRole, createEvent } = useContext(EventContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -175,7 +174,6 @@ Always confirm actions and provide summaries.`;
             const displayName = event.name || event.eventName;
             const displayDate = event.date;
             const displayStatus = event.status;
-            const displayId = event.id || event.eventId;
             responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
           });
         }

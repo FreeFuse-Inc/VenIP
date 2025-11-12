@@ -42,7 +42,7 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
-  const [sponsorships, setSponsorships] = useState([
+  const [sponsorships] = useState([
     {
       id: 1,
       eventName: 'Annual Gala 2024',
@@ -65,7 +65,7 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
-  const [vendorQuotes, setVendorQuotes] = useState([
+  const [vendorQuotes] = useState([
     {
       id: 1,
       eventName: 'Annual Gala 2024',
