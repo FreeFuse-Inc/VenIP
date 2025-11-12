@@ -218,6 +218,18 @@ Always confirm actions and provide summaries.`;
             if (eventDate === currentDate) {
               responseText += '\n\n📋 Your Events for Today:\n';
               responseText += `• ${newEventResult.data.name} (${newEventResult.data.date}) - ${newEventResult.data.status}\n`;
+
+              // Also fetch and show all events for today
+              const allEventsResult = await processFunctionCall('get_events', {});
+              if (allEventsResult.success && allEventsResult.data.length > 1) {
+                responseText += '\n📋 All Your Events for Today:\n';
+                allEventsResult.data.forEach((event) => {
+                  const displayName = event.name || event.eventName;
+                  const displayDate = event.date;
+                  const displayStatus = event.status;
+                  responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
+                });
+              }
             }
           }
         }
