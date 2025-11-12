@@ -335,12 +335,11 @@ Provide helpful guidance and always confirm actions.`;
         }
       }
 
-      // Handle delete event requests - only if it's marked as a delete request from early check
-      // OR if we detect delete keywords without create keywords
+      // Handle delete event requests - only execute if marked as delete request
       const deleteKeywordMatch = /\b(delete|remove|cancel)\b/i.test(input);
       const eventKeywordMatch = /(event|sponsorship|activity)/i.test(input);
 
-      if ((deleteKeywordMatch && eventKeywordMatch) || isDeleteRequest) {
+      if (isDeleteRequest && deleteKeywordMatch && eventKeywordMatch) {
 
         // Check available sponsorships for debugging
         const availableSponsorships = sponsorships && sponsorships.length > 0
