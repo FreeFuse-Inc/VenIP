@@ -185,14 +185,18 @@ export const EventProvider = ({ children }) => {
   }, []);
 
   const createSponsorship = useCallback((sponsorshipData) => {
-    const newSponsorship = {
-      id: Math.max(...sponsorships.map((s) => s.id), 0) + 1,
-      ...sponsorshipData,
-      date: sponsorshipData.date || new Date().toISOString().split('T')[0],
-    };
-    setSponsorships((prev) => [...prev, newSponsorship]);
-    return newSponsorship;
-  }, [sponsorships]);
+    const sponsorshipDate = sponsorshipData.date || new Date().toISOString().split('T')[0];
+
+    setSponsorships((prev) => {
+      const newId = Math.max(...prev.map((s) => s.id), 0) + 1;
+      const newSponsorship = {
+        id: newId,
+        ...sponsorshipData,
+        date: sponsorshipDate,
+      };
+      return [...prev, newSponsorship];
+    });
+  }, []);
 
   const updateSponsorship = useCallback((id, updatedData) => {
     setSponsorships((prev) =>
