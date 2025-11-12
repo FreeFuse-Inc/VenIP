@@ -6,12 +6,16 @@ import '../styles/NPODashboard.css';
 
 const NPODashboard = () => {
   const navigate = useNavigate();
+  const { feedback, getNewFeedbackCount } = useContext(FeedbackContext);
 
   const upcomingEvents = [
     { id: 1, name: 'Annual Gala 2024', date: 'Dec 15, 2024', status: 'Planning' },
     { id: 2, name: 'Charity Fundraiser', date: 'Jan 10, 2025', status: 'Pending Quotes' },
     { id: 3, name: 'Community Cleanup', date: 'Jan 20, 2025', status: 'Approved' },
   ];
+
+  const newFeedbackCount = getNewFeedbackCount();
+  const recentFeedback = feedback.slice(0, 3);
 
   return (
     <main className="npo-dashboard">
