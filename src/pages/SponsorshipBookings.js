@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { EventContext } from '../context/EventContext';
 import '../styles/SponsorshipBookings.css';
 
 const SponsorshipBookings = () => {
   const navigate = useNavigate();
+  const { sponsorships } = useContext(EventContext);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
-  const [activityData, setActivityData] = useState({
-    '2024-12-15': {
-      type: 'event',
-      title: 'Annual Gala 2024',
-      level: 'Gold',
-    },
-    '2024-12-20': {
-      type: 'renewal',
-      title: 'Gold Sponsorship Renewal',
-      level: 'Gold',
-    },
-    '2025-02-20': {
-      type: 'event',
-      title: 'Tech Conference 2025',
-      level: 'Platinum',
-    },
-    '2025-02-25': {
-      type: 'renewal',
-      title: 'Platinum Sponsorship Renewal',
-      level: 'Platinum',
-    },
-  });
+  const [activityData, setActivityData] = useState({});
 
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -37,6 +18,20 @@ const SponsorshipBookings = () => {
     level: 'Gold',
     date: '',
   });
+
+  useEffect(() => {
+    const newActivityData = {};
+    if (sponsorships && sponsorships.length > 0) {
+      sponsorships.forEach((sponsorship) => {
+        newActivityData[sponsorship.date] = {
+          type: 'event',
+          title: sponsorship.eventName,
+          level: sponsorship.sponsorshipLevel,
+        };
+      });
+    }
+    setActivityData(newActivityData);
+  }, [sponsorships]);
 
   const getDaysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
