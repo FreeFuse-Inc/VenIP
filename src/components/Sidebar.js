@@ -12,13 +12,31 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
     return `/dashboard/${userRole}`;
   };
 
-  const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: getDashboardPath() },
-    { id: 'venues', label: 'Venues', icon: '📍', path: '/venues' },
-    { id: 'bookings', label: 'Calander', icon: '📅', path: '/bookings' },
-    { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
-    { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
-  ];
+  const getMenuItems = () => {
+    const baseItems = [
+      { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: getDashboardPath() },
+      { id: 'venues', label: 'Venues', icon: '📍', path: '/venues' },
+    ];
+
+    if (userRole === 'sponsor') {
+      return [
+        ...baseItems,
+        { id: 'calander', label: 'Calander', icon: '📅', path: '/sponsorship-bookings' },
+        { id: 'bookings', label: 'Bookings', icon: '🏨', path: '/accommodation-bookings' },
+        { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
+        { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
+      ];
+    }
+
+    return [
+      ...baseItems,
+      { id: 'bookings', label: 'Calander', icon: '📅', path: '/bookings' },
+      { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
+      { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
+    ];
+  };
+
+  const menuItems = getMenuItems();
 
   const roles = [
     { id: 'npo', name: 'NPO', icon: '🎯', color: '#FF6B6B' },
@@ -41,11 +59,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
             {menuItems.map((item) => {
               const handleClick = () => {
                 setActiveTab(item.id);
-                if (item.id === 'bookings' && userRole === 'sponsor') {
-                  navigate('/sponsorship-bookings');
-                } else {
-                  navigate(item.path);
-                }
+                navigate(item.path);
               };
 
               return (
