@@ -488,10 +488,10 @@ input:checked + .slider:before {
 }
 
 .airbnb-instructions {
-  background-color: #eff6ff;
+  background-color: #f3f4f6;
   padding: 16px;
   border-radius: 6px;
-  border-left: 4px solid #4f7dff;
+  border-left: 4px solid #d1d5db;
 }
 
 .airbnb-instructions p {
@@ -513,14 +513,14 @@ input:checked + .slider:before {
 }
 
 .airbnb-instructions strong {
-  color: #4f7dff;
+  color: #1f2937;
 }
 
 .chatgpt-instructions {
-  background-color: #eff6ff;
+  background-color: #f3f4f6;
   padding: 16px;
   border-radius: 6px;
-  border-left: 4px solid #4f7dff;
+  border-left: 4px solid #d1d5db;
 }
 
 .chatgpt-instructions p {
@@ -542,7 +542,7 @@ input:checked + .slider:before {
 }
 
 .chatgpt-instructions strong {
-  color: #4f7dff;
+  color: #1f2937;
 }
 
 .info-text {
@@ -552,7 +552,7 @@ input:checked + .slider:before {
   padding: 10px 12px;
   border-radius: 4px;
   margin: 0 !important;
-  border-left: 3px solid #3b82f6;
+  border-left: 3px solid #d1d5db;
 }
 
 .modal-actions {
