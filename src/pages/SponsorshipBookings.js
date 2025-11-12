@@ -286,11 +286,22 @@ const SponsorshipBookings = () => {
       </div>
 
       {showForm && (
-        <div className="modal-overlay" onClick={() => setShowForm(false)}>
+        <div className="modal-overlay" onClick={() => {
+          setShowForm(false);
+          setIsEditing(false);
+          setEditingActivityId(null);
+        }}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>{isEditing ? 'Edit Event' : 'Add New Event'}</h2>
-              <button className="close-btn" onClick={() => setShowForm(false)}>
+              <button
+                className="close-btn"
+                onClick={() => {
+                  setShowForm(false);
+                  setIsEditing(false);
+                  setEditingActivityId(null);
+                }}
+              >
                 ✕
               </button>
             </div>
