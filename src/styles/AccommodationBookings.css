@@ -79,8 +79,16 @@
 
 .search-inputs {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
+}
+
+.search-input-group {
+  grid-column: 1 / -1;
+}
+
+.date-inputs-group {
+  display: contents;
 }
 
 .search-input-group,
