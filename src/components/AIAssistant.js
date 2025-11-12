@@ -363,7 +363,7 @@ Provide helpful guidance and always confirm actions.`;
         // Parse the date
         const dateToDelete = parseEventDate(input);
 
-        if (dateToDelete) {
+        if (dateToDelete || eventNameToDelete) {
           try {
             // Ensure sponsorships is an array
             const sponsorshipsArray = Array.isArray(sponsorships) ? sponsorships : [];
@@ -419,7 +419,7 @@ Provide helpful guidance and always confirm actions.`;
             console.error('Delete error:', err);
             responseText = `❌ Error deleting event: ${err.message}`;
           }
-        } else if (!eventNameToDelete) {
+        } else {
           // No date and no event name - can't delete anything
           responseText = `❌ Please specify which event to delete by name (e.g., "delete Summer Charity Gala") or provide a date.`;
         }
