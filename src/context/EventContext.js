@@ -146,9 +146,13 @@ export const EventProvider = ({ children }) => {
   }, [events]);
 
   const createEventWithSponsorship = useCallback((eventData) => {
-    // Create the event
     const eventDate = eventData.date || getLocalDateString();
+
+    // Pre-calculate IDs based on current state
     const newEventId = Math.max(...events.map((e) => e.id), 0) + 1;
+    const newSponsorshipId = Math.max(...sponsorships.map((s) => s.id), 0) + 1;
+
+    // Create the event
     const newEvent = {
       id: newEventId,
       ...eventData,
@@ -159,37 +163,26 @@ export const EventProvider = ({ children }) => {
       name: eventData.name || eventData.eventName,
     };
 
+    // Create the sponsorship
+    const newSponsorship = {
+      id: newSponsorshipId,
+      eventName: newEvent.name,
+      eventId: newEvent.id,
+      sponsorshipLevel: 'Gold',
+      amount: '$10,000',
+      date: eventDate,
+      status: 'Active',
+      description: `Sponsorship for ${newEvent.name}`,
+    };
+
+    // Update both states
     setEvents((prev) => [...prev, newEvent]);
+    setSponsorships((prev) => [...prev, newSponsorship]);
 
-    // Create the corresponding sponsorship
-    setSponsorships((prevSponsors) => {
-      const newSponsorshipId = Math.max(...prevSponsors.map((s) => s.id), 0) + 1;
-      const newSponsorship = {
-        id: newSponsorshipId,
-        eventName: newEvent.name,
-        eventId: newEvent.id,
-        sponsorshipLevel: 'Gold',
-        amount: '$10,000',
-        date: eventDate,
-        status: 'Active',
-        description: `Sponsorship for ${newEvent.name}`,
-      };
-      return [...prevSponsors, newSponsorship];
-    });
-
-    // Return immediately with both event and the sponsorship object
+    // Return both immediately
     return {
       event: newEvent,
-      sponsorship: {
-        id: Math.max(...sponsorships.map((s) => s.id), 0) + 1,
-        eventName: newEvent.name,
-        eventId: newEvent.id,
-        sponsorshipLevel: 'Gold',
-        amount: '$10,000',
-        date: eventDate,
-        status: 'Active',
-        description: `Sponsorship for ${newEvent.name}`,
-      },
+      sponsorship: newSponsorship,
     };
   }, [events, sponsorships]);
 
