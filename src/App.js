@@ -71,16 +71,6 @@ function AppContent() {
       {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} />}
       
       <Routes>
-        <Route
-          path="/settings"
-          element={
-            <Settings
-              chatGPTConnected={chatGPTConnected}
-              onChatGPTConnect={handleChatGPTConnect}
-              onChatGPTDisconnect={handleChatGPTDisconnect}
-            />
-          }
-        />
         <Route path="/" element={<RoleSelection />} />
         <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/dashboard/npo" element={<NPODashboard />} />
@@ -91,7 +81,16 @@ function AppContent() {
         <Route path="/venues" element={<Venues />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/vendors" element={<Vendors />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route
+          path="/settings"
+          element={
+            <Settings
+              chatGPTConnected={chatGPTConnected}
+              onChatGPTConnect={handleChatGPTConnect}
+              onChatGPTDisconnect={handleChatGPTDisconnect}
+            />
+          }
+        />
         <Route path="/event-management/:eventId" element={<EventManagement />} />
         <Route path="/event-details-vendor/:eventId" element={<EventDetailsVendor />} />
         <Route path="/submit-quote/:eventId" element={<SubmitQuote />} />
