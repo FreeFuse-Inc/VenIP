@@ -6,7 +6,7 @@ import '../styles/AIAssistant.css';
 
 const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
   const { userRole } = useContext(RoleContext);
-  const { getEventsByRole, createEvent, createEventWithSponsorship, sponsorships, deleteSponsorship } = useContext(EventContext);
+  const { getEventsByRole, createEvent, createEventWithSponsorship, sponsorships, deleteSponsorship, events, deleteEvent } = useContext(EventContext);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
