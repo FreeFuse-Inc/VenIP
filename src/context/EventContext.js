@@ -193,7 +193,7 @@ export const EventProvider = ({ children }) => {
   }, []);
 
   const createSponsorship = useCallback((sponsorshipData) => {
-    const sponsorshipDate = sponsorshipData.date || new Date().toISOString().split('T')[0];
+    const sponsorshipDate = sponsorshipData.date || getLocalDateString();
 
     setSponsorships((prev) => {
       const newId = Math.max(...prev.map((s) => s.id), 0) + 1;
