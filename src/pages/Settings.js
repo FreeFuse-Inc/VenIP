@@ -29,6 +29,8 @@ const Settings = () => {
   const [editMode, setEditMode] = useState(false);
   const [tempSettings, setTempSettings] = useState(settings);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [airbnbConnected, setAirbnbConnected] = useState(false);
+  const [showAirbnbModal, setShowAirbnbModal] = useState(false);
 
   const handleSettingChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +52,23 @@ const Settings = () => {
   const handleCancel = () => {
     setTempSettings(settings);
     setEditMode(false);
+  };
+
+  const handleAirbnbConnect = () => {
+    setShowAirbnbModal(true);
+  };
+
+  const handleAirbnbConfirm = () => {
+    setAirbnbConnected(true);
+    setShowAirbnbModal(false);
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
+  };
+
+  const handleAirbnbDisconnect = () => {
+    setAirbnbConnected(false);
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
   };
 
   return (
@@ -201,6 +220,38 @@ const Settings = () => {
           </div>
 
           <div className="settings-section">
+            <h2 className="section-title">Integrations</h2>
+            <div className="integrations-container">
+              <div className="integration-item">
+                <div className="integration-header">
+                  <div className="integration-info">
+                    <div className="integration-icon">🏨</div>
+                    <div className="integration-details">
+                      <h4>Airbnb Integration</h4>
+                      <p>Connect your Airbnb account to display live accommodations in the Bookings section</p>
+                    </div>
+                  </div>
+                  <div className={`connection-status ${airbnbConnected ? 'connected' : 'disconnected'}`}>
+                    <span className="status-indicator"></span>
+                    <span className="status-text">{airbnbConnected ? 'Connected' : 'Not Connected'}</span>
+                  </div>
+                </div>
+                <div className="integration-actions">
+                  {!airbnbConnected ? (
+                    <button className="btn-connect" onClick={handleAirbnbConnect}>
+                      Connect Airbnb
+                    </button>
+                  ) : (
+                    <button className="btn-disconnect" onClick={handleAirbnbDisconnect}>
+                      Disconnect
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="settings-section">
             <h2 className="section-title">Notification Preferences</h2>
             <div className="notifications-container">
               <div className="notification-item">
@@ -286,6 +337,56 @@ const Settings = () => {
           </div>
         </div>
       </div>
+
+      {showAirbnbModal && (
+        <div className="modal-overlay" onClick={() => setShowAirbnbModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Connect Airbnb Account</h2>
+              <button className="close-btn" onClick={() => setShowAirbnbModal(false)}>✕</button>
+            </div>
+
+            <div className="modal-body">
+              <div className="airbnb-instructions">
+                <p>To connect your Airbnb account, you'll need to:</p>
+                <ol>
+                  <li>Visit <strong>https://airbnb.com/api</strong></li>
+                  <li>Create an API key or use your existing credentials</li>
+                  <li>Authorize VenIP to access your accommodation listings</li>
+                  <li>Your live accommodations will appear in the Bookings section</li>
+                </ol>
+              </div>
+
+              <div className="form-group">
+                <label>Airbnb API Key</label>
+                <input
+                  type="password"
+                  placeholder="Enter your Airbnb API Key"
+                  defaultValue=""
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Account Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your Airbnb email"
+                  defaultValue=""
+                />
+              </div>
+
+              <div className="modal-actions">
+                <button className="btn-cancel" onClick={() => setShowAirbnbModal(false)}>
+                  Cancel
+                </button>
+                <button className="btn-save" onClick={handleAirbnbConfirm}>
+                  Connect Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
