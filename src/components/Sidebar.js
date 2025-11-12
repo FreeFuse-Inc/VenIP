@@ -15,7 +15,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: getDashboardPath() },
     { id: 'venues', label: 'Venues', icon: '📍', path: '/venues' },
-    { id: 'bookings', label: 'Bookings', icon: '📅', path: '/bookings' },
+    { id: 'bookings', label: 'Calander', icon: '📅', path: '/bookings' },
     { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
     { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
   ];
