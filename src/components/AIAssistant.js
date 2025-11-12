@@ -368,13 +368,24 @@ Provide helpful guidance and always confirm actions.`;
             // Ensure sponsorships is an array
             const sponsorshipsArray = Array.isArray(sponsorships) ? sponsorships : [];
 
-            // Find matching sponsorships manually first to verify they exist
-            const matchingSponsorships = sponsorshipsArray.filter(s => {
-              if (!s || !s.date) return false;
-              const dateMatches = s.date === dateToDelete;
-              const nameMatches = !eventNameToDelete || (s.eventName && s.eventName.toLowerCase() === eventNameToDelete.toLowerCase());
-              return dateMatches && nameMatches;
-            });
+            // First, if a specific event name was provided, try to find it on ANY date
+            let matchingSponsorships = [];
+            if (eventNameToDelete) {
+              matchingSponsorships = sponsorshipsArray.filter(s => {
+                if (!s || !s.eventName) return false;
+                return s.eventName.toLowerCase() === eventNameToDelete.toLowerCase();
+              });
+            }
+
+            // If no match found by name, or no name specified, try by date
+            if (matchingSponsorships.length === 0 && dateToDelete) {
+              matchingSponsorships = sponsorshipsArray.filter(s => {
+                if (!s || !s.date) return false;
+                const dateMatches = s.date === dateToDelete;
+                const nameMatches = !eventNameToDelete || (s.eventName && s.eventName.toLowerCase() === eventNameToDelete.toLowerCase());
+                return dateMatches && nameMatches;
+              });
+            }
 
             if (matchingSponsorships.length > 0) {
               // Delete them one by one
@@ -388,11 +399,18 @@ Provide helpful guidance and always confirm actions.`;
                 }
               });
 
-              responseText = `✅ Successfully deleted ${deletedCount} event(s) from ${dateToDelete}`;
+              const dateStr = dateToDelete ? ` from ${dateToDelete}` : '';
+              responseText = `✅ Successfully deleted ${deletedCount} event(s)${dateStr}`;
               responseText += '\n📅 The calendar has been updated.';
             } else {
               // No matches found - show diagnostic info
-              responseText = `❌ No events found on ${dateToDelete}.`;
+              if (eventNameToDelete) {
+                responseText = `❌ No events found matching "${eventNameToDelete}".`;
+              } else if (dateToDelete) {
+                responseText = `❌ No events found on ${dateToDelete}.`;
+              } else {
+                responseText = `❌ Could not find any matching events.`;
+              }
               if (availableSponsorships !== 'none') {
                 responseText += `\nAvailable events: ${availableSponsorships}`;
               }
