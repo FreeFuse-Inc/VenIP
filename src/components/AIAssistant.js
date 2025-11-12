@@ -199,6 +199,64 @@ Provide helpful guidance and always confirm actions.`;
       const data = await response.json();
       let responseText = data.choices[0].message.content;
 
+      // Function to parse various date formats (used for both create and delete)
+      const parseEventDate = (inputText) => {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+
+        // Check for explicit YYYY-MM-DD format
+        let dateMatch = inputText.match(/(\d{4})-(\d{2})-(\d{2})/);
+        if (dateMatch) return `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+
+        // Check for month name or abbreviation with day
+        const monthPattern = /(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{1,2})(?:st|nd|rd|th)?/i;
+        dateMatch = inputText.match(monthPattern);
+        if (dateMatch) {
+          const monthStr = dateMatch[0].split(/\s+/)[0];
+          const day = parseInt(dateMatch[1]);
+          const months = {
+            'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+            'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11,
+            'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'jun': 5, 'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+          };
+          const month = months[monthStr.toLowerCase()];
+          if (month !== undefined) {
+            const eventDate = new Date(currentYear, month, day);
+            const year = eventDate.getFullYear();
+            const m = String(month + 1).padStart(2, '0');
+            const d = String(day).padStart(2, '0');
+            return `${year}-${m}-${d}`;
+          }
+        }
+
+        // Check for slash format (MM/DD or M/D)
+        dateMatch = inputText.match(/(\d{1,2})\/(\d{1,2})/);
+        if (dateMatch) {
+          const month = parseInt(dateMatch[1]);
+          const day = parseInt(dateMatch[2]);
+          if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+            const m = String(month).padStart(2, '0');
+            const d = String(day).padStart(2, '0');
+            return `${currentYear}-${m}-${d}`;
+          }
+        }
+
+        // Check for "the Xth" pattern
+        dateMatch = inputText.match(/(?:the\s+)?(\d{1,2})(?:st|nd|rd|th)?/i);
+        if (dateMatch) {
+          const day = parseInt(dateMatch[1]);
+          if (day >= 1 && day <= 31) {
+            const currentMonth = now.getMonth();
+            const m = String(currentMonth + 1).padStart(2, '0');
+            const d = String(day).padStart(2, '0');
+            return `${currentYear}-${m}-${d}`;
+          }
+        }
+
+        // Default to today
+        return getLocalDateString();
+      };
+
       // Check if response contains function call hints
       if (responseText.includes('get_events') || input.toLowerCase().includes('event')) {
         const eventsResult = await processFunctionCall('get_events', {});
