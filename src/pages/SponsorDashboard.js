@@ -142,6 +142,44 @@ const SponsorDashboard = () => {
             ))}
           </div>
         </section>
+
+        <section className="feedback-section">
+          <div className="section-header">
+            <h2>Your Event Feedback</h2>
+            {feedback.length > 0 && <span className="feedback-badge">{feedback.length} total</span>}
+          </div>
+          {feedback.length > 0 ? (
+            <div className="feedback-list">
+              {feedback.slice(0, 3).map((item) => (
+                <div key={item.id} className="feedback-card">
+                  <div className="feedback-content">
+                    <h4 className="feedback-event">{item.eventName}</h4>
+                    <p className="feedback-meta">
+                      {item.type === 'venue' ? '🏢 Venue Feedback' : '🎯 Service Feedback'} • {item.submittedBy}
+                    </p>
+                    <div className="feedback-ratings-preview">
+                      {Object.entries(item.ratings).slice(0, 2).map(([key, value]) => (
+                        <span key={key} className="rating-item">
+                          {value}/5 ★
+                        </span>
+                      ))}
+                      {Object.keys(item.ratings).length > 2 && <span>...</span>}
+                    </div>
+                    {item.comments && <p className="feedback-comment">{item.comments.substring(0, 100)}...</p>}
+                  </div>
+                  <span className={`status-badge ${item.status}`}>{item.status}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <p>No feedback submitted yet. Feedback from past events will appear here.</p>
+              <button className="request-feedback-btn" onClick={() => navigate('/feedback-settings')}>
+                📧 Request Feedback from Past Events
+              </button>
+            </div>
+          )}
+        </section>
       </div>
     </main>
   );
