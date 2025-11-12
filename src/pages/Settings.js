@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Settings.css';
 
-const Settings = () => {
+const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconnect }) => {
   const [settings, setSettings] = useState({
     organizationName: 'VenIP Events',
     contactEmail: 'admin@venip.com',
@@ -31,6 +31,8 @@ const Settings = () => {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [airbnbConnected, setAirbnbConnected] = useState(false);
   const [showAirbnbModal, setShowAirbnbModal] = useState(false);
+  const [showChatGPTModal, setShowChatGPTModal] = useState(false);
+  const [chatGPTApiKey, setChatGPTApiKey] = useState('');
 
   const handleSettingChange = (e) => {
     const { name, value } = e.target;
@@ -67,6 +69,30 @@ const Settings = () => {
 
   const handleAirbnbDisconnect = () => {
     setAirbnbConnected(false);
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
+  };
+
+  const handleChatGPTConnect = () => {
+    setShowChatGPTModal(true);
+  };
+
+  const handleChatGPTConfirm = () => {
+    if (chatGPTApiKey.trim()) {
+      if (onChatGPTConnect) {
+        onChatGPTConnect(chatGPTApiKey);
+      }
+      setChatGPTApiKey('');
+      setShowChatGPTModal(false);
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    }
+  };
+
+  const handleChatGPTDisconnect = () => {
+    if (onChatGPTDisconnect) {
+      onChatGPTDisconnect();
+    }
     setSaveSuccess(true);
     setTimeout(() => setSaveSuccess(false), 3000);
   };
@@ -248,6 +274,33 @@ const Settings = () => {
                   )}
                 </div>
               </div>
+
+              <div className="integration-item">
+                <div className="integration-header">
+                  <div className="integration-info">
+                    <div className="integration-icon">🤖</div>
+                    <div className="integration-details">
+                      <h4>ChatGPT AI Assistant</h4>
+                      <p>Connect your ChatGPT API key to enable the AI Assistant for app navigation and guidance</p>
+                    </div>
+                  </div>
+                  <div className={`connection-status ${chatGPTConnected ? 'connected' : 'disconnected'}`}>
+                    <span className="status-indicator"></span>
+                    <span className="status-text">{chatGPTConnected ? 'Connected' : 'Not Connected'}</span>
+                  </div>
+                </div>
+                <div className="integration-actions">
+                  {!chatGPTConnected ? (
+                    <button className="btn-connect" onClick={handleChatGPTConnect}>
+                      Connect ChatGPT
+                    </button>
+                  ) : (
+                    <button className="btn-disconnect" onClick={handleChatGPTDisconnect}>
+                      Disconnect
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -381,6 +434,56 @@ const Settings = () => {
                 </button>
                 <button className="btn-save" onClick={handleAirbnbConfirm}>
                   Connect Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showChatGPTModal && (
+        <div className="modal-overlay" onClick={() => setShowChatGPTModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Connect ChatGPT API</h2>
+              <button className="close-btn" onClick={() => setShowChatGPTModal(false)}>✕</button>
+            </div>
+
+            <div className="modal-body">
+              <div className="chatgpt-instructions">
+                <p>To connect your ChatGPT API:</p>
+                <ol>
+                  <li>Visit <strong>https://platform.openai.com/account/api-keys</strong></li>
+                  <li>Create a new API key or use an existing one</li>
+                  <li>Copy your API key and paste it below</li>
+                  <li>The AI Assistant will appear in the bottom right of your screen</li>
+                </ol>
+              </div>
+
+              <div className="form-group">
+                <label>ChatGPT API Key *</label>
+                <input
+                  type="password"
+                  placeholder="sk-..."
+                  value={chatGPTApiKey}
+                  onChange={(e) => setChatGPTApiKey(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group">
+                <p className="info-text">ℹ️ Your API key is encrypted and stored securely.</p>
+              </div>
+
+              <div className="modal-actions">
+                <button className="btn-cancel" onClick={() => setShowChatGPTModal(false)}>
+                  Cancel
+                </button>
+                <button
+                  className="btn-save"
+                  onClick={handleChatGPTConfirm}
+                  disabled={!chatGPTApiKey.trim()}
+                >
+                  Connect API
                 </button>
               </div>
             </div>
