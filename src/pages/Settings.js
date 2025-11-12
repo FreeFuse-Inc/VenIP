@@ -490,6 +490,26 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
               </div>
             </div>
           </div>
+
+          <div className="settings-section">
+            <h2 className="section-title">Feedback Integrations</h2>
+            <p className="section-description">
+              Connect email automation services to send feedback requests after events conclude.
+            </p>
+            <div className="integration-buttons">
+              <button
+                className="integration-btn"
+                onClick={() => navigate('/feedback-settings')}
+              >
+                <span className="integration-icon">⚙️</span>
+                <div className="integration-details">
+                  <h4>Configure Zapier & Stripe</h4>
+                  <p>Set up automated feedback email campaigns</p>
+                </div>
+                <span className="arrow">→</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
