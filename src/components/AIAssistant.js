@@ -335,12 +335,8 @@ Provide helpful guidance and always confirm actions.`;
         }
       }
 
-      // Handle delete event requests - only execute if marked as delete request
-      const deleteKeywordMatch = /\b(delete|remove|cancel)\b/i.test(input);
-      const eventKeywordMatch = /(event|sponsorship|activity)/i.test(input);
-
-      if (isDeleteRequest && deleteKeywordMatch && eventKeywordMatch) {
-
+      // Handle delete event requests - only execute if marked as delete request from early check
+      if (isDeleteRequest) {
         // Check available sponsorships for debugging
         const availableSponsorships = sponsorships && sponsorships.length > 0
           ? sponsorships.map(s => `${s.eventName} on ${s.date}`).join(', ')
