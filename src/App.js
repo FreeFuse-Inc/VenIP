@@ -33,6 +33,7 @@ import InviteAttendees from './pages/InviteAttendees';
 import RequestVendors from './pages/RequestVendors';
 import SponsorshipBookings from './pages/SponsorshipBookings';
 import AccommodationBookings from './pages/AccommodationBookings';
+import BookingConfirmation from './pages/BookingConfirmation';
 import AIAssistant from './components/AIAssistant';
 import './App.css';
 
