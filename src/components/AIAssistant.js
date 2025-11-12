@@ -192,6 +192,7 @@ Always confirm actions and provide summaries.`;
       if (responseText.includes('create_event') || input.toLowerCase().includes('create')) {
         // Parse event details from user input
         const eventMatch = input.match(/event.*?name[:\s]+([^,\n]+)/i) ||
+                          input.match(/(?:create|new)\s+(?:an\s+)?event.*?called?\s+([^,\n.]+)/i) ||
                           input.match(/(?:create|new)\s+(?:event|event\s+called?)\s+([^,\n.]+)/i);
         const dateMatch = input.match(/date[:\s]+(\d{4}-\d{2}-\d{2})/i);
 
