@@ -77,6 +77,7 @@ function AppContent() {
         <Route path="/invite-attendees/:eventId" element={<InviteAttendees />} />
         <Route path="/request-vendors/:eventId" element={<RequestVendors />} />
         <Route path="/sponsorship-bookings" element={<SponsorshipBookings />} />
+        <Route path="/accommodation-bookings" element={<AccommodationBookings />} />
         <Route
           path="/dashboard/analytics"
           element={
