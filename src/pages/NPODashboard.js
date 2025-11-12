@@ -8,6 +8,14 @@ const NPODashboard = () => {
   const navigate = useNavigate();
   const { feedback, getNewFeedbackCount } = useContext(FeedbackContext);
 
+  const npoProfile = {
+    name: 'Community Hearts Foundation',
+    missionStatement: 'Empowering communities through transformative events, volunteer opportunities, and charitable initiatives that create lasting positive impact for underserved populations.',
+    email: 'info@communityhearts.org',
+    phone: '+1 (555) 246-8135',
+    website: 'www.communityhearts.org',
+  };
+
   const upcomingEvents = [
     { id: 1, name: 'Annual Gala 2024', date: 'Dec 15, 2024', status: 'Planning' },
     { id: 2, name: 'Charity Fundraiser', date: 'Jan 10, 2025', status: 'Pending Quotes' },
@@ -27,6 +35,30 @@ const NPODashboard = () => {
       </header>
 
       <div className="dashboard-content">
+        <section className="profile-section">
+          <div className="profile-header">
+            <div className="profile-avatar">❤️</div>
+            <div className="profile-main">
+              <h2 className="profile-name">{npoProfile.name}</h2>
+              <p className="profile-mission">{npoProfile.missionStatement}</p>
+            </div>
+          </div>
+          <div className="profile-contact-grid">
+            <div className="contact-item">
+              <span className="contact-label">📧 Email</span>
+              <p className="contact-value">{npoProfile.email}</p>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">📞 Phone</span>
+              <p className="contact-value">{npoProfile.phone}</p>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">🌐 Website</span>
+              <p className="contact-value">{npoProfile.website}</p>
+            </div>
+          </div>
+        </section>
+
         <section className="metrics-section">
           <MetricCard label="Total Events" value="12" />
           <MetricCard label="Pending Vendor Quotes" value="3" />
