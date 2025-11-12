@@ -274,6 +274,12 @@
   font-size: 14px;
 }
 
+.activity-details-with-actions .action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
 .action-buttons {
   display: flex;
   gap: 8px;
@@ -281,14 +287,19 @@
 
 .edit-btn,
 .delete-btn {
-  flex: 1;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.activity-details-with-actions .edit-btn,
+.activity-details-with-actions .delete-btn {
+  padding: 6px 10px;
 }
 
 .edit-btn {
