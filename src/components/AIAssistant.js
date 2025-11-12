@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { EventContext } from '../context/EventContext';
+import { EventContext, getLocalDateString } from '../context/EventContext';
 import { RoleContext } from '../context/RoleContext';
 import '../styles/AIAssistant.css';
 
@@ -83,11 +83,7 @@ Always confirm actions and provide summaries.`;
   const processFunctionCall = async (functionName, functionInput) => {
     try {
       if (functionName === 'get_events') {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const currentDate = `${year}-${month}-${day}`;
+        const currentDate = getLocalDateString();
         const roleEvents = getEventsByRole(userRole, currentDate);
         return {
           success: true,
@@ -202,11 +198,7 @@ Always confirm actions and provide summaries.`;
         const dateMatch = input.match(/date[:\s]+(\d{4}-\d{2}-\d{2})/i);
 
         if (eventName) {
-          const now = new Date();
-          const year = now.getFullYear();
-          const month = String(now.getMonth() + 1).padStart(2, '0');
-          const day = String(now.getDate()).padStart(2, '0');
-          const currentDate = `${year}-${month}-${day}`;
+          const currentDate = getLocalDateString();
           const eventDate = dateMatch ? dateMatch[1] : currentDate;
 
           const newEventResult = await processFunctionCall('create_event', {
