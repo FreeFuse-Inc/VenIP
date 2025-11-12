@@ -487,6 +487,35 @@ input:checked + .slider:before {
   gap: 20px;
 }
 
+.api-instructions {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 4px solid #d1d5db;
+}
+
+.api-instructions p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.api-instructions ol {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.api-instructions li {
+  margin-bottom: 8px;
+}
+
+.api-instructions strong {
+  color: #1f2937;
+}
+
 .airbnb-instructions {
   background-color: #f3f4f6;
   padding: 16px;
