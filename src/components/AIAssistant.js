@@ -193,9 +193,10 @@ Always confirm actions and provide summaries.`;
 
         if (eventMatch) {
           const currentDate = new Date().toISOString().split('T')[0];
+          const eventDate = dateMatch ? dateMatch[1] : currentDate;
           const newEventResult = await processFunctionCall('create_event', {
             name: eventMatch[1].trim(),
-            date: dateMatch ? dateMatch[1] : currentDate,
+            date: eventDate,
             type: 'general',
             location: 'TBD',
             description: input,
@@ -204,16 +205,10 @@ Always confirm actions and provide summaries.`;
           if (newEventResult.success) {
             responseText += `\n\n✅ ${newEventResult.message}`;
 
-            // After creating an event, fetch today's events to show the updated list
-            const eventsResult = await processFunctionCall('get_events', {});
-            if (eventsResult.success && eventsResult.data.length > 0) {
+            // Include the newly created event in the response immediately
+            if (eventDate === currentDate) {
               responseText += '\n\n📋 Your Events for Today:\n';
-              eventsResult.data.forEach((event) => {
-                const displayName = event.name || event.eventName;
-                const displayDate = event.date;
-                const displayStatus = event.status;
-                responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
-              });
+              responseText += `• ${newEventResult.data.name} (${newEventResult.data.date}) - ${newEventResult.data.status}\n`;
             }
           }
         }
