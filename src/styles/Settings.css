@@ -566,6 +566,66 @@ input:checked + .slider:before {
   cursor: not-allowed;
 }
 
+.section-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+}
+
+.integration-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.integration-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.integration-btn:hover {
+  background: #f3f4f6;
+  border-color: #4f7dff;
+  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+}
+
+.integration-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.integration-details {
+  flex: 1;
+  text-align: left;
+}
+
+.integration-details h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.integration-details p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.integration-btn .arrow {
+  font-size: 20px;
+  color: #4f7dff;
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   .page-content {
     padding: 16px;
