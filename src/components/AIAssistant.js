@@ -192,7 +192,11 @@ Always confirm actions and provide summaries.`;
         const dateMatch = input.match(/date[:\s]+(\d{4}-\d{2}-\d{2})/i);
 
         if (eventMatch) {
-          const currentDate = new Date().toISOString().split('T')[0];
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = String(now.getMonth() + 1).padStart(2, '0');
+          const day = String(now.getDate()).padStart(2, '0');
+          const currentDate = `${year}-${month}-${day}`;
           const eventDate = dateMatch ? dateMatch[1] : currentDate;
           const newEventResult = await processFunctionCall('create_event', {
             name: eventMatch[1].trim(),
