@@ -316,24 +316,25 @@ Provide helpful guidance and always confirm actions.`;
         }
       }
 
-      // Handle delete event requests
-      const inputLower = input.toLowerCase();
-      const hasDeleteIntent = /\b(delete|remove|cancel)\b/i.test(input) && /(event|the|from|on)/i.test(input);
+      // Handle delete event requests - check BEFORE ChatGPT response is processed
+      // This ensures we intercept delete requests regardless of what ChatGPT says
+      const deleteKeywordMatch = /\b(delete|remove|cancel)\b/i.test(input);
+      const eventKeywordMatch = /\b(event|sponsorship|activity)\b/i.test(input);
 
-      if (hasDeleteIntent) {
+      if (deleteKeywordMatch && eventKeywordMatch) {
         // Parse event name if specified (but not "all" or generic terms)
         let eventNameToDelete = null;
 
         // Check if user is trying to delete all events
-        const isDeleteAll = /(delete|remove|cancel)\s+(all\s+)?events?/i.test(input);
+        const isDeleteAll = /(?:delete|remove|cancel)\s+(?:all\s+)?(?:events?|sponsorships?)/i.test(input);
 
         if (!isDeleteAll) {
           // Try to extract a specific event name
-          let match = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?(?:event\s+)?(?:called\s+)?['"]?([^'"]+?)['"]?(?:\s+(?:on|for|at|from)|$)/i);
-          if (match) {
-            const extracted = match[1].trim();
+          let nameMatch = input.match(/(?:delete|remove|cancel)\s+(?:the\s+)?(?:event\s+)?(?:called\s+)?['"]?([^'"]+?)['"]?(?:\s+(?:on|for|at|from)|$)/i);
+          if (nameMatch) {
+            const extracted = nameMatch[1].trim();
             // Make sure we didn't extract generic terms
-            if (!extracted.toLowerCase().match(/^(all|events?|for|on|at|today|tomorrow|the|this)/) && extracted.length > 0) {
+            if (!extracted.toLowerCase().match(/^(all|events?|for|on|at|today|tomorrow|the|this)$/) && extracted.length > 1) {
               eventNameToDelete = extracted;
             }
           }
@@ -349,13 +350,13 @@ Provide helpful guidance and always confirm actions.`;
           });
 
           if (deleteResult.success) {
-            responseText += `\n\n✅ ${deleteResult.message}`;
-            responseText += `\n📅 Events deleted from ${dateToDelete}`;
+            responseText = deleteResult.message;
+            responseText += `\n📅 Deleted from ${dateToDelete}`;
           } else {
-            responseText += `\n\n❌ ${deleteResult.message}`;
+            responseText = deleteResult.message;
           }
         } else {
-          responseText += `\n\n❌ I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
+          responseText = `I couldn't determine which date to delete events from. Please specify a date like "today", "the 12th", or "November 14".`;
         }
       }
 
