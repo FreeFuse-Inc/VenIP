@@ -129,8 +129,9 @@ export const EventProvider = ({ children }) => {
 
   const createEvent = useCallback((eventData) => {
     const eventDate = eventData.date || getLocalDateString();
+    const newEventId = Math.max(...events.map((e) => e.id), 0) + 1;
     const newEvent = {
-      id: Math.max(...events.map((e) => e.id), 0) + 1,
+      id: newEventId,
       ...eventData,
       createdBy: eventData.createdBy || 'npo',
       status: 'Planning',
@@ -140,23 +141,22 @@ export const EventProvider = ({ children }) => {
 
     setEvents((prev) => [...prev, newEvent]);
 
-    setSponsorships((prevSponsors) => {
-      const newId = Math.max(...prevSponsors.map((s) => s.id), 0) + 1;
-      const newSponsorship = {
-        id: newId,
-        eventName: newEvent.name,
-        eventId: newEvent.id,
-        sponsorshipLevel: 'Gold',
-        amount: '$10,000',
-        date: eventDate,
-        status: 'Active',
-        description: `Sponsorship for ${newEvent.name}`,
-      };
-      return [...prevSponsors, newSponsorship];
-    });
+    const newSponsorshipId = Math.max(...sponsorships.map((s) => s.id), 0) + 1;
+    const newSponsorship = {
+      id: newSponsorshipId,
+      eventName: newEvent.name,
+      eventId: newEvent.id,
+      sponsorshipLevel: 'Gold',
+      amount: '$10,000',
+      date: eventDate,
+      status: 'Active',
+      description: `Sponsorship for ${newEvent.name}`,
+    };
 
-    return newEvent;
-  }, [events]);
+    setSponsorships((prevSponsors) => [...prevSponsors, newSponsorship]);
+
+    return { event: newEvent, sponsorship: newSponsorship };
+  }, [events, sponsorships]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
     let relevantItems = [];
