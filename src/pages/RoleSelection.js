@@ -29,6 +29,13 @@ const RoleSelection = () => {
       icon: '⭐',
       color: '#FFD93D',
     },
+    {
+      id: 'super-admin',
+      name: 'Super Admin',
+      description: 'System Overview & Monitoring',
+      icon: '👑',
+      color: '#8B5CF6',
+    },
   ];
 
   const handleRoleSelect = (role) => {
