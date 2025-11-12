@@ -8,6 +8,14 @@ const SponsorDashboard = () => {
   const navigate = useNavigate();
   const { feedback, feedbackRequests } = useContext(FeedbackContext);
 
+  const sponsorProfile = {
+    name: 'Global Innovations Inc.',
+    missionStatement: 'Supporting community events and initiatives that drive positive change, innovation, and social impact through strategic partnerships and corporate sponsorships.',
+    email: 'partnerships@globalinnovations.com',
+    phone: '+1 (555) 987-6543',
+    website: 'www.globalinnovations.com',
+  };
+
   const sponsoredEvents = [
     {
       id: 1,
@@ -74,6 +82,30 @@ const SponsorDashboard = () => {
       </header>
 
       <div className="dashboard-content">
+        <section className="profile-section">
+          <div className="profile-header">
+            <div className="profile-avatar">🏛️</div>
+            <div className="profile-main">
+              <h2 className="profile-name">{sponsorProfile.name}</h2>
+              <p className="profile-mission">{sponsorProfile.missionStatement}</p>
+            </div>
+          </div>
+          <div className="profile-contact-grid">
+            <div className="contact-item">
+              <span className="contact-label">📧 Email</span>
+              <p className="contact-value">{sponsorProfile.email}</p>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">📞 Phone</span>
+              <p className="contact-value">{sponsorProfile.phone}</p>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">🌐 Website</span>
+              <p className="contact-value">{sponsorProfile.website}</p>
+            </div>
+          </div>
+        </section>
+
         <section className="metrics-section">
           <MetricCard label="Total Sponsorships" value="2" />
           <MetricCard label="Total Engagement Reach" value="7.2K" />
