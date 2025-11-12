@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import '../styles/SponsorDashboard.css';
 
-const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
+const SponsorDashboard = () => {
   const navigate = useNavigate();
   const sponsoredEvents = [
     {
@@ -29,10 +29,6 @@ const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
       status: 'Active',
     },
   ];
-
-  const filteredSponsoredEvents = selectedDate
-    ? sponsoredEvents.filter((event) => event.eventDate === selectedDate)
-    : sponsoredEvents;
 
   const availableEvents = [
     {
@@ -83,24 +79,10 @@ const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
 
         <section className="sponsored-section">
           <div className="section-header">
-            <div className="section-header-with-filter">
-              <h2>Your Sponsorships</h2>
-              {selectedDate && (
-                <span className="filter-badge">
-                  Filtered by: {selectedDate}
-                  <button
-                    onClick={() => onDateSelect(null)}
-                    className="clear-filter-btn"
-                  >
-                    Clear
-                  </button>
-                </span>
-              )}
-            </div>
+            <h2>Your Sponsorships</h2>
           </div>
           <div className="sponsored-grid">
-            {filteredSponsoredEvents.length > 0 ? (
-              filteredSponsoredEvents.map((event) => (
+            {sponsoredEvents.map((event) => (
               <div key={event.id} className="sponsored-card">
                 <div className="event-header">
                   <h3 className="event-name">{event.name}</h3>
@@ -119,12 +101,7 @@ const SponsorDashboard = ({ selectedDate, onDateSelect }) => {
                 </div>
                 <button className="analytics-btn" onClick={() => navigate(`/sponsorship-analytics/${event.id}`)}>View Analytics →</button>
               </div>
-            ))
-            ) : (
-              <div className="no-events-message">
-                <p>No sponsorships found for the selected date.</p>
-              </div>
-            )}
+            ))}
           </div>
         </section>
 

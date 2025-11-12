@@ -35,24 +35,19 @@ import './App.css';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedDate, setSelectedDate] = useState(null);
   const location = useLocation();
   const isRoleSelectionPage = location.pathname === '/';
 
-  const handleDateSelect = (date) => {
-    setSelectedDate(date);
-  };
-
   return (
     <div className="app-container">
-      {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} onDateSelect={handleDateSelect} selectedDate={selectedDate} />}
+      {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} />}
       
       <Routes>
         <Route path="/" element={<RoleSelection />} />
         <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/dashboard/npo" element={<NPODashboard />} />
         <Route path="/dashboard/vendor" element={<VendorDashboard />} />
-        <Route path="/dashboard/sponsor" element={<SponsorDashboard selectedDate={selectedDate} onDateSelect={handleDateSelect} />} />
+        <Route path="/dashboard/sponsor" element={<SponsorDashboard />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/create-event/:eventId" element={<CreateEvent />} />
         <Route path="/venues" element={<Venues />} />
