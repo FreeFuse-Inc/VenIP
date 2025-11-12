@@ -82,11 +82,12 @@ Always confirm actions and provide summaries.`;
   const processFunctionCall = async (functionName, functionInput) => {
     try {
       if (functionName === 'get_events') {
-        const roleEvents = getEventsByRole(userRole);
+        const currentDate = new Date().toISOString().split('T')[0];
+        const roleEvents = getEventsByRole(userRole, currentDate);
         return {
           success: true,
           data: roleEvents,
-          message: `Found ${roleEvents.length} events for ${userRole} role`,
+          message: `Found ${roleEvents.length} events for ${userRole} role on ${currentDate}`,
         };
       } else if (functionName === 'create_event') {
         const newEvent = createEvent(functionInput);
@@ -168,14 +169,18 @@ Always confirm actions and provide summaries.`;
       // Check if response contains function call hints
       if (responseText.includes('get_events') || input.toLowerCase().includes('event')) {
         const eventsResult = await processFunctionCall('get_events', {});
-        if (eventsResult.success && eventsResult.data.length > 0) {
-          responseText += '\n\n📋 Your Events:\n';
-          eventsResult.data.forEach((event) => {
-            const displayName = event.name || event.eventName;
-            const displayDate = event.date;
-            const displayStatus = event.status;
-            responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
-          });
+        if (eventsResult.success) {
+          if (eventsResult.data.length > 0) {
+            responseText += '\n\n📋 Your Events for Today:\n';
+            eventsResult.data.forEach((event) => {
+              const displayName = event.name || event.eventName;
+              const displayDate = event.date;
+              const displayStatus = event.status;
+              responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
+            });
+          } else {
+            responseText += '\n\n📋 You have no events scheduled for today.';
+          }
         }
       }
 

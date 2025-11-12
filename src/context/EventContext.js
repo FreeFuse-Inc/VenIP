@@ -99,15 +99,21 @@ export const EventProvider = ({ children }) => {
     return newEvent;
   }, [events]);
 
-  const getEventsByRole = useCallback((role) => {
+  const getEventsByRole = useCallback((role, filterDate) => {
+    let relevantItems = [];
+
     if (role === 'npo') {
-      return events;
+      relevantItems = events;
     } else if (role === 'sponsor') {
-      return sponsorships;
+      relevantItems = sponsorships;
     } else if (role === 'vendor') {
-      return vendorQuotes;
+      relevantItems = vendorQuotes;
     }
-    return [];
+
+    if (filterDate) {
+      return relevantItems.filter(item => item.date === filterDate);
+    }
+    return relevantItems;
   }, [events, sponsorships, vendorQuotes]);
 
   const getEventById = useCallback(
