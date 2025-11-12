@@ -162,21 +162,35 @@ export const EventProvider = ({ children }) => {
     setEvents((prev) => [...prev, newEvent]);
 
     // Create the corresponding sponsorship
-    const newSponsorshipId = Math.max(...sponsorships.map((s) => s.id), 0) + 1;
-    const newSponsorship = {
-      id: newSponsorshipId,
-      eventName: newEvent.name,
-      eventId: newEvent.id,
-      sponsorshipLevel: 'Gold',
-      amount: '$10,000',
-      date: eventDate,
-      status: 'Active',
-      description: `Sponsorship for ${newEvent.name}`,
+    setSponsorships((prevSponsors) => {
+      const newSponsorshipId = Math.max(...prevSponsors.map((s) => s.id), 0) + 1;
+      const newSponsorship = {
+        id: newSponsorshipId,
+        eventName: newEvent.name,
+        eventId: newEvent.id,
+        sponsorshipLevel: 'Gold',
+        amount: '$10,000',
+        date: eventDate,
+        status: 'Active',
+        description: `Sponsorship for ${newEvent.name}`,
+      };
+      return [...prevSponsors, newSponsorship];
+    });
+
+    // Return immediately with both event and the sponsorship object
+    return {
+      event: newEvent,
+      sponsorship: {
+        id: Math.max(...sponsorships.map((s) => s.id), 0) + 1,
+        eventName: newEvent.name,
+        eventId: newEvent.id,
+        sponsorshipLevel: 'Gold',
+        amount: '$10,000',
+        date: eventDate,
+        status: 'Active',
+        description: `Sponsorship for ${newEvent.name}`,
+      },
     };
-
-    setSponsorships((prev) => [...prev, newSponsorship]);
-
-    return { event: newEvent, sponsorship: newSponsorship };
   }, [events, sponsorships]);
 
   const getEventsByRole = useCallback((role, filterDate) => {
