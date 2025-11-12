@@ -2,6 +2,29 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AccommodationBookings.css';
 
+/**
+ * AccommodationBookings Component
+ *
+ * This component handles travel bookings across 6 categories:
+ * - Hotels (Airbnb + Booking.com)
+ * - Homes & Apartments (Airbnb)
+ * - Long Stays (Furnished rentals)
+ * - Flights (Google Flights)
+ * - Activities (Viator + GetYourGuide)
+ * - Airport Transfers (Uber)
+ *
+ * API Integration:
+ * Users can add API keys in Settings > Travel Booking Integrations.
+ * The keys are stored in localStorage with the pattern: `${apiName}_api_key`
+ * When API keys are available, the functions in getResultsForTab() will use real API calls.
+ * Until then, mock data is displayed for demonstration purposes.
+ *
+ * To integrate real APIs:
+ * 1. Uncomment the TODO: API call sections in getResultsForTab()
+ * 2. Implement the fetch functions (fetchFromAirbnb, fetchFromBooking, etc.)
+ * 3. Pass the API keys and search parameters to the fetch functions
+ * 4. Handle API responses and format them to match the mock data structure
+ */
 const AccommodationBookings = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('hotels');
@@ -451,7 +474,7 @@ const AccommodationBookings = () => {
             </div>
             <div className="property-details">
               <div className="detail-item">
-                <span className="detail-label">🛏️</span>
+                <span className="detail-label">🛏��</span>
                 <span>{accommodation.bedrooms} bd</span>
               </div>
               <div className="detail-item">
