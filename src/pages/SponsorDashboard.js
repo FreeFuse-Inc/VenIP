@@ -6,6 +6,8 @@ import '../styles/SponsorDashboard.css';
 
 const SponsorDashboard = () => {
   const navigate = useNavigate();
+  const { feedback, feedbackRequests } = useContext(FeedbackContext);
+
   const sponsoredEvents = [
     {
       id: 1,
