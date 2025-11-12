@@ -1,7 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EventContext } from '../context/EventContext';
+import { RoleContext } from '../context/RoleContext';
 import '../styles/AIAssistant.css';
 
 const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
+  const navigate = useNavigate();
+  const { userRole } = useContext(RoleContext);
+  const { getEventsByRole, createEvent } = useContext(EventContext);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -14,7 +20,7 @@ const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const systemPrompt = `You are VenIP Assistant, a helpful AI guide for the VenIP event management platform. 
+  const systemPrompt = `You are VenIP Assistant, a helpful AI guide for the VenIP event management platform with access to event management functions. 
 
 VenIP has three main roles:
 
@@ -50,7 +56,21 @@ Help users:
 - Guide them to specific features
 - Explain the platform workflow
 
-Be friendly, concise, and helpful. Keep responses under 150 words.`;
+Be friendly, concise, and helpful. Keep responses under 150 words.
+
+Available Functions:
+1. "get_events" - Get all events for the user's current role
+   - Parameters: none
+   - Returns: List of events with id, name, date, status, and description
+
+2. "create_event" - Create a new event
+   - Parameters: name (string), date (YYYY-MM-DD), type (string), location (string), description (string), attendees (number)
+   - Returns: Newly created event object
+
+When user asks about their events, use get_events function.
+When user wants to create an event, use create_event function with appropriate parameters.
+Provide links to view event details using format: "View details: /event-management/{eventId}"
+Always confirm actions and provide summaries.`;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -59,6 +79,29 @@ Be friendly, concise, and helpful. Keep responses under 150 words.`;
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const processFunctionCall = async (functionName, functionInput) => {
+    try {
+      if (functionName === 'get_events') {
+        const roleEvents = getEventsByRole(userRole);
+        return {
+          success: true,
+          data: roleEvents,
+          message: `Found ${roleEvents.length} events for ${userRole} role`,
+        };
+      } else if (functionName === 'create_event') {
+        const newEvent = createEvent(functionInput);
+        return {
+          success: true,
+          data: newEvent,
+          message: `Event "${newEvent.name}" created successfully!`,
+        };
+      }
+      return { success: false, message: 'Unknown function' };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -111,7 +154,7 @@ Be friendly, concise, and helpful. Keep responses under 150 words.`;
               content: input,
             },
           ],
-          max_tokens: 300,
+          max_tokens: 500,
           temperature: 0.7,
         }),
       });
@@ -121,10 +164,46 @@ Be friendly, concise, and helpful. Keep responses under 150 words.`;
       }
 
       const data = await response.json();
+      let responseText = data.choices[0].message.content;
+
+      // Check if response contains function call hints
+      if (responseText.includes('get_events') || input.toLowerCase().includes('event')) {
+        const eventsResult = await processFunctionCall('get_events', {});
+        if (eventsResult.success && eventsResult.data.length > 0) {
+          responseText += '\n\n📋 Your Events:\n';
+          eventsResult.data.forEach((event) => {
+            const displayName = event.name || event.eventName;
+            const displayDate = event.date;
+            const displayStatus = event.status;
+            const displayId = event.id || event.eventId;
+            responseText += `• ${displayName} (${displayDate}) - ${displayStatus}\n`;
+          });
+        }
+      }
+
+      if (responseText.includes('create_event') || input.toLowerCase().includes('create')) {
+        // Parse event details from user input
+        const eventMatch = input.match(/event.*?name[:\s]+([^,\n]+)/i);
+        const dateMatch = input.match(/date[:\s]+(\d{4}-\d{2}-\d{2})/i);
+        if (eventMatch && dateMatch) {
+          const newEventResult = await processFunctionCall('create_event', {
+            name: eventMatch[1].trim(),
+            date: dateMatch[1],
+            type: 'general',
+            location: 'TBD',
+            description: input,
+            attendees: 100,
+          });
+          if (newEventResult.success) {
+            responseText += `\n\n✅ ${newEventResult.message}`;
+          }
+        }
+      }
+
       const botMessage = {
         id: Date.now() + 1,
         type: 'bot',
-        text: data.choices[0].message.content,
+        text: responseText,
       };
 
       setMessages((prev) => [...prev, botMessage]);
