@@ -206,6 +206,11 @@ Provide helpful guidance and always confirm actions.`;
         const now = new Date();
         const currentYear = now.getFullYear();
 
+        // Check for "today" keyword
+        if (/\btoday\b/i.test(inputText)) {
+          return getLocalDateString();
+        }
+
         // Check for explicit YYYY-MM-DD format
         let dateMatch = inputText.match(/(\d{4})-(\d{2})-(\d{2})/);
         if (dateMatch) return `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
