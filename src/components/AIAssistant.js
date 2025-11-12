@@ -330,6 +330,11 @@ Provide helpful guidance and always confirm actions.`;
       if (deleteKeywordMatch && eventKeywordMatch) {
         isDeleteRequest = true;
 
+        // Check available sponsorships for debugging
+        const availableSponsorships = sponsorships && sponsorships.length > 0
+          ? sponsorships.map(s => `${s.eventName} on ${s.date}`).join(', ')
+          : 'none';
+
         // Parse event name if specified (but not "all" or generic terms)
         let eventNameToDelete = null;
 
@@ -353,19 +358,21 @@ Provide helpful guidance and always confirm actions.`;
 
         if (dateToDelete) {
           try {
-            const deleteResult = await processFunctionCall('delete_event', {
-              eventName: eventNameToDelete,
-              date: dateToDelete,
-            });
+            // Find matching sponsorships manually first to verify they exist
+            const matchingSponsorships = sponsorships.filter(s =>
+              s && s.date === dateToDelete && (!eventNameToDelete || s.eventName.toLowerCase() === eventNameToDelete.toLowerCase())
+            );
 
-            if (deleteResult.success) {
-              responseText = `✅ ${deleteResult.message}`;
-              if (deleteResult.data && deleteResult.data.length > 0) {
-                responseText += `\n📅 Deleted from ${dateToDelete}`;
-                responseText += '\nThe calendar has been updated.';
-              }
+            if (matchingSponsorships.length > 0) {
+              // Delete them one by one
+              matchingSponsorships.forEach(s => {
+                deleteSponsorship(s.id);
+              });
+
+              responseText = `✅ Successfully deleted ${matchingSponsorships.length} event(s) from ${dateToDelete}`;
+              responseText += '\n📅 The calendar has been updated.';
             } else {
-              responseText = `❌ ${deleteResult.message}`;
+              responseText = `❌ No events found on ${dateToDelete}.\nAvailable events: ${availableSponsorships}`;
             }
           } catch (err) {
             responseText = `❌ Error deleting event: ${err.message}`;
