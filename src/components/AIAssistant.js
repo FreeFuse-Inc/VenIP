@@ -204,7 +204,8 @@ Provide helpful guidance and always confirm actions.`;
       // FIRST: Check if this is a delete request BEFORE anything else
       // This ensures delete always takes priority
       const hasDeleteKeyword = /\b(delete|remove|cancel)\b/i.test(input);
-      if (hasDeleteKeyword && input.toLowerCase().includes('event')) {
+      const hasEventKeyword = /(event|sponsorship|activity)/i.test(input);
+      if (hasDeleteKeyword && hasEventKeyword) {
         isDeleteRequest = true;
         // For now, override the response immediately
         responseText = '⏳ Processing delete request...';
