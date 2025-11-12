@@ -173,17 +173,19 @@ function App() {
   return (
     <RoleProvider>
       <EventProvider>
-        <Router>
-          <div style={{ position: 'relative' }}>
-            <AppContent
-              chatGPTConnected={chatGPTConnected}
-              onChatGPTConnect={handleChatGPTConnect}
-              onChatGPTDisconnect={handleChatGPTDisconnect}
-              chatGPTKey={chatGPTKey}
-            />
-            <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
-          </div>
-        </Router>
+        <FeedbackProvider>
+          <Router>
+            <div style={{ position: 'relative' }}>
+              <AppContent
+                chatGPTConnected={chatGPTConnected}
+                onChatGPTConnect={handleChatGPTConnect}
+                onChatGPTDisconnect={handleChatGPTDisconnect}
+                chatGPTKey={chatGPTKey}
+              />
+              <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
+            </div>
+          </Router>
+        </FeedbackProvider>
       </EventProvider>
     </RoleProvider>
   );
