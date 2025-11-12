@@ -199,6 +199,7 @@ Provide helpful guidance and always confirm actions.`;
 
       const data = await response.json();
       let responseText = data.choices[0].message.content;
+      let isDeleteRequest = false;
 
       // Function to parse various date formats (used for both create and delete)
       const parseEventDate = (inputText) => {
