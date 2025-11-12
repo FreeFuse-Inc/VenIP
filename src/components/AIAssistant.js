@@ -68,7 +68,7 @@ Available Functions:
 
 When user asks about their events, respond helpfully and mention you can fetch their calendar.
 When user wants to create an event, create it with their specified details.
-IMPORTANT: Today's date is ${getLocalDateString()}. Always assume today's date unless the user explicitly specifies a different date.
+IMPORTANT: Always use today's date for new events unless the user explicitly specifies a different date.
 When confirming event creation, be clear about the date and title.
 Provide helpful guidance and always confirm actions.`;
 
