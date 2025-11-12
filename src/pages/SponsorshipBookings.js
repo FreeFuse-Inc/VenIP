@@ -152,7 +152,6 @@ const SponsorshipBookings = () => {
           ← Back
         </button>
         <h1 className="page-title">Sponsorship Bookings</h1>
-        <h2 className="month-year-header">{monthName}</h2>
       </div>
 
       <div className="bookings-container">
@@ -161,6 +160,7 @@ const SponsorshipBookings = () => {
             <button className="nav-btn prev-btn" onClick={handlePrevMonth}>
               ← Prev
             </button>
+            <h2 className="month-year">{monthName}</h2>
             <button className="nav-btn next-btn" onClick={handleNextMonth}>
               Next →
             </button>
@@ -192,8 +192,8 @@ const SponsorshipBookings = () => {
                 >
                   <div className="day-number">{day}</div>
                   {activity && (
-                    <div className={`activity-indicator ${activity.type}`}>
-                      {activity.type === 'event' ? '🎯' : '🔄'}
+                    <div className="event-title-box">
+                      {activity.title}
                     </div>
                   )}
                 </div>
