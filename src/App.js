@@ -31,6 +31,7 @@ import RenewalDecision from './pages/RenewalDecision';
 import InviteAttendees from './pages/InviteAttendees';
 import RequestVendors from './pages/RequestVendors';
 import SponsorshipBookings from './pages/SponsorshipBookings';
+import AccommodationBookings from './pages/AccommodationBookings';
 import './App.css';
 
 function AppContent() {
