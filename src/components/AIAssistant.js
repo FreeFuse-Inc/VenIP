@@ -202,10 +202,12 @@ Provide helpful guidance and always confirm actions.`;
       let isDeleteRequest = false;
 
       // FIRST: Check if this is a delete request BEFORE anything else
-      // This ensures delete always takes priority
+      // This ensures delete always takes priority over ChatGPT response
       const hasDeleteKeyword = /\b(delete|remove|cancel)\b/i.test(input);
+      const hasCreateKeyword = /\b(create|new|add)\b/i.test(input);
       const hasEventKeyword = /(event|sponsorship|activity)/i.test(input);
-      if (hasDeleteKeyword && hasEventKeyword) {
+
+      if (hasDeleteKeyword && hasEventKeyword && !hasCreateKeyword) {
         isDeleteRequest = true;
         // For now, override the response immediately
         responseText = '⏳ Processing delete request...';
