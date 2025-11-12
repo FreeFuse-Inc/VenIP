@@ -103,8 +103,9 @@ Provide helpful guidance and always confirm actions.`;
 
         // Find sponsorships to delete based on date and optionally event name
         const sponsorshipsToDelete = sponsorships.filter((s) => {
+          if (!s || !s.date) return false;
           const dateMatch = s.date === date;
-          const nameMatch = !eventName || s.eventName.toLowerCase() === eventName.toLowerCase();
+          const nameMatch = !eventName || (s.eventName && s.eventName.toLowerCase() === eventName.toLowerCase());
           return dateMatch && nameMatch;
         });
 
@@ -113,7 +114,7 @@ Provide helpful guidance and always confirm actions.`;
             success: false,
             message: eventName
               ? `No event named "${eventName}" found on ${date}`
-              : `No events found on ${date}`,
+              : `No events found on ${date}. Current sponsorships: ${sponsorships.map(s => s.eventName + ' on ' + s.date).join(', ') || 'none'}`,
           };
         }
 
@@ -413,7 +414,7 @@ Provide helpful guidance and always confirm actions.`;
                 <div className="message-content">
                   {message.type === 'bot' && <span className="message-icon">🤖</span>}
                   <p>{message.text}</p>
-                  {message.type === 'user' && <span className="message-icon">����</span>}
+                  {message.type === 'user' && <span className="message-icon">👤</span>}
                 </div>
               </div>
             ))}
