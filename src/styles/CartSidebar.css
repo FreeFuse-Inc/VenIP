@@ -14,7 +14,7 @@
   font-size: 24px;
   box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
   transition: all 0.3s ease;
-  z-index: 998;
+  z-index: 1000;
 }
 
 .cart-toggle-btn:hover {
