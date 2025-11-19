@@ -79,6 +79,18 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
               );
             })}
           </nav>
+
+          <button
+            className="cart-nav-btn"
+            onClick={toggleCartSidebar}
+            title="Toggle shopping cart"
+          >
+            <span className="nav-icon">🛒</span>
+            <span className="nav-label">Cart</span>
+            {getCartItemCount() > 0 && (
+              <span className="cart-count">{getCartItemCount()}</span>
+            )}
+          </button>
         </>
       )}
 
