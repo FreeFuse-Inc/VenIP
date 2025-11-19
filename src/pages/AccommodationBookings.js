@@ -41,6 +41,15 @@ const AccommodationBookings = () => {
 
   const [hasSearched, setHasSearched] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [filterLogic, setFilterLogic] = useState('any');
+  const [activeFilters, setActiveFilters] = useState({
+    amenities: [],
+    priceRange: [0, 500],
+    minRating: 0,
+    bedrooms: [],
+    bathrooms: [],
+  });
 
   // Mock data for Hotels (Airbnb + Booking.com)
   const mockHotels = [
