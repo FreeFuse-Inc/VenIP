@@ -30,10 +30,6 @@ const EventDetailsVendor = () => {
 
   return (
     <main className="event-details-vendor">
-      <button className="back-btn" onClick={() => navigate('/dashboard/vendor')}>
-        ← Back to Dashboard
-      </button>
-
       <div className="event-details-header">
         <div className="event-title-section">
           <h1 className="event-title">{event.name}</h1>

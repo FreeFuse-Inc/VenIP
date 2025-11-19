@@ -156,9 +156,6 @@ const SponsorshipBookings = () => {
   return (
     <main className="sponsorship-bookings-page">
       <div className="bookings-header">
-        <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
-          ← Back
-        </button>
         <h1 className="page-title">Sponsorship Bookings</h1>
       </div>
 

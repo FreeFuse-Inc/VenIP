@@ -41,10 +41,6 @@ const ModifySponsor = () => {
 
   return (
     <main className="modify-sponsor">
-      <button className="back-btn" onClick={() => navigate('/sponsorship-analytics')}>
-        ← Back to Analytics
-      </button>
-
       <div className="modify-header">
         <h1>Modify Your Sponsorship</h1>
         <p>{currentSponsorship.eventName} • Current: {currentSponsorship.currentTier}</p>

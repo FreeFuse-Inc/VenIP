@@ -73,10 +73,6 @@ const PaymentConfirmation = () => {
 
   return (
     <main className="payment-confirmation">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
-
       <div className="confirmation-header">
         <h1>Complete Your Sponsorship</h1>
         <p>Annual Gala 2024 • {tier?.toUpperCase()} Tier • ${amount}</p>

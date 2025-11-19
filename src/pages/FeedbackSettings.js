@@ -92,9 +92,6 @@ const FeedbackSettings = () => {
   return (
     <main className="feedback-settings-page">
       <div className="settings-header">
-        <button className="back-btn" onClick={() => navigate('/settings')}>
-          ← Back to Settings
-        </button>
         <h1 className="page-title">Feedback Integrations</h1>
       </div>
 

@@ -70,9 +70,6 @@ const InviteAttendees = () => {
   return (
     <main className="invite-attendees-container">
       <div className="invite-header">
-        <button className="back-btn" onClick={() => navigate(`/event-management/${eventId}`)}>
-          ← Back to Event
-        </button>
         <h1>Invite Attendees</h1>
         <p className="event-id-text">Event ID: {eventId}</p>
       </div>

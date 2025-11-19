@@ -56,10 +56,6 @@ const SuggestEvent = () => {
 
   return (
     <main className="suggest-event-page">
-      <button className="back-btn" onClick={() => navigate('/dashboard/vendor')}>
-        ← Back to Dashboard
-      </button>
-
       <div className="suggest-event-header">
         <h1>Suggest a New Event</h1>
         <p>
