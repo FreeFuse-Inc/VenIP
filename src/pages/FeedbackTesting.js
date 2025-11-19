@@ -49,6 +49,19 @@ const FeedbackTesting = () => {
 
   const fields = feedbackType === 'venue' ? venueFields : serviceFields;
 
+  // Load template from localStorage on mount
+  React.useEffect(() => {
+    const savedTemplate = localStorage.getItem('feedbackTemplate');
+    if (savedTemplate) {
+      try {
+        const templateData = JSON.parse(savedTemplate);
+        setUploadedTemplate(templateData);
+      } catch (err) {
+        console.error('Error loading template:', err);
+      }
+    }
+  }, []);
+
   // Initialize ratings when feedback type changes
   React.useEffect(() => {
     const newRatings = {};
@@ -60,6 +73,91 @@ const FeedbackTesting = () => {
       ratings: newRatings,
     }));
   }, [feedbackType]);
+
+  const handleTemplateUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const allowedExtensions = ['.pdf', '.html', '.json', '.txt', '.docx', '.doc'];
+    const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase();
+
+    if (!allowedExtensions.includes(fileExtension)) {
+      setUploadError('Invalid file type. Allowed types: PDF, HTML, JSON, Word docs, Plain text');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setUploadError('File size must be less than 5MB');
+      return;
+    }
+
+    setUploadError('');
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      try {
+        const content = event.target?.result;
+        const templateData = {
+          name: file.name,
+          type: fileExtension,
+          content: content,
+          uploadedAt: new Date().toLocaleString(),
+        };
+
+        localStorage.setItem('feedbackTemplate', JSON.stringify(templateData));
+        setUploadedTemplate(templateData);
+        setTemplatePreview('');
+        setShowUploadModal(false);
+      } catch (err) {
+        setUploadError('Error processing file. Please try again.');
+      }
+    };
+
+    reader.onerror = () => {
+      setUploadError('Error reading file. Please try again.');
+    };
+
+    reader.readAsText(file);
+  };
+
+  const handleRemoveTemplate = () => {
+    localStorage.removeItem('feedbackTemplate');
+    setUploadedTemplate(null);
+    setTemplatePreview('');
+    setUploadError('');
+  };
+
+  const renderTemplate = () => {
+    if (!uploadedTemplate) return null;
+
+    const { content, type } = uploadedTemplate;
+
+    if (type === '.html') {
+      return (
+        <div
+          className="template-content html-template"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      );
+    } else if (type === '.json') {
+      try {
+        const data = JSON.parse(content);
+        return (
+          <div className="template-content json-template">
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          </div>
+        );
+      } catch (err) {
+        return <p className="template-error">Invalid JSON format</p>;
+      }
+    } else {
+      return (
+        <div className="template-content text-template">
+          <pre>{content}</pre>
+        </div>
+      );
+    }
+  };
 
   const handleEventChange = (e) => {
     setSelectedEvent(e.target.value);
