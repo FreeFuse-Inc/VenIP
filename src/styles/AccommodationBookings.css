@@ -16,26 +16,6 @@
   background: transparent;
 }
 
-.back-btn {
-  background: #e5e7eb;
-  border: 2px solid #9ca3af;
-  font-size: 13px;
-  cursor: pointer;
-  color: #1f2937;
-  padding: 8px 14px;
-  border-radius: 5px;
-  margin: 0 0 40px 0;
-  width: 100%;
-  display: block;
-  font-weight: 500;
-}
-
-.back-btn:hover {
-  background: #e5e7eb;
-  color: #1f2937;
-  border-color: #9ca3af;
-}
-
 .page-title {
   font-size: 28px;
   font-weight: 600;
