@@ -156,6 +156,94 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
     setTimeout(() => setSaveSuccess(false), 3000);
   };
 
+  // Documentation upload handlers
+  const handleDocumentationUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const allowedExtensions = ['.pdf', '.html', '.json', '.txt', '.docx', '.doc'];
+    const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase();
+
+    if (!allowedExtensions.includes(fileExtension)) {
+      setDocUploadError('Invalid file type. Allowed types: PDF, HTML, JSON, Word docs, Plain text');
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setDocUploadError('File size must be less than 10MB');
+      return;
+    }
+
+    setDocUploadError('');
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      try {
+        const content = event.target?.result;
+        const docData = {
+          name: file.name,
+          type: fileExtension,
+          content: content,
+          uploadedAt: new Date().toLocaleString(),
+        };
+
+        localStorage.setItem('customDocumentation', JSON.stringify(docData));
+        setUploadedDocumentation(docData);
+        setShowDocUploadModal(false);
+        setSaveSuccess(true);
+        setTimeout(() => setSaveSuccess(false), 3000);
+      } catch (err) {
+        setDocUploadError('Error processing file. Please try again.');
+      }
+    };
+
+    reader.onerror = () => {
+      setDocUploadError('Error reading file. Please try again.');
+    };
+
+    reader.readAsText(file);
+  };
+
+  const handleRemoveDocumentation = () => {
+    localStorage.removeItem('customDocumentation');
+    setUploadedDocumentation(null);
+    setDocUploadError('');
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
+  };
+
+  const renderDocumentation = () => {
+    if (!uploadedDocumentation) return null;
+
+    const { content, type } = uploadedDocumentation;
+
+    if (type === '.html') {
+      return (
+        <div
+          className="doc-content html-doc"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      );
+    } else if (type === '.json') {
+      try {
+        const data = JSON.parse(content);
+        return (
+          <div className="doc-content json-doc">
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          </div>
+        );
+      } catch (err) {
+        return <p className="doc-error">Invalid JSON format</p>;
+      }
+    } else {
+      return (
+        <div className="doc-content text-doc">
+          <pre>{content}</pre>
+        </div>
+      );
+    }
+  };
+
   const roleDocumentation = {
     sponsor: {
       title: 'Sponsor Role',
