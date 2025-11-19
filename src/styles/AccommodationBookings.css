@@ -12,6 +12,8 @@
   gap: 12px;
   margin-bottom: 32px;
   margin-left: 0;
+  width: 100%;
+  min-height: auto;
 }
 
 .back-btn {
