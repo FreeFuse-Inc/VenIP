@@ -739,10 +739,10 @@ const AccommodationBookings = () => {
     <main className="accommodation-bookings-page">
       <div className="booking-header">
         <h1 className="page-title">Travel Bookings</h1>
-        <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
-          ← Back
-        </button>
       </div>
+      <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
+        ← Back
+      </button>
 
       <div className="search-container">
         <form className="search-form" onSubmit={handleSearch}>
