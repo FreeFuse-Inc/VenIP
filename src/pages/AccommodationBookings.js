@@ -934,6 +934,146 @@ const AccommodationBookings = () => {
         </form>
       </div>
 
+      {/* Filters Section */}
+      {hasSearched && (
+        <div className="filters-section">
+          <button
+            type="button"
+            className="filters-toggle"
+            onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+          >
+            <span>🔍 Filters</span>
+            <span className={`filter-arrow ${isFiltersOpen ? 'open' : ''}`}>▼</span>
+          </button>
+
+          {isFiltersOpen && (
+            <div className="filters-content">
+              {/* Filter Logic Toggle */}
+              <div className="filter-group">
+                <label>Matching Logic</label>
+                <div className="filter-logic-toggle">
+                  <button
+                    type="button"
+                    className={`logic-btn ${filterLogic === 'any' ? 'active' : ''}`}
+                    onClick={() => setFilterLogic('any')}
+                  >
+                    ANY (Match at least one filter)
+                  </button>
+                  <button
+                    type="button"
+                    className={`logic-btn ${filterLogic === 'all' ? 'active' : ''}`}
+                    onClick={() => setFilterLogic('all')}
+                  >
+                    ALL (Match all filters)
+                  </button>
+                </div>
+              </div>
+
+              {/* Price Range Filter */}
+              <div className="filter-group">
+                <label>Price Range</label>
+                <div className="price-filter">
+                  <input
+                    type="range"
+                    min="0"
+                    max="500"
+                    step="10"
+                    value={activeFilters.priceRange[1]}
+                    onChange={(e) =>
+                      handleFilterChange('priceRange', [
+                        activeFilters.priceRange[0],
+                        parseInt(e.target.value),
+                      ])
+                    }
+                    className="price-slider"
+                  />
+                  <div className="price-display">
+                    ${activeFilters.priceRange[0]} - ${activeFilters.priceRange[1]}
+                  </div>
+                </div>
+              </div>
+
+              {/* Minimum Rating Filter */}
+              <div className="filter-group">
+                <label>Minimum Rating</label>
+                <div className="rating-filter">
+                  <input
+                    type="range"
+                    min="0"
+                    max="5"
+                    step="0.5"
+                    value={activeFilters.minRating}
+                    onChange={(e) => handleFilterChange('minRating', parseFloat(e.target.value))}
+                    className="rating-slider"
+                  />
+                  <span className="rating-display">⭐ {activeFilters.minRating.toFixed(1)}+</span>
+                </div>
+              </div>
+
+              {/* Bedrooms Filter */}
+              <div className="filter-group">
+                <label>Bedrooms</label>
+                <div className="checkbox-group">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <label key={num} className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={activeFilters.bedrooms.includes(num)}
+                        onChange={() => handleFilterChange('bedrooms', num)}
+                      />
+                      <span>{num} Bed{num > 1 ? 's' : ''}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bathrooms Filter */}
+              <div className="filter-group">
+                <label>Bathrooms</label>
+                <div className="checkbox-group">
+                  {[1, 2, 3, 4].map((num) => (
+                    <label key={num} className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={activeFilters.bathrooms.includes(num)}
+                        onChange={() => handleFilterChange('bathrooms', num)}
+                      />
+                      <span>{num} Bath{num > 1 ? 's' : ''}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Amenities Filter */}
+              <div className="filter-group">
+                <label>Amenities</label>
+                <div className="checkbox-group amenities-grid">
+                  {['WiFi', 'Air Conditioning', 'Kitchen', 'Washer', 'TV', 'Pool', 'Gym', 'Parking', 'Concierge'].map(
+                    (amenity) => (
+                      <label key={amenity} className="checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={activeFilters.amenities.includes(amenity)}
+                          onChange={() => handleFilterChange('amenities', amenity)}
+                        />
+                        <span>{amenity}</span>
+                      </label>
+                    )
+                  )}
+                </div>
+              </div>
+
+              {/* Apply Button */}
+              <div className="filter-actions">
+                <button type="button" className="apply-filters-btn" onClick={applyFilters}>
+                  ✓ Apply Filters
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       {hasSearched && (
         <div className="results-container">
           <div className="results-header">
