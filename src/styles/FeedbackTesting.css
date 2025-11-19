@@ -387,6 +387,326 @@
   font-weight: bold;
 }
 
+/* Template Management Styles */
+.template-management-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.template-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.template-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.btn-upload-template {
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-upload-template:hover {
+  background-color: #0056b3;
+}
+
+.template-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  background-color: #f0f7ff;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+}
+
+.template-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.template-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0056b3;
+}
+
+.template-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.btn-remove-template {
+  padding: 6px 12px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-remove-template:hover {
+  background-color: #fecaca;
+}
+
+.template-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  padding: 12px;
+  background-color: #fef3c7;
+  border-radius: 6px;
+  border-left: 4px solid #f59e0b;
+}
+
+/* Custom Template Container */
+.custom-template-container {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.template-intro {
+  margin-bottom: 30px;
+}
+
+.template-intro h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.template-intro p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.template-content {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.template-content.html-template {
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.template-content.json-template pre,
+.template-content.text-template pre {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.template-error {
+  color: #b91c1c;
+  padding: 12px;
+  background-color: #fee2e2;
+  border-radius: 4px;
+}
+
+.template-form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 30px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #1f2937;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.upload-info {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 4px solid #d1d5db;
+}
+
+.upload-info p {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: #1f2937;
+}
+
+.upload-info p strong {
+  font-weight: 600;
+}
+
+.upload-info ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.upload-info li {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.size-limit {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 12px !important;
+}
+
+.error-message {
+  padding: 12px;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.file-upload-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-upload-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.file-upload-group input[type="file"] {
+  padding: 8px;
+  border: 2px dashed #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.file-upload-group input[type="file"]:hover {
+  border-color: #007bff;
+  background-color: #f0f7ff;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.btn-cancel {
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  color: #1f2937;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: #f9fafb;
+}
+
 @media (max-width: 768px) {
   .testing-form {
     padding: 24px;
@@ -420,5 +740,35 @@
   .testing-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .template-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-upload-template {
+    width: 100%;
+  }
+
+  .template-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-remove-template {
+    width: 100%;
+  }
+
+  .custom-template-container {
+    padding: 20px;
+  }
+
+  .template-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .template-form-actions button {
+    width: 100%;
   }
 }
