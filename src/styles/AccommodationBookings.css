@@ -713,13 +713,13 @@
 .rating-filter {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .price-slider,
 .rating-slider {
   width: 100%;
-  height: 6px;
+  height: 5px;
   border-radius: 3px;
   background: #e5e7eb;
   outline: none;
@@ -731,8 +731,8 @@
 .rating-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #4f7dff;
   cursor: pointer;
@@ -742,8 +742,8 @@
 
 .price-slider::-moz-range-thumb,
 .rating-slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #4f7dff;
   cursor: pointer;
@@ -753,7 +753,7 @@
 
 .price-display,
 .rating-display {
-  font-size: 12px;
+  font-size: 11px;
   color: #6b7280;
   font-weight: 500;
 }
