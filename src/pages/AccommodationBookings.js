@@ -464,8 +464,8 @@ const AccommodationBookings = () => {
     }
   };
 
-  const applyFilters = () => {
-    const results = getResultsForTab(activeTab);
+  const applyFilters = async () => {
+    const results = await getResultsForTab(activeTab);
     let filtered = [...results];
 
     filtered = filtered.filter((item) => {
