@@ -284,7 +284,7 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
     },
     npo: {
       title: 'NPO (Non-Profit Organization) Role',
-      icon: '🤝',
+      icon: '���',
       description: 'Create and manage events, invite attendees, request vendors, and collect feedback.',
       sections: [
         {
@@ -958,6 +958,55 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
                   disabled={!chatGPTApiKey.trim()}
                 >
                   Connect API
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Custom Documentation Upload Modal */}
+      {showDocUploadModal && (
+        <div className="modal-overlay" onClick={() => setShowDocUploadModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Upload Custom Documentation</h2>
+              <button className="close-btn" onClick={() => setShowDocUploadModal(false)}>✕</button>
+            </div>
+
+            <div className="modal-body">
+              <div className="upload-info">
+                <p><strong>Supported Formats:</strong></p>
+                <ul>
+                  <li>PDF (.pdf)</li>
+                  <li>HTML (.html)</li>
+                  <li>JSON (.json)</li>
+                  <li>Word Documents (.doc, .docx)</li>
+                  <li>Plain Text (.txt)</li>
+                </ul>
+                <p className="size-limit">Max file size: 10MB</p>
+              </div>
+
+              {docUploadError && (
+                <div className="error-message">{docUploadError}</div>
+              )}
+
+              <div className="file-upload-group">
+                <label htmlFor="doc-file">Select Documentation File</label>
+                <input
+                  type="file"
+                  id="doc-file"
+                  onChange={handleDocumentationUpload}
+                  accept=".pdf,.html,.json,.txt,.doc,.docx"
+                />
+              </div>
+
+              <div className="modal-actions">
+                <button
+                  className="btn-cancel"
+                  onClick={() => setShowDocUploadModal(false)}
+                >
+                  Cancel
                 </button>
               </div>
             </div>
