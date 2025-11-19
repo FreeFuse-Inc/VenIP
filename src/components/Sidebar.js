@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoleContext } from '../context/RoleContext';
+import { UserContext } from '../context/UserContext';
+import { CartContext } from '../context/CartContext';
 import '../styles/Sidebar.css';
 
 const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
