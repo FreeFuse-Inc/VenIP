@@ -7,7 +7,7 @@ import '../styles/CartSidebar.css';
 const CartSidebar = () => {
   const navigate = useNavigate();
   const { user, removeFromCart, clearCart, getCartTotal, getCartItemCount } = useContext(UserContext);
-  const { isCartSidebarOpen, toggleCartSidebar, openCheckoutModal } = useContext(CartContext);
+  const { isCartSidebarOpen, toggleCartSidebar } = useContext(CartContext);
 
   if (!user) return null;
 
