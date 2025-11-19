@@ -21,20 +21,22 @@
 }
 
 .back-btn {
-  background: #0099ff !important;
-  border: 2px solid #0066cc !important;
+  background: #0099ff;
+  border: 2px solid #0066cc;
   font-size: 13px;
   cursor: pointer;
-  color: #ffffff !important;
+  color: #ffffff;
   padding: 10px 16px;
   border-radius: 5px;
-  margin-top: 12px;
+  margin-top: 0;
   margin-bottom: 20px;
   margin-left: 0;
   margin-right: auto;
-  width: auto;
-  display: inline-block !important;
+  width: fit-content;
+  display: block;
   font-weight: 600;
+  position: static;
+  z-index: auto;
 }
 
 .back-btn:hover {
