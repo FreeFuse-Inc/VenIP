@@ -42,10 +42,9 @@
 .page-title {
   font-size: 28px;
   font-weight: 600;
-  color: #ffffff !important;
-  background: #ffff00 !important;
+  color: #1f2937;
   margin: 0;
-  padding: 10px;
+  margin-bottom: 12px;
   width: 100%;
 }
 
