@@ -15,22 +15,26 @@
 }
 
 .back-btn {
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
+  background: #e5e7eb;
+  border: 2px solid #9ca3af;
   font-size: 13px;
   cursor: pointer;
-  color: #374151;
-  padding: 6px 10px;
-  border-radius: 4px;
+  color: #1f2937;
+  padding: 8px 14px;
+  border-radius: 5px;
   transition: all 0.2s;
   white-space: nowrap;
-  font-weight: 500;
-  display: inline-flex;
+  font-weight: 600;
+  display: flex;
   align-items: center;
   gap: 6px;
   margin-top: 8px;
   visibility: visible;
-  opacity: 1;
+  opacity: 1 !important;
+  min-height: 36px;
+  min-width: 80px;
+  position: relative;
+  z-index: 10;
 }
 
 .back-btn:hover {
