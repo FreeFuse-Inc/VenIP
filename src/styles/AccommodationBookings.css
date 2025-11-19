@@ -51,8 +51,10 @@
   font-weight: 600;
   color: #1f2937;
   margin: 0 0 20px 0 !important;
-  width: 100%;
-  display: block;
+  width: 100% !important;
+  display: block !important;
+  float: none !important;
+  clear: both !important;
 }
 
 .search-container {
