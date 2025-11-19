@@ -28,7 +28,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  width: fit-content;
+  margin-top: 8px;
   visibility: visible;
   opacity: 1;
 }
