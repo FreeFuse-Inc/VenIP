@@ -45,6 +45,7 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
   const [chatGPTApiKey, setChatGPTApiKey] = useState('');
   const [activeApiModal, setActiveApiModal] = useState(null);
   const [apiInputValue, setApiInputValue] = useState('');
+  const [expandedRole, setExpandedRole] = useState(null);
 
   // Load API keys from localStorage on mount
   useEffect(() => {
@@ -139,6 +140,157 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
     }));
     setSaveSuccess(true);
     setTimeout(() => setSaveSuccess(false), 3000);
+  };
+
+  const roleDocumentation = {
+    sponsor: {
+      title: 'Sponsor Role',
+      icon: '🎯',
+      description: 'Manage sponsorships, browse events, and track engagement metrics.',
+      sections: [
+        {
+          name: 'Dashboard',
+          path: '/dashboard/sponsor',
+          description: 'Central hub for viewing your sponsorships, metrics, available events, and feedback.',
+          features: ['Total Sponsorships Count', 'Engagement Reach Metrics', 'Available Events to Sponsor', 'Event Feedback Section'],
+        },
+        {
+          name: 'Browse Events',
+          path: '/events-feed',
+          description: 'Explore upcoming events and discover new sponsorship opportunities.',
+          features: ['Filter Events by Category', 'View Event Details', 'Select Sponsorship Packages', 'Manage Existing Sponsorships'],
+        },
+        {
+          name: 'Sponsorship Analytics',
+          path: '/sponsorship-analytics',
+          description: 'Track performance metrics, engagement reach, and ROI for your sponsorships.',
+          features: ['View Performance Charts', 'Analyze Engagement Metrics', 'Download Reports', 'Modify Sponsorship Terms'],
+        },
+        {
+          name: 'Feedback Testing',
+          path: '/feedback-testing',
+          description: 'Submit test feedback to see how feedback appears on your dashboard.',
+          features: ['Test Venue Feedback', 'Test Service Feedback', 'Custom Template Upload', 'View Test Submissions'],
+        },
+        {
+          name: 'Settings',
+          path: '/settings',
+          description: 'Configure organization settings, integrations, and notification preferences.',
+          features: ['Organization Settings', 'Travel API Integrations', 'ChatGPT AI Assistant', 'Notification Preferences'],
+        },
+      ],
+    },
+    npo: {
+      title: 'NPO (Non-Profit Organization) Role',
+      icon: '🤝',
+      description: 'Create and manage events, invite attendees, request vendors, and collect feedback.',
+      sections: [
+        {
+          name: 'Dashboard',
+          path: '/dashboard/npo',
+          description: 'Centralized view of your events, sponsorships, and attendee management.',
+          features: ['Event Overview', 'Sponsorship Status', 'Attendee Count', 'Vendor Requests'],
+        },
+        {
+          name: 'Event Management',
+          path: '/event-management',
+          description: 'Create, edit, and manage your events. Invite attendees and request vendors.',
+          features: ['Create/Edit Events', 'Set Event Details and Dates', 'Invite Attendees', 'Request Vendors', 'Track Vendor Responses'],
+        },
+        {
+          name: 'Bookings',
+          path: '/bookings',
+          description: 'View and manage all bookings made for your events.',
+          features: ['View All Bookings', 'Check Booking Status', 'View Booking Details', 'Track Payment Status'],
+        },
+        {
+          name: 'Vendors',
+          path: '/vendors',
+          description: 'Manage vendor relationships and track quotes for event services.',
+          features: ['View Vendor List', 'Accept/Reject Quotes', 'Track Vendor Status', 'View Vendor Details'],
+        },
+        {
+          name: 'Settings',
+          path: '/settings',
+          description: 'Configure your organization and notification preferences.',
+          features: ['Organization Settings', 'Notification Preferences', 'User Profile'],
+        },
+      ],
+    },
+    vendor: {
+      title: 'Vendor Role',
+      icon: '🛠️',
+      description: 'Submit quotes, manage event requests, complete checklists, and handle vendor operations.',
+      sections: [
+        {
+          name: 'Dashboard',
+          path: '/dashboard/vendor',
+          description: 'Overview of incoming event requests, active quotes, and pending checklist items.',
+          features: ['Active Requests', 'Quote History', 'Pending Checklists', 'Event Schedule'],
+        },
+        {
+          name: 'Event Details',
+          path: '/event-details-vendor',
+          description: 'View detailed information about specific event requests.',
+          features: ['Event Requirements', 'Attendee Count', 'Event Date and Location', 'Special Requests'],
+        },
+        {
+          name: 'Submit Quote',
+          path: '/submit-quote',
+          description: 'Submit pricing proposals for event services requested by NPOs.',
+          features: ['Quote Amount', 'Service Description', 'Timeline', 'Accept/Reject Options for NPO'],
+        },
+        {
+          name: 'Vendor Checklist',
+          path: '/vendor-checklist',
+          description: 'Track required tasks and deliverables for accepted events.',
+          features: ['Task List', 'Completion Status', 'Deadlines', 'Document Uploads'],
+        },
+        {
+          name: 'Settings',
+          path: '/settings',
+          description: 'Manage your vendor profile and preferences.',
+          features: ['Vendor Profile', 'Service Categories', 'Notification Preferences'],
+        },
+      ],
+    },
+    admin: {
+      title: 'Super Admin Role',
+      icon: '⚙️',
+      description: 'Full platform access. Oversee all users, events, transactions, and system settings.',
+      sections: [
+        {
+          name: 'Admin Dashboard',
+          path: '/admin/dashboard',
+          description: 'Complete overview of platform activity, users, events, and transactions.',
+          features: ['User Statistics', 'Event Overview', 'Transaction Monitoring', 'System Health', 'Generated Reports'],
+        },
+        {
+          name: 'User Management',
+          path: '/admin/users',
+          description: 'Manage all users across all roles (Sponsors, NPOs, Vendors).',
+          features: ['View All Users', 'Manage Roles', 'Suspend/Activate Accounts', 'View User Activity'],
+        },
+        {
+          name: 'Event Oversight',
+          path: '/admin/events',
+          description: 'Monitor all events on the platform and resolve disputes.',
+          features: ['View All Events', 'Monitor Event Status', 'Review Feedback', 'Handle Issues'],
+        },
+        {
+          name: 'Transaction Logs',
+          path: '/admin/transactions',
+          description: 'Track all financial transactions and payments on the platform.',
+          features: ['View Transactions', 'Refund Processing', 'Payment Verification', 'Generate Invoices'],
+        },
+        {
+          name: 'System Settings',
+          path: '/admin/settings',
+          description: 'Configure platform-wide settings and integrations.',
+          features: ['API Integrations', 'Email Configuration', 'Backup Management', 'Security Settings'],
+        },
+      ],
+    },
   };
 
   const apiConfigs = {
@@ -508,6 +660,58 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
                 </div>
                 <span className="arrow">→</span>
               </button>
+            </div>
+          </div>
+
+          <div className="settings-section">
+            <h2 className="section-title">📚 Documentation & Guides</h2>
+            <p className="section-description">
+              Learn about each role and how to navigate through all features. Select a role below to expand the guide.
+            </p>
+            <div className="documentation-container">
+              {Object.entries(roleDocumentation).map(([key, role]) => (
+                <div key={key} className="documentation-card">
+                  <button
+                    className="role-header-btn"
+                    onClick={() => setExpandedRole(expandedRole === key ? null : key)}
+                  >
+                    <div className="role-header-content">
+                      <span className="role-icon">{role.icon}</span>
+                      <div className="role-info">
+                        <h3>{role.title}</h3>
+                        <p>{role.description}</p>
+                      </div>
+                    </div>
+                    <span className={`expand-icon ${expandedRole === key ? 'expanded' : ''}`}>▶</span>
+                  </button>
+
+                  {expandedRole === key && (
+                    <div className="role-content">
+                      <div className="sections-list">
+                        {role.sections.map((section, idx) => (
+                          <div key={idx} className="role-section">
+                            <div className="section-header">
+                              <h4>{section.name}</h4>
+                              {section.path && (
+                                <span className="path-badge">{section.path}</span>
+                              )}
+                            </div>
+                            <p className="section-desc">{section.description}</p>
+                            <div className="features-list">
+                              <strong>Key Features:</strong>
+                              <ul>
+                                {section.features.map((feature, fIdx) => (
+                                  <li key={fIdx}>{feature}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
