@@ -721,9 +721,14 @@ const AccommodationBookings = () => {
           </div>
           <div className="transfer-footer">
             <span className="price">{transfer.price}</span>
-            <button className="book-btn" onClick={() => handleBooking(transfer)}>
-              Reserve →
-            </button>
+            <div className="button-group">
+              <button className="book-btn" onClick={() => handleBooking(transfer)}>
+                Reserve →
+              </button>
+              <button className="add-to-cart-btn" onClick={() => handleAddToCart(transfer)} title="Add to cart">
+                🛒
+              </button>
+            </div>
           </div>
         </div>
       ))}
