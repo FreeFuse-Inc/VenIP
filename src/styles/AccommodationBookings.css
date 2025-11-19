@@ -25,17 +25,19 @@
   color: #1f2937 !important;
   padding: 8px 14px !important;
   border-radius: 5px;
-  margin-top: 12px !important;
+  margin-top: 16px !important;
   margin-bottom: 24px !important;
   margin-left: 0 !important;
-  margin-right: auto !important;
-  width: auto !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  max-width: fit-content !important;
   display: block !important;
   font-weight: 500 !important;
   visibility: visible !important;
   opacity: 1 !important;
   height: auto !important;
   line-height: 1.5;
+  clear: both !important;
 }
 
 .back-btn:hover {
