@@ -9,11 +9,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 32px;
-  margin-left: 0;
+  padding: 0;
   width: 100%;
-  min-height: auto;
+  background: transparent;
 }
 
 .back-btn {
