@@ -22,20 +22,24 @@
 }
 
 .back-btn {
-  background: #e5e7eb;
-  border: 2px solid #9ca3af;
-  font-size: 13px;
+  background: #e5e7eb !important;
+  border: 2px solid #9ca3af !important;
+  font-size: 13px !important;
   cursor: pointer;
-  color: #1f2937;
-  padding: 8px 14px;
+  color: #1f2937 !important;
+  padding: 8px 14px !important;
   border-radius: 5px;
-  margin-top: 12px;
-  margin-bottom: 24px;
-  margin-left: 0;
-  margin-right: auto;
-  width: fit-content;
-  display: block;
-  font-weight: 500;
+  margin-top: 12px !important;
+  margin-bottom: 24px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  width: auto !important;
+  display: block !important;
+  font-weight: 500 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  line-height: 1.5;
 }
 
 .back-btn:hover {
