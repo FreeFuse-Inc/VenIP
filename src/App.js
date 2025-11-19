@@ -41,6 +41,7 @@ import BookingConfirmation from './pages/BookingConfirmation';
 import EventFeedback from './pages/EventFeedback';
 import FeedbackSettings from './pages/FeedbackSettings';
 import FeedbackTesting from './pages/FeedbackTesting';
+import CartCheckout from './pages/CartCheckout';
 import { FeedbackProvider } from './context/FeedbackContext';
 import AIAssistant from './components/AIAssistant';
 import './App.css';
