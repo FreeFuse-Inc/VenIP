@@ -3,6 +3,10 @@
   background-color: #f9fafb;
   overflow-y: auto;
   padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .booking-header {
