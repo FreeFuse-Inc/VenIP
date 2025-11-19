@@ -7,8 +7,9 @@
 
 .booking-header {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   margin-bottom: 32px;
 }
 
