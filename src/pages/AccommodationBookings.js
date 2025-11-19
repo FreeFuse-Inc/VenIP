@@ -672,9 +672,14 @@ const AccommodationBookings = () => {
             </div>
             <div className="price-section">
               <span className="price">{activity.price}</span>
-              <button className="book-btn" onClick={() => handleBooking(activity)}>
-                Book Now →
-              </button>
+              <div className="button-group">
+                <button className="book-btn" onClick={() => handleBooking(activity)}>
+                  Book Now →
+                </button>
+                <button className="add-to-cart-btn" onClick={() => handleAddToCart(activity)} title="Add to cart">
+                  🛒
+                </button>
+              </div>
             </div>
           </div>
         </div>
