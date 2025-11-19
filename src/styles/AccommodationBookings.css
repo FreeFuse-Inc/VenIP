@@ -656,8 +656,8 @@
 
 .filters-content {
   position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+  top: calc(100% + 6px);
+  left: 0;
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
