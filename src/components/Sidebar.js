@@ -8,7 +8,7 @@ import '../styles/Sidebar.css';
 const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const navigate = useNavigate();
   const { userRole } = useContext(RoleContext);
-  const { user, getCartItemCount } = useContext(UserContext);
+  const { getCartItemCount } = useContext(UserContext);
   const { toggleCartSidebar } = useContext(CartContext);
 
   const getDashboardPath = () => {
