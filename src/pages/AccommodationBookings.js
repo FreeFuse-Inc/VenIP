@@ -420,6 +420,76 @@ const AccommodationBookings = () => {
     setActiveTab(tab);
     setHasSearched(false);
     setFilteredResults([]);
+    setActiveFilters({
+      amenities: [],
+      priceRange: [0, 500],
+      minRating: 0,
+      bedrooms: [],
+      bathrooms: [],
+    });
+  };
+
+  const handleFilterChange = (filterType, value) => {
+    if (filterType === 'amenities') {
+      setActiveFilters((prev) => ({
+        ...prev,
+        amenities: prev.amenities.includes(value)
+          ? prev.amenities.filter((a) => a !== value)
+          : [...prev.amenities, value],
+      }));
+    } else if (filterType === 'priceRange') {
+      setActiveFilters((prev) => ({
+        ...prev,
+        priceRange: value,
+      }));
+    } else if (filterType === 'minRating') {
+      setActiveFilters((prev) => ({
+        ...prev,
+        minRating: value,
+      }));
+    } else if (filterType === 'bedrooms') {
+      setActiveFilters((prev) => ({
+        ...prev,
+        bedrooms: prev.bedrooms.includes(value)
+          ? prev.bedrooms.filter((b) => b !== value)
+          : [...prev.bedrooms, value],
+      }));
+    } else if (filterType === 'bathrooms') {
+      setActiveFilters((prev) => ({
+        ...prev,
+        bathrooms: prev.bathrooms.includes(value)
+          ? prev.bathrooms.filter((b) => b !== value)
+          : [...prev.bathrooms, value],
+      }));
+    }
+  };
+
+  const applyFilters = () => {
+    const results = getResultsForTab(activeTab);
+    let filtered = [...results];
+
+    filtered = filtered.filter((item) => {
+      const price = parseInt(item.price.replace('$', ''));
+      const meetsPrice = price >= activeFilters.priceRange[0] && price <= activeFilters.priceRange[1];
+      const meetsRating = item.rating >= activeFilters.minRating;
+      const meetsBedrooms =
+        activeFilters.bedrooms.length === 0 || activeFilters.bedrooms.includes(item.bedrooms);
+      const meetsBathrooms =
+        activeFilters.bathrooms.length === 0 || activeFilters.bathrooms.includes(item.bathrooms);
+
+      let meetsAmenities = true;
+      if (activeFilters.amenities.length > 0) {
+        if (filterLogic === 'all') {
+          meetsAmenities = activeFilters.amenities.every((a) => item.amenities?.includes(a));
+        } else {
+          meetsAmenities = activeFilters.amenities.some((a) => item.amenities?.includes(a));
+        }
+      }
+
+      return meetsPrice && meetsRating && meetsBedrooms && meetsBathrooms && meetsAmenities;
+    });
+
+    setFilteredResults(filtered);
   };
 
   const handleSearch = async (e) => {
