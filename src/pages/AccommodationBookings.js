@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import { CartContext } from '../context/CartContext';
 import '../styles/AccommodationBookings.css';
 
 /**
