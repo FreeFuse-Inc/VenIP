@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(true);
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
 
   const toggleCartSidebar = () => {
