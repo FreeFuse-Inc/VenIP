@@ -669,13 +669,14 @@
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .filter-group label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #1f2937;
+  margin: 0;
 }
 
 .filter-logic-toggle {
