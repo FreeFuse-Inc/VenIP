@@ -907,9 +907,23 @@
     width: 100%;
   }
 
+  .filters-section {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .filters-toggle {
+    width: 100%;
+  }
+
   .filters-content {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    margin-top: 8px;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
   }
 
   .filter-actions {
@@ -918,5 +932,9 @@
 
   .apply-filters-btn {
     width: 100%;
+  }
+
+  .checkbox-group.amenities-grid {
+    max-height: none;
   }
 }
