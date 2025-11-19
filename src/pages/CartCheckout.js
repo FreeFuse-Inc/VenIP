@@ -183,10 +183,6 @@ const CartCheckout = () => {
 
   return (
     <main className="cart-checkout">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
-
       <div className="checkout-header">
         <h1>Complete Your Bookings</h1>
         <p>{cartItems.length} item(s) in cart • Total: ${totalAmount.toFixed(2)}</p>

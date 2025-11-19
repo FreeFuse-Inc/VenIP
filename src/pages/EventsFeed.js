@@ -59,10 +59,6 @@ const EventsFeed = () => {
 
   return (
     <main className="events-feed">
-      <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
-        ← Back to Dashboard
-      </button>
-
       <div className="feed-header">
         <h1>Available Events to Sponsor</h1>
         <p>Explore upcoming events and support causes that matter to you</p>

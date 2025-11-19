@@ -57,9 +57,6 @@ const EventManagement = () => {
   return (
     <main className="event-management">
       <div className="event-header">
-        <button className="back-btn" onClick={() => navigate('/dashboard/npo')}>
-          ← Back to Dashboard
-        </button>
         <div className="event-header-content">
           <h1 className="event-title">{event.name}</h1>
           <div className="event-meta">

@@ -42,10 +42,6 @@ const RenewalDecision = () => {
 
   return (
     <main className="renewal-decision">
-      <button className="back-btn" onClick={() => navigate('/sponsorship-analytics')}>
-        ← Back to Analytics
-      </button>
-
       <div className="decision-header">
         <h1>End Sponsorship</h1>
         <p>{sponsorship.eventName} • {sponsorship.tier} Sponsorship</p>

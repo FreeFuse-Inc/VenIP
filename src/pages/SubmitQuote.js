@@ -50,10 +50,6 @@ const SubmitQuote = () => {
 
   return (
     <main className="submit-quote-page">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
-
       <div className="quote-header">
         <h1>Submit Your Quote</h1>
         <p>Event: Annual Gala 2024 • Service: Catering</p>

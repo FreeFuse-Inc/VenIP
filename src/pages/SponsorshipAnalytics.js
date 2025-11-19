@@ -60,10 +60,6 @@ const SponsorshipAnalytics = () => {
 
   return (
     <main className="sponsorship-analytics">
-      <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
-        ← Back to Dashboard
-      </button>
-
       <div className="analytics-header">
         <h1>Sponsorship Performance</h1>
         <p>

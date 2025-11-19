@@ -79,10 +79,6 @@ const SponsorEventDetails = () => {
 
   return (
     <main className="sponsor-event-details">
-      <button className="back-btn" onClick={() => navigate('/events-feed')}>
-        ← Back to Events Feed
-      </button>
-
       <div className="event-details-header">
         <h1>{event.name}</h1>
         <p className="event-meta">
