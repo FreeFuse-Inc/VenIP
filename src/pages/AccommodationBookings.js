@@ -737,12 +737,12 @@ const AccommodationBookings = () => {
 
   return (
     <main className="accommodation-bookings-page">
-      <div className="booking-header">
-        <h1 className="page-title">Travel Bookings</h1>
-      </div>
       <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
         ← Back
       </button>
+      <div className="booking-header">
+        <h1 className="page-title">Travel Bookings</h1>
+      </div>
 
       <div className="search-container">
         <form className="search-form" onSubmit={handleSearch}>
