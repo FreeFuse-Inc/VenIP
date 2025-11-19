@@ -815,6 +815,51 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
                 </div>
               ))}
             </div>
+
+            {/* Custom Documentation Section */}
+            <div className="custom-doc-section">
+              <div className="custom-doc-header">
+                <h3>📄 Custom Documentation</h3>
+                <button
+                  type="button"
+                  className="btn-upload-doc"
+                  onClick={() => setShowDocUploadModal(true)}
+                >
+                  {uploadedDocumentation ? '📁 Replace Documentation' : '📁 Upload Documentation'}
+                </button>
+              </div>
+
+              {uploadedDocumentation && (
+                <div className="custom-doc-info">
+                  <div className="custom-doc-details">
+                    <span className="custom-doc-name">📄 {uploadedDocumentation.name}</span>
+                    <span className="custom-doc-date">Uploaded: {uploadedDocumentation.uploadedAt}</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn-remove-doc"
+                    onClick={handleRemoveDocumentation}
+                  >
+                    ✕ Remove
+                  </button>
+                </div>
+              )}
+
+              {!uploadedDocumentation && (
+                <p className="custom-doc-hint">
+                  💡 Upload your own custom documentation (PDF, HTML, JSON, Word document, or text file) to supplement or replace the role guides above.
+                </p>
+              )}
+
+              {uploadedDocumentation && (
+                <div className="custom-doc-viewer">
+                  <div className="doc-viewer-header">
+                    <h4>Preview</h4>
+                  </div>
+                  {renderDocumentation()}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
