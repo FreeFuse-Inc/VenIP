@@ -193,9 +193,6 @@ const Vendors = () => {
 
         {selectedVendor ? (
           <div className="vendor-detail-card">
-            <button className="back-btn" onClick={() => setSelectedVendor(null)}>
-              ← Back to List
-            </button>
             <div className="vendor-detail-header">
               <h2>{selectedVendor.name}</h2>
               <span className={`status-badge ${selectedVendor.status.toLowerCase()}`}>

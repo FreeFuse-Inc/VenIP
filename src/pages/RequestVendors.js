@@ -93,9 +93,6 @@ const RequestVendors = () => {
   return (
     <main className="request-vendors-container">
       <div className="request-header">
-        <button className="back-btn" onClick={() => navigate(`/event-management/${eventId}`)}>
-          ← Back to Event
-        </button>
         <h1>Request More Vendors</h1>
         <p className="event-id-text">Event ID: {eventId}</p>
       </div>

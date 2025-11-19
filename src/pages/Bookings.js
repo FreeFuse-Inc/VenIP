@@ -72,9 +72,6 @@ const Bookings = () => {
 
         {selectedBooking ? (
           <div className="booking-detail-card">
-            <button className="back-btn" onClick={() => setSelectedBooking(null)}>
-              ← Back to List
-            </button>
             <div className="detail-container">
               <div className="detail-header">
                 <h2>{selectedBooking.eventName}</h2>

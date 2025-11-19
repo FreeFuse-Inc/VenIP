@@ -112,9 +112,6 @@ const EventFeedback = () => {
       <main className="event-feedback-page">
         <div className="error-container">
           <p className="error-message">Event not found</p>
-          <button className="back-btn" onClick={() => navigate('/')}>
-            ← Back to Dashboard
-          </button>
         </div>
       </main>
     );

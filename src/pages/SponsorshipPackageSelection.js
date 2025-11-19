@@ -28,10 +28,6 @@ const SponsorshipPackageSelection = () => {
 
   return (
     <main className="sponsorship-package-selection">
-      <button className="back-btn" onClick={() => navigate(`/sponsor-event-details/${eventId}`)}>
-        ← Back to Event Details
-      </button>
-
       <div className="selection-header">
         <h1>Select Your Sponsorship Package</h1>
         <p>Annual Gala 2024</p>

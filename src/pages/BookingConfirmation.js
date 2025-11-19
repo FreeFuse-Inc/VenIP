@@ -26,9 +26,6 @@ const BookingConfirmation = () => {
       <main className="booking-confirmation-page">
         <div className="error-container">
           <p className="error-message">Booking data not found. Please try again.</p>
-          <button className="back-btn" onClick={() => navigate('/accommodation-bookings')}>
-            ← Back to Bookings
-          </button>
         </div>
       </main>
     );
