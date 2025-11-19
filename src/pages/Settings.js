@@ -46,6 +46,9 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
   const [activeApiModal, setActiveApiModal] = useState(null);
   const [apiInputValue, setApiInputValue] = useState('');
   const [expandedRole, setExpandedRole] = useState(null);
+  const [uploadedDocumentation, setUploadedDocumentation] = useState(null);
+  const [showDocUploadModal, setShowDocUploadModal] = useState(false);
+  const [docUploadError, setDocUploadError] = useState('');
 
   // Load API keys from localStorage on mount
   useEffect(() => {
