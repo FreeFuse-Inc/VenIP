@@ -373,6 +373,33 @@
   background-color: #3f63d9;
 }
 
+.button-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.add-to-cart-btn {
+  padding: 10px 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 36px;
+}
+
+.add-to-cart-btn:hover {
+  background: #f9fafb;
+  border-color: #8b5cf6;
+  transform: scale(1.05);
+}
+
 /* Flight styles */
 .flights-list {
   display: flex;
