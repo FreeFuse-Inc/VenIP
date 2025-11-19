@@ -444,6 +444,88 @@ const AccommodationBookings = () => {
     navigate('/booking-confirmation', { state: bookingData });
   };
 
+  const handleAddToCart = (item) => {
+    let cartItem = {
+      name: item.name,
+      location: item.location,
+      image: item.image,
+      type: activeTab,
+      rating: item.rating,
+      reviews: item.reviews,
+    };
+
+    const nights = searchParams.checkIn && searchParams.checkOut
+      ? Math.ceil((new Date(searchParams.checkOut) - new Date(searchParams.checkIn)) / (1000 * 60 * 60 * 24))
+      : 1;
+
+    switch (activeTab) {
+      case 'hotels':
+      case 'homes':
+      case 'longstays':
+        cartItem = {
+          ...cartItem,
+          checkIn: searchParams.checkIn,
+          checkOut: searchParams.checkOut,
+          guests: searchParams.guests,
+          nightlyRate: item.price,
+          nights: nights || 1,
+          totalPrice: `$${(parseFloat(item.price.replace(/[$,]/g, '')) * (nights || 1)).toFixed(0)}`,
+          bedrooms: item.bedrooms,
+          bathrooms: item.bathrooms,
+          amenities: item.amenities,
+        };
+        break;
+
+      case 'flights':
+        cartItem = {
+          ...cartItem,
+          departure: item.departure,
+          arrival: item.arrival,
+          from: item.from,
+          to: item.to,
+          airline: item.airline,
+          duration: item.duration,
+          stops: item.stops,
+          totalPrice: item.price,
+          seats: item.seats,
+        };
+        break;
+
+      case 'activities':
+        cartItem = {
+          ...cartItem,
+          duration: item.duration,
+          groupSize: item.groupSize,
+          provider: item.provider,
+          included: item.included,
+          totalPrice: item.price,
+          quantity: 1,
+        };
+        break;
+
+      case 'transfers':
+        cartItem = {
+          ...cartItem,
+          service: item.service,
+          vehicle: item.vehicle,
+          pickup: item.pickup,
+          destination: item.destination,
+          estimatedTime: item.estimatedTime,
+          capacity: item.capacity,
+          features: item.features,
+          totalPrice: item.price,
+        };
+        break;
+
+      default:
+        break;
+    }
+
+    addToCart(cartItem);
+    openCartSidebar();
+    alert(`${item.name} added to cart!`);
+  };
+
   const renderResults = () => {
     switch (activeTab) {
       case 'hotels':
