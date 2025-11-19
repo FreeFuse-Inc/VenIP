@@ -746,7 +746,7 @@ const AccommodationBookings = () => {
             <h3 className="activity-name">{activity.name}</h3>
             <p className="activity-location">📍 {activity.location}</p>
             <div className="activity-info">
-              <span>⏱️ {activity.duration}</span>
+              <span>���️ {activity.duration}</span>
               <span>👥 {activity.groupSize}</span>
             </div>
             <div className="rating-section">
@@ -957,26 +957,28 @@ const AccommodationBookings = () => {
 
           {isFiltersOpen && (
             <div className="filters-content">
-              {/* Filter Logic Toggle */}
-              <div className="filter-group">
-                <label>Matching Logic</label>
-                <div className="filter-logic-toggle">
-                  <button
-                    type="button"
-                    className={`logic-btn ${filterLogic === 'any' ? 'active' : ''}`}
-                    onClick={() => setFilterLogic('any')}
-                  >
-                    ANY (Match at least one filter)
-                  </button>
-                  <button
-                    type="button"
-                    className={`logic-btn ${filterLogic === 'all' ? 'active' : ''}`}
-                    onClick={() => setFilterLogic('all')}
-                  >
-                    ALL (Match all filters)
-                  </button>
+              {/* Filter Logic Toggle - Only for accommodations with amenity filtering */}
+              {(activeTab === 'hotels' || activeTab === 'homes' || activeTab === 'longstays') && (
+                <div className="filter-group">
+                  <label>Matching Logic for Amenities</label>
+                  <div className="filter-logic-toggle">
+                    <button
+                      type="button"
+                      className={`logic-btn ${filterLogic === 'any' ? 'active' : ''}`}
+                      onClick={() => setFilterLogic('any')}
+                    >
+                      ANY (Match at least one)
+                    </button>
+                    <button
+                      type="button"
+                      className={`logic-btn ${filterLogic === 'all' ? 'active' : ''}`}
+                      onClick={() => setFilterLogic('all')}
+                    >
+                      ALL (Match all)
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Price Range Filter */}
               <div className="filter-group">
