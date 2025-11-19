@@ -24,11 +24,8 @@
   color: #1f2937;
   padding: 8px 14px;
   border-radius: 5px;
-  margin-bottom: 20px;
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
-  width: fit-content;
+  margin: 0 0 40px 0;
+  width: 100%;
   display: block;
   font-weight: 500;
 }
