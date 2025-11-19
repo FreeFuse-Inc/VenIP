@@ -469,20 +469,29 @@ const AccommodationBookings = () => {
     let filtered = [...results];
 
     filtered = filtered.filter((item) => {
-      const price = parseInt(item.price.replace('$', ''));
+      // Price filter
+      const price = parseInt(item.price?.replace('$', '') || '0');
       const meetsPrice = price >= activeFilters.priceRange[0] && price <= activeFilters.priceRange[1];
-      const meetsRating = item.rating >= activeFilters.minRating;
-      const meetsBedrooms =
-        activeFilters.bedrooms.length === 0 || activeFilters.bedrooms.includes(item.bedrooms);
-      const meetsBathrooms =
-        activeFilters.bathrooms.length === 0 || activeFilters.bathrooms.includes(item.bathrooms);
 
+      // Rating filter - only apply if minimum rating is set
+      const meetsRating = !activeFilters.minRating || (item.rating && item.rating >= activeFilters.minRating);
+
+      // Bedrooms filter - only apply if bedrooms filter is selected
+      const meetsBedrooms =
+        activeFilters.bedrooms.length === 0 || (item.bedrooms && activeFilters.bedrooms.includes(item.bedrooms));
+
+      // Bathrooms filter - only apply if bathrooms filter is selected
+      const meetsBathrooms =
+        activeFilters.bathrooms.length === 0 || (item.bathrooms && activeFilters.bathrooms.includes(item.bathrooms));
+
+      // Amenities filter
       let meetsAmenities = true;
       if (activeFilters.amenities.length > 0) {
+        const itemAmenities = item.amenities || [];
         if (filterLogic === 'all') {
-          meetsAmenities = activeFilters.amenities.every((a) => item.amenities?.includes(a));
+          meetsAmenities = activeFilters.amenities.every((a) => itemAmenities.includes(a));
         } else {
-          meetsAmenities = activeFilters.amenities.some((a) => item.amenities?.includes(a));
+          meetsAmenities = activeFilters.amenities.some((a) => itemAmenities.includes(a));
         }
       }
 
