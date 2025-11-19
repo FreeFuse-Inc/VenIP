@@ -797,21 +797,24 @@
 .filter-actions {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: flex-end;
-  padding-top: 12px;
+  justify-content: center;
+  padding-top: 10px;
   border-top: 1px solid #e5e7eb;
+  gap: 8px;
 }
 
 .apply-filters-btn {
-  padding: 10px 24px;
+  padding: 8px 16px;
   background-color: #4f7dff;
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  flex: 1;
+  text-align: center;
 }
 
 .apply-filters-btn:hover {
