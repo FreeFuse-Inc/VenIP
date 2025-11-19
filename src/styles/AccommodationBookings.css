@@ -17,19 +17,19 @@
 }
 
 .back-btn {
-  background: #ff0000 !important;
-  border: 3px solid #ff0000 !important;
+  background: #e5e7eb;
+  border: 2px solid #9ca3af;
   font-size: 13px;
   cursor: pointer;
-  color: #ffffff !important;
-  padding: 12px 20px !important;
+  color: #1f2937;
+  padding: 10px 16px;
   border-radius: 5px;
   margin-top: 12px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   margin-left: 0;
   margin-right: 0;
-  width: auto;
-  display: block !important;
+  width: fit-content;
+  display: block;
   font-weight: 600;
 }
 
