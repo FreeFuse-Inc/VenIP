@@ -182,23 +182,28 @@ function App() {
   };
 
   return (
-    <RoleProvider>
-      <EventProvider>
-        <FeedbackProvider>
-          <Router>
-            <div style={{ position: 'relative' }}>
-              <AppContent
-                chatGPTConnected={chatGPTConnected}
-                onChatGPTConnect={handleChatGPTConnect}
-                onChatGPTDisconnect={handleChatGPTDisconnect}
-                chatGPTKey={chatGPTKey}
-              />
-              <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
-            </div>
-          </Router>
-        </FeedbackProvider>
-      </EventProvider>
-    </RoleProvider>
+    <UserProvider>
+      <CartProvider>
+        <RoleProvider>
+          <EventProvider>
+            <FeedbackProvider>
+              <Router>
+                <div style={{ position: 'relative' }}>
+                  <AppContent
+                    chatGPTConnected={chatGPTConnected}
+                    onChatGPTConnect={handleChatGPTConnect}
+                    onChatGPTDisconnect={handleChatGPTDisconnect}
+                    chatGPTKey={chatGPTKey}
+                  />
+                  <CartSidebar />
+                  <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
+                </div>
+              </Router>
+            </FeedbackProvider>
+          </EventProvider>
+        </RoleProvider>
+      </CartProvider>
+    </UserProvider>
   );
 }
 
