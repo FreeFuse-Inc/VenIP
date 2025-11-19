@@ -808,6 +808,154 @@ input:checked + .slider:before {
   line-height: 1.3;
 }
 
+/* Custom Documentation Styles */
+.custom-doc-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 2px solid #f3f4f6;
+}
+
+.custom-doc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.custom-doc-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.btn-upload-doc {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-upload-doc:hover {
+  background-color: #0056b3;
+}
+
+.custom-doc-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  background-color: #f0f7ff;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+  margin-bottom: 16px;
+}
+
+.custom-doc-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.custom-doc-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0056b3;
+}
+
+.custom-doc-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.btn-remove-doc {
+  padding: 6px 12px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-remove-doc:hover {
+  background-color: #fecaca;
+}
+
+.custom-doc-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  padding: 12px;
+  background-color: #fef3c7;
+  border-radius: 6px;
+  border-left: 4px solid #f59e0b;
+}
+
+.custom-doc-viewer {
+  margin-top: 16px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.doc-viewer-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.doc-viewer-header h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.doc-content {
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 12px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.doc-content.html-doc {
+  background: white;
+}
+
+.doc-content.json-doc pre,
+.doc-content.text-doc pre {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.doc-error {
+  color: #b91c1c;
+  padding: 12px;
+  background-color: #fee2e2;
+  border-radius: 4px;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .page-content {
     padding: 16px;
