@@ -586,9 +586,14 @@ const AccommodationBookings = () => {
                 {accommodation.pricePerNight && <span className="per-night">/night</span>}
                 {accommodation.minStay && <span className="per-night">({accommodation.minStay})</span>}
               </div>
-              <button className="book-btn" onClick={() => handleBooking(accommodation)}>
-                Book Now →
-              </button>
+              <div className="button-group">
+                <button className="book-btn" onClick={() => handleBooking(accommodation)}>
+                  Book Now →
+                </button>
+                <button className="add-to-cart-btn" onClick={() => handleAddToCart(accommodation)} title="Add to cart">
+                  🛒
+                </button>
+              </div>
             </div>
           </div>
         </div>
