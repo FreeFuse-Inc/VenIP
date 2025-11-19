@@ -16,18 +16,23 @@
 .back-btn {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
-  color: #6b7280;
-  padding: 4px 8px;
+  color: #4f7dff;
+  padding: 6px 10px;
   border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .back-btn:hover {
   background-color: rgba(79, 125, 255, 0.1);
+  color: #3f63d9;
 }
 
 .page-title {
