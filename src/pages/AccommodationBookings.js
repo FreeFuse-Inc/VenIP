@@ -636,6 +636,9 @@ const AccommodationBookings = () => {
               <button className="book-btn" onClick={() => handleBooking(flight)}>
                 Book →
               </button>
+              <button className="add-to-cart-btn" onClick={() => handleAddToCart(flight)} title="Add to cart">
+                🛒
+              </button>
             </div>
           </div>
         </div>
