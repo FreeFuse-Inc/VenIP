@@ -16,24 +16,27 @@
 
 .back-btn {
   background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #d1d5db;
   font-size: 13px;
   cursor: pointer;
-  color: #1f2937;
-  padding: 8px 12px;
-  border-radius: 6px;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 4px;
   transition: all 0.2s;
   white-space: nowrap;
-  flex-shrink: 0;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  width: fit-content;
+  visibility: visible;
+  opacity: 1;
 }
 
 .back-btn:hover {
-  background-color: rgba(79, 125, 255, 0.1);
-  color: #3f63d9;
+  background: #e5e7eb;
+  color: #1f2937;
+  border-color: #9ca3af;
 }
 
 .page-title {
