@@ -14,20 +14,20 @@
 }
 
 .back-btn {
-  background: none;
-  border: none;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
   font-size: 13px;
   cursor: pointer;
-  color: #4f7dff;
-  padding: 6px 10px;
-  border-radius: 4px;
+  color: #1f2937;
+  padding: 8px 12px;
+  border-radius: 6px;
   transition: all 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .back-btn:hover {
