@@ -886,4 +886,17 @@
   .search-btn {
     width: 100%;
   }
+
+  .filters-content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .filter-actions {
+    grid-column: 1;
+  }
+
+  .apply-filters-btn {
+    width: 100%;
+  }
 }
