@@ -249,14 +249,76 @@ const FeedbackTesting = () => {
       </div>
 
       <div className="testing-container">
-        <div className="testing-intro">
-          <div className="intro-icon">🧪</div>
-          <h2>Test Event Feedback Submission</h2>
-          <p>Submit test feedback for existing events to see how it appears in your Event Feedback section.</p>
-          <p className="test-note">💡 Test submissions will be marked with a test badge on the dashboard.</p>
+        {/* Template Management Section */}
+        <div className="template-management-section">
+          <div className="template-header">
+            <h3>📋 Custom Feedback Template</h3>
+            <button
+              type="button"
+              className="btn-upload-template"
+              onClick={() => setShowUploadModal(true)}
+            >
+              {uploadedTemplate ? '📁 Replace Template' : '📁 Upload Template'}
+            </button>
+          </div>
+
+          {uploadedTemplate && (
+            <div className="template-info">
+              <div className="template-details">
+                <span className="template-name">📄 {uploadedTemplate.name}</span>
+                <span className="template-date">Uploaded: {uploadedTemplate.uploadedAt}</span>
+              </div>
+              <button
+                type="button"
+                className="btn-remove-template"
+                onClick={handleRemoveTemplate}
+              >
+                ✕ Remove
+              </button>
+            </div>
+          )}
+
+          {!uploadedTemplate && (
+            <p className="template-hint">
+              💡 Upload a custom PDF, HTML, JSON, Word document, or text file to replace the generic feedback form.
+            </p>
+          )}
         </div>
 
-        <form className="testing-form" onSubmit={handleSubmit}>
+        {uploadedTemplate ? (
+          <div className="custom-template-container">
+            <div className="template-intro">
+              <h2>Custom Feedback Form</h2>
+              <p>Your uploaded template is displayed below. Fill it out and submit as test feedback.</p>
+            </div>
+            {renderTemplate()}
+            <div className="template-form-actions">
+              <button
+                type="button"
+                className="cancel-btn"
+                onClick={() => navigate('/dashboard/sponsor')}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="submit-btn"
+                onClick={handleSubmit}
+              >
+                Submit Custom Feedback
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="testing-intro">
+              <div className="intro-icon">🧪</div>
+              <h2>Test Event Feedback Submission</h2>
+              <p>Submit test feedback for existing events to see how it appears in your Event Feedback section.</p>
+              <p className="test-note">💡 Test submissions will be marked with a test badge on the dashboard.</p>
+            </div>
+
+            <form className="testing-form" onSubmit={handleSubmit}>
           {/* Event Selection */}
           <div className="form-section">
             <h3 className="section-title">Select Event</h3>
@@ -372,20 +434,76 @@ const FeedbackTesting = () => {
               Submit Test Feedback
             </button>
           </div>
-        </form>
+            </form>
 
-        <div className="testing-info">
-          <h4>💡 How This Works</h4>
-          <ul>
-            <li>Select an event from your sponsorships</li>
-            <li>Choose between venue or service feedback</li>
-            <li>Rate each aspect on a 1-5 star scale</li>
-            <li>Click submit to add it to your dashboard</li>
-            <li>Test feedback will appear in "Your Event Feedback" section with a test badge</li>
-            <li>This helps you see how the feedback system works in real-time</li>
-          </ul>
-        </div>
+            <div className="testing-info">
+              <h4>💡 How This Works</h4>
+              <ul>
+                <li>Select an event from your sponsorships</li>
+                <li>Choose between venue or service feedback</li>
+                <li>Rate each aspect on a 1-5 star scale</li>
+                <li>Click submit to add it to your dashboard</li>
+                <li>Test feedback will appear in "Your Event Feedback" section with a test badge</li>
+                <li>This helps you see how the feedback system works in real-time</li>
+              </ul>
+            </div>
+          </>
+        )}
       </div>
+
+      {/* Template Upload Modal */}
+      {showUploadModal && (
+        <div className="modal-overlay" onClick={() => setShowUploadModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Upload Feedback Template</h2>
+              <button
+                className="close-btn"
+                onClick={() => setShowUploadModal(false)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <div className="upload-info">
+                <p><strong>Supported Formats:</strong></p>
+                <ul>
+                  <li>PDF (.pdf)</li>
+                  <li>HTML (.html)</li>
+                  <li>JSON (.json)</li>
+                  <li>Word Documents (.doc, .docx)</li>
+                  <li>Plain Text (.txt)</li>
+                </ul>
+                <p className="size-limit">Max file size: 5MB</p>
+              </div>
+
+              {uploadError && (
+                <div className="error-message">{uploadError}</div>
+              )}
+
+              <div className="file-upload-group">
+                <label htmlFor="template-file">Select Template File</label>
+                <input
+                  type="file"
+                  id="template-file"
+                  onChange={handleTemplateUpload}
+                  accept=".pdf,.html,.json,.txt,.doc,.docx"
+                />
+              </div>
+
+              <div className="modal-actions">
+                <button
+                  className="btn-cancel"
+                  onClick={() => setShowUploadModal(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
