@@ -682,16 +682,16 @@
 .filter-logic-toggle {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .logic-btn {
-  padding: 10px 12px;
-  border: 2px solid #e5e7eb;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
   background: white;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #6b7280;
   transition: all 0.2s;
