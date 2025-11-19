@@ -29,6 +29,8 @@ import '../styles/AccommodationBookings.css';
  */
 const AccommodationBookings = () => {
   const navigate = useNavigate();
+  const { addToCart } = useContext(UserContext);
+  const { openCartSidebar } = useContext(CartContext);
   const [activeTab, setActiveTab] = useState('hotels');
   const [searchParams, setSearchParams] = useState({
     destination: '',
