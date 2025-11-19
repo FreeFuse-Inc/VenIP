@@ -142,9 +142,6 @@ const FeedbackTesting = () => {
 
   return (
     <main className="feedback-testing-page">
-      <button className="back-btn" onClick={() => navigate('/dashboard/sponsor')}>
-        ← Back to Dashboard
-      </button>
       <div className="testing-header">
         <h1 className="page-title">Feedback Testing</h1>
       </div>
