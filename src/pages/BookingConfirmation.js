@@ -299,9 +299,6 @@ const BookingConfirmation = () => {
   return (
     <main className="booking-confirmation-page">
       <div className="confirmation-header">
-        <button className="back-btn" onClick={() => navigate('/accommodation-bookings')}>
-          ← Back
-        </button>
         <h1 className="page-title">{getBookingTitle()}</h1>
       </div>
 

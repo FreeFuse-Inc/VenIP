@@ -133,9 +133,6 @@ const EventFeedback = () => {
   return (
     <main className="event-feedback-page">
       <div className="feedback-header">
-        <button className="back-btn" onClick={() => navigate('/')}>
-          ← Back
-        </button>
         <h1 className="page-title">Event Feedback</h1>
       </div>
 
@@ -144,7 +141,7 @@ const EventFeedback = () => {
           <h2>{event.name}</h2>
           <p className="event-date">Event Date: {event.date}</p>
           <div className="feedback-type-badge">
-            {feedbackType === 'venue' ? '🏢 Venue Feedback' : '🎯 Service Feedback'}
+            {feedbackType === 'venue' ? '��� Venue Feedback' : '🎯 Service Feedback'}
           </div>
         </div>
 
