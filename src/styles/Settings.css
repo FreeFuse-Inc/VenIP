@@ -985,4 +985,30 @@ input:checked + .slider:before {
   .toggle-switch {
     margin-left: 0;
   }
+
+  .custom-doc-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-upload-doc {
+    width: 100%;
+  }
+
+  .custom-doc-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-remove-doc {
+    width: 100%;
+  }
+
+  .custom-doc-viewer {
+    margin-top: 12px;
+  }
+
+  .doc-content {
+    max-height: 400px;
+  }
 }
