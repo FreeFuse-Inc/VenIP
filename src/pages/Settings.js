@@ -50,7 +50,7 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
   const [showDocUploadModal, setShowDocUploadModal] = useState(false);
   const [docUploadError, setDocUploadError] = useState('');
 
-  // Load API keys from localStorage on mount
+  // Load API keys and documentation from localStorage on mount
   useEffect(() => {
     const savedApis = {};
     Object.keys(travelApis).forEach((api) => {
@@ -62,6 +62,17 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
       }
     });
     setTravelApis(savedApis);
+
+    // Load custom documentation
+    const savedDoc = localStorage.getItem('customDocumentation');
+    if (savedDoc) {
+      try {
+        const docData = JSON.parse(savedDoc);
+        setUploadedDocumentation(docData);
+      } catch (err) {
+        console.error('Error loading documentation:', err);
+      }
+    }
   }, []);
 
   const handleSettingChange = (e) => {
