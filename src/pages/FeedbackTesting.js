@@ -18,6 +18,10 @@ const FeedbackTesting = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [uploadedTemplate, setUploadedTemplate] = useState(null);
+  const [templatePreview, setTemplatePreview] = useState('');
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [uploadError, setUploadError] = useState('');
 
   // Get unique events from sponsorships
   const uniqueEvents = sponsorships
