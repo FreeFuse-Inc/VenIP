@@ -1019,58 +1019,64 @@ const AccommodationBookings = () => {
                 </div>
               </div>
 
-              {/* Bedrooms Filter */}
-              <div className="filter-group">
-                <label>Bedrooms</label>
-                <div className="checkbox-group">
-                  {[1, 2, 3, 4, 5].map((num) => (
-                    <label key={num} className="checkbox-label">
-                      <input
-                        type="checkbox"
-                        checked={activeFilters.bedrooms.includes(num)}
-                        onChange={() => handleFilterChange('bedrooms', num)}
-                      />
-                      <span>{num} Bed{num > 1 ? 's' : ''}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bathrooms Filter */}
-              <div className="filter-group">
-                <label>Bathrooms</label>
-                <div className="checkbox-group">
-                  {[1, 2, 3, 4].map((num) => (
-                    <label key={num} className="checkbox-label">
-                      <input
-                        type="checkbox"
-                        checked={activeFilters.bathrooms.includes(num)}
-                        onChange={() => handleFilterChange('bathrooms', num)}
-                      />
-                      <span>{num} Bath{num > 1 ? 's' : ''}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Amenities Filter */}
-              <div className="filter-group">
-                <label>Amenities</label>
-                <div className="checkbox-group amenities-grid">
-                  {['WiFi', 'Air Conditioning', 'Kitchen', 'Washer', 'TV', 'Pool', 'Gym', 'Parking', 'Concierge'].map(
-                    (amenity) => (
-                      <label key={amenity} className="checkbox-label">
+              {/* Bedrooms Filter - Only for accommodations */}
+              {(activeTab === 'hotels' || activeTab === 'homes' || activeTab === 'longstays') && (
+                <div className="filter-group">
+                  <label>Bedrooms</label>
+                  <div className="checkbox-group">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <label key={num} className="checkbox-label">
                         <input
                           type="checkbox"
-                          checked={activeFilters.amenities.includes(amenity)}
-                          onChange={() => handleFilterChange('amenities', amenity)}
+                          checked={activeFilters.bedrooms.includes(num)}
+                          onChange={() => handleFilterChange('bedrooms', num)}
                         />
-                        <span>{amenity}</span>
+                        <span>{num} Bed{num > 1 ? 's' : ''}</span>
                       </label>
-                    )
-                  )}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Bathrooms Filter - Only for accommodations */}
+              {(activeTab === 'hotels' || activeTab === 'homes' || activeTab === 'longstays') && (
+                <div className="filter-group">
+                  <label>Bathrooms</label>
+                  <div className="checkbox-group">
+                    {[1, 2, 3, 4].map((num) => (
+                      <label key={num} className="checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={activeFilters.bathrooms.includes(num)}
+                          onChange={() => handleFilterChange('bathrooms', num)}
+                        />
+                        <span>{num} Bath{num > 1 ? 's' : ''}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Amenities Filter - Only for accommodations */}
+              {(activeTab === 'hotels' || activeTab === 'homes' || activeTab === 'longstays') && (
+                <div className="filter-group">
+                  <label>Amenities</label>
+                  <div className="checkbox-group amenities-grid">
+                    {['WiFi', 'Air Conditioning', 'Kitchen', 'Washer', 'TV', 'Pool', 'Gym', 'Parking', 'Concierge'].map(
+                      (amenity) => (
+                        <label key={amenity} className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={activeFilters.amenities.includes(amenity)}
+                            onChange={() => handleFilterChange('amenities', amenity)}
+                          />
+                          <span>{amenity}</span>
+                        </label>
+                      )
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Apply Button */}
               <div className="filter-actions">
