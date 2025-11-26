@@ -217,21 +217,41 @@
   color: #6b7280;
 }
 
-.btn-edit-profile {
-  background: #4F7DFF;
-  color: white;
-  border: none;
-  border-radius: 6px;
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-edit-profile,
+.btn-view-history {
   padding: 10px 20px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  border: none;
   transition: all 0.2s ease;
-  align-self: flex-start;
+}
+
+.btn-edit-profile {
+  background: #4F7DFF;
+  color: white;
 }
 
 .btn-edit-profile:hover {
   background: #3d5fd9;
+}
+
+.btn-view-history {
+  background: #f3f4f6;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+}
+
+.btn-view-history:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
 }
 
 .notifications-container {
