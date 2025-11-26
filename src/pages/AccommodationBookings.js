@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
+import bookingApi from '../utils/bookingApi';
 import '../styles/AccommodationBookings.css';
 
 /**
