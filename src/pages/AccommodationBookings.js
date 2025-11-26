@@ -171,8 +171,11 @@ const AccommodationBookings = () => {
     let filtered = [...results];
 
     filtered = filtered.filter((item) => {
-      // Price filter
-      const price = parseInt(item.price?.replace('$', '') || '0');
+      // Price filter - handle both string and number formats
+      let price = item.price;
+      if (typeof price === 'string') {
+        price = parseInt(price.replace(/[$,]/g, '') || '0');
+      }
       const meetsPrice = price >= activeFilters.priceRange[0] && price <= activeFilters.priceRange[1];
 
       // Rating filter - only apply if minimum rating is set
