@@ -9,6 +9,24 @@
   background: white;
   padding: 16px 32px;
   border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .filter-buttons {
