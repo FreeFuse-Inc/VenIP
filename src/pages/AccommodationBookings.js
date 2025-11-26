@@ -53,9 +53,12 @@ const AccommodationBookings = () => {
   });
 
 
-  const getApiKey = (apiName) => {
-    return localStorage.getItem(`${apiName}_api_key`);
-  };
+  /**
+   * For future use: When real API keys become available,
+   * implement this function to fetch credentials from localStorage:
+   * const getApiKey = (apiName) => localStorage.getItem(`${apiName}_api_key`);
+   * Then pass these to the corresponding API service functions.
+   */
 
   const formatPrice = (price) => {
     return typeof price === 'number' ? `$${price}` : price;
