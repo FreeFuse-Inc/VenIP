@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/SponsorshipAnalytics.css';
 
 const SponsorshipAnalytics = () => {
