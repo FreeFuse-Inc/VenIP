@@ -7,9 +7,19 @@ import '../styles/Sidebar.css';
 
 const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { userRole } = useContext(RoleContext);
   const { getCartItemCount } = useContext(UserContext);
   const { toggleCartSidebar } = useContext(CartContext);
+
+  const isRootPage = () => {
+    const rootPages = ['/', '/dashboard/npo', '/dashboard/vendor', '/dashboard/sponsor'];
+    return rootPages.includes(location.pathname);
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const getDashboardPath = () => {
     if (!userRole) return '/';
