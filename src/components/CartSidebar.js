@@ -8,10 +8,13 @@ const CartSidebar = () => {
   const navigate = useNavigate();
   const { user, removeFromCart, clearCart, getCartTotal, getCartItemCount } = useContext(UserContext);
   const { isCartSidebarOpen, toggleCartSidebar } = useContext(CartContext);
+  const [activeTab, setActiveTab] = React.useState('cart');
 
   if (!user) return null;
 
   const cartItems = user.cart || [];
+  const bookingHistory = user.bookingHistory || [];
+  const recentBookings = bookingHistory.slice(-5).reverse();
   const itemCount = getCartItemCount();
   const cartTotal = getCartTotal();
 
@@ -26,6 +29,14 @@ const CartSidebar = () => {
 
   const handleContinueShopping = () => {
     toggleCartSidebar();
+  };
+
+  const formatDate = (dateStr) => {
+    return new Date(dateStr).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
   };
 
   return (
