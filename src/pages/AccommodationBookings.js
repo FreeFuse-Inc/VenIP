@@ -57,68 +57,56 @@ const AccommodationBookings = () => {
     return localStorage.getItem(`${apiName}_api_key`);
   };
 
+  const formatPrice = (price) => {
+    return typeof price === 'number' ? `$${price}` : price;
+  };
+
   const getResultsForTab = async (tab) => {
     // Check if API keys are available and make real API calls
-    // Otherwise, return mock data for demonstration
+    // Otherwise, use mock API for demonstration
+    // TODO: When you have real API credentials, implement the actual API calls here
 
-    switch (tab) {
-      case 'hotels':
-        // Combine Airbnb + Booking.com results
-        const airbnbKey = getApiKey('airbnb');
-        const bookingKey = getApiKey('booking');
-        if (airbnbKey || bookingKey) {
-          // TODO: Make real API calls to Airbnb and Booking.com
-          // const airbnbResults = await fetchFromAirbnb(searchParams, airbnbKey);
-          // const bookingResults = await fetchFromBooking(searchParams, bookingKey);
-          // return [...airbnbResults, ...bookingResults];
-        }
-        return mockHotels;
+    try {
+      let results = [];
 
-      case 'homes':
-        const airbnbHomeKey = getApiKey('airbnb');
-        if (airbnbHomeKey) {
-          // TODO: Make real API call to Airbnb for homes
-          // return await fetchFromAirbnbHomes(searchParams, airbnbHomeKey);
-        }
-        return mockHomes;
+      switch (tab) {
+        case 'hotels':
+          results = await bookingApi.searchHotels(searchParams);
+          break;
 
-      case 'longstays':
-        const furnishedKey = getApiKey('airbnb');
-        if (furnishedKey) {
-          // TODO: Make real API call for long-stay rentals
-          // return await fetchLongStayRentals(searchParams, furnishedKey);
-        }
-        return mockLongStays;
+        case 'homes':
+          results = await bookingApi.searchHomes(searchParams);
+          break;
 
-      case 'flights':
-        const flightsKey = getApiKey('googleFlights');
-        if (flightsKey) {
-          // TODO: Make real API call to Google Flights
-          // return await fetchFlights(searchParams, flightsKey);
-        }
-        return mockFlights;
+        case 'longstays':
+          results = await bookingApi.searchLongStays(searchParams);
+          break;
 
-      case 'activities':
-        const viatorKey = getApiKey('viator');
-        const getYourGuideKey = getApiKey('getYourGuide');
-        if (viatorKey || getYourGuideKey) {
-          // TODO: Make real API calls to Viator and GetYourGuide
-          // const viatorResults = await fetchFromViator(searchParams, viatorKey);
-          // const gygResults = await fetchFromGetYourGuide(searchParams, getYourGuideKey);
-          // return [...viatorResults, ...gygResults];
-        }
-        return mockActivities;
+        case 'flights':
+          results = await bookingApi.searchFlights(searchParams);
+          break;
 
-      case 'transfers':
-        const uberKey = getApiKey('uber');
-        if (uberKey) {
-          // TODO: Make real API call to Uber
-          // return await fetchUberTransfers(searchParams, uberKey);
-        }
-        return mockTransfers;
+        case 'activities':
+          results = await bookingApi.searchActivities(searchParams);
+          break;
 
-      default:
-        return [];
+        case 'transfers':
+          results = await bookingApi.searchTransfers(searchParams);
+          break;
+
+        default:
+          results = [];
+      }
+
+      // Format prices to include $ symbol for consistent display
+      return results.map(item => ({
+        ...item,
+        price: formatPrice(item.price),
+        availability: item.availability ? 'Available' : 'Unavailable',
+      }));
+    } catch (error) {
+      console.error(`Error fetching ${tab}:`, error);
+      return [];
     }
   };
 
@@ -513,7 +501,7 @@ const AccommodationBookings = () => {
             </div>
             <div className="transfer-specs">
               <span>⏱️ {transfer.estimatedTime}</span>
-              <span>�� {transfer.capacity}</span>
+              <span>👥 {transfer.capacity}</span>
             </div>
             <div className="features-list">
               {transfer.features.map((feature, idx) => (
