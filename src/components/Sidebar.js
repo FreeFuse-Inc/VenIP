@@ -60,18 +60,6 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
 
       {!showRoleSelection && (
         <>
-          {!isRootPage() && (
-            <button
-              className="back-btn"
-              onClick={handleGoBack}
-              title="Go back to previous page"
-              aria-label="Go back to previous page"
-            >
-              <span className="back-icon">←</span>
-              <span className="back-label">Back</span>
-            </button>
-          )}
-
           <nav className="sidebar-nav">
             {menuItems.map((item) => {
               const handleClick = () => {
