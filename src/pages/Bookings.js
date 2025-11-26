@@ -66,22 +66,41 @@ const Bookings = () => {
 
   return (
     <main className="bookings-page">
+      <BackButton />
       <header className="page-header">
         <h1 className="page-title">Bookings</h1>
       </header>
 
       <div className="page-content">
         <div className="filter-section">
-          <div className="filter-buttons">
-            {statuses.map((status) => (
-              <button
-                key={status}
-                className={`filter-btn ${filterStatus === status ? 'active' : ''}`}
-                onClick={() => setFilterStatus(status)}
-              >
-                {status}
-              </button>
-            ))}
+          <div className="filter-group">
+            <h3 className="filter-label">Status</h3>
+            <div className="filter-buttons">
+              {statuses.map((status) => (
+                <button
+                  key={status}
+                  className={`filter-btn ${filterStatus === status ? 'active' : ''}`}
+                  onClick={() => setFilterStatus(status)}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="filter-group">
+            <h3 className="filter-label">Date</h3>
+            <div className="filter-buttons">
+              {dateFilters.map((dateFilter) => (
+                <button
+                  key={dateFilter}
+                  className={`filter-btn ${filterDate === dateFilter ? 'active' : ''}`}
+                  onClick={() => setFilterDate(dateFilter)}
+                >
+                  {dateFilter}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
