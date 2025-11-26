@@ -251,10 +251,18 @@ const AccommodationBookings = () => {
       ? Math.ceil((new Date(searchParams.checkOut) - new Date(searchParams.checkIn)) / (1000 * 60 * 60 * 24))
       : 1;
 
+    const getPriceValue = (price) => {
+      if (typeof price === 'string') {
+        return parseFloat(price.replace(/[$,]/g, ''));
+      }
+      return price;
+    };
+
     switch (activeTab) {
       case 'hotels':
       case 'homes':
       case 'longstays':
+        const pricePerNight = getPriceValue(item.price);
         cartItem = {
           ...cartItem,
           checkIn: searchParams.checkIn,
@@ -262,7 +270,7 @@ const AccommodationBookings = () => {
           guests: searchParams.guests,
           nightlyRate: item.price,
           nights: nights || 1,
-          totalPrice: `$${(parseFloat(item.price.replace(/[$,]/g, '')) * (nights || 1)).toFixed(0)}`,
+          totalPrice: `$${(pricePerNight * (nights || 1)).toFixed(0)}`,
           bedrooms: item.bedrooms,
           bathrooms: item.bathrooms,
           amenities: item.amenities,
