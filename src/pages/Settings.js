@@ -590,7 +590,15 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
                   <span className="value">{userProfile.role}</span>
                 </div>
               </div>
-              <button className="btn-edit-profile">Edit Profile</button>
+              <div className="profile-actions">
+                <button className="btn-edit-profile">Edit Profile</button>
+                <button
+                  className="btn-view-history"
+                  onClick={() => navigate('/booking-history')}
+                >
+                  View Booking History
+                </button>
+              </div>
             </div>
           </div>
 
