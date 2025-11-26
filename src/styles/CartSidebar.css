@@ -333,6 +333,205 @@
   }
 }
 
+.sidebar-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: #1f2937;
+  background: white;
+}
+
+.tab-btn.active {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+  background: white;
+}
+
+.history-tab-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-history {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-history-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-history-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.empty-history-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.recent-bookings-container {
+  flex: 1;
+  overflow-y: auto;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.recent-bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.history-booking-card {
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+.history-booking-card:hover {
+  background-color: #f9fafb;
+}
+
+.history-booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.history-booking-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  flex: 1;
+}
+
+.history-booking-category {
+  font-size: 11px;
+  background: #f0f0ff;
+  color: #8b5cf6;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+.history-booking-provider {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+}
+
+.history-booking-details {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.history-date,
+.history-amount {
+  font-size: 11px;
+  color: #4b5563;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.history-status-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.history-status-badge.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.history-status-badge.confirmed {
+  background: #dbeafe;
+  color: #0c4a6e;
+}
+
+.history-status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.history-status-badge.cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.history-actions {
+  padding: 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.view-all-history-btn {
+  width: 100%;
+  padding: 10px;
+  background: #f0f0ff;
+  color: #8b5cf6;
+  border: 1px solid #e9d5ff;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-all-history-btn:hover {
+  background: #ede9fe;
+  border-color: #ddd6fe;
+}
+
+@media (max-width: 1024px) {
+  .cart-sidebar {
+    width: 350px;
+  }
+
+  .cart-toggle-btn.open {
+    right: 370px;
+  }
+}
+
 @media (max-width: 768px) {
   .cart-sidebar {
     width: 100%;
