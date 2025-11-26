@@ -52,7 +52,9 @@ const CartSidebar = () => {
 
       <aside className={`cart-sidebar ${isCartSidebarOpen ? 'open' : 'closed'}`}>
         <div className="cart-header">
-          <h2 className="cart-title">Shopping Cart</h2>
+          <h2 className="cart-title">
+            {activeTab === 'cart' ? 'Shopping Cart' : 'Booking History'}
+          </h2>
           <button
             className="cart-close-btn"
             onClick={toggleCartSidebar}
@@ -62,7 +64,22 @@ const CartSidebar = () => {
           </button>
         </div>
 
-        {cartItems.length === 0 ? (
+        <div className="sidebar-tabs">
+          <button
+            className={`tab-btn ${activeTab === 'cart' ? 'active' : ''}`}
+            onClick={() => setActiveTab('cart')}
+          >
+            🛒 Cart ({itemCount})
+          </button>
+          <button
+            className={`tab-btn ${activeTab === 'history' ? 'active' : ''}`}
+            onClick={() => setActiveTab('history')}
+          >
+            📋 History ({recentBookings.length})
+          </button>
+        </div>
+
+        {activeTab === 'cart' && cartItems.length === 0 ? (
           <div className="empty-cart">
             <span className="empty-cart-icon">🛒</span>
             <p className="empty-cart-text">Your cart is empty</p>
