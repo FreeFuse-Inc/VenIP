@@ -83,7 +83,26 @@ const CartCheckout = () => {
 
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      addToBookingHistory(orderData);
+      user.cart.forEach((item) => {
+        addToBookingHistory({
+          id: `booking_${Date.now()}_${Math.random()}`,
+          category: item.category || 'Accommodation',
+          name: item.name,
+          provider: item.provider || item.location || 'VenIP',
+          date: item.checkOut || item.date || new Date().toISOString().split('T')[0],
+          status: 'Confirmed',
+          amount: item.totalPrice,
+          bookingDate: new Date().toISOString().split('T')[0],
+          details: {
+            checkIn: item.checkIn,
+            checkOut: item.checkOut,
+            guests: item.guests,
+            quantity: item.quantity,
+            location: item.location,
+          },
+        });
+      });
+
       updateUser({
         fullName: formData.fullName,
         companyName: formData.companyName,
