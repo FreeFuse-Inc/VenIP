@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BackButton from '../components/BackButton';
 import '../styles/Bookings.css';
 
 const Bookings = () => {
@@ -42,12 +43,26 @@ const Bookings = () => {
   ]);
 
   const [filterStatus, setFilterStatus] = useState('All');
+  const [filterDate, setFilterDate] = useState('All');
   const [selectedBooking, setSelectedBooking] = useState(null);
 
   const statuses = ['All', 'Confirmed', 'Pending', 'Cancelled'];
+  const dateFilters = ['All', 'Upcoming', 'Past'];
 
-  const filteredBookings =
-    filterStatus === 'All' ? bookings : bookings.filter((b) => b.status === filterStatus);
+  const isDatePast = (dateStr) => {
+    return new Date(dateStr) < new Date();
+  };
+
+  const getDateFilteredBookings = (bookingsToFilter) => {
+    if (filterDate === 'All') return bookingsToFilter;
+    if (filterDate === 'Upcoming') return bookingsToFilter.filter((b) => !isDatePast(b.date));
+    if (filterDate === 'Past') return bookingsToFilter.filter((b) => isDatePast(b.date));
+    return bookingsToFilter;
+  };
+
+  const filteredBookings = getDateFilteredBookings(
+    filterStatus === 'All' ? bookings : bookings.filter((b) => b.status === filterStatus)
+  );
 
   return (
     <main className="bookings-page">
