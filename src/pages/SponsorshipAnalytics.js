@@ -61,6 +61,7 @@ const SponsorshipAnalytics = () => {
 
   return (
     <main className="sponsorship-analytics">
+      <BackButton />
       <div className="analytics-header">
         <h1>Sponsorship Performance</h1>
         <p>
