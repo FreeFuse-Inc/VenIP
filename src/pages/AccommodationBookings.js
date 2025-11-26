@@ -542,6 +542,7 @@ const AccommodationBookings = () => {
 
   return (
     <main className="accommodation-bookings-page">
+      <BackButton />
       <div className="booking-header">
         <h1 className="page-title">Travel Bookings</h1>
       </div>
