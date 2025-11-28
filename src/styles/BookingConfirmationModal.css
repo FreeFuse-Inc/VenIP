@@ -31,6 +31,34 @@
   }
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.modal-overlay.closing {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.confirmation-modal.closing {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .modal-content {
   padding: 40px 32px;
   text-align: center;
