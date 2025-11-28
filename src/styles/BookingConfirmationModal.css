@@ -133,17 +133,30 @@
   gap: 8px;
 }
 
+.modal-view-btn,
 .modal-close-btn {
   flex: 1;
   padding: 12px;
-  background: #8b5cf6;
-  color: white;
   border: none;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.modal-view-btn {
+  background: #f0f0ff;
+  color: #8b5cf6;
+}
+
+.modal-view-btn:hover {
+  background: #ede9fe;
+}
+
+.modal-close-btn {
+  background: #8b5cf6;
+  color: white;
 }
 
 .modal-close-btn:hover {
