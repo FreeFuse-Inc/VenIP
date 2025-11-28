@@ -63,12 +63,20 @@ const CartCheckout = () => {
   };
 
   const handleConfirmPayment = async () => {
-    if (!validateForm()) return;
+    console.log('Payment button clicked');
 
+    if (!validateForm()) {
+      console.log('Form validation failed');
+      return;
+    }
+
+    console.log('Form validation passed, processing payment...');
     setIsProcessing(true);
 
     try {
       const cartTotal = getCartTotal();
+      console.log('Cart total:', cartTotal);
+
       const orderData = {
         items: user.cart,
         subtotal: cartTotal,
@@ -83,8 +91,10 @@ const CartCheckout = () => {
         },
       };
 
+      console.log('Processing payment...');
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
+      console.log('Updating user profile...');
       updateUser({
         fullName: formData.fullName,
         companyName: formData.companyName,
@@ -92,7 +102,10 @@ const CartCheckout = () => {
         billingAddress: formData.billingAddress,
       });
 
-      user.cart.forEach((item) => {
+      console.log('Adding items to booking history...');
+      const cartItems = user.cart || [];
+      cartItems.forEach((item, index) => {
+        console.log(`Adding booking ${index + 1}:`, item.name);
         addToBookingHistory({
           category: item.category || 'Accommodation',
           name: item.name,
@@ -111,13 +124,16 @@ const CartCheckout = () => {
         });
       });
 
+      console.log('Clearing cart...');
       clearCart();
 
+      console.log('Setting order details and confirmed state');
       setOrderDetails(orderData);
       setConfirmed(true);
+      console.log('Payment processing complete!');
     } catch (error) {
       console.error('Payment error:', error);
-      alert('Payment processing failed. Please try again.');
+      alert('Payment processing failed. Please try again. Check browser console for details.');
     } finally {
       setIsProcessing(false);
     }
