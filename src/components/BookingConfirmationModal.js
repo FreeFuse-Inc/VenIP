@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/BookingConfirmationModal.css';
 
 const BookingConfirmationModal = ({ isOpen, onClose, itemCount, totalAmount, email }) => {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  };
+
   if (!isOpen) return null;
 
   return (
