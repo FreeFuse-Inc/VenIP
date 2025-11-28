@@ -43,7 +43,7 @@ const BookingConfirmationModal = ({ isOpen, onClose, itemCount, totalAmount, ema
           </p>
 
           <div className="modal-actions">
-            <button onClick={onClose} className="modal-close-btn">
+            <button onClick={handleClose} className="modal-close-btn">
               Close
             </button>
           </div>
