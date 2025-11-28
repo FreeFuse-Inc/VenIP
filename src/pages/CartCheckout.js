@@ -320,6 +320,17 @@ const CartCheckout = () => {
           </section>
         </div>
       </div>
+
+      <BookingConfirmationModal
+        isOpen={confirmed}
+        onClose={() => {
+          setConfirmed(false);
+          navigate('/accommodation-bookings');
+        }}
+        itemCount={orderDetails?.items?.length || 0}
+        totalAmount={orderDetails?.total?.toFixed(2) || '0.00'}
+        email={formData.email}
+      />
     </main>
   );
 };
