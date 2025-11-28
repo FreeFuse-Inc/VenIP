@@ -9,6 +9,14 @@ const CartSidebar = () => {
   const { user, removeFromCart, clearCart, getCartTotal, getCartItemCount } = useContext(UserContext);
   const { isCartSidebarOpen, toggleCartSidebar } = useContext(CartContext);
   const [activeTab, setActiveTab] = React.useState('cart');
+  const [historyRefreshKey, setHistoryRefreshKey] = React.useState(0);
+
+  React.useEffect(() => {
+    if (isCartSidebarOpen && user) {
+      // Refresh the history display when sidebar opens
+      setHistoryRefreshKey(prev => prev + 1);
+    }
+  }, [isCartSidebarOpen, user]);
 
   if (!user) return null;
 
