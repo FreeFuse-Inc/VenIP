@@ -79,8 +79,12 @@ const CartCheckout = () => {
       const cartTotal = getCartTotal();
       console.log('Cart total:', cartTotal);
 
+      // Capture cart items immediately before any state changes
+      const cartItemsToProcess = user.cart ? [...user.cart] : [];
+      console.log('Cart items to process:', cartItemsToProcess.length);
+
       const orderData = {
-        items: user.cart,
+        items: cartItemsToProcess,
         subtotal: cartTotal,
         tax: cartTotal * 0.1,
         total: cartTotal * 1.1,
@@ -96,19 +100,10 @@ const CartCheckout = () => {
       console.log('Processing payment...');
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      console.log('Updating user profile...');
-      updateUser({
-        fullName: formData.fullName,
-        companyName: formData.companyName,
-        phone: formData.phone,
-        billingAddress: formData.billingAddress,
-      });
-
       console.log('Adding items to booking history...');
-      const cartItems = user.cart || [];
-      cartItems.forEach((item, index) => {
+      cartItemsToProcess.forEach((item, index) => {
         console.log(`Adding booking ${index + 1}:`, item.name);
-        addToBookingHistory({
+        const bookingRecord = {
           category: item.category || 'Accommodation',
           name: item.name,
           provider: item.provider || item.location || 'VenIP',
@@ -123,7 +118,17 @@ const CartCheckout = () => {
             quantity: item.quantity,
             location: item.location,
           },
-        });
+        };
+        console.log('Booking record:', bookingRecord);
+        addToBookingHistory(bookingRecord);
+      });
+
+      console.log('Updating user profile...');
+      updateUser({
+        fullName: formData.fullName,
+        companyName: formData.companyName,
+        phone: formData.phone,
+        billingAddress: formData.billingAddress,
       });
 
       console.log('Clearing cart...');
