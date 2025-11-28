@@ -83,9 +83,15 @@ const CartCheckout = () => {
 
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
+      updateUser({
+        fullName: formData.fullName,
+        companyName: formData.companyName,
+        phone: formData.phone,
+        billingAddress: formData.billingAddress,
+      });
+
       user.cart.forEach((item) => {
         addToBookingHistory({
-          id: `booking_${Date.now()}_${Math.random()}`,
           category: item.category || 'Accommodation',
           name: item.name,
           provider: item.provider || item.location || 'VenIP',
@@ -103,12 +109,6 @@ const CartCheckout = () => {
         });
       });
 
-      updateUser({
-        fullName: formData.fullName,
-        companyName: formData.companyName,
-        phone: formData.phone,
-        billingAddress: formData.billingAddress,
-      });
       clearCart();
 
       setOrderDetails(orderData);
