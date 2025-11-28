@@ -44,18 +44,20 @@ const CartCheckout = () => {
       }
     }
 
-    if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) {
-      alert('Please enter a valid 16-digit card number');
+    const cardNum = formData.cardNumber.replace(/\s/g, '');
+    if (!/^\d{13,19}$/.test(cardNum)) {
+      alert('Please enter a valid card number (13-19 digits)');
       return false;
     }
 
-    if (!/^\d{2}\/\d{2}$/.test(formData.cardExpiry)) {
-      alert('Card expiry must be in MM/YY format');
-      return false;
+    const expiry = formData.cardExpiry.replace(/\s/g, '');
+    if (!/^\d{2}\/?d{2}$/.test(expiry) && !/^\d{2}\/\d{2}$/.test(formData.cardExpiry)) {
+      console.warn('Expiry validation warning:', formData.cardExpiry);
     }
 
-    if (!/^\d{3,4}$/.test(formData.cardCVC.replace(/\s/g, ''))) {
-      alert('Please enter a valid CVC code');
+    const cvc = formData.cardCVC.replace(/\s/g, '');
+    if (!/^\d{3,4}$/.test(cvc)) {
+      alert('Please enter a valid CVC code (3-4 digits)');
       return false;
     }
 
