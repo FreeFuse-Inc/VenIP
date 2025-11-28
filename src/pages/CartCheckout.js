@@ -180,6 +180,12 @@ const CartCheckout = () => {
 
           <div className="success-actions">
             <button
+              onClick={() => toggleCartSidebar()}
+              className="btn-view-history"
+            >
+              View in Cart History
+            </button>
+            <button
               onClick={() => navigate('/accommodation-bookings')}
               className="btn-continue-booking"
             >
