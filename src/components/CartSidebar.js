@@ -13,16 +13,20 @@ const CartSidebar = () => {
 
   React.useEffect(() => {
     if (isCartSidebarOpen && user) {
+      console.log('Cart sidebar opened. Booking history:', user.bookingHistory);
+      console.log('Recent bookings:', user.bookingHistory ? user.bookingHistory.slice(-5).reverse() : []);
       // Refresh the history display when sidebar opens
       setHistoryRefreshKey(prev => prev + 1);
     }
-  }, [isCartSidebarOpen, user]);
+  }, [isCartSidebarOpen, user?.bookingHistory?.length]);
 
   if (!user) return null;
 
   const cartItems = user.cart || [];
   const bookingHistory = user.bookingHistory || [];
   const recentBookings = bookingHistory.slice(-5).reverse();
+
+  console.log('CartSidebar render - bookingHistory:', bookingHistory.length, 'recentBookings:', recentBookings.length);
   const itemCount = getCartItemCount();
   const cartTotal = getCartTotal();
 
