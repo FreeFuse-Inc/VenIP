@@ -180,7 +180,7 @@ const CartCheckout = () => {
 
           <div className="success-actions">
             <button
-              onClick={() => toggleCartSidebar()}
+              onClick={() => openCartSidebar()}
               className="btn-view-history"
             >
               View in Cart History
