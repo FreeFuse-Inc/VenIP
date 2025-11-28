@@ -46,8 +46,20 @@ const BookingConfirmationModal = ({ isOpen, onClose, itemCount, totalAmount, ema
           </p>
 
           <div className="modal-actions">
+            <button
+              onClick={() => {
+                openCartSidebar();
+                setIsClosing(true);
+                setTimeout(() => {
+                  onClose();
+                }, 300);
+              }}
+              className="modal-view-btn"
+            >
+              View in Cart History
+            </button>
             <button onClick={handleClose} className="modal-close-btn">
-              Close
+              Done
             </button>
           </div>
         </div>
