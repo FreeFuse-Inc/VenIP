@@ -102,9 +102,12 @@ const CartCheckout = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       console.log('Adding items to booking history...');
-      cartItemsToProcess.forEach((item, index) => {
-        console.log(`Adding booking ${index + 1}:`, item.name);
+
+      // Create all booking records
+      const newBookingRecords = cartItemsToProcess.map((item, index) => {
+        console.log(`Creating booking ${index + 1}:`, item.name);
         const bookingRecord = {
+          id: `booking_${Date.now()}_${Math.random()}`,
           category: item.category || 'Accommodation',
           name: item.name,
           provider: item.provider || item.location || 'VenIP',
@@ -119,10 +122,16 @@ const CartCheckout = () => {
             quantity: item.quantity,
             location: item.location,
           },
+          bookedAt: new Date().toISOString(),
         };
         console.log('Booking record:', bookingRecord);
-        addToBookingHistory(bookingRecord);
+        return bookingRecord;
       });
+
+      // Add all bookings at once
+      console.log('Adding all bookings to history...');
+      const updatedHistory = [...(user.bookingHistory || []), ...newBookingRecords];
+      console.log('Updated history length:', updatedHistory.length);
 
       console.log('Updating user profile...');
       updateUser({
