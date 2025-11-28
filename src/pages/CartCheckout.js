@@ -7,7 +7,7 @@ import '../styles/CartCheckout.css';
 const CartCheckout = () => {
   const navigate = useNavigate();
   const { user, updateUser, addToBookingHistory, clearCart, getCartTotal } = useContext(UserContext);
-  const { toggleCartSidebar } = useContext(CartContext);
+  const { openCartSidebar } = useContext(CartContext);
 
   const [formData, setFormData] = useState({
     fullName: user?.fullName || '',
