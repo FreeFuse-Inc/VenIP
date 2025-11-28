@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import { CartContext } from '../context/CartContext';
 import '../styles/CartCheckout.css';
 
 const CartCheckout = () => {
   const navigate = useNavigate();
   const { user, updateUser, addToBookingHistory, clearCart, getCartTotal } = useContext(UserContext);
+  const { toggleCartSidebar } = useContext(CartContext);
 
   const [formData, setFormData] = useState({
     fullName: user?.fullName || '',
