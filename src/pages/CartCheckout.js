@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
+import BookingConfirmationModal from '../components/BookingConfirmationModal';
 import '../styles/CartCheckout.css';
 
 const CartCheckout = () => {
