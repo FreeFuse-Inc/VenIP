@@ -133,16 +133,15 @@ const CartCheckout = () => {
       const updatedHistory = [...(user.bookingHistory || []), ...newBookingRecords];
       console.log('Updated history length:', updatedHistory.length);
 
-      console.log('Updating user profile...');
+      console.log('Updating user profile and history in one operation...');
       updateUser({
         fullName: formData.fullName,
         companyName: formData.companyName,
         phone: formData.phone,
         billingAddress: formData.billingAddress,
+        bookingHistory: updatedHistory,
+        cart: [],
       });
-
-      console.log('Clearing cart...');
-      clearCart();
 
       console.log('Setting order details and confirmed state');
       setOrderDetails(orderData);
