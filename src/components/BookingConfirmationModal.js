@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 import '../styles/BookingConfirmationModal.css';
 
 const BookingConfirmationModal = ({ isOpen, onClose, itemCount, totalAmount, email }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const { openCartSidebar } = useContext(CartContext);
 
   const handleClose = () => {
     setIsClosing(true);
