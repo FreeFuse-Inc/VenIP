@@ -14,8 +14,8 @@ const BookingConfirmationModal = ({ isOpen, onClose, itemCount, totalAmount, ema
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="confirmation-modal">
+    <div className={`modal-overlay ${isClosing ? 'closing' : ''}`}>
+      <div className={`confirmation-modal ${isClosing ? 'closing' : ''}`}>
         <div className="modal-content">
           <div className="success-icon">✓</div>
           <h2>Booking Confirmed!</h2>
