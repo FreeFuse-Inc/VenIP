@@ -15,10 +15,14 @@ const CartSidebar = () => {
     if (isCartSidebarOpen && user) {
       console.log('Cart sidebar opened. Booking history:', user.bookingHistory);
       console.log('Recent bookings:', user.bookingHistory ? user.bookingHistory.slice(-5).reverse() : []);
+      // If cart is empty but there are bookings, switch to history tab
+      if ((user.cart || []).length === 0 && (user.bookingHistory || []).length > 0) {
+        setActiveTab('history');
+      }
       // Refresh the history display when sidebar opens
       setHistoryRefreshKey(prev => prev + 1);
     }
-  }, [isCartSidebarOpen, user?.bookingHistory?.length]);
+  }, [isCartSidebarOpen, user?.bookingHistory?.length, user?.cart?.length]);
 
   if (!user) return null;
 
