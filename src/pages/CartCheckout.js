@@ -50,9 +50,9 @@ const CartCheckout = () => {
       return false;
     }
 
-    const expiry = formData.cardExpiry.replace(/\s/g, '');
-    if (!/^\d{2}\/?d{2}$/.test(expiry) && !/^\d{2}\/\d{2}$/.test(formData.cardExpiry)) {
-      console.warn('Expiry validation warning:', formData.cardExpiry);
+    const expiry = formData.cardExpiry.trim();
+    if (!expiry.match(/^\d{2}\/?\d{2}$/)) {
+      console.warn('Expiry format issue, but allowing:', formData.cardExpiry);
     }
 
     const cvc = formData.cardCVC.replace(/\s/g, '');
