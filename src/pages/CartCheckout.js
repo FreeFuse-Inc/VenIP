@@ -175,7 +175,7 @@ const CartCheckout = () => {
           </div>
 
           <p className="next-steps">
-            A confirmation email with all booking details has been sent to {formData.email}. You can manage your bookings from your profile.
+            A confirmation email with all booking details has been sent to {formData.email}. Your bookings are now visible in the Cart History tab!
           </p>
 
           <div className="success-actions">
