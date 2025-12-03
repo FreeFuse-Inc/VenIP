@@ -337,7 +337,7 @@ Provide helpful guidance and always confirm actions.`;
             const currentDayOfWeek = now.getDay();
             let daysAhead = targetDayOfWeek - currentDayOfWeek;
             if (daysAhead <= 0) {
-              daysAhead += 7; // Move to next week if day has passed
+              daysAhead += 7;
             }
             const nextDate = new Date(now);
             nextDate.setDate(nextDate.getDate() + daysAhead);
@@ -352,26 +352,6 @@ Provide helpful guidance and always confirm actions.`;
         let dateMatch = inputText.match(/(\d{4})-(\d{2})-(\d{2})/);
         if (dateMatch) return `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
 
-        // Check for month name or abbreviation with day (with optional year)
-        const monthPattern = /(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s+(\d{4}))?/i;
-        dateMatch = inputText.match(monthPattern);
-        if (dateMatch) {
-          const monthStr = dateMatch[0].split(/\s+/)[0];
-          const day = parseInt(dateMatch[1]);
-          const specifiedYear = dateMatch[2] ? parseInt(dateMatch[2]) : targetYear;
-          const months = {
-            'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
-            'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11,
-            'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'jun': 5, 'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
-          };
-          const month = months[monthStr.toLowerCase()];
-          if (month !== undefined) {
-            const m = String(month + 1).padStart(2, '0');
-            const d = String(day).padStart(2, '0');
-            return `${specifiedYear}-${m}-${d}`;
-          }
-        }
-
         // Check for slash format (MM/DD or M/D) with optional year
         dateMatch = inputText.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{4}))?/);
         if (dateMatch) {
@@ -385,7 +365,28 @@ Provide helpful guidance and always confirm actions.`;
           }
         }
 
-        // Check for "the Xth [of] [month]" pattern
+        // Check for month name or abbreviation with day (with optional year) - "Month Day" or "Month Day Year"
+        const monthPattern = /(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s+(20\d{2}))?/i;
+        dateMatch = inputText.match(monthPattern);
+        if (dateMatch) {
+          const fullMatch = dateMatch[0];
+          const monthStr = fullMatch.split(/\s+/)[0];
+          const day = parseInt(dateMatch[1]);
+          const specifiedYear = dateMatch[2] ? parseInt(dateMatch[2]) : targetYear;
+          const months = {
+            'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+            'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11,
+            'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'jun': 5, 'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+          };
+          const month = months[monthStr.toLowerCase()];
+          if (month !== undefined && day >= 1 && day <= 31) {
+            const m = String(month + 1).padStart(2, '0');
+            const d = String(day).padStart(2, '0');
+            return `${specifiedYear}-${m}-${d}`;
+          }
+        }
+
+        // Check for "the Xth [of] [month]" pattern (more specific: must have "of" or month name after)
         const thPatternFull = /(?:the\s+)?(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i;
         dateMatch = inputText.match(thPatternFull);
         if (dateMatch) {
@@ -405,15 +406,19 @@ Provide helpful guidance and always confirm actions.`;
           }
         }
 
-        // Check for "the Xth" pattern (just day number)
-        dateMatch = inputText.match(/(?:the\s+)?(\d{1,2})(?:st|nd|rd|th)?(?:\s+(?:of|in))?/i);
-        if (dateMatch) {
-          const day = parseInt(dateMatch[1]);
-          if (day >= 1 && day <= 31 && !inputText.match(/(\d{1,2})\/(\d{1,2})/)) {
-            const currentMonth = now.getMonth();
-            const m = String(currentMonth + 1).padStart(2, '0');
-            const d = String(day).padStart(2, '0');
-            return `${targetYear}-${m}-${d}`;
+        // Check for "the Xth" pattern (just day number) - only if NOT preceded by month name
+        // Must have "the" to avoid matching random numbers
+        const hasMonthName = /\b(?:january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/i.test(inputText);
+        if (!hasMonthName) {
+          dateMatch = inputText.match(/\bthe\s+(\d{1,2})(?:st|nd|rd|th)?\b/i);
+          if (dateMatch) {
+            const day = parseInt(dateMatch[1]);
+            if (day >= 1 && day <= 31) {
+              const currentMonth = now.getMonth();
+              const m = String(currentMonth + 1).padStart(2, '0');
+              const d = String(day).padStart(2, '0');
+              return `${targetYear}-${m}-${d}`;
+            }
           }
         }
 
