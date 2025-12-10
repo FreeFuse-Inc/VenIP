@@ -104,6 +104,11 @@ const UpcomingBookings = () => {
     }
   };
 
+  const parseLocalDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(year, parseInt(month) - 1, parseInt(day));
+  };
+
   const getBookingTypeLabel = (type) => {
     const typeValue = type?.toLowerCase() || 'accommodation';
     switch (typeValue) {
@@ -149,11 +154,6 @@ const UpcomingBookings = () => {
     const ampm = hour >= 12 ? 'PM' : 'AM';
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minutes} ${ampm}`;
-  };
-
-  const parseLocalDate = (dateString) => {
-    const [year, month, day] = dateString.split('-');
-    return new Date(year, parseInt(month) - 1, parseInt(day));
   };
 
   const getDaysUntil = (dateString) => {
