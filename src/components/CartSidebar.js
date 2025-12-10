@@ -48,6 +48,13 @@ const CartSidebar = () => {
     toggleCartSidebar();
   };
 
+  const handleDeleteBooking = (bookingId, bookingName) => {
+    if (window.confirm(`Are you sure you want to delete the booking for "${bookingName}"? This action cannot be undone.`)) {
+      deleteBookingFromHistory(bookingId);
+      setDeleteConfirm(null);
+    }
+  };
+
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
       month: 'short',
