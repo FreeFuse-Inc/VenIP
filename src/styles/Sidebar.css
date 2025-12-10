@@ -65,6 +65,8 @@
   gap: 12px;
   font-size: 14px;
   transition: all 0.2s ease;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .nav-item:hover {
@@ -75,6 +77,60 @@
 .nav-item.active {
   background-color: #4F7DFF;
   color: white;
+}
+
+.nav-item.has-submenu {
+  position: relative;
+}
+
+.submenu-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.submenu-arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  background-color: rgba(79, 125, 255, 0.05);
+  border-left: 3px solid #4F7DFF;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.submenu-item {
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 8px 16px 8px 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.submenu-item:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(79, 125, 255, 0.1);
+}
+
+.submenu-item.active {
+  background-color: rgba(79, 125, 255, 0.15);
+  color: white;
+}
+
+.submenu-label {
+  text-align: left;
 }
 
 .nav-icon {
