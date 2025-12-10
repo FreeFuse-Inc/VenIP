@@ -11,7 +11,8 @@ const UpcomingBookings = () => {
   const [editFormData, setEditFormData] = useState({
     checkIn: '',
     checkOut: '',
-    guests: '',
+    adults: 1,
+    kids: 0,
   });
   const [canEditCheckIn, setCanEditCheckIn] = useState(true);
 
