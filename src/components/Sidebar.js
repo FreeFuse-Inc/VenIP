@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoleContext } from '../context/RoleContext';
 import { UserContext } from '../context/UserContext';
@@ -10,6 +10,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const { userRole } = useContext(RoleContext);
   const { getCartItemCount } = useContext(UserContext);
   const { toggleCartSidebar } = useContext(CartContext);
+  const [expandedItems, setExpandedItems] = useState({});
 
   const getDashboardPath = () => {
     if (!userRole) return '/';
@@ -26,7 +27,15 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
       return [
         ...baseItems,
         { id: 'calander', label: 'Calander', icon: '📅', path: '/sponsorship-bookings' },
-        { id: 'bookings', label: 'Bookings', icon: '🏨', path: '/accommodation-bookings' },
+        {
+          id: 'bookings',
+          label: 'Bookings',
+          icon: '🏨',
+          submenu: [
+            { id: 'travel-bookings', label: 'Travel Bookings', path: '/travel-bookings' },
+            { id: 'upcoming-bookings', label: 'Upcoming Bookings', path: '/upcoming-bookings' },
+          ],
+        },
         { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
         { id: 'feedback-testing', label: 'Feedback Testing', icon: '🧪', path: '/feedback-testing' },
         { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
@@ -42,6 +51,13 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   };
 
   const menuItems = getMenuItems();
+
+  const toggleExpand = (itemId) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
 
   const roles = [
     { id: 'npo', name: 'NPO', icon: '🎯', color: '#FF6B6B' },
