@@ -26,11 +26,14 @@ const UpcomingBookings = () => {
     const bookingHistory = user?.bookingHistory || [];
     allBookings.push(...bookingHistory.map((booking) => ({
       ...booking,
-      checkIn: booking.details?.checkIn || booking.date,
-      checkOut: booking.details?.checkOut,
-      departure: booking.details?.departure || booking.date,
-      location: booking.details?.location || booking.provider,
-      guests: booking.details?.guests,
+      checkIn: booking.details?.checkIn || booking.checkIn || booking.date,
+      checkOut: booking.details?.checkOut || booking.checkOut,
+      departure: booking.details?.departure || booking.departure || booking.date,
+      location: booking.details?.location || booking.location || booking.provider,
+      guests: booking.details?.guests || booking.guests,
+      bedrooms: booking.details?.bedrooms || booking.bedrooms,
+      bathrooms: booking.details?.bathrooms || booking.bathrooms,
+      amenities: booking.details?.amenities || booking.amenities,
     })));
 
     return allBookings.filter((item) => {
