@@ -204,6 +204,7 @@ const UpcomingBookings = () => {
       checkOut: '',
       guests: '',
     });
+    setCanEditCheckIn(true);
   };
 
   const handleEditSubmit = () => {
