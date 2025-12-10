@@ -185,11 +185,15 @@ const UpcomingBookings = () => {
     const checkOut = booking.checkOut || booking.details?.checkOut;
     const guests = booking.guests || booking.details?.guests;
 
+    const daysUntilCheckIn = getDaysUntilCheckIn(checkIn);
+    const canEdit = daysUntilCheckIn > 3;
+
     setEditFormData({
       checkIn: checkIn || '',
       checkOut: checkOut || '',
       guests: guests || '',
     });
+    setCanEditCheckIn(canEdit);
     setEditingBookingId(booking.id);
   };
 
