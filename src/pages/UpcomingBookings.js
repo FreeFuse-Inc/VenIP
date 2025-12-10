@@ -12,8 +12,21 @@ const UpcomingBookings = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    const allBookings = [];
+
     const cart = user?.cart || [];
-    return cart.filter((item) => {
+    allBookings.push(...cart);
+
+    const bookingHistory = user?.bookingHistory || [];
+    allBookings.push(...bookingHistory.map((booking) => ({
+      ...booking,
+      checkIn: booking.details?.checkIn || booking.date,
+      departure: booking.details?.departure || booking.date,
+      location: booking.details?.location || booking.provider,
+      guests: booking.details?.guests,
+    })));
+
+    return allBookings.filter((item) => {
       if (!item.checkIn && !item.departure) return false;
 
       let itemDate = null;
