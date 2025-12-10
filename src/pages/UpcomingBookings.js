@@ -592,14 +592,10 @@ const UpcomingBookings = () => {
                   type="date"
                   id="edit-check-in"
                   value={editFormData.checkIn}
-                  onChange={(e) =>
-                    setEditFormData((prev) => ({
-                      ...prev,
-                      checkIn: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => handleCheckInDateChange(e.target.value)}
                   disabled={!canEditCheckIn}
                   required
+                  className={checkInValidationError ? 'input-error' : ''}
                 />
               </div>
 
