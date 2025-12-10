@@ -234,6 +234,30 @@ const UpcomingBookings = () => {
       kids: 0,
     });
     setCanEditCheckIn(true);
+    setCheckInValidationError('');
+    setShowValidationToast(false);
+  };
+
+  const handleCheckInDateChange = (newCheckInDate) => {
+    const daysUntilCheckIn = getDaysUntilCheckIn(newCheckInDate);
+
+    if (daysUntilCheckIn <= 3) {
+      setCheckInValidationError('You cannot edit the check-in date within 3 days of travel. Please select a date 4 days or more from today.');
+      setShowValidationToast(true);
+
+      setTimeout(() => {
+        setShowValidationToast(false);
+      }, 5000);
+
+      return;
+    }
+
+    setCheckInValidationError('');
+    setShowValidationToast(false);
+    setEditFormData((prev) => ({
+      ...prev,
+      checkIn: newCheckInDate,
+    }));
   };
 
   const handleEditSubmit = () => {
