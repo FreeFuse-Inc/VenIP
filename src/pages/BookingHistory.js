@@ -9,7 +9,29 @@ const BookingHistory = () => {
   const [sortBy, setSortBy] = useState('recent');
   const [selectedBooking, setSelectedBooking] = useState(null);
 
-  const categories = ['All', 'Travel', 'Sponsorship', 'Vendor', 'Accommodation'];
+  const categories = ['All', 'Accommodation', 'Hotel', 'Flight', 'Activity', 'Airport Transfer'];
+
+  const handleDeleteBooking = (bookingId, bookingName) => {
+    if (window.confirm(`Are you sure you want to delete the booking for "${bookingName}"? This action cannot be undone.`)) {
+      deleteBookingFromHistory(bookingId);
+      setSelectedBooking(null);
+    }
+  };
+
+  const allUserBookings = useMemo(() => {
+    const bookingHistory = user?.bookingHistory || [];
+    return bookingHistory.map((booking) => ({
+      id: booking.id,
+      name: booking.name || 'Booking',
+      category: booking.type || booking.category || 'Accommodation',
+      provider: booking.provider || booking.location || 'Provider',
+      date: booking.checkIn || booking.departure || booking.date || new Date().toISOString(),
+      bookingDate: booking.createdAt || booking.date || new Date().toISOString(),
+      status: 'Confirmed',
+      amount: booking.totalPrice || booking.amount || '$0',
+      details: booking.details || {},
+    }));
+  }, [user?.bookingHistory]);
 
   const mockTravelBookings = [
     {
