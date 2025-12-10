@@ -143,7 +143,7 @@ const BookingHistory = () => {
     },
   ];
 
-  const allBookings = [
+  const allBookings = allUserBookings.length > 0 ? allUserBookings : [
     ...mockTravelBookings,
     ...mockSponsorshipBookings,
     ...mockVendorBookings,
