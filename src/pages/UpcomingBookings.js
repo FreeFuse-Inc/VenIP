@@ -231,6 +231,8 @@ const UpcomingBookings = () => {
 
     closeEditModal();
     alert('Booking updated successfully!');
+
+    window.location.reload();
   };
 
   const handleCancelBooking = (booking) => {
