@@ -502,6 +502,82 @@ const UpcomingBookings = () => {
           </div>
         )}
       </div>
+
+      {editingBookingId && (
+        <div className="edit-modal-overlay" onClick={closeEditModal}>
+          <div className="edit-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="edit-modal-header">
+              <h2>Edit Booking</h2>
+              <button className="close-modal-btn" onClick={closeEditModal}>
+                ✕
+              </button>
+            </div>
+
+            <form className="edit-booking-form" onSubmit={(e) => {
+              e.preventDefault();
+              handleEditSubmit();
+            }}>
+              <div className="form-group">
+                <label htmlFor="edit-check-in">Check-in Date *</label>
+                <input
+                  type="date"
+                  id="edit-check-in"
+                  value={editFormData.checkIn}
+                  onChange={(e) =>
+                    setEditFormData((prev) => ({
+                      ...prev,
+                      checkIn: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="edit-check-out">Check-out Date *</label>
+                <input
+                  type="date"
+                  id="edit-check-out"
+                  value={editFormData.checkOut}
+                  onChange={(e) =>
+                    setEditFormData((prev) => ({
+                      ...prev,
+                      checkOut: e.target.value,
+                    }))
+                  }
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="edit-guests">Guests *</label>
+                <input
+                  type="text"
+                  id="edit-guests"
+                  value={editFormData.guests}
+                  onChange={(e) =>
+                    setEditFormData((prev) => ({
+                      ...prev,
+                      guests: e.target.value,
+                    }))
+                  }
+                  placeholder="e.g., 2 adults, 1 child"
+                  required
+                />
+              </div>
+
+              <div className="form-actions">
+                <button type="button" className="cancel-form-btn" onClick={closeEditModal}>
+                  Cancel
+                </button>
+                <button type="submit" className="save-btn">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
