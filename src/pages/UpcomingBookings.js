@@ -15,6 +15,8 @@ const UpcomingBookings = () => {
     kids: 0,
   });
   const [canEditCheckIn, setCanEditCheckIn] = useState(true);
+  const [checkInValidationError, setCheckInValidationError] = useState('');
+  const [showValidationToast, setShowValidationToast] = useState(false);
 
   const upcomingBookings = useMemo(() => {
     const today = new Date();
