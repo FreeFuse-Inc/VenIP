@@ -211,10 +211,13 @@ const UpcomingBookings = () => {
     const daysUntilCheckIn = getDaysUntilCheckIn(checkIn);
     const canEdit = daysUntilCheckIn > 3;
 
+    const { adults, kids } = parseGuestsString(guests);
+
     setEditFormData({
       checkIn: checkIn || '',
       checkOut: checkOut || '',
-      guests: guests || '',
+      adults,
+      kids,
     });
     setCanEditCheckIn(canEdit);
     setEditingBookingId(booking.id);
