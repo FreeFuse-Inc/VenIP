@@ -133,8 +133,7 @@ const UpcomingBookings = () => {
   };
 
   const formatDate = (dateString) => {
-    const [year, month, day] = dateString.split('-');
-    const date = new Date(year, parseInt(month) - 1, day);
+    const date = parseLocalDate(dateString);
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short',
