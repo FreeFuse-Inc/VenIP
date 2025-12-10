@@ -355,10 +355,10 @@ const UpcomingBookings = () => {
                 <div key={index} className="booking-card">
                   <div className="booking-card-header">
                     <div className="booking-title-section">
-                      <span className="booking-icon">{getBookingIcon(booking.type)}</span>
+                      <span className="booking-icon">{getBookingIcon(booking.type || booking.category)}</span>
                       <div className="booking-title-info">
                         <h3 className="booking-name">{booking.name}</h3>
-                        <span className="booking-type">{getBookingTypeLabel(booking.type)}</span>
+                        <span className="booking-type">{getBookingTypeLabel(booking.type || booking.category)}</span>
                       </div>
                     </div>
                     <div className="booking-meta">
