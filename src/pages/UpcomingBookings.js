@@ -514,8 +514,8 @@ const UpcomingBookings = () => {
               const bookingDate = booking.checkIn || booking.departure;
               const daysUntil = getDaysUntil(bookingDate);
               const daysUntilNumber = getDaysUntilCheckIn(bookingDate);
-              const canEdit = daysUntilNumber > 3;
-              const canCancel = daysUntilNumber >= 7;
+              const canEdit = daysUntilNumber > 3 || devMode;
+              const canCancel = daysUntilNumber >= 7 || devMode;
 
               return (
                 <div key={index} className="booking-card">
