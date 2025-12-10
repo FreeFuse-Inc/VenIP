@@ -212,7 +212,7 @@ const UpcomingBookings = () => {
     const guests = booking.guests || booking.details?.guests;
 
     const daysUntilCheckIn = getDaysUntilCheckIn(checkIn);
-    const canEdit = daysUntilCheckIn > 3;
+    const canEdit = daysUntilCheckIn > 3 || devMode;
 
     const { adults, kids } = parseGuestsString(guests);
 
