@@ -477,6 +477,49 @@
   margin-left: 4px;
 }
 
+.guests-group {
+  margin-bottom: 0;
+}
+
+.guests-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.guests-input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guests-input label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.guests-input select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.guests-input select:hover {
+  border-color: #4F7DFF;
+}
+
+.guests-input select:focus {
+  outline: none;
+  border-color: #4F7DFF;
+  box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1);
+}
+
 .form-actions {
   display: flex;
   gap: 8px;
