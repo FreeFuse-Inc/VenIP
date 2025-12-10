@@ -539,18 +539,30 @@ const UpcomingBookings = () => {
 
                   <div className="booking-card-footer">
                     <button
-                      className={`edit-btn ${!canEdit ? 'disabled' : ''}`}
+                      className={`edit-btn ${!canEdit ? 'disabled' : ''} ${devMode && daysUntilNumber <= 3 ? 'dev-enabled' : ''}`}
                       onClick={() => canEdit && openEditModal(booking)}
                       disabled={!canEdit}
-                      title={!canEdit ? 'Cannot edit bookings within 3 days of check-in' : 'Edit booking'}
+                      title={
+                        devMode && daysUntilNumber <= 3
+                          ? '[DEV MODE] Edit booking'
+                          : !canEdit
+                          ? 'Cannot edit bookings within 3 days of check-in'
+                          : 'Edit booking'
+                      }
                     >
                       Edit
                     </button>
                     <button
-                      className={`cancel-btn ${!canCancel ? 'disabled' : ''}`}
+                      className={`cancel-btn ${!canCancel ? 'disabled' : ''} ${devMode && daysUntilNumber < 7 ? 'dev-enabled' : ''}`}
                       onClick={() => canCancel && handleCancelBooking(booking)}
                       disabled={!canCancel}
-                      title={!canCancel ? 'Can only cancel bookings 7 days or more in advance' : 'Cancel booking'}
+                      title={
+                        devMode && daysUntilNumber < 7
+                          ? '[DEV MODE] Cancel booking'
+                          : !canCancel
+                          ? 'Can only cancel bookings 7 days or more in advance'
+                          : 'Cancel booking'
+                      }
                     >
                       Cancel
                     </button>
