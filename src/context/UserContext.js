@@ -104,6 +104,29 @@ export const UserProvider = ({ children }) => {
     return user?.cart?.length || 0;
   };
 
+  const updateBookingInHistory = (bookingId, updates) => {
+    if (!user) return;
+
+    const updatedHistory = user.bookingHistory.map((booking) =>
+      booking.id === bookingId ? { ...booking, ...updates } : booking
+    );
+    updateUser({ bookingHistory: updatedHistory });
+  };
+
+  const deleteBookingFromHistory = (bookingId) => {
+    if (!user) return;
+
+    const updatedHistory = user.bookingHistory.filter((booking) => booking.id !== bookingId);
+    updateUser({ bookingHistory: updatedHistory });
+  };
+
+  const deleteBookingFromCart = (itemId) => {
+    if (!user) return;
+
+    const updatedCart = user.cart.filter((item) => item.id !== itemId);
+    updateUser({ cart: updatedCart });
+  };
+
   const value = {
     user,
     isLoading,
@@ -115,6 +138,9 @@ export const UserProvider = ({ children }) => {
     addToBookingHistory,
     getCartTotal,
     getCartItemCount,
+    updateBookingInHistory,
+    deleteBookingFromHistory,
+    deleteBookingFromCart,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
