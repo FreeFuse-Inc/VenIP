@@ -27,6 +27,7 @@ const UpcomingBookings = () => {
     allBookings.push(...bookingHistory.map((booking) => ({
       ...booking,
       checkIn: booking.details?.checkIn || booking.date,
+      checkOut: booking.details?.checkOut,
       departure: booking.details?.departure || booking.date,
       location: booking.details?.location || booking.provider,
       guests: booking.details?.guests,
