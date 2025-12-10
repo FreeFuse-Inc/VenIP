@@ -274,9 +274,19 @@ const BookingHistory = () => {
                   <h2>{selectedBooking.name}</h2>
                   <p className="detail-provider">{selectedBooking.provider}</p>
                 </div>
-                <span className={`status-badge ${getStatusColor(selectedBooking.status)}`}>
-                  {selectedBooking.status}
-                </span>
+                <div className="detail-header-actions">
+                  <span className={`status-badge ${getStatusColor(selectedBooking.status)}`}>
+                    {selectedBooking.status}
+                  </span>
+                  <button
+                    className="delete-detail-btn"
+                    onClick={() => handleDeleteBooking(selectedBooking.id, selectedBooking.name)}
+                    title="Delete booking"
+                    aria-label="Delete booking"
+                  >
+                    🗑️
+                  </button>
+                </div>
               </div>
 
               <div className="detail-info">
