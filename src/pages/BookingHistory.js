@@ -4,7 +4,7 @@ import BackButton from '../components/BackButton';
 import '../styles/BookingHistory.css';
 
 const BookingHistory = () => {
-  const { user } = useContext(UserContext);
+  const { user, deleteBookingFromHistory } = useContext(UserContext);
   const [filterCategory, setFilterCategory] = useState('All');
   const [sortBy, setSortBy] = useState('recent');
   const [selectedBooking, setSelectedBooking] = useState(null);
