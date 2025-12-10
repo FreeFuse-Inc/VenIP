@@ -343,6 +343,36 @@
   color: #999;
 }
 
+.edit-btn.dev-enabled {
+  opacity: 1;
+  background: white;
+  color: #4F7DFF;
+  border-color: #4F7DFF;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgba(79, 125, 255, 0.2);
+}
+
+.edit-btn.dev-enabled:hover {
+  background: #4F7DFF;
+  color: white;
+  box-shadow: 0 0 0 2px rgba(79, 125, 255, 0.2);
+}
+
+.cancel-btn.dev-enabled {
+  opacity: 1;
+  background: white;
+  color: #ef4444;
+  border-color: #ef4444;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.cancel-btn.dev-enabled:hover {
+  background: #ef4444;
+  color: white;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
 .empty-state {
   display: flex;
   justify-content: center;
