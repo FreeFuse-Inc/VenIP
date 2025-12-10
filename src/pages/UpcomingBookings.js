@@ -36,7 +36,7 @@ const UpcomingBookings = () => {
       }
       return 0;
     });
-  }, [cart, sortBy]);
+  }, [user, sortBy]);
 
   const filteredBookings = useMemo(() => {
     if (filterType === 'all') return upcomingBookings;
