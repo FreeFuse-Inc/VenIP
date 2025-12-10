@@ -228,7 +228,8 @@ const UpcomingBookings = () => {
     setEditFormData({
       checkIn: '',
       checkOut: '',
-      guests: '',
+      adults: 1,
+      kids: 0,
     });
     setCanEditCheckIn(true);
   };
