@@ -327,19 +327,28 @@ const BookingHistory = () => {
                 <div
                   key={booking.id}
                   className="booking-card"
-                  onClick={() => setSelectedBooking(booking)}
                 >
                   <div className="booking-card-header">
-                    <div className="booking-card-title">
+                    <div className="booking-card-title" onClick={() => setSelectedBooking(booking)}>
                       <h3>{booking.name}</h3>
                       <p className="booking-card-provider">{booking.provider}</p>
                     </div>
-                    <span className={`status-badge ${getStatusColor(booking.status)}`}>
-                      {booking.status}
-                    </span>
+                    <div className="booking-card-actions">
+                      <span className={`status-badge ${getStatusColor(booking.status)}`}>
+                        {booking.status}
+                      </span>
+                      <button
+                        className="delete-booking-btn"
+                        onClick={() => handleDeleteBooking(booking.id, booking.name)}
+                        title="Delete booking"
+                        aria-label="Delete booking"
+                      >
+                        🗑️
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="booking-card-info">
+                  <div className="booking-card-info" onClick={() => setSelectedBooking(booking)}>
                     <div className="info-item">
                       <span className="icon">📅</span>
                       <span>{formatDate(booking.date)}</span>
@@ -354,7 +363,7 @@ const BookingHistory = () => {
                     </div>
                   </div>
 
-                  <button className="view-details-link">View Details →</button>
+                  <button className="view-details-link" onClick={() => setSelectedBooking(booking)}>View Details →</button>
                 </div>
               ))
             ) : (
