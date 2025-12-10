@@ -211,9 +211,6 @@ const UpcomingBookings = () => {
     const checkOut = booking.checkOut || booking.details?.checkOut;
     const guests = booking.guests || booking.details?.guests;
 
-    const daysUntilCheckIn = getDaysUntilCheckIn(checkIn);
-    const canEdit = daysUntilCheckIn > 3;
-
     const { adults, kids } = parseGuestsString(guests);
 
     setEditFormData({
@@ -222,7 +219,6 @@ const UpcomingBookings = () => {
       adults,
       kids,
     });
-    setCanEditCheckIn(canEdit);
     setEditingBookingId(booking.id);
   };
 
@@ -240,21 +236,6 @@ const UpcomingBookings = () => {
   };
 
   const handleCheckInDateChange = (newCheckInDate) => {
-    const daysUntilCheckIn = getDaysUntilCheckIn(newCheckInDate);
-
-    if (daysUntilCheckIn <= 3) {
-      setCheckInValidationError('You cannot edit the check-in date within 3 days of travel. Please select a date 4 days or more from today.');
-      setShowValidationToast(true);
-
-      setTimeout(() => {
-        setShowValidationToast(false);
-      }, 5000);
-
-      return;
-    }
-
-    setCheckInValidationError('');
-    setShowValidationToast(false);
     setEditFormData((prev) => ({
       ...prev,
       checkIn: newCheckInDate,
@@ -271,6 +252,16 @@ const UpcomingBookings = () => {
 
     if (new Date(checkIn) >= new Date(checkOut)) {
       alert('Check-out date must be after check-in date');
+      return;
+    }
+
+    const daysUntilCheckIn = getDaysUntilCheckIn(checkIn);
+    if (daysUntilCheckIn <= 3) {
+      setCheckInValidationError('You cannot edit the check-in date within 3 days of travel. Please select a date 4 days or more from today.');
+      setShowValidationToast(true);
+      setTimeout(() => {
+        setShowValidationToast(false);
+      }, 5000);
       return;
     }
 
@@ -530,7 +521,6 @@ const UpcomingBookings = () => {
               const bookingDate = booking.checkIn || booking.departure;
               const daysUntil = getDaysUntil(bookingDate);
               const daysUntilNumber = getDaysUntilCheckIn(bookingDate);
-              const canEdit = daysUntilNumber > 3 || devMode;
               const canCancel = daysUntilNumber >= 7 || devMode;
 
               return (
@@ -555,16 +545,9 @@ const UpcomingBookings = () => {
 
                   <div className="booking-card-footer">
                     <button
-                      className={`edit-btn ${!canEdit ? 'disabled' : ''} ${devMode && daysUntilNumber <= 3 ? 'dev-enabled' : ''}`}
-                      onClick={() => canEdit && openEditModal(booking)}
-                      disabled={!canEdit}
-                      title={
-                        devMode && daysUntilNumber <= 3
-                          ? '[DEV MODE] Edit booking'
-                          : !canEdit
-                          ? 'Cannot edit bookings within 3 days of check-in'
-                          : 'Edit booking'
-                      }
+                      className="edit-btn"
+                      onClick={() => openEditModal(booking)}
+                      title="Edit booking"
                     >
                       Edit
                     </button>
@@ -620,16 +603,12 @@ const UpcomingBookings = () => {
               handleEditSubmit();
             }}>
               <div className="form-group">
-                <label htmlFor="edit-check-in">
-                  Check-in Date *
-                  {!canEditCheckIn && <span className="restricted-label"> (Cannot edit - within 3 days)</span>}
-                </label>
+                <label htmlFor="edit-check-in">Check-in Date *</label>
                 <input
                   type="date"
                   id="edit-check-in"
                   value={editFormData.checkIn}
                   onChange={(e) => handleCheckInDateChange(e.target.value)}
-                  disabled={!canEditCheckIn}
                   required
                   className={checkInValidationError ? 'input-error' : ''}
                 />
