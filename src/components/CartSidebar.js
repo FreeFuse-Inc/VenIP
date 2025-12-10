@@ -213,8 +213,18 @@ const CartSidebar = () => {
                     {recentBookings.map((booking) => (
                       <div key={booking.id} className="history-booking-card">
                         <div className="history-booking-header">
-                          <h4 className="history-booking-name">{booking.name}</h4>
-                          <span className="history-booking-category">{booking.category}</span>
+                          <div className="history-booking-title-section">
+                            <h4 className="history-booking-name">{booking.name}</h4>
+                            <span className="history-booking-category">{booking.category}</span>
+                          </div>
+                          <button
+                            className="delete-history-btn"
+                            onClick={() => handleDeleteBooking(booking.id, booking.name)}
+                            title="Delete booking"
+                            aria-label="Delete booking"
+                          >
+                            🗑️
+                          </button>
                         </div>
                         <p className="history-booking-provider">{booking.provider}</p>
                         <div className="history-booking-details">
