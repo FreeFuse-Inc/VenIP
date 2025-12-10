@@ -593,21 +593,49 @@ const UpcomingBookings = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="edit-guests">Guests *</label>
-                <input
-                  type="text"
-                  id="edit-guests"
-                  value={editFormData.guests}
-                  onChange={(e) =>
-                    setEditFormData((prev) => ({
-                      ...prev,
-                      guests: e.target.value,
-                    }))
-                  }
-                  placeholder="e.g., 2 adults, 1 child"
-                  required
-                />
+              <div className="form-group guests-group">
+                <div className="guests-row">
+                  <div className="guests-input">
+                    <label htmlFor="edit-adults">Adults *</label>
+                    <select
+                      id="edit-adults"
+                      value={editFormData.adults}
+                      onChange={(e) =>
+                        setEditFormData((prev) => ({
+                          ...prev,
+                          adults: parseInt(e.target.value),
+                        }))
+                      }
+                      required
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                        <option key={num} value={num}>
+                          {num} {num === 1 ? 'Adult' : 'Adults'}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="guests-input">
+                    <label htmlFor="edit-kids">Children</label>
+                    <select
+                      id="edit-kids"
+                      value={editFormData.kids}
+                      onChange={(e) =>
+                        setEditFormData((prev) => ({
+                          ...prev,
+                          kids: parseInt(e.target.value),
+                        }))
+                      }
+                    >
+                      {[0, 1, 2, 3, 4, 5].map((num) => (
+                        <option key={num} value={num}>
+                          {num === 0 ? 'No children' : `${num} ${num === 1 ? 'Child' : 'Children'}`}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <div className="form-actions">
