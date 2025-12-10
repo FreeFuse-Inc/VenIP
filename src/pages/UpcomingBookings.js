@@ -4,7 +4,7 @@ import BackButton from '../components/BackButton';
 import '../styles/UpcomingBookings.css';
 
 const UpcomingBookings = () => {
-  const { cart } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [sortBy, setSortBy] = useState('date');
   const [filterType, setFilterType] = useState('all');
 
@@ -12,6 +12,7 @@ const UpcomingBookings = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    const cart = user?.cart || [];
     return cart.filter((item) => {
       if (!item.checkIn && !item.departure) return false;
 
