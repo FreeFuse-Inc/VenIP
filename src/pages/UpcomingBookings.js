@@ -343,7 +343,7 @@ const UpcomingBookings = () => {
                     </div>
                     <div className="booking-meta">
                       <div className="days-until">{daysUntil}</div>
-                      <div className="booking-price">{booking.totalPrice}</div>
+                      <div className="booking-price">{booking.totalPrice || booking.amount}</div>
                     </div>
                   </div>
 
