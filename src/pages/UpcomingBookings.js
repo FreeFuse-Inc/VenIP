@@ -67,16 +67,24 @@ const UpcomingBookings = () => {
   ];
 
   const getBookingIcon = (type) => {
-    switch (type) {
+    const typeValue = type?.toLowerCase() || '';
+    switch (typeValue) {
       case 'hotels':
       case 'homes':
       case 'longstays':
+      case 'hotel':
+      case 'home & apartment':
+      case 'long stay':
+      case 'accommodation':
         return '🏨';
       case 'flights':
+      case 'flight':
         return '✈️';
       case 'activities':
+      case 'activity':
         return '🎭';
       case 'transfers':
+      case 'airport transfer':
         return '🚗';
       default:
         return '📅';
