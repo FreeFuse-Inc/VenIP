@@ -579,6 +579,13 @@ const UpcomingBookings = () => {
               </button>
             </div>
 
+            {showValidationToast && (
+              <div className="validation-toast">
+                <span className="toast-icon">⚠️</span>
+                <span className="toast-message">{checkInValidationError}</span>
+              </div>
+            )}
+
             <form className="edit-booking-form" onSubmit={(e) => {
               e.preventDefault();
               handleEditSubmit();
