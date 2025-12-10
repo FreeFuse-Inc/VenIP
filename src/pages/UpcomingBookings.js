@@ -13,6 +13,7 @@ const UpcomingBookings = () => {
     checkOut: '',
     guests: '',
   });
+  const [canEditCheckIn, setCanEditCheckIn] = useState(true);
 
   const upcomingBookings = useMemo(() => {
     const today = new Date();
