@@ -563,4 +563,9 @@
     width: 95%;
     max-height: 95vh;
   }
+
+  .guests-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
