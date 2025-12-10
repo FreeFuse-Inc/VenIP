@@ -37,6 +37,8 @@ import InviteAttendees from './pages/InviteAttendees';
 import RequestVendors from './pages/RequestVendors';
 import SponsorshipBookings from './pages/SponsorshipBookings';
 import AccommodationBookings from './pages/AccommodationBookings';
+import TravelBookings from './pages/TravelBookings';
+import UpcomingBookings from './pages/UpcomingBookings';
 import BookingConfirmation from './pages/BookingConfirmation';
 import EventFeedback from './pages/EventFeedback';
 import FeedbackSettings from './pages/FeedbackSettings';
