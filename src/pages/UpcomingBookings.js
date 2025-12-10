@@ -161,6 +161,97 @@ const UpcomingBookings = () => {
     return `In ${Math.floor(diffDays / 7)} weeks`;
   };
 
+  const getDaysUntilCheckIn = (dateString) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const bookingDate = new Date(dateString);
+    bookingDate.setHours(0, 0, 0, 0);
+    const diffTime = bookingDate - today;
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  const openEditModal = (booking) => {
+    const checkIn = booking.checkIn || booking.details?.checkIn;
+    const checkOut = booking.checkOut || booking.details?.checkOut;
+    const guests = booking.guests || booking.details?.guests;
+
+    setEditFormData({
+      checkIn: checkIn || '',
+      checkOut: checkOut || '',
+      guests: guests || '',
+    });
+    setEditingBookingId(booking.id);
+  };
+
+  const closeEditModal = () => {
+    setEditingBookingId(null);
+    setEditFormData({
+      checkIn: '',
+      checkOut: '',
+      guests: '',
+    });
+  };
+
+  const handleEditSubmit = () => {
+    const { checkIn, checkOut, guests } = editFormData;
+
+    if (!checkIn || !checkOut || !guests) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    if (new Date(checkIn) >= new Date(checkOut)) {
+      alert('Check-out date must be after check-in date');
+      return;
+    }
+
+    const booking = filteredBookings.find((b) => b.id === editingBookingId);
+    if (!booking) return;
+
+    if (booking.details) {
+      updateBookingInHistory(editingBookingId, {
+        details: {
+          ...booking.details,
+          checkIn,
+          checkOut,
+          guests,
+        },
+      });
+    } else {
+      updateBookingInHistory(editingBookingId, {
+        checkIn,
+        checkOut,
+        guests,
+      });
+    }
+
+    closeEditModal();
+    alert('Booking updated successfully!');
+  };
+
+  const handleCancelBooking = (booking) => {
+    const bookingDate = booking.checkIn || booking.details?.checkIn || booking.departure;
+    const daysUntil = getDaysUntilCheckIn(bookingDate);
+
+    if (daysUntil < 7) {
+      alert('Bookings can only be canceled 7 days or more in advance.');
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Are you sure you want to cancel "${booking.name}"? This action cannot be undone.`
+    );
+
+    if (confirmed) {
+      if (booking.details) {
+        deleteBookingFromHistory(booking.id);
+      } else {
+        deleteBookingFromCart(booking.id);
+      }
+      alert('Booking canceled successfully!');
+    }
+  };
+
   const renderAccommodationDetails = (booking) => {
     const checkIn = booking.checkIn || booking.details?.checkIn;
     const checkOut = booking.checkOut || booking.details?.checkOut;
