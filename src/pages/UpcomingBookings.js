@@ -607,12 +607,16 @@ const UpcomingBookings = () => {
               handleEditSubmit();
             }}>
               <div className="form-group">
-                <label htmlFor="edit-check-in">Check-in Date *</label>
+                <label htmlFor="edit-check-in">
+                  Check-in Date *
+                  {!canEditCheckIn && <span className="restricted-label"> (Cannot edit - within 3 days)</span>}
+                </label>
                 <input
                   type="date"
                   id="edit-check-in"
                   value={editFormData.checkIn}
                   onChange={(e) => handleCheckInDateChange(e.target.value)}
+                  disabled={!canEditCheckIn}
                   required
                   className={checkInValidationError ? 'input-error' : ''}
                 />
