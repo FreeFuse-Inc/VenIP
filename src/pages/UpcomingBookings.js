@@ -152,10 +152,15 @@ const UpcomingBookings = () => {
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
+  const parseLocalDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(year, parseInt(month) - 1, parseInt(day));
+  };
+
   const getDaysUntil = (dateString) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const bookingDate = new Date(dateString);
+    const bookingDate = parseLocalDate(dateString);
     bookingDate.setHours(0, 0, 0, 0);
     const diffTime = bookingDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -169,7 +174,7 @@ const UpcomingBookings = () => {
   const getDaysUntilCheckIn = (dateString) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const bookingDate = new Date(dateString);
+    const bookingDate = parseLocalDate(dateString);
     bookingDate.setHours(0, 0, 0, 0);
     const diffTime = bookingDate - today;
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
