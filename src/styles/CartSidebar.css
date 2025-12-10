@@ -427,6 +427,15 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 4px;
+  gap: 8px;
+}
+
+.history-booking-title-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 
 .history-booking-name {
@@ -434,7 +443,6 @@
   font-weight: 600;
   color: #1f2937;
   margin: 0;
-  flex: 1;
 }
 
 .history-booking-category {
@@ -444,7 +452,23 @@
   padding: 2px 8px;
   border-radius: 3px;
   white-space: nowrap;
-  margin-left: 8px;
+}
+
+.delete-history-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-history-btn:hover {
+  opacity: 0.7;
 }
 
 .history-booking-provider {
