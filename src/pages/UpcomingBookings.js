@@ -53,7 +53,10 @@ const UpcomingBookings = () => {
 
   const filteredBookings = useMemo(() => {
     if (filterType === 'all') return upcomingBookings;
-    return upcomingBookings.filter((item) => item.type === filterType);
+    return upcomingBookings.filter((item) => {
+      const itemType = item.type || item.category;
+      return itemType === filterType;
+    });
   }, [upcomingBookings, filterType]);
 
   const bookingTypes = [
