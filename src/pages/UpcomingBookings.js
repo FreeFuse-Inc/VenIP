@@ -235,9 +235,9 @@ const UpcomingBookings = () => {
   };
 
   const handleEditSubmit = () => {
-    const { checkIn, checkOut, guests } = editFormData;
+    const { checkIn, checkOut, adults, kids } = editFormData;
 
-    if (!checkIn || !checkOut || !guests) {
+    if (!checkIn || !checkOut || adults < 1) {
       alert('Please fill in all fields');
       return;
     }
@@ -247,6 +247,7 @@ const UpcomingBookings = () => {
       return;
     }
 
+    const guests = formatGuestsString(adults, kids);
     const booking = filteredBookings.find((b) => b.id === editingBookingId);
     if (!booking) return;
 
