@@ -78,20 +78,48 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
         <>
           <nav className="sidebar-nav">
             {menuItems.map((item) => {
+              const isExpanded = expandedItems[item.id];
+              const hasSubmenu = item.submenu && item.submenu.length > 0;
+
               const handleClick = () => {
-                setActiveTab(item.id);
-                navigate(item.path);
+                if (hasSubmenu) {
+                  toggleExpand(item.id);
+                } else {
+                  setActiveTab(item.id);
+                  navigate(item.path);
+                }
               };
 
               return (
-                <button
-                  key={item.id}
-                  className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
-                  onClick={handleClick}
-                >
-                  <span className="nav-icon">{item.icon}</span>
-                  <span className="nav-label">{item.label}</span>
-                </button>
+                <div key={item.id}>
+                  <button
+                    className={`nav-item ${activeTab === item.id ? 'active' : ''} ${hasSubmenu ? 'has-submenu' : ''}`}
+                    onClick={handleClick}
+                  >
+                    <span className="nav-icon">{item.icon}</span>
+                    <span className="nav-label">{item.label}</span>
+                    {hasSubmenu && (
+                      <span className={`submenu-arrow ${isExpanded ? 'expanded' : ''}`}>▼</span>
+                    )}
+                  </button>
+
+                  {hasSubmenu && isExpanded && (
+                    <div className="submenu">
+                      {item.submenu.map((subitem) => (
+                        <button
+                          key={subitem.id}
+                          className={`submenu-item ${activeTab === subitem.id ? 'active' : ''}`}
+                          onClick={() => {
+                            setActiveTab(subitem.id);
+                            navigate(subitem.path);
+                          }}
+                        >
+                          <span className="submenu-label">{subitem.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>
