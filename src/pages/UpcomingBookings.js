@@ -4,9 +4,15 @@ import BackButton from '../components/BackButton';
 import '../styles/UpcomingBookings.css';
 
 const UpcomingBookings = () => {
-  const { user } = useContext(UserContext);
+  const { user, updateBookingInHistory, deleteBookingFromHistory, deleteBookingFromCart } = useContext(UserContext);
   const [sortBy, setSortBy] = useState('date');
   const [filterType, setFilterType] = useState('all');
+  const [editingBookingId, setEditingBookingId] = useState(null);
+  const [editFormData, setEditFormData] = useState({
+    checkIn: '',
+    checkOut: '',
+    guests: '',
+  });
 
   const upcomingBookings = useMemo(() => {
     const today = new Date();
