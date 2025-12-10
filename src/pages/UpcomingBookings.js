@@ -257,37 +257,32 @@ const UpcomingBookings = () => {
   };
 
   const renderAccommodationDetails = (booking) => {
-    const checkIn = booking.checkIn || booking.details?.checkIn;
-    const checkOut = booking.checkOut || booking.details?.checkOut;
-    const location = booking.location || booking.details?.location;
-    const guests = booking.guests || booking.details?.guests;
-
     return (
       <div className="accommodation-details">
         <div className="detail-row">
           <span className="detail-label">📍 Location:</span>
-          <span className="detail-value">{location || 'N/A'}</span>
+          <span className="detail-value">{booking.location || 'N/A'}</span>
         </div>
-        {checkIn && (
+        {booking.checkIn && (
           <div className="detail-row">
             <span className="detail-label">📅 Check-in:</span>
-            <span className="detail-value">{formatDate(checkIn)}</span>
+            <span className="detail-value">{formatDate(booking.checkIn)}</span>
           </div>
         )}
-        {checkOut && (
+        {booking.checkOut && (
           <div className="detail-row">
             <span className="detail-label">📅 Check-out:</span>
-            <span className="detail-value">{formatDate(checkOut)}</span>
+            <span className="detail-value">{formatDate(booking.checkOut)}</span>
           </div>
         )}
         <div className="detail-row">
           <span className="detail-label">🛏️ Bedrooms:</span>
           <span className="detail-value">{booking.bedrooms || 'N/A'}</span>
         </div>
-        {guests && (
+        {booking.guests && (
           <div className="detail-row">
             <span className="detail-label">👥 Guests:</span>
-            <span className="detail-value">{guests}</span>
+            <span className="detail-value">{booking.guests}</span>
           </div>
         )}
         {booking.rating && (
