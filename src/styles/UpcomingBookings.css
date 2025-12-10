@@ -6,6 +6,14 @@
 
 .bookings-header {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.header-title-section {
+  flex: 1;
 }
 
 .page-title {
@@ -19,6 +27,83 @@
   font-size: 14px;
   color: #666;
   margin: 0;
+}
+
+.dev-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dev-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dev-toggle-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dev-toggle-input {
+  display: none;
+}
+
+.dev-toggle-slider {
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  background-color: #ddd;
+  border-radius: 12px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.dev-toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dev-toggle-input:checked + .dev-toggle-slider {
+  background-color: #4F7DFF;
+}
+
+.dev-toggle-input:checked + .dev-toggle-slider::after {
+  left: 22px;
+}
+
+.dev-mode-indicator {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff6b35;
+  padding: 4px 8px;
+  background-color: #fff3e0;
+  border-radius: 4px;
+  white-space: nowrap;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .bookings-controls {
