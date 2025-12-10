@@ -181,6 +181,28 @@ const UpcomingBookings = () => {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
 
+  const parseGuestsString = (guestsStr) => {
+    let adults = 1;
+    let kids = 0;
+
+    if (!guestsStr) return { adults, kids };
+
+    const adultsMatch = guestsStr.match(/(\d+)\s+adults?/i);
+    const kidsMatch = guestsStr.match(/(\d+)\s+kids?|(\d+)\s+children?/i);
+
+    if (adultsMatch) adults = parseInt(adultsMatch[1]);
+    if (kidsMatch) kids = parseInt(kidsMatch[1] || kidsMatch[2]);
+
+    return { adults, kids };
+  };
+
+  const formatGuestsString = (adults, kids) => {
+    const adultsText = `${adults} adult${adults !== 1 ? 's' : ''}`;
+    if (kids === 0) return adultsText;
+    const kidsText = `${kids} kid${kids !== 1 ? 's' : ''}`;
+    return `${adultsText}, ${kidsText}`;
+  };
+
   const openEditModal = (booking) => {
     const checkIn = booking.checkIn || booking.details?.checkIn;
     const checkOut = booking.checkOut || booking.details?.checkOut;
