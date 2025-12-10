@@ -84,21 +84,30 @@ const UpcomingBookings = () => {
   };
 
   const getBookingTypeLabel = (type) => {
-    switch (type) {
+    const typeValue = type?.toLowerCase() || 'accommodation';
+    switch (typeValue) {
       case 'hotels':
+      case 'hotel':
         return 'Hotel';
       case 'homes':
+      case 'home & apartment':
         return 'Home & Apartment';
       case 'longstays':
+      case 'long stay':
         return 'Long Stay';
       case 'flights':
+      case 'flight':
         return 'Flight';
       case 'activities':
+      case 'activity':
         return 'Activity';
       case 'transfers':
+      case 'airport transfer':
         return 'Airport Transfer';
+      case 'accommodation':
+        return 'Accommodation';
       default:
-        return 'Booking';
+        return typeValue || 'Booking';
     }
   };
 
