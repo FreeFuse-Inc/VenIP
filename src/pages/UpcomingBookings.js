@@ -470,10 +470,26 @@ const UpcomingBookings = () => {
     <main className="upcoming-bookings-page">
       <BackButton />
       <div className="bookings-header">
-        <h1 className="page-title">Upcoming Bookings</h1>
-        <p className="bookings-count">
-          {filteredBookings.length} upcoming booking{filteredBookings.length !== 1 ? 's' : ''}
-        </p>
+        <div className="header-title-section">
+          <h1 className="page-title">Upcoming Bookings</h1>
+          <p className="bookings-count">
+            {filteredBookings.length} upcoming booking{filteredBookings.length !== 1 ? 's' : ''}
+          </p>
+        </div>
+        <div className="dev-mode-toggle">
+          <label htmlFor="dev-mode-switch" className="dev-toggle-label">
+            <span className="dev-toggle-text">Dev Mode</span>
+            <input
+              type="checkbox"
+              id="dev-mode-switch"
+              checked={devMode}
+              onChange={(e) => setDevMode(e.target.checked)}
+              className="dev-toggle-input"
+            />
+            <span className="dev-toggle-slider"></span>
+          </label>
+          {devMode && <span className="dev-mode-indicator">⚡ DEV</span>}
+        </div>
       </div>
 
       <div className="bookings-controls">
