@@ -719,6 +719,16 @@
 }
 
 @media (max-width: 768px) {
+  .bookings-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dev-mode-toggle {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   .edit-modal-content {
     width: 95%;
     max-height: 95vh;
