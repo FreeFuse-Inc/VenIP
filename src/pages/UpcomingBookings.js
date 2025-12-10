@@ -287,20 +287,19 @@ const UpcomingBookings = () => {
   );
 
   const renderBookingDetails = (booking) => {
-    switch (booking.type) {
-      case 'hotels':
-      case 'homes':
-      case 'longstays':
-        return renderAccommodationDetails(booking);
-      case 'flights':
-        return renderFlightDetails(booking);
-      case 'activities':
-        return renderActivityDetails(booking);
-      case 'transfers':
-        return renderTransferDetails(booking);
-      default:
-        return null;
+    const bookingType = booking.type || booking.category;
+    const typeValue = bookingType?.toLowerCase() || '';
+
+    if (typeValue.includes('accommodation') || typeValue === 'hotels' || typeValue === 'homes' || typeValue === 'longstays') {
+      return renderAccommodationDetails(booking);
+    } else if (typeValue.includes('flight')) {
+      return renderFlightDetails(booking);
+    } else if (typeValue.includes('activity')) {
+      return renderActivityDetails(booking);
+    } else if (typeValue.includes('transfer')) {
+      return renderTransferDetails(booking);
     }
+    return renderAccommodationDetails(booking);
   };
 
   return (
