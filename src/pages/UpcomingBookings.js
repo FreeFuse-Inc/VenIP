@@ -446,6 +446,9 @@ const UpcomingBookings = () => {
             {filteredBookings.map((booking, index) => {
               const bookingDate = booking.checkIn || booking.departure;
               const daysUntil = getDaysUntil(bookingDate);
+              const daysUntilNumber = getDaysUntilCheckIn(bookingDate);
+              const canEdit = daysUntilNumber > 3;
+              const canCancel = daysUntilNumber >= 7;
 
               return (
                 <div key={index} className="booking-card">
@@ -468,8 +471,22 @@ const UpcomingBookings = () => {
                   </div>
 
                   <div className="booking-card-footer">
-                    <button className="edit-btn">Edit</button>
-                    <button className="cancel-btn">Cancel</button>
+                    <button
+                      className={`edit-btn ${!canEdit ? 'disabled' : ''}`}
+                      onClick={() => canEdit && openEditModal(booking)}
+                      disabled={!canEdit}
+                      title={!canEdit ? 'Cannot edit bookings within 3 days of check-in' : 'Edit booking'}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className={`cancel-btn ${!canCancel ? 'disabled' : ''}`}
+                      onClick={() => canCancel && handleCancelBooking(booking)}
+                      disabled={!canCancel}
+                      title={!canCancel ? 'Can only cancel bookings 7 days or more in advance' : 'Cancel booking'}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </div>
               );
