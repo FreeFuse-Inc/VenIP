@@ -194,18 +194,20 @@ function App() {
         <RoleProvider>
           <EventProvider>
             <FeedbackProvider>
-              <Router>
-                <div style={{ position: 'relative' }}>
-                  <AppContent
-                    chatGPTConnected={chatGPTConnected}
-                    onChatGPTConnect={handleChatGPTConnect}
-                    onChatGPTDisconnect={handleChatGPTDisconnect}
-                    chatGPTKey={chatGPTKey}
-                  />
-                  <CartSidebar />
-                  <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
-                </div>
-              </Router>
+              <ZIndexProvider>
+                <Router>
+                  <div style={{ position: 'relative' }}>
+                    <AppContent
+                      chatGPTConnected={chatGPTConnected}
+                      onChatGPTConnect={handleChatGPTConnect}
+                      onChatGPTDisconnect={handleChatGPTDisconnect}
+                      chatGPTKey={chatGPTKey}
+                    />
+                    <CartSidebar />
+                    <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
+                  </div>
+                </Router>
+              </ZIndexProvider>
             </FeedbackProvider>
           </EventProvider>
         </RoleProvider>
