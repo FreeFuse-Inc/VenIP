@@ -50,6 +50,11 @@ const CartSidebar = () => {
     toggleCartSidebar();
   };
 
+  const handleToggleCart = () => {
+    raiseZIndex('cartSidebar');
+    toggleCartSidebar();
+  };
+
   const handleDeleteBooking = (bookingId, bookingName) => {
     if (window.confirm(`Are you sure you want to delete the booking for "${bookingName}"? This action cannot be undone.`)) {
       deleteBookingFromHistory(bookingId);
