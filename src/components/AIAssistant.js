@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EventContext, getLocalDateString } from '../context/EventContext';
 import { RoleContext } from '../context/RoleContext';
+import { ZIndexContext } from '../context/ZIndexContext';
 import '../styles/AIAssistant.css';
 
 const AIAssistant = ({ chatGPTConnected, chatGPTKey }) => {
