@@ -600,6 +600,11 @@ Provide helpful guidance and always confirm actions.`;
     }
   };
 
+  const handleToggleAssistant = () => {
+    raiseZIndex('aiAssistant');
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       {isOpen && (
