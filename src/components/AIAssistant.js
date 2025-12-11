@@ -682,8 +682,9 @@ Provide helpful guidance and always confirm actions.`;
 
       <button
         className={`assistant-toggle ${isOpen ? 'open' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggleAssistant}
         aria-label="Toggle assistant"
+        style={{ zIndex: zIndexMap.aiAssistant + 1 }}
       >
         💬
       </button>
