@@ -46,6 +46,7 @@ import FeedbackTesting from './pages/FeedbackTesting';
 import CartCheckout from './pages/CartCheckout';
 import BookingHistory from './pages/BookingHistory';
 import { FeedbackProvider } from './context/FeedbackContext';
+import { ZIndexProvider } from './context/ZIndexContext';
 import AIAssistant from './components/AIAssistant';
 import './App.css';
 
