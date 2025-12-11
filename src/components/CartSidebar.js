@@ -9,6 +9,7 @@ const CartSidebar = () => {
   const navigate = useNavigate();
   const { user, removeFromCart, clearCart, getCartTotal, getCartItemCount, deleteBookingFromHistory } = useContext(UserContext);
   const { isCartSidebarOpen, toggleCartSidebar } = useContext(CartContext);
+  const { zIndexMap, raiseZIndex } = useContext(ZIndexContext);
   const [activeTab, setActiveTab] = React.useState('cart');
   const [historyRefreshKey, setHistoryRefreshKey] = React.useState(0);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
