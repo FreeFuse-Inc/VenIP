@@ -608,7 +608,7 @@ Provide helpful guidance and always confirm actions.`;
   return (
     <>
       {isOpen && (
-        <div className="ai-assistant-container">
+        <div className="ai-assistant-container" style={{ zIndex: zIndexMap.aiAssistant }}>
           <div className="assistant-header">
             <div className="header-content">
               <h3>VenIP Assistant</h3>
