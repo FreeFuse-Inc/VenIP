@@ -74,14 +74,15 @@ const CartSidebar = () => {
     <>
       <button
         className={`cart-toggle-btn ${isCartSidebarOpen ? 'open' : 'closed'}`}
-        onClick={toggleCartSidebar}
+        onClick={handleToggleCart}
         aria-label="Toggle cart sidebar"
+        style={{ zIndex: zIndexMap.cartSidebar }}
       >
         <span className="cart-icon">🛒</span>
         {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
       </button>
 
-      <aside className={`cart-sidebar ${isCartSidebarOpen ? 'open' : 'closed'}`}>
+      <aside className={`cart-sidebar ${isCartSidebarOpen ? 'open' : 'closed'}`} style={{ zIndex: zIndexMap.cartSidebar - 1 }}>
         <div className="cart-header">
           <h2 className="cart-title">
             {activeTab === 'cart' ? 'Shopping Cart' : 'Booking History'}
