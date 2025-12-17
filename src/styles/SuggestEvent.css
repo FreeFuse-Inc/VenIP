@@ -166,14 +166,14 @@
 }
 
 .btn-submit {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
 }
 
 .btn-submit:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .event-suggestion-submitted {
@@ -213,7 +213,7 @@
 }
 
 .status-text {
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   padding: 12px 0;
   border-top: 1px solid #e5e7eb;
@@ -221,8 +221,8 @@
 }
 
 .btn-return {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
   border: none;
   padding: 12px 24px;
   border-radius: 6px;

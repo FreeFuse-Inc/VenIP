@@ -149,8 +149,8 @@
 }
 
 .venue-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .venue-header {
