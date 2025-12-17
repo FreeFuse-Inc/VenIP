@@ -79,7 +79,7 @@
 }
 
 .dev-toggle-input:checked + .dev-toggle-slider {
-  background-color: #4F7DFF;
+  background-color: #D4AF37;
 }
 
 .dev-toggle-input:checked + .dev-toggle-slider::after {
@@ -141,13 +141,13 @@
 
 .filter-select:hover,
 .sort-select:hover {
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
 }
 
 .filter-select:focus,
 .sort-select:focus {
   outline: none;
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
   box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1);
 }
 

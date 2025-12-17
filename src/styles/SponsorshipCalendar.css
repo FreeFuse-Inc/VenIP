@@ -40,8 +40,8 @@
 }
 
 .nav-btn:hover {
-  background: rgba(79, 125, 255, 0.8);
-  border-color: #4F7DFF;
+  background: rgba(212, 175, 55, 0.8);
+  border-color: #D4AF37;
 }
 
 .weekdays {
@@ -85,8 +85,8 @@
 }
 
 .calendar-day:hover {
-  border-color: rgba(79, 125, 255, 0.8);
-  background: rgba(79, 125, 255, 0.2);
+  border-color: rgba(212, 175, 55, 0.8);
+  background: rgba(212, 175, 55, 0.2);
 }
 
 .calendar-day.has-activity {
