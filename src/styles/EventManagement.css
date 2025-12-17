@@ -201,7 +201,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4F7DFF, #6E9FFF);
+  background: linear-gradient(90deg, #D4AF37, #E8D5B7);
   transition: width 0.3s ease;
 }
 
@@ -228,12 +228,12 @@
 }
 
 .btn-primary {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
 }
 
 .btn-primary:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
 }
 
@@ -291,7 +291,7 @@
 .summary-value {
   font-size: 20px;
   font-weight: 700;
-  color: #4F7DFF;
+  color: #D4AF37;
 }
 
 .vendors-list {
