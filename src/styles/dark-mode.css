@@ -198,6 +198,24 @@ html.dark-mode .btn-download:hover {
   color: #ffffff;
 }
 
+/* Cart toggle button */
+html.dark-mode .cart-toggle-btn {
+  background-color: #D4AF37;
+  color: black;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+html.dark-mode .cart-toggle-btn:hover {
+  background-color: #C9A227;
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.5);
+}
+
+html.dark-mode .cart-badge {
+  background-color: #ef4444;
+  color: white;
+  border-color: white;
+}
+
 /* Package buttons */
 html.dark-mode .package-btn {
   background-color: #333333;
