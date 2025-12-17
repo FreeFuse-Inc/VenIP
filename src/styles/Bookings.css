@@ -48,14 +48,14 @@
 }
 
 .filter-btn:hover {
-  border-color: #4F7DFF;
-  color: #4F7DFF;
+  border-color: #D4AF37;
+  color: #D4AF37;
 }
 
 .filter-btn.active {
-  background: #4F7DFF;
-  color: white;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .bookings-list {
@@ -74,8 +74,8 @@
 }
 
 .booking-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .booking-header {
@@ -146,7 +146,7 @@
 .view-details-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -154,7 +154,7 @@
 }
 
 .view-details-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .booking-detail-card {
@@ -168,7 +168,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -177,7 +177,7 @@
 }
 
 .back-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .detail-container {
