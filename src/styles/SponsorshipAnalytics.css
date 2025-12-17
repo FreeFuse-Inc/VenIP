@@ -10,7 +10,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -19,7 +19,7 @@
 }
 
 .back-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .analytics-header {
@@ -64,8 +64,8 @@
 }
 
 .metric-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .metric-card h4 {
@@ -78,7 +78,7 @@
 .metric-value {
   font-size: 32px;
   font-weight: 700;
-  color: #4F7DFF;
+  color: #D4AF37;
   margin: 0 0 8px 0;
 }
 
