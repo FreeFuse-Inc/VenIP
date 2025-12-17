@@ -102,7 +102,7 @@
 
 .btn-browse-events,
 .btn-view-history {
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -116,9 +116,9 @@
 
 .btn-browse-events:hover,
 .btn-view-history:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .dashboard-content {
@@ -211,8 +211,8 @@
 }
 
 .sponsored-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .sponsored-card .event-header {
@@ -262,7 +262,7 @@
 
 .analytics-btn {
   width: 100%;
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -275,7 +275,7 @@
 }
 
 .analytics-btn:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
 }
 
@@ -294,8 +294,8 @@
 }
 
 .event-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .event-card .event-header {
@@ -367,9 +367,9 @@
 }
 
 .package-btn:hover {
-  background: #4F7DFF;
-  color: white;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .feedback-section {
@@ -405,7 +405,7 @@
 
 .feedback-card:hover {
   background: #f9fafb;
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
 }
 
 .feedback-content {
@@ -476,7 +476,7 @@
 }
 
 .request-feedback-btn {
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -488,7 +488,7 @@
 }
 
 .request-feedback-btn:hover {
-  background: #3d5fd9;
+  background: #C9A227;
 }
 
 @media (max-width: 1200px) {
