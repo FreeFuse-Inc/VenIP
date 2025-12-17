@@ -31,7 +31,7 @@
 
 .event-meta {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0 0 24px 0;
 }
 
@@ -65,7 +65,7 @@
 .info-card p,
 .impact-card p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   line-height: 1.6;
   margin: 0 0 12px 0;
 }
@@ -84,7 +84,7 @@
 
 .stat-label {
   font-weight: 600;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .stat-value {
