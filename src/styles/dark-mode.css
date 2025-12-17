@@ -1,0 +1,432 @@
+/* Dark Mode Theme - Applied when html.dark-mode is active */
+html.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --bg-tertiary: #333333;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #b0b0b0;
+  --border-color: #404040;
+  --input-bg: #2a2a2a;
+}
+
+/* Body and main container */
+html.dark-mode body,
+html.dark-mode #root {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* App container */
+html.dark-mode .app-container {
+  background-color: #1a1a1a;
+}
+
+/* Dashboard pages */
+html.dark-mode .sponsor-dashboard,
+html.dark-mode .vendor-dashboard,
+html.dark-mode .npo-dashboard,
+html.dark-mode .accommodation-bookings-page,
+html.dark-mode .travel-bookings-page,
+html.dark-mode .sponsorship-bookings-page {
+  background-color: #1a1a1a;
+}
+
+/* Sidebar */
+html.dark-mode .sidebar {
+  background-color: #000000;
+}
+
+/* Cards and sections */
+html.dark-mode .profile-section,
+html.dark-mode .sponsored-section,
+html.dark-mode .available-events-section,
+html.dark-mode .feedback-section,
+html.dark-mode .metric-card,
+html.dark-mode .event-card,
+html.dark-mode .sponsored-card,
+html.dark-mode .form-card,
+html.dark-mode .booking-detail-card,
+html.dark-mode .detail-card,
+html.dark-mode .search-container,
+html.dark-mode .form-card,
+html.dark-mode .order-summary-section,
+html.dark-mode .payment-form-section,
+html.dark-mode .confirmation-header,
+html.dark-mode .confirmation-content,
+html.dark-mode .modify-header,
+html.dark-mode .options-section,
+html.dark-mode .tier-selection,
+html.dark-mode .extension-selection,
+html.dark-mode .summary-card,
+html.dark-mode .tab-content,
+html.dark-mode .proposals-list,
+html.dark-mode .proposal-card,
+html.dark-mode .checklist-header,
+html.dark-mode .checklist-card,
+html.dark-mode .tabs-section,
+html.dark-mode .payment-confirmation,
+html.dark-mode .calendar-section,
+html.dark-mode .details-section,
+html.dark-mode .modal-content {
+  background-color: #2a2a2a;
+  border-color: #404040;
+  color: #ffffff;
+}
+
+/* Dashboard header */
+html.dark-mode .dashboard-header {
+  background-color: #2a2a2a;
+  border-bottom-color: #404040;
+}
+
+html.dark-mode .dashboard-title,
+html.dark-mode .page-title,
+html.dark-mode .page-content-title {
+  color: #ffffff;
+}
+
+/* Text elements */
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode h4,
+html.dark-mode h5,
+html.dark-mode h6 {
+  color: #ffffff;
+}
+
+html.dark-mode p,
+html.dark-mode span,
+html.dark-mode label {
+  color: #e0e0e0;
+}
+
+/* Input fields */
+html.dark-mode input,
+html.dark-mode select,
+html.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+html.dark-mode input:focus,
+html.dark-mode select:focus,
+html.dark-mode textarea:focus {
+  background-color: #333333;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+  color: #808080;
+}
+
+/* Buttons */
+html.dark-mode .btn-primary,
+html.dark-mode .btn-submit,
+html.dark-mode .btn-browse-events,
+html.dark-mode .btn-view-history,
+html.dark-mode .analytics-btn,
+html.dark-mode .request-feedback-btn,
+html.dark-mode .add-btn,
+html.dark-mode .add-event-btn,
+html.dark-mode .btn-save,
+html.dark-mode .book-btn,
+html.dark-mode .apply-filters-btn,
+html.dark-mode .search-btn,
+html.dark-mode .btn-confirm,
+html.dark-mode .btn-return,
+html.dark-mode .btn-complete,
+html.dark-mode .btn-submit-quote,
+html.dark-mode .submit-btn,
+html.dark-mode .submit-btn,
+html.dark-mode .invite-btn,
+html.dark-mode .create-event-btn,
+html.dark-mode .setup-btn,
+html.dark-mode .btn-renewal-decision,
+html.dark-mode .btn-edit-profile,
+html.dark-mode .btn-connect,
+html.dark-mode .btn-submit-invoice {
+  color: black;
+  background-color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+html.dark-mode .btn-primary:hover,
+html.dark-mode .btn-submit:hover,
+html.dark-mode .btn-browse-events:hover,
+html.dark-mode .btn-view-history:hover,
+html.dark-mode .analytics-btn:hover,
+html.dark-mode .request-feedback-btn:hover,
+html.dark-mode .add-btn:hover,
+html.dark-mode .add-event-btn:hover,
+html.dark-mode .btn-save:hover,
+html.dark-mode .book-btn:hover,
+html.dark-mode .apply-filters-btn:hover,
+html.dark-mode .search-btn:hover,
+html.dark-mode .btn-confirm:hover,
+html.dark-mode .btn-return:hover,
+html.dark-mode .btn-complete:hover,
+html.dark-mode .btn-submit-quote:hover,
+html.dark-mode .submit-btn:hover,
+html.dark-mode .invite-btn:hover,
+html.dark-mode .create-event-btn:hover,
+html.dark-mode .setup-btn:hover,
+html.dark-mode .btn-renewal-decision:hover,
+html.dark-mode .btn-edit-profile:hover,
+html.dark-mode .btn-connect:hover,
+html.dark-mode .btn-submit-invoice:hover {
+  background-color: #C9A227;
+  border-color: #C9A227;
+  color: black;
+}
+
+/* Light buttons in dark mode */
+html.dark-mode .btn-cancel,
+html.dark-mode .btn-download {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+html.dark-mode .btn-cancel:hover,
+html.dark-mode .btn-download:hover {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+/* Borders and separators */
+html.dark-mode .form-card,
+html.dark-mode input,
+html.dark-mode select,
+html.dark-mode textarea,
+html.dark-mode .detail-card,
+html.dark-mode .booking-card,
+html.dark-mode .event-card,
+html.dark-mode .venue-card,
+html.dark-mode .accommodation-card,
+html.dark-mode .activity-card,
+html.dark-mode .filter-btn,
+html.dark-mode .event-feed-card,
+html.dark-mode .detail-section {
+  border-color: #404040;
+}
+
+/* Tab buttons */
+html.dark-mode .tab-btn {
+  color: #b0b0b0;
+  border-bottom-color: transparent;
+  background-color: transparent;
+}
+
+html.dark-mode .tab-btn:hover {
+  color: #ffffff;
+}
+
+html.dark-mode .tab-btn.active {
+  color: black !important;
+  background-color: #D4AF37 !important;
+  border-bottom-color: #D4AF37 !important;
+}
+
+/* Links */
+html.dark-mode a,
+html.dark-mode .back-btn,
+html.dark-mode .view-details-link,
+html.dark-mode .view-options-btn,
+html.dark-mode .view-proposal-btn {
+  color: #D4AF37;
+}
+
+html.dark-mode a:hover,
+html.dark-mode .back-btn:hover,
+html.dark-mode .view-details-link:hover,
+html.dark-mode .view-proposal-btn:hover {
+  color: #C9A227;
+}
+
+/* Status badges */
+html.dark-mode .status-badge,
+html.dark-mode .feedback-badge,
+html.dark-mode .test-badge,
+html.dark-mode .sponsorship-level,
+html.dark-mode .category-badge,
+html.dark-mode .service-badge,
+html.dark-mode .provider-badge,
+html.dark-mode .availability-badge {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+html.dark-mode .status-badge.completed,
+html.dark-mode .status-badge.confirmed,
+html.dark-mode .status-badge.approved {
+  background-color: #1a4d2e;
+  color: #90ee90;
+}
+
+html.dark-mode .status-badge.pending {
+  background-color: #4d3a1a;
+  color: #ffd700;
+}
+
+html.dark-mode .status-badge.cancelled {
+  background-color: #4d1a1a;
+  color: #ff6b6b;
+}
+
+/* Calendar */
+html.dark-mode .calendar-grid,
+html.dark-mode .calendar-day {
+  border-color: #404040;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+html.dark-mode .calendar-day:hover {
+  background-color: #404040;
+  border-color: #505050;
+}
+
+html.dark-mode .calendar-day.has-activity {
+  background-color: rgba(212, 175, 55, 0.2);
+  border-color: #D4AF37;
+}
+
+html.dark-mode .calendar-day.selected {
+  background-color: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
+}
+
+html.dark-mode .calendar-day.selected .day-number {
+  color: black;
+}
+
+html.dark-mode .weekday {
+  color: #b0b0b0;
+}
+
+html.dark-mode .month-year {
+  color: #ffffff;
+}
+
+/* Form sections */
+html.dark-mode .form-section {
+  border-bottom-color: #404040;
+}
+
+html.dark-mode .detail-row {
+  border-bottom-color: #404040;
+}
+
+/* Empty states */
+html.dark-mode .empty-state,
+html.dark-mode .empty-state-content,
+html.dark-mode .no-events-message,
+html.dark-mode .no-activity,
+html.dark-mode .details-placeholder {
+  background-color: #2a2a2a;
+  color: #b0b0b0;
+}
+
+/* Cart sidebar */
+html.dark-mode .cart-sidebar {
+  background-color: #2a2a2a;
+  border-left-color: #404040;
+}
+
+html.dark-mode .cart-header {
+  background-color: #333333;
+  border-bottom-color: #404040;
+}
+
+html.dark-mode .cart-title,
+html.dark-mode .empty-cart {
+  color: #ffffff;
+}
+
+/* Specific text colors */
+html.dark-mode .profile-mission,
+html.dark-mode .contact-value,
+html.dark-mode .event-info,
+html.dark-mode .booking-type,
+html.dark-mode .detail-label,
+html.dark-mode .metric-label,
+html.dark-mode .contact-label {
+  color: #b0b0b0;
+}
+
+/* Metric value */
+html.dark-mode .metric-value {
+  color: #D4AF37;
+}
+
+/* Feedback and comments */
+html.dark-mode .feedback-comment,
+html.dark-mode .rating-item {
+  background-color: #333333;
+  color: #e0e0e0;
+}
+
+/* Modal */
+html.dark-mode .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+html.dark-mode .close-btn {
+  color: #b0b0b0;
+}
+
+html.dark-mode .close-btn:hover {
+  color: #ffffff;
+}
+
+/* Filter badge and controls */
+html.dark-mode .filter-badge,
+html.dark-mode .clear-filter-btn,
+html.dark-mode .filters-toggle {
+  background-color: #333333;
+  border-color: #404040;
+  color: #b0b0b0;
+}
+
+html.dark-mode .filter-badge:hover,
+html.dark-mode .filters-toggle:hover {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+/* Filters content */
+html.dark-mode .filters-content {
+  background-color: #2a2a2a;
+  border-color: #404040;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Logic buttons */
+html.dark-mode .logic-btn {
+  background-color: #333333;
+  color: #b0b0b0;
+  border-color: #404040;
+}
+
+html.dark-mode .logic-btn:hover {
+  background-color: #404040;
+  color: #ffffff;
+  border-color: #D4AF37;
+}
+
+html.dark-mode .logic-btn.active {
+  background-color: rgba(212, 175, 55, 0.2);
+  color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+/* Performance and transition */
+html.dark-mode * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
