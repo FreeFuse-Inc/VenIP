@@ -491,11 +491,15 @@ html.dark-mode .item-date,
 html.dark-mode .item-guests,
 html.dark-mode .item-quantity,
 html.dark-mode .item-price,
-html.dark-mode .history-booking-name,
 html.dark-mode .history-booking-provider,
 html.dark-mode .history-date,
 html.dark-mode .history-amount {
   color: #1f2937;
+}
+
+/* History booking name in light blue for legibility */
+html.dark-mode .history-booking-name {
+  color: #87ceeb;
 }
 
 /* Cart items and history items */
