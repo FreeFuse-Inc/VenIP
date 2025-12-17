@@ -148,7 +148,7 @@
 .sort-select:focus {
   outline: none;
   border-color: #D4AF37;
-  box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .bookings-container {
@@ -172,7 +172,7 @@
 
 .booking-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
 }
 
 .booking-card-header {
@@ -308,13 +308,13 @@
 
 .edit-btn {
   background: white;
-  color: #4F7DFF;
-  border-color: #4F7DFF;
+  color: #D4AF37;
+  border-color: #D4AF37;
 }
 
 .edit-btn:hover {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
 }
 
 .cancel-btn {
@@ -346,16 +346,16 @@
 .edit-btn.dev-enabled {
   opacity: 1;
   background: white;
-  color: #4F7DFF;
-  border-color: #4F7DFF;
+  color: #D4AF37;
+  border-color: #D4AF37;
   cursor: pointer;
-  box-shadow: 0 0 0 2px rgba(79, 125, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
 .edit-btn.dev-enabled:hover {
-  background: #4F7DFF;
-  color: white;
-  box-shadow: 0 0 0 2px rgba(79, 125, 255, 0.2);
+  background: #D4AF37;
+  color: black;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
 .cancel-btn.dev-enabled {
@@ -671,13 +671,13 @@
 }
 
 .guests-input select:hover {
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
 }
 
 .guests-input select:focus {
   outline: none;
-  border-color: #4F7DFF;
-  box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .form-actions {
@@ -708,9 +708,9 @@
 }
 
 .save-btn {
-  background: #4F7DFF;
-  color: white;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .save-btn:hover {
