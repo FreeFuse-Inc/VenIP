@@ -307,12 +307,19 @@ html.dark-mode .tab-btn {
 
 html.dark-mode .tab-btn:hover {
   color: #ffffff;
+  background-color: #333333;
 }
 
 html.dark-mode .tab-btn.active {
   color: black !important;
   background-color: #D4AF37 !important;
   border-bottom-color: #D4AF37 !important;
+}
+
+/* Cart sidebar tabs */
+html.dark-mode .sidebar-tabs {
+  background-color: #333333;
+  border-bottom-color: #404040;
 }
 
 /* Links */
