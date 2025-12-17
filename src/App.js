@@ -47,6 +47,7 @@ import CartCheckout from './pages/CartCheckout';
 import BookingHistory from './pages/BookingHistory';
 import { FeedbackProvider } from './context/FeedbackContext';
 import { ZIndexProvider } from './context/ZIndexContext';
+import { DarkModeProvider } from './context/DarkModeContext';
 import AIAssistant from './components/AIAssistant';
 import './App.css';
 
