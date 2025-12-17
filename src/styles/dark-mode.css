@@ -198,6 +198,19 @@ html.dark-mode .btn-download:hover {
   color: #ffffff;
 }
 
+/* Package buttons */
+html.dark-mode .package-btn {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+html.dark-mode .package-btn:hover {
+  background-color: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
+}
+
 /* Borders and separators */
 html.dark-mode .form-card,
 html.dark-mode input,
