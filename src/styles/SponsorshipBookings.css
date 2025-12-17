@@ -80,6 +80,18 @@
   color: white !important;
 }
 
+.nav-btn.next-btn,
+.nav-btn.prev-btn {
+  background-color: #D4AF37 !important;
+  color: white !important;
+}
+
+.nav-btn.next-btn:hover,
+.nav-btn.prev-btn:hover {
+  background-color: #C9A227 !important;
+  color: white !important;
+}
+
 .weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
