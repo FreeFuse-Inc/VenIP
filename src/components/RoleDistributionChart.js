@@ -3,7 +3,7 @@ import '../styles/Charts.css';
 
 const RoleDistributionChart = () => {
   const data = [
-    { role: 'Vendors', count: 47, color: '#4F7DFF' },
+    { role: 'Vendors', count: 47, color: '#D4AF37' },
     { role: 'Sponsors', count: 23, color: '#FFD93D' },
     { role: 'NPOs', count: 18, color: '#FF6B6B' },
   ];

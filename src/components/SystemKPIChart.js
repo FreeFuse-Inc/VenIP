@@ -50,8 +50,8 @@ const SystemKPIChart = () => {
       <svg width="100%" height="300" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="vendorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#4F7DFF" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#4F7DFF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -88,7 +88,7 @@ const SystemKPIChart = () => {
         })}
 
         {/* Vendor line */}
-        <path d={vendorPath} stroke="#4F7DFF" strokeWidth="2.5" fill="none" />
+        <path d={vendorPath} stroke="#D4AF37" strokeWidth="2.5" fill="none" />
         
         {/* Sponsor line */}
         <path d={sponsorPath} stroke="#FFD93D" strokeWidth="2.5" fill="none" />
@@ -98,7 +98,7 @@ const SystemKPIChart = () => {
 
         {/* Data points for vendors */}
         {vendorPoints.map((p, i) => (
-          <circle key={`vendor-point-${i}`} cx={p.x} cy={p.y} r="3" fill="#4F7DFF" />
+          <circle key={`vendor-point-${i}`} cx={p.x} cy={p.y} r="3" fill="#D4AF37" />
         ))}
 
         {/* Data points for sponsors */}
@@ -114,7 +114,7 @@ const SystemKPIChart = () => {
 
       <div className="chart-legend">
         <div className="legend-item">
-          <span className="legend-color" style={{ backgroundColor: '#4F7DFF' }}></span>
+          <span className="legend-color" style={{ backgroundColor: '#D4AF37' }}></span>
           <span>Vendors</span>
         </div>
         <div className="legend-item">

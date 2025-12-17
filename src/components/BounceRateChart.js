@@ -38,8 +38,8 @@ const BounceRateChart = () => {
       <svg width="100%" height="200" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="bounceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#4F7DFF" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#4F7DFF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -66,11 +66,11 @@ const BounceRateChart = () => {
         <path d={areaData} fill="url(#bounceGradient)" />
 
         {/* Line */}
-        <path d={pathData} stroke="#4F7DFF" strokeWidth="2" fill="none" />
+        <path d={pathData} stroke="#D4AF37" strokeWidth="2" fill="none" />
 
         {/* Data points */}
         {points.map((p, i) => (
-          <circle key={`point-${i}`} cx={p.x} cy={p.y} r="3" fill="#4F7DFF" />
+          <circle key={`point-${i}`} cx={p.x} cy={p.y} r="3" fill="#D4AF37" />
         ))}
 
         {/* X axis labels */}

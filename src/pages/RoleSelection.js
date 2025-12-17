@@ -20,7 +20,7 @@ const RoleSelection = () => {
       name: 'Vendor',
       description: 'Service Provider',
       icon: '🛠️',
-      color: '#4F7DFF',
+      color: '#D4AF37',
     },
     {
       id: 'sponsor',

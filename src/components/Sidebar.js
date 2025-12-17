@@ -61,7 +61,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
 
   const roles = [
     { id: 'npo', name: 'NPO', icon: '🎯', color: '#FF6B6B' },
-    { id: 'vendor', name: 'Vendor', icon: '🛠️', color: '#4F7DFF' },
+    { id: 'vendor', name: 'Vendor', icon: '🛠️', color: '#D4AF37' },
     { id: 'sponsor', name: 'Sponsor', icon: '⭐', color: '#FFD93D' },
   ];
 
