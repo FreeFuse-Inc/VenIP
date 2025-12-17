@@ -376,8 +376,68 @@ html.dark-mode .cart-header {
 }
 
 html.dark-mode .cart-title,
-html.dark-mode .empty-cart {
+html.dark-mode .empty-cart,
+html.dark-mode .empty-cart-text,
+html.dark-mode .empty-cart-subtitle,
+html.dark-mode .item-name,
+html.dark-mode .item-location,
+html.dark-mode .item-info,
+html.dark-mode .item-date,
+html.dark-mode .item-guests,
+html.dark-mode .item-quantity,
+html.dark-mode .cart-close-btn,
+html.dark-mode .tab-btn,
+html.dark-mode .history-booking-name,
+html.dark-mode .history-booking-provider,
+html.dark-mode .history-date,
+html.dark-mode .history-amount,
+html.dark-mode .summary-label,
+html.dark-mode .summary-value,
+html.dark-mode .summary-row {
   color: #ffffff;
+}
+
+/* Cart items and history items */
+html.dark-mode .cart-item {
+  background-color: #1a1a1a;
+  border-bottom-color: #404040;
+}
+
+html.dark-mode .cart-item:hover {
+  background-color: #D4AF37;
+}
+
+html.dark-mode .cart-item:hover .item-name,
+html.dark-mode .cart-item:hover .item-location,
+html.dark-mode .cart-item:hover .item-info,
+html.dark-mode .cart-item:hover .item-date,
+html.dark-mode .cart-item:hover .item-guests,
+html.dark-mode .cart-item:hover .item-quantity,
+html.dark-mode .cart-item:hover .item-price {
+  color: black;
+}
+
+/* History booking cards */
+html.dark-mode .history-booking-card {
+  background-color: #1a1a1a;
+  border-bottom-color: #404040;
+}
+
+html.dark-mode .history-booking-card:hover {
+  background-color: #D4AF37;
+}
+
+html.dark-mode .history-booking-card:hover .history-booking-name,
+html.dark-mode .history-booking-card:hover .history-booking-provider,
+html.dark-mode .history-booking-card:hover .history-date,
+html.dark-mode .history-booking-card:hover .history-amount,
+html.dark-mode .history-booking-card:hover .history-status-badge {
+  color: black;
+}
+
+/* Cart summary */
+html.dark-mode .summary-row.total {
+  border-top-color: #404040;
 }
 
 /* Specific text colors */
