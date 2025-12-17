@@ -10,7 +10,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -83,9 +83,9 @@
 
 .option-btn:hover,
 .option-btn.selected {
-  background: #4F7DFF;
-  border-color: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  border-color: #D4AF37;
+  color: black;
 }
 
 .option-title {
