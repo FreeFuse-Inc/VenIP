@@ -109,14 +109,14 @@
 }
 
 .filter-btn:hover {
-  border-color: #4F7DFF;
-  color: #4F7DFF;
+  border-color: #D4AF37;
+  color: #D4AF37;
 }
 
 .filter-btn.active {
-  background: #4F7DFF;
-  color: white;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .sort-select {
@@ -132,9 +132,9 @@
 
 .sort-select:hover,
 .sort-select:focus {
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .bookings-list {
@@ -152,8 +152,8 @@
 }
 
 .booking-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .booking-card-header {
@@ -262,7 +262,7 @@
 .view-details-link {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 13px;
@@ -270,7 +270,7 @@
 }
 
 .view-details-link:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .empty-state {
@@ -308,7 +308,7 @@
 .back-to-list {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -317,7 +317,7 @@
 }
 
 .back-to-list:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .detail-card {
@@ -389,7 +389,7 @@
 }
 
 .info-row.amount {
-  border-top: 2px solid #4F7DFF;
+  border-top: 2px solid #D4AF37;
   padding-top: 12px;
 }
 
@@ -468,12 +468,12 @@
 }
 
 .btn-rebook {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
 }
 
 .btn-rebook:hover {
-  background: #3d5fd9;
+  background: #C9A227;
 }
 
 .btn-download {

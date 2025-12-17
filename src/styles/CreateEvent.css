@@ -18,7 +18,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 16px;
@@ -26,7 +26,7 @@
 }
 
 .back-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .create-event-header h1 {
@@ -84,9 +84,9 @@
 }
 
 .step.active .step-number {
-  background: #4F7DFF;
-  color: white;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .step.completed .step-number {
@@ -104,7 +104,7 @@
 }
 
 .step.active .step-title {
-  color: #4F7DFF;
+  color: #D4AF37;
 }
 
 .step.completed .step-title {
