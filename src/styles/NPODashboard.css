@@ -95,8 +95,8 @@
 }
 
 .create-event-btn {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
@@ -107,9 +107,9 @@
 }
 
 .create-event-btn:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .dashboard-content {

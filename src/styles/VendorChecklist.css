@@ -10,7 +10,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -19,7 +19,7 @@
 }
 
 .back-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .checklist-header {
@@ -68,14 +68,14 @@
 }
 
 .step:hover {
-  border-color: #4F7DFF;
-  background: #f0f4ff;
+  border-color: #D4AF37;
+  background: #FFF8E7;
 }
 
 .step.active {
-  background: #4F7DFF;
-  border-color: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  border-color: #D4AF37;
+  color: black;
 }
 
 .step.completed {
@@ -103,7 +103,7 @@
 
 .step.active .step-circle {
   background: white;
-  color: #4F7DFF;
+  color: #D4AF37;
 }
 
 .step.completed .step-circle::after {

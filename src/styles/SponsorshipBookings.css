@@ -17,7 +17,7 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: #4f7dff;
+  color: #D4AF37;
   padding: 8px 12px;
   border-radius: 4px;
   transition: background-color 0.2s;
@@ -25,7 +25,7 @@
 }
 
 .back-btn:hover {
-  background-color: rgba(79, 125, 255, 0.1);
+  background-color: rgba(212, 175, 55, 0.1);
 }
 
 .page-title {
@@ -125,14 +125,14 @@
 }
 
 .calendar-day.has-activity {
-  background-color: #eff6ff;
-  border-color: #4f7dff;
+  background-color: #FFF8E7;
+  border-color: #D4AF37;
 }
 
 .calendar-day.selected {
-  background-color: #4f7dff;
-  color: white;
-  border-color: #4f7dff;
+  background-color: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .calendar-day.selected .day-number {
