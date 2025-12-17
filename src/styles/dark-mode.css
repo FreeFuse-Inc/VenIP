@@ -322,6 +322,43 @@ html.dark-mode .sidebar-tabs {
   border-bottom-color: #404040;
 }
 
+/* History actions section */
+html.dark-mode .history-actions {
+  background-color: #333333;
+  border-top-color: #404040;
+}
+
+html.dark-mode .view-all-history-btn {
+  background-color: #404040;
+  color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+html.dark-mode .view-all-history-btn:hover {
+  background-color: #505050;
+}
+
+/* History status badges in dark mode */
+html.dark-mode .history-status-badge.completed {
+  background-color: #1a4d2e;
+  color: #90ee90;
+}
+
+html.dark-mode .history-status-badge.confirmed {
+  background-color: #1a3a52;
+  color: #87ceeb;
+}
+
+html.dark-mode .history-status-badge.pending {
+  background-color: #4d3a1a;
+  color: #ffd700;
+}
+
+html.dark-mode .history-status-badge.cancelled {
+  background-color: #4d1a1a;
+  color: #ff6b6b;
+}
+
 /* Links */
 html.dark-mode a,
 html.dark-mode .back-btn,
