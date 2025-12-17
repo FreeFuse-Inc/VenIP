@@ -112,7 +112,7 @@
 }
 
 .budget-highlight {
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
 }
 
@@ -169,20 +169,20 @@
 }
 
 .btn-submit-quote {
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
 }
 
 .btn-submit-quote:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .btn-propose-service {
   background: white;
-  color: #4F7DFF;
-  border: 2px solid #4F7DFF;
+  color: #D4AF37;
+  border: 2px solid #D4AF37;
 }
 
 .btn-propose-service:hover {

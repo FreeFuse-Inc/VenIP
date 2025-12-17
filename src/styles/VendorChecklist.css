@@ -159,7 +159,7 @@
   cursor: pointer;
   width: 20px;
   height: 20px;
-  accent-color: #4F7DFF;
+  accent-color: #D4AF37;
 }
 
 .checklist-item label {
@@ -300,7 +300,7 @@
 }
 
 .btn-submit-invoice {
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -313,7 +313,7 @@
 }
 
 .btn-submit-invoice:hover {
-  background: #3d5fd9;
+  background: #C9A227;
 }
 
 .action-buttons {
@@ -347,15 +347,15 @@
 
 .btn-primary,
 .btn-complete {
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
 }
 
 .btn-primary:hover,
 .btn-complete:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 @media (max-width: 768px) {

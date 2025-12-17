@@ -308,8 +308,8 @@
 }
 
 .vendor-request-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .vendor-header {
@@ -423,7 +423,7 @@
 
 .budget-value.used,
 .attendees-value.confirmed {
-  color: #4F7DFF;
+  color: #D4AF37;
 }
 
 .budget-value.remaining {
@@ -481,9 +481,9 @@
 }
 
 .timeline-item.in-progress .timeline-marker {
-  background: #4F7DFF;
-  border-color: #4F7DFF;
-  box-shadow: 0 0 0 4px rgba(79, 125, 255, 0.1);
+  background: #D4AF37;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
 }
 
 .timeline-content h4 {

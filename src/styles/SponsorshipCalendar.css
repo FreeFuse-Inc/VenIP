@@ -100,8 +100,8 @@
 }
 
 .calendar-day.selected {
-  background: #4F7DFF;
-  border-color: #3d5fd9;
+  background: #D4AF37;
+  border-color: #C9A227;
   color: white;
 }
 
@@ -136,7 +136,7 @@
 }
 
 .activity-indicator.renewal {
-  color: #4f7dff;
+  color: #D4AF37;
 }
 
 .activity-tooltip {

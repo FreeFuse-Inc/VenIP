@@ -159,7 +159,7 @@
 
 .event-card:hover {
   background: #f9fafb;
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
 }
 
 .event-info {
@@ -205,7 +205,7 @@
 .event-action-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -213,7 +213,7 @@
 }
 
 .event-action-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .feedback-section {
@@ -256,7 +256,7 @@
 
 .feedback-card:hover {
   background: #f9fafb;
-  border-color: #4F7DFF;
+  border-color: #D4AF37;
 }
 
 .feedback-info {
@@ -332,7 +332,7 @@
 .view-feedback-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -342,7 +342,7 @@
 }
 
 .view-feedback-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .empty-state {
@@ -357,7 +357,7 @@
 }
 
 .setup-btn {
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -369,7 +369,7 @@
 }
 
 .setup-btn:hover {
-  background: #3d5fd9;
+  background: #C9A227;
 }
 
 @media (max-width: 1200px) {

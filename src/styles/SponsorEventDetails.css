@@ -146,8 +146,8 @@
 }
 
 .tier-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .tier-header {
@@ -166,14 +166,14 @@
 .tier-price {
   font-size: 24px;
   font-weight: 700;
-  color: #4F7DFF;
+  color: #D4AF37;
   margin: 0;
 }
 
 .tier-features {
   font-size: 12px;
   font-weight: 600;
-  color: #4F7DFF;
+  color: #D4AF37;
   margin: 0 0 12px 0;
 }
 
@@ -191,7 +191,7 @@
 
 .select-tier-btn {
   width: 100%;
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -203,7 +203,7 @@
 }
 
 .select-tier-btn:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
 }
 
@@ -221,7 +221,7 @@
 }
 
 .custom-note a {
-  color: #4F7DFF;
+  color: #D4AF37;
   text-decoration: none;
   font-weight: 600;
 }

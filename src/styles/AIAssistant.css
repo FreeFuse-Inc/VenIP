@@ -10,7 +10,7 @@
   border: none;
   font-size: 28px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -200,7 +200,7 @@
 }
 
 .user-message p {
-  background-color: #4f7dff;
+  background-color: #D4AF37;
   color: white;
   border-radius: 12px 0 12px 12px;
 }
@@ -270,8 +270,8 @@
 
 .message-input:focus {
   outline: none;
-  border-color: #4f7dff;
-  box-shadow: 0 0 0 3px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .message-input:disabled {
@@ -282,7 +282,7 @@
 
 .send-btn {
   padding: 10px 12px;
-  background-color: #4f7dff;
+  background-color: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;

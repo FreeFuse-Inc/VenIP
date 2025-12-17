@@ -193,7 +193,7 @@
 
 .btn-proceed {
   width: 100%;
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -206,7 +206,7 @@
 }
 
 .btn-proceed:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
 }
 

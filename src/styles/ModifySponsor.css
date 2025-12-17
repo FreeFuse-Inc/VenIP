@@ -124,8 +124,8 @@
 
 .tier-option:hover,
 .tier-option.selected {
-  background: #4F7DFF;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  border-color: #D4AF37;
   color: white;
 }
 
@@ -171,7 +171,7 @@
 
 .btn-confirm {
   width: 100%;
-  background: #4F7DFF;
+  background: #D4AF37;
   color: white;
   border: none;
   border-radius: 6px;
@@ -184,7 +184,7 @@
 }
 
 .btn-confirm:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
 }
 
