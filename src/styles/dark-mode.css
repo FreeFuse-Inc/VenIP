@@ -211,6 +211,24 @@ html.dark-mode .package-btn:hover {
   border-color: #D4AF37;
 }
 
+/* Feedback cards */
+html.dark-mode .feedback-card {
+  background-color: #2a2a2a;
+  border-color: #404040;
+}
+
+html.dark-mode .feedback-card:hover {
+  background-color: #D4AF37;
+  border-color: #D4AF37;
+  color: black;
+}
+
+html.dark-mode .feedback-card:hover .feedback-event,
+html.dark-mode .feedback-card:hover .feedback-meta,
+html.dark-mode .feedback-card:hover .feedback-comment {
+  color: black;
+}
+
 /* Borders and separators */
 html.dark-mode .form-card,
 html.dark-mode input,
