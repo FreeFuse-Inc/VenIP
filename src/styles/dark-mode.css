@@ -475,22 +475,27 @@ html.dark-mode .cart-title,
 html.dark-mode .empty-cart,
 html.dark-mode .empty-cart-text,
 html.dark-mode .empty-cart-subtitle,
+html.dark-mode .cart-close-btn,
+html.dark-mode .tab-btn,
+html.dark-mode .summary-label,
+html.dark-mode .summary-value,
+html.dark-mode .summary-row {
+  color: #ffffff;
+}
+
+/* Cart item text - black for legibility */
 html.dark-mode .item-name,
 html.dark-mode .item-location,
 html.dark-mode .item-info,
 html.dark-mode .item-date,
 html.dark-mode .item-guests,
 html.dark-mode .item-quantity,
-html.dark-mode .cart-close-btn,
-html.dark-mode .tab-btn,
+html.dark-mode .item-price,
 html.dark-mode .history-booking-name,
 html.dark-mode .history-booking-provider,
 html.dark-mode .history-date,
-html.dark-mode .history-amount,
-html.dark-mode .summary-label,
-html.dark-mode .summary-value,
-html.dark-mode .summary-row {
-  color: #ffffff;
+html.dark-mode .history-amount {
+  color: #1f2937;
 }
 
 /* Cart items and history items */
