@@ -24,7 +24,7 @@
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -40,7 +40,7 @@
   border-radius: 6px;
   border: 1px solid #e5e7eb;
   background: white;
-  color: #6b7280;
+  color: #1f2937;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -95,7 +95,7 @@
 
 .booking-venue {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
