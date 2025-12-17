@@ -10,7 +10,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -19,7 +19,7 @@
 }
 
 .back-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .feed-header {
@@ -82,9 +82,9 @@
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: #4F7DFF;
-  color: white;
-  border-color: #4F7DFF;
+  background: #D4AF37;
+  color: black;
+  border-color: #D4AF37;
 }
 
 .events-list {
@@ -101,8 +101,8 @@
 }
 
 .event-feed-card:hover {
-  border-color: #4F7DFF;
-  box-shadow: 0 4px 12px rgba(79, 125, 255, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .event-feed-header {
@@ -165,8 +165,8 @@
 }
 
 .view-options-btn {
-  background: #4F7DFF;
-  color: white;
+  background: #D4AF37;
+  color: black;
   border: none;
   border-radius: 6px;
   padding: 10px 20px;
@@ -177,7 +177,7 @@
 }
 
 .view-options-btn:hover {
-  background: #3d5fd9;
+  background: #C9A227;
   transform: translateY(-2px);
 }
 
