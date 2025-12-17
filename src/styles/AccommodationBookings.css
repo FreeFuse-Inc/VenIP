@@ -64,9 +64,9 @@
 }
 
 .tab-btn.active {
-  color: black;
-  border-bottom-color: #D4AF37;
-  background-color: #D4AF37;
+  color: black !important;
+  border-bottom-color: #D4AF37 !important;
+  background-color: #D4AF37 !important;
 }
 
 .search-inputs {
