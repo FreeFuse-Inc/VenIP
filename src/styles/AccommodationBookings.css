@@ -159,7 +159,7 @@
 
 .results-count {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
@@ -244,7 +244,7 @@
 .activity-location {
   margin: 0;
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .activity-location {
@@ -255,7 +255,7 @@
   display: flex;
   gap: 12px;
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .rating-section {
@@ -272,7 +272,7 @@
 
 .review-count {
   font-size: 12px;
-  color: #9ca3af;
+  color: #1f2937;
 }
 
 .property-details {
@@ -285,7 +285,7 @@
   align-items: center;
   gap: 4px;
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .detail-label {
@@ -346,7 +346,7 @@
 
 .per-night {
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .book-btn {
@@ -454,7 +454,7 @@
 
 .flight-leg .airport {
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .flight-duration {
@@ -468,7 +468,7 @@
 
 .flight-duration span {
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .flight-footer {
@@ -482,7 +482,7 @@
 
 .seats-available {
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .flight-price-section {
@@ -564,7 +564,7 @@
 .location .label {
   font-size: 12px;
   font-weight: 600;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .location span:last-child {
@@ -577,7 +577,7 @@
   display: flex;
   gap: 16px;
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .features-list {
@@ -699,7 +699,7 @@
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
-  color: #6b7280;
+  color: #1f2937;
   transition: all 0.2s;
   text-align: left;
 }
@@ -760,7 +760,7 @@
 .price-display,
 .rating-display {
   font-size: 11px;
-  color: #6b7280;
+  color: #1f2937;
   font-weight: 500;
 }
 
@@ -784,7 +784,7 @@
   gap: 6px;
   cursor: pointer;
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
   transition: color 0.2s;
 }
 
@@ -855,7 +855,7 @@
 
 .empty-state-content p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
