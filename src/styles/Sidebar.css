@@ -272,3 +272,26 @@
   color: white;
   border-color: rgba(212, 175, 55, 0.5);
 }
+
+.dark-mode-btn {
+  width: 100%;
+  background: rgba(212, 175, 55, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-btn:hover {
+  background: rgba(212, 175, 55, 0.3);
+  color: white;
+  border-color: rgba(212, 175, 55, 0.5);
+}
