@@ -21,7 +21,7 @@
 
 .checkout-header p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
@@ -33,7 +33,7 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: #6b7280;
+  color: #1f2937;
   transition: color 0.2s ease;
   padding: 8px;
 }
@@ -107,14 +107,14 @@
 
 .summary-item-location {
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0 0 4px 0;
 }
 
 .summary-item-dates,
 .summary-item-guests {
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
   padding: 2px 0;
 }
@@ -137,7 +137,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .summary-row.total {

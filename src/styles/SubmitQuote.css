@@ -39,7 +39,7 @@
 
 .quote-header p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
@@ -129,7 +129,7 @@
   position: absolute;
   left: 12px;
   font-weight: 600;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .price-input-wrapper input {
@@ -160,7 +160,7 @@
 
 .file-info {
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 

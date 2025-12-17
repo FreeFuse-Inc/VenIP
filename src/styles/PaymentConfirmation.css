@@ -39,7 +39,7 @@
 
 .confirmation-header p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
@@ -127,7 +127,7 @@
   justify-content: space-between;
   padding: 8px 0;
   font-size: 13px;
-  color: #6b7280;
+  color: #1f2937;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -202,7 +202,7 @@
 
 .success-card p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0 0 16px 0;
 }
 
@@ -228,7 +228,7 @@
 
 .detail-item .label {
   font-weight: 600;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .detail-item .value {
@@ -237,7 +237,7 @@
 
 .next-steps {
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
   font-style: italic;
   margin: 0;
 }
