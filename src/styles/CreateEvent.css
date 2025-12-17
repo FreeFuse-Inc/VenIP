@@ -78,7 +78,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  color: #9ca3af;
+  color: #1f2937;
   margin-bottom: 8px;
   transition: all 0.2s ease;
 }
@@ -98,7 +98,7 @@
 .step-title {
   font-size: 12px;
   font-weight: 600;
-  color: #9ca3af;
+  color: #1f2937;
   text-align: center;
   transition: all 0.2s ease;
 }
