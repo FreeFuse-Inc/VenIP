@@ -5,8 +5,8 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: #D4AF37;
-  color: black;
+  background-color: #4f7dff;
+  color: white;
   border: none;
   font-size: 28px;
   cursor: pointer;
@@ -19,8 +19,8 @@
 }
 
 .assistant-toggle:hover {
-  background-color: #C9A227;
-  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+  background-color: #3f63d9;
+  box-shadow: 0 6px 16px rgba(79, 125, 255, 0.4);
   transform: scale(1.1);
 }
 
