@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoleContext } from '../context/RoleContext';
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
+import { DarkModeContext } from '../context/DarkModeContext';
 import '../styles/Sidebar.css';
 
 const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
@@ -10,6 +11,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const { userRole } = useContext(RoleContext);
   const { getCartItemCount } = useContext(UserContext);
   const { toggleCartSidebar } = useContext(CartContext);
+  const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [expandedItems, setExpandedItems] = useState({});
 
   const getDashboardPath = () => {
@@ -160,6 +162,9 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
           <>
             <button className="change-role-btn" onClick={() => navigate('/')}>
               Change Role
+            </button>
+            <button className="dark-mode-btn" onClick={toggleDarkMode} title="Toggle dark mode">
+              {isDarkMode ? '☀️' : '🌙'}
             </button>
             <span className="powered-by">Powered by FreeFuse</span>
           </>
