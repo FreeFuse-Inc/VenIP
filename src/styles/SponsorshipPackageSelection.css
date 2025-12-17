@@ -39,7 +39,7 @@
 
 .selection-header p {
   font-size: 14px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 0;
 }
 
@@ -123,7 +123,7 @@
   left: 12px;
   top: 12px;
   font-weight: 600;
-  color: #6b7280;
+  color: #1f2937;
 }
 
 .custom-input-wrapper input {
@@ -167,7 +167,7 @@
 }
 
 .summary-item .label {
-  color: #6b7280;
+  color: #1f2937;
   font-weight: 500;
 }
 
@@ -187,7 +187,7 @@
 
 .summary-note {
   font-size: 12px;
-  color: #6b7280;
+  color: #1f2937;
   margin: 12px 0;
 }
 
