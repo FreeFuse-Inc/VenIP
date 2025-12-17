@@ -502,6 +502,12 @@ html.dark-mode .history-booking-name {
   color: #87ceeb;
 }
 
+/* History booking category tag - gold background for legibility */
+html.dark-mode .history-booking-category {
+  background-color: #D4AF37;
+  color: black;
+}
+
 /* Cart items and history items */
 html.dark-mode .cart-item {
   background-color: #1a1a1a;
