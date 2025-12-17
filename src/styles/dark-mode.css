@@ -216,6 +216,40 @@ html.dark-mode .cart-badge {
   border-color: white;
 }
 
+/* Cart action buttons */
+html.dark-mode .checkout-btn {
+  background-color: #D4AF37;
+  color: black;
+}
+
+html.dark-mode .checkout-btn:hover:not(:disabled) {
+  background-color: #C9A227;
+}
+
+html.dark-mode .checkout-btn:disabled {
+  background-color: #808080;
+}
+
+html.dark-mode .continue-shopping-btn {
+  background-color: #333333;
+  color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+html.dark-mode .continue-shopping-btn:hover {
+  background-color: #404040;
+}
+
+html.dark-mode .clear-cart-btn {
+  background-color: #333333;
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+html.dark-mode .clear-cart-btn:hover {
+  background-color: #404040;
+}
+
 /* Package buttons */
 html.dark-mode .package-btn {
   background-color: #333333;
