@@ -18,7 +18,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #4F7DFF;
+  color: #D4AF37;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -29,7 +29,7 @@
 }
 
 .back-btn:hover {
-  color: #3d5fd9;
+  color: #C9A227;
 }
 
 .event-header-content {
@@ -112,8 +112,8 @@
 }
 
 .tab.active {
-  color: #4F7DFF;
-  border-bottom-color: #4F7DFF;
+  color: #D4AF37;
+  border-bottom-color: #D4AF37;
 }
 
 .tab-content {
