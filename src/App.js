@@ -11,7 +11,7 @@ import TrafficChart from './components/TrafficChart';
 import BounceRateChart from './components/BounceRateChart';
 import EngagementChart from './components/EngagementChart';
 import VendorList from './components/VendorList';
-import RoleSelection from './pages/RoleSelection';
+import SplashLoginScreen from './pages/SplashLoginScreen';
 import NPODashboard from './pages/NPODashboard';
 import VendorDashboard from './pages/VendorDashboard';
 import SponsorDashboard from './pages/SponsorDashboard';
@@ -67,8 +67,8 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
       {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} />}
       
       <Routes>
-        <Route path="/" element={<RoleSelection />} />
-        <Route path="/role-selection" element={<RoleSelection />} />
+        <Route path="/" element={<SplashLoginScreen />} />
+        <Route path="/role-selection" element={<SplashLoginScreen />} />
         <Route path="/dashboard/npo" element={<NPODashboard />} />
         <Route path="/dashboard/vendor" element={<VendorDashboard />} />
         <Route path="/dashboard/sponsor" element={<SponsorDashboard />} />
