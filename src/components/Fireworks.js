@@ -44,8 +44,8 @@ const Fireworks = ({ isActive, duration = 5000 }) => {
           key={particle.id}
           className="firework-particle"
           style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
+            left: `${particle.x}px`,
+            top: `${particle.y}px`,
             backgroundColor: particle.color,
             '--delay': `${particle.delay}s`,
             '--duration': `${particle.duration}s`,
