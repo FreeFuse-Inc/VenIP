@@ -162,7 +162,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
           </div>
         ) : (
           <>
-            <button className="change-role-btn" onClick={() => navigate('/')}>
+            <button className="change-role-btn" onClick={() => setIsRoleModalOpen(true)}>
               Change Role
             </button>
             <button className="dark-mode-btn" onClick={toggleDarkMode} title="Toggle dark mode">
@@ -172,6 +172,11 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
           </>
         )}
       </div>
+
+      <RoleChangeModal
+        isOpen={isRoleModalOpen}
+        onClose={() => setIsRoleModalOpen(false)}
+      />
     </aside>
   );
 };
