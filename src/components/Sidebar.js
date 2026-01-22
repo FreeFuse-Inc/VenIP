@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
 import { DarkModeContext } from '../context/DarkModeContext';
 import RoleChangeModal from './RoleChangeModal';
+import Fireworks from './Fireworks';
 import '../styles/Sidebar.css';
 
 const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
