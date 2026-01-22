@@ -14,6 +14,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const { toggleCartSidebar } = useContext(CartContext);
   const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [expandedItems, setExpandedItems] = useState({});
+  const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
 
   const getDashboardPath = () => {
     if (!userRole) return '/';
