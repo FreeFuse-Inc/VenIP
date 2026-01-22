@@ -22,7 +22,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
     if (showFireworks) {
       const timer = setTimeout(() => {
         setShowFireworks(false);
-      }, 5000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [showFireworks]);
