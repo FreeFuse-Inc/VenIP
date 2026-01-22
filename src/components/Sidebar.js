@@ -182,6 +182,8 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
         isOpen={isRoleModalOpen}
         onClose={() => setIsRoleModalOpen(false)}
       />
+
+      <Fireworks isActive={showFireworks} duration={5000} />
     </aside>
   );
 };
