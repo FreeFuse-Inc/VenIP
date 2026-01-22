@@ -16,6 +16,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [expandedItems, setExpandedItems] = useState({});
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
+  const [showFireworks, setShowFireworks] = useState(false);
 
   const getDashboardPath = () => {
     if (!userRole) return '/';
