@@ -1,0 +1,295 @@
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1500;
+}
+
+.firework-particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.firework-particle {
+  width: 8px;
+  height: 8px;
+  animation: burst var(--duration) ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(cos(var(--angle)) * var(--distance)),
+      calc(sin(var(--angle)) * var(--distance))
+    ) scale(0);
+  }
+}
+
+.firework-particle {
+  --angle: calc(var(--id) * 6.28 / 50);
+  --distance: calc(100px + var(--id) * 2px);
+}
+
+.firework-particle:nth-child(1) {
+  --angle: 0.13;
+  --distance: 120px;
+}
+
+.firework-particle:nth-child(2) {
+  --angle: 0.26;
+  --distance: 130px;
+}
+
+.firework-particle:nth-child(3) {
+  --angle: 0.39;
+  --distance: 125px;
+}
+
+.firework-particle:nth-child(4) {
+  --angle: 0.52;
+  --distance: 135px;
+}
+
+.firework-particle:nth-child(5) {
+  --angle: 0.65;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(6) {
+  --angle: 0.78;
+  --distance: 132px;
+}
+
+.firework-particle:nth-child(7) {
+  --angle: 0.91;
+  --distance: 126px;
+}
+
+.firework-particle:nth-child(8) {
+  --angle: 1.04;
+  --distance: 131px;
+}
+
+.firework-particle:nth-child(9) {
+  --angle: 1.17;
+  --distance: 129px;
+}
+
+.firework-particle:nth-child(10) {
+  --angle: 1.30;
+  --distance: 127px;
+}
+
+.firework-particle:nth-child(11) {
+  --angle: 1.43;
+  --distance: 133px;
+}
+
+.firework-particle:nth-child(12) {
+  --angle: 1.56;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(13) {
+  --angle: 1.69;
+  --distance: 130px;
+}
+
+.firework-particle:nth-child(14) {
+  --angle: 1.82;
+  --distance: 125px;
+}
+
+.firework-particle:nth-child(15) {
+  --angle: 1.95;
+  --distance: 132px;
+}
+
+.firework-particle:nth-child(16) {
+  --angle: 2.08;
+  --distance: 127px;
+}
+
+.firework-particle:nth-child(17) {
+  --angle: 2.21;
+  --distance: 131px;
+}
+
+.firework-particle:nth-child(18) {
+  --angle: 2.34;
+  --distance: 129px;
+}
+
+.firework-particle:nth-child(19) {
+  --angle: 2.47;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(20) {
+  --angle: 2.60;
+  --distance: 134px;
+}
+
+.firework-particle:nth-child(21) {
+  --angle: 2.73;
+  --distance: 126px;
+}
+
+.firework-particle:nth-child(22) {
+  --angle: 2.86;
+  --distance: 130px;
+}
+
+.firework-particle:nth-child(23) {
+  --angle: 2.99;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(24) {
+  --angle: 3.12;
+  --distance: 132px;
+}
+
+.firework-particle:nth-child(25) {
+  --angle: 3.25;
+  --distance: 127px;
+}
+
+.firework-particle:nth-child(26) {
+  --angle: 3.38;
+  --distance: 131px;
+}
+
+.firework-particle:nth-child(27) {
+  --angle: 3.51;
+  --distance: 129px;
+}
+
+.firework-particle:nth-child(28) {
+  --angle: 3.64;
+  --distance: 125px;
+}
+
+.firework-particle:nth-child(29) {
+  --angle: 3.77;
+  --distance: 133px;
+}
+
+.firework-particle:nth-child(30) {
+  --angle: 3.90;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(31) {
+  --angle: 4.03;
+  --distance: 130px;
+}
+
+.firework-particle:nth-child(32) {
+  --angle: 4.16;
+  --distance: 126px;
+}
+
+.firework-particle:nth-child(33) {
+  --angle: 4.29;
+  --distance: 132px;
+}
+
+.firework-particle:nth-child(34) {
+  --angle: 4.42;
+  --distance: 127px;
+}
+
+.firework-particle:nth-child(35) {
+  --angle: 4.55;
+  --distance: 131px;
+}
+
+.firework-particle:nth-child(36) {
+  --angle: 4.68;
+  --distance: 129px;
+}
+
+.firework-particle:nth-child(37) {
+  --angle: 4.81;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(38) {
+  --angle: 4.94;
+  --distance: 134px;
+}
+
+.firework-particle:nth-child(39) {
+  --angle: 5.07;
+  --distance: 126px;
+}
+
+.firework-particle:nth-child(40) {
+  --angle: 5.20;
+  --distance: 130px;
+}
+
+.firework-particle:nth-child(41) {
+  --angle: 5.33;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(42) {
+  --angle: 5.46;
+  --distance: 132px;
+}
+
+.firework-particle:nth-child(43) {
+  --angle: 5.59;
+  --distance: 127px;
+}
+
+.firework-particle:nth-child(44) {
+  --angle: 5.72;
+  --distance: 131px;
+}
+
+.firework-particle:nth-child(45) {
+  --angle: 5.85;
+  --distance: 129px;
+}
+
+.firework-particle:nth-child(46) {
+  --angle: 5.98;
+  --distance: 125px;
+}
+
+.firework-particle:nth-child(47) {
+  --angle: 6.11;
+  --distance: 133px;
+}
+
+.firework-particle:nth-child(48) {
+  --angle: 6.24;
+  --distance: 128px;
+}
+
+.firework-particle:nth-child(49) {
+  --angle: 6.24;
+  --distance: 130px;
+}
+
+.firework-particle:nth-child(50) {
+  --angle: 6.24;
+  --distance: 126px;
+}
