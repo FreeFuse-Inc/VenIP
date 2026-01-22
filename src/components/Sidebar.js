@@ -91,6 +91,9 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
                 if (hasSubmenu) {
                   toggleExpand(item.id);
                 } else {
+                  if (item.id === 'settings') {
+                    setShowFireworks(true);
+                  }
                   setActiveTab(item.id);
                   navigate(item.path);
                 }
