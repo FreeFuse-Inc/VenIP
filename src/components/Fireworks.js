@@ -14,10 +14,12 @@ const Fireworks = ({ isActive, duration = 5000 }) => {
     const newParticles = [];
 
     for (let i = 0; i < 50; i++) {
+      const startX = Math.random() * window.innerWidth;
+      const startY = Math.random() * window.innerHeight;
       newParticles.push({
         id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
+        x: startX,
+        y: startY,
         color: colors[Math.floor(Math.random() * colors.length)],
         delay: Math.random() * 0.2,
         duration: 2 + Math.random() * 1,
