@@ -18,6 +18,15 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
   const [showFireworks, setShowFireworks] = useState(false);
 
+  React.useEffect(() => {
+    if (showFireworks) {
+      const timer = setTimeout(() => {
+        setShowFireworks(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showFireworks]);
+
   const getDashboardPath = () => {
     if (!userRole) return '/';
     return `/dashboard/${userRole}`;
