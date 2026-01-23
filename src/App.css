@@ -1,7 +1,7 @@
 .app-container {
   display: flex;
   height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--bg-primary);
 }
 
 .main-content {
@@ -9,12 +9,13 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  background-color: var(--bg-primary);
 }
 
 .dashboard-header {
-  background: white;
+  background: var(--bg-secondary);
   padding: 24px 32px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,7 +24,7 @@
 .dashboard-title {
   font-size: 28px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -35,17 +36,17 @@
 
 .powered-by-text {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .freefuse-badge {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: white;
+  background: var(--bg-card);
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
 }
 
 .freefuse-icon {
@@ -62,7 +63,7 @@
 
 .freefuse-text {
   font-size: 13px;
-  color: #1f2937;
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -92,17 +93,17 @@
 }
 
 .session-info {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
   height: fit-content;
 }
 
 .session-title {
   margin: 0 0 8px 0;
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -110,7 +111,7 @@
   margin: 0;
   font-size: 24px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .vendors-section {
