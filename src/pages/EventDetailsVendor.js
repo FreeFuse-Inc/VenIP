@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/EventDetailsVendor.css';
 
 const EventDetailsVendor = () => {
@@ -30,6 +31,7 @@ const EventDetailsVendor = () => {
 
   return (
     <main className="event-details-vendor">
+      <BackButton />
       <div className="event-details-header">
         <div className="event-title-section">
           <h1 className="event-title">{event.name}</h1>

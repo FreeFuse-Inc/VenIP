@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/VendorChecklist.css';
 
 const VendorChecklist = () => {
@@ -50,6 +51,7 @@ const VendorChecklist = () => {
 
   return (
     <main className="vendor-checklist">
+      <BackButton />
       <div className="checklist-header">
         <h1>Wedding Celebration - Vendor Checklist</h1>
         <p className="event-info">Accepted Quote: $3,200 • Status: In Progress</p>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/EventManagement.css';
 
 const EventManagement = () => {
@@ -56,6 +57,7 @@ const EventManagement = () => {
 
   return (
     <main className="event-management">
+      <BackButton />
       <div className="event-header">
         <div className="event-header-content">
           <h1 className="event-title">{event.name}</h1>

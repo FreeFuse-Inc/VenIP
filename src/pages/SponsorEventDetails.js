@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/SponsorEventDetails.css';
 
 const SponsorEventDetails = () => {
@@ -86,6 +87,7 @@ const SponsorEventDetails = () => {
 
   return (
     <main className="sponsor-event-details">
+      <BackButton />
       {/* Hero Header */}
       <div className="event-hero">
         <div className="hero-overlay"></div>

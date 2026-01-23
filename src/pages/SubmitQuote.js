@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/SubmitQuote.css';
 
 const SubmitQuote = () => {
@@ -50,6 +51,7 @@ const SubmitQuote = () => {
 
   return (
     <main className="submit-quote-page">
+      <BackButton />
       <div className="quote-header">
         <h1>Submit Your Quote</h1>
         <p>Event: Annual Gala 2024 • Service: Catering</p>
