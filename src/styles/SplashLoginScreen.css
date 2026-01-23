@@ -1058,6 +1058,70 @@ html.dark-mode .splash-page-footer p {
   color: #6b7280;
 }
 
+/* Dark Mode - Forgot Password Modal */
+html.dark-mode .forgot-password-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+html.dark-mode .forgot-password-modal {
+  background: rgba(30, 30, 30, 0.95);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 12px 24px -8px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .modal-close-btn {
+  background: #2a2a2a;
+  color: #9ca3af;
+}
+
+html.dark-mode .modal-close-btn:hover {
+  background: #333333;
+  color: #ffffff;
+}
+
+html.dark-mode .modal-icon {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+}
+
+html.dark-mode .modal-title {
+  color: #ffffff;
+}
+
+html.dark-mode .modal-subtitle {
+  color: #9ca3af;
+}
+
+html.dark-mode .reset-success .modal-subtitle strong {
+  color: #ffffff;
+}
+
+html.dark-mode .reset-submit-btn {
+  background: linear-gradient(135deg, #D4AF37 0%, #C9A227 100%);
+  color: #000000;
+}
+
+html.dark-mode .reset-submit-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+html.dark-mode .back-to-login-btn {
+  color: #9ca3af;
+}
+
+html.dark-mode .back-to-login-btn:hover {
+  color: #ffffff;
+}
+
+html.dark-mode .reset-hint {
+  color: #6b7280;
+}
+
+html.dark-mode .success-icon {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+}
+
 /* ============================================
    Responsive Styles
    ============================================ */
