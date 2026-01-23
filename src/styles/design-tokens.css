@@ -1,13 +1,14 @@
-/* VenIP Design Tokens - Modern Dark Theme */
+/* VenIP Design Tokens - Modern Theme System */
+/* Light mode is the default, dark mode overrides via .dark-mode class */
 
 :root {
-  /* Background Colors */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #1a1a1a;
-  --bg-card: #1f1f1f;
-  --bg-card-hover: #2a2a2a;
-  --bg-input: #2a2a2a;
-  --bg-input-focus: #333333;
+  /* Background Colors - Light Mode */
+  --bg-primary: #f5f5f7;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9f9f9;
+  --bg-input: #f3f4f6;
+  --bg-input-focus: #e5e7eb;
   
   /* Accent Colors */
   --accent-gold: #D4AF37;
@@ -20,41 +21,41 @@
   --accent-green: #22c55e;
   --accent-blue: #3b82f6;
   
-  /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #9ca3af;
+  /* Text Colors - Light Mode */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4b5563;
   --text-tertiary: #6b7280;
-  --text-muted: #4b5563;
+  --text-muted: #9ca3af;
   
-  /* Border Colors */
-  --border-primary: #2a2a2a;
-  --border-secondary: #3a3a3a;
+  /* Border Colors - Light Mode */
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
   --border-accent: #D4AF37;
   
   /* Status Colors */
   --status-published: #22c55e;
-  --status-published-bg: rgba(34, 197, 94, 0.15);
+  --status-published-bg: rgba(34, 197, 94, 0.12);
   --status-draft: #6b7280;
-  --status-draft-bg: rgba(107, 114, 128, 0.15);
+  --status-draft-bg: rgba(107, 114, 128, 0.12);
   --status-active: #22c55e;
-  --status-active-bg: rgba(34, 197, 94, 0.15);
+  --status-active-bg: rgba(34, 197, 94, 0.12);
   --status-pending: #f59e0b;
-  --status-pending-bg: rgba(245, 158, 11, 0.15);
+  --status-pending-bg: rgba(245, 158, 11, 0.12);
   --status-completed: #3b82f6;
-  --status-completed-bg: rgba(59, 130, 246, 0.15);
+  --status-completed-bg: rgba(59, 130, 246, 0.12);
   
-  /* Icon Background Colors */
-  --icon-bg-gold: rgba(212, 175, 55, 0.15);
-  --icon-bg-purple: rgba(139, 92, 246, 0.15);
-  --icon-bg-green: rgba(34, 197, 94, 0.15);
-  --icon-bg-red: rgba(255, 107, 107, 0.15);
-  --icon-bg-blue: rgba(59, 130, 246, 0.15);
+  /* Icon Background Colors - Light Mode */
+  --icon-bg-gold: rgba(212, 175, 55, 0.12);
+  --icon-bg-purple: rgba(139, 92, 246, 0.12);
+  --icon-bg-green: rgba(34, 197, 94, 0.12);
+  --icon-bg-red: rgba(255, 107, 107, 0.12);
+  --icon-bg-blue: rgba(59, 130, 246, 0.12);
   
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-gold: 0 4px 16px rgba(212, 175, 55, 0.3);
+  /* Shadows - Light Mode */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-gold: 0 4px 16px rgba(212, 175, 55, 0.25);
   
   /* Border Radius */
   --radius-sm: 6px;
@@ -85,13 +86,61 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
   --transition-slow: 0.3s ease;
+  
+  /* Sidebar Colors - Light Mode */
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #4b5563;
+  --sidebar-text-hover: #1a1a1a;
+  --sidebar-border: #e5e7eb;
+  --sidebar-active-bg: #D4AF37;
+  --sidebar-active-text: #000000;
 }
 
-/* Dark mode specific overrides */
+/* Dark Mode Theme - Applied when html.dark-mode is active */
 html.dark-mode {
+  /* Background Colors - Dark Mode */
   --bg-primary: #0a0a0a;
   --bg-secondary: #1a1a1a;
   --bg-card: #1f1f1f;
+  --bg-card-hover: #2a2a2a;
+  --bg-input: #2a2a2a;
+  --bg-input-focus: #333333;
+  
+  /* Text Colors - Dark Mode */
   --text-primary: #ffffff;
   --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  --text-muted: #4b5563;
+  
+  /* Border Colors - Dark Mode */
+  --border-primary: #2a2a2a;
+  --border-secondary: #3a3a3a;
+  
+  /* Status Colors - Dark Mode (slightly adjusted for dark bg) */
+  --status-published-bg: rgba(34, 197, 94, 0.15);
+  --status-draft-bg: rgba(107, 114, 128, 0.15);
+  --status-active-bg: rgba(34, 197, 94, 0.15);
+  --status-pending-bg: rgba(245, 158, 11, 0.15);
+  --status-completed-bg: rgba(59, 130, 246, 0.15);
+  
+  /* Icon Background Colors - Dark Mode */
+  --icon-bg-gold: rgba(212, 175, 55, 0.15);
+  --icon-bg-purple: rgba(139, 92, 246, 0.15);
+  --icon-bg-green: rgba(34, 197, 94, 0.15);
+  --icon-bg-red: rgba(255, 107, 107, 0.15);
+  --icon-bg-blue: rgba(59, 130, 246, 0.15);
+  
+  /* Shadows - Dark Mode */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 4px 16px rgba(212, 175, 55, 0.3);
+  
+  /* Sidebar Colors - Dark Mode */
+  --sidebar-bg: #000000;
+  --sidebar-text: rgba(255, 255, 255, 0.6);
+  --sidebar-text-hover: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-active-bg: #D4AF37;
+  --sidebar-active-text: #000000;
 }
