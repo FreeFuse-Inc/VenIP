@@ -236,26 +236,102 @@ html.dark-mode .tab-btn.active {
   background-color: var(--accent-gold) !important;
 }
 
-/* Calendar */
-html.dark-mode .calendar-grid,
+/* Calendar - Enhanced Dark Mode */
+html.dark-mode .calendar-section,
+html.dark-mode .details-section {
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .weekdays {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .weekday {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
+html.dark-mode .calendar-grid {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 html.dark-mode .calendar-day {
-  border-color: var(--border-primary);
-  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.03);
   color: var(--text-primary);
 }
 
 html.dark-mode .calendar-day:hover {
-  background-color: var(--bg-card-hover);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.5);
 }
 
 html.dark-mode .calendar-day.has-activity {
-  background-color: var(--accent-gold-light);
-  border-color: var(--accent-gold);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+  border-color: rgba(212, 175, 55, 0.5);
 }
 
 html.dark-mode .calendar-day.selected {
-  background-color: var(--accent-gold);
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  border-color: #d4af37;
   color: black;
+}
+
+html.dark-mode .calendar-day .day-number {
+  color: #f3f4f6;
+}
+
+html.dark-mode .calendar-day.selected .day-number {
+  color: #000;
+}
+
+html.dark-mode .event-title-box {
+  background: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+}
+
+html.dark-mode .calendar-day.selected .event-title-box {
+  background: rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+html.dark-mode .legend {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html.dark-mode .legend-item {
+  color: #9ca3af;
+}
+
+html.dark-mode .selected-date-title {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark-mode .activity-details-with-actions {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .activity-title {
+  color: #ffffff;
+}
+
+html.dark-mode .activity-level {
+  color: #9ca3af;
+}
+
+html.dark-mode .activity-level strong {
+  color: #e5e7eb;
+}
+
+html.dark-mode .no-activity p {
+  color: #6b7280;
+}
+
+html.dark-mode .details-placeholder p {
+  color: #6b7280;
 }
 
 /* Modal */
