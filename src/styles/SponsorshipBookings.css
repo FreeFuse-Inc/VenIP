@@ -536,69 +536,115 @@
   box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
-/* Dark Mode Enhancements */
+/* Dark Mode Enhancements - High Visibility */
+html.dark-mode .sponsorship-bookings-page {
+  background: #0a0a0a;
+}
+
+html.dark-mode .sponsorship-bookings-page .page-title {
+  color: #ffffff;
+}
+
 html.dark-mode .calendar-section,
 html.dark-mode .details-section {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(25, 25, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .month-year {
+  color: #ffffff;
+}
+
+html.dark-mode .weekdays {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 html.dark-mode .weekday {
-  color: #e5e7eb;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 html.dark-mode .calendar-day {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 html.dark-mode .calendar-day:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--accent-gold);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(212, 175, 55, 0.7);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
 html.dark-mode .calendar-day.has-activity {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
-  border-color: rgba(212, 175, 55, 0.5);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.12) 100%);
+  border-color: rgba(212, 175, 55, 0.6);
 }
 
 html.dark-mode .day-number {
-  color: #f3f4f6;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 html.dark-mode .calendar-day.selected .day-number {
-  color: #000;
+  color: #000000;
+  font-weight: 700;
 }
 
 html.dark-mode .event-title-box {
-  background: rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.25);
   color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 html.dark-mode .calendar-day.selected .event-title-box {
   background: rgba(0, 0, 0, 0.25);
-  color: #000;
-}
-
-html.dark-mode .weekdays {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  color: #000000;
+  border-color: transparent;
 }
 
 html.dark-mode .legend {
-  border-top-color: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 html.dark-mode .legend-item {
-  color: #9ca3af;
+  color: #d1d5db;
+}
+
+html.dark-mode .legend-item span:last-child {
+  color: #e5e7eb;
 }
 
 html.dark-mode .selected-date-title {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 html.dark-mode .activity-details-with-actions {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html.dark-mode .activity-title {
+  color: #ffffff;
+}
+
+html.dark-mode .activity-type {
+  color: #fbbf24;
+}
+
+html.dark-mode .activity-level {
+  color: #9ca3af;
+}
+
+html.dark-mode .activity-level strong {
+  color: #e5e7eb;
+}
+
+html.dark-mode .no-activity p,
+html.dark-mode .details-placeholder p {
+  color: #6b7280;
 }
 
 html.dark-mode .modal-content {
