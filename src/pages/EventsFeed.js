@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import BackButton from '../components/BackButton';
 import SearchBar from '../components/SearchBar';
 import FilterTabs from '../components/FilterTabs';
 import EventImageCard from '../components/EventImageCard';
@@ -85,9 +86,10 @@ const EventsFeed = () => {
 
   return (
     <main className="events-feed">
-      <PageHeader 
-        title="Events" 
-        showBack={true}
+      <BackButton />
+      <PageHeader
+        title="Events"
+        showBack={false}
       />
 
       <div className="feed-content">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import BackButton from '../components/BackButton';
 import MetricCard from '../components/MetricCard';
 import '../styles/SponsorshipAnalytics.css';
 
@@ -60,9 +61,10 @@ const SponsorshipAnalytics = () => {
 
   return (
     <main className="sponsorship-analytics">
-      <PageHeader 
-        title="My Sponsorships" 
-        showBack={true}
+      <BackButton />
+      <PageHeader
+        title="My Sponsorships"
+        showBack={false}
       />
 
       <div className="analytics-content">
