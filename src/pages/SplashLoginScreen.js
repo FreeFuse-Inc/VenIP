@@ -540,6 +540,100 @@ const SplashLoginScreen = () => {
         </div>
       </main>
 
+      {/* Forgot Password Modal */}
+      {showForgotPassword && (
+        <div className="forgot-password-overlay" onClick={closeForgotPassword}>
+          <div className="forgot-password-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={closeForgotPassword}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            {!resetSuccess ? (
+              <>
+                <div className="modal-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </div>
+
+                <h3 className="modal-title">Reset your password</h3>
+                <p className="modal-subtitle">
+                  Enter your email address and we'll send you a link to reset your password.
+                </p>
+
+                <form onSubmit={handleForgotPassword} className="forgot-password-form">
+                  {resetError && (
+                    <div className="reset-error-message">
+                      {resetError}
+                    </div>
+                  )}
+
+                  <div className="input-group">
+                    <div className="input-wrapper">
+                      <span className="input-icon">✉</span>
+                      <input
+                        type="email"
+                        className="auth-input"
+                        placeholder="Enter your email"
+                        value={resetEmail}
+                        onChange={(e) => setResetEmail(e.target.value)}
+                        autoFocus
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="reset-submit-btn"
+                    disabled={resetLoading}
+                  >
+                    {resetLoading ? (
+                      <>
+                        <span className="btn-spinner"></span>
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Reset Link'
+                    )}
+                  </button>
+                </form>
+
+                <button className="back-to-login-btn" onClick={closeForgotPassword}>
+                  ← Back to login
+                </button>
+              </>
+            ) : (
+              <div className="reset-success">
+                <div className="success-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+
+                <h3 className="modal-title">Check your email</h3>
+                <p className="modal-subtitle">
+                  We've sent a password reset link to<br />
+                  <strong>{resetEmail}</strong>
+                </p>
+
+                <p className="reset-hint">
+                  Didn't receive the email? Check your spam folder or try again.
+                </p>
+
+                <button className="reset-submit-btn" onClick={closeForgotPassword}>
+                  Back to Login
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <footer className="splash-page-footer">
         <p>Powered by <span className="splash-brand">FreeFuse</span></p>
