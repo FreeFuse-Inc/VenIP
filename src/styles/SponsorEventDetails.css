@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background: #f9fafb;
+  background: var(--bg-primary);
   padding: 24px 32px;
 }
 
@@ -135,19 +135,23 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
+  align-items: stretch;
 }
 
 .tier-card {
-  background: #f9fafb;
-  border: 2px solid #e5e7eb;
+  background: var(--bg-card);
+  border: 2px solid var(--border-primary);
   border-radius: 8px;
   padding: 20px;
   transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .tier-card:hover {
-  border-color: #D4AF37;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-sm);
 }
 
 .tier-header {
@@ -179,8 +183,9 @@
 
 .tier-benefits {
   list-style: none;
-  margin: 0 0 16px 0;
+  margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 .tier-benefits li {
@@ -191,8 +196,8 @@
 
 .select-tier-btn {
   width: 100%;
-  background: #D4AF37;
-  color: white;
+  background: var(--accent-gold);
+  color: black;
   border: none;
   border-radius: 6px;
   padding: 10px 16px;
@@ -200,10 +205,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-top: auto;
 }
 
 .select-tier-btn:hover {
-  background: #C9A227;
+  background: var(--accent-gold-hover);
   transform: translateY(-2px);
 }
 
