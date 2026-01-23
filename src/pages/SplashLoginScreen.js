@@ -153,10 +153,6 @@ const SplashLoginScreen = () => {
             <span className="card-brand-name">VenIP</span>
           </div>
 
-          {/* Card header */}
-          <h2 className="card-title">
-            {activeTab === 'signin' ? 'Sign in with email' : 'Create your account'}
-          </h2>
           <p className="card-subtitle">
             Event Planning & Vendor Management Platform
           </p>
@@ -222,8 +218,8 @@ const SplashLoginScreen = () => {
                 </div>
 
                 <button type="submit" className="splash-login-btn">
-                  Get Started
-                </button>
+                Login
+              </button>
               </form>
 
               {/* Divider */}
