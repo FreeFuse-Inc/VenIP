@@ -1,0 +1,97 @@
+/* VenIP Design Tokens - Modern Dark Theme */
+
+:root {
+  /* Background Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #1f1f1f;
+  --bg-card-hover: #2a2a2a;
+  --bg-input: #2a2a2a;
+  --bg-input-focus: #333333;
+  
+  /* Accent Colors */
+  --accent-gold: #D4AF37;
+  --accent-gold-hover: #C9A227;
+  --accent-gold-light: rgba(212, 175, 55, 0.1);
+  --accent-gold-gradient: linear-gradient(135deg, #D4AF37 0%, #C9A227 100%);
+  --accent-purple: #8B5CF6;
+  --accent-red: #FF6B6B;
+  --accent-yellow: #FFD93D;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  --text-muted: #4b5563;
+  
+  /* Border Colors */
+  --border-primary: #2a2a2a;
+  --border-secondary: #3a3a3a;
+  --border-accent: #D4AF37;
+  
+  /* Status Colors */
+  --status-published: #22c55e;
+  --status-published-bg: rgba(34, 197, 94, 0.15);
+  --status-draft: #6b7280;
+  --status-draft-bg: rgba(107, 114, 128, 0.15);
+  --status-active: #22c55e;
+  --status-active-bg: rgba(34, 197, 94, 0.15);
+  --status-pending: #f59e0b;
+  --status-pending-bg: rgba(245, 158, 11, 0.15);
+  --status-completed: #3b82f6;
+  --status-completed-bg: rgba(59, 130, 246, 0.15);
+  
+  /* Icon Background Colors */
+  --icon-bg-gold: rgba(212, 175, 55, 0.15);
+  --icon-bg-purple: rgba(139, 92, 246, 0.15);
+  --icon-bg-green: rgba(34, 197, 94, 0.15);
+  --icon-bg-red: rgba(255, 107, 107, 0.15);
+  --icon-bg-blue: rgba(59, 130, 246, 0.15);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 4px 16px rgba(212, 175, 55, 0.3);
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Typography */
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 40px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+
+/* Dark mode specific overrides */
+html.dark-mode {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #1f1f1f;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+}
