@@ -3,7 +3,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   background-color: var(--accent-gold-bg, rgba(212, 175, 55, 0.1));
   border: 1px solid var(--accent-gold-border, rgba(212, 175, 55, 0.3));
   border-radius: 8px;
@@ -12,6 +12,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  width: fit-content;
+  align-self: flex-start;
 }
 
 .back-button:hover {
