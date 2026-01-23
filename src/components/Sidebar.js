@@ -41,7 +41,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
     if (userRole === 'sponsor') {
       return [
         ...baseItems,
-        { id: 'calander', label: 'Calander', icon: '📅', path: '/sponsorship-bookings' },
+        { id: 'calendar', label: 'Calendar', icon: '📅', path: '/sponsorship-bookings' },
         {
           id: 'bookings',
           label: 'Bookings',
@@ -59,7 +59,7 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
 
     return [
       ...baseItems,
-      { id: 'bookings', label: 'Calander', icon: '📅', path: '/bookings' },
+      { id: 'calendar', label: 'Calendar', icon: '📅', path: '/bookings' },
       { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
       { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
     ];
