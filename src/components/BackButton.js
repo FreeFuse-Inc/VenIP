@@ -7,7 +7,15 @@ const BackButton = () => {
   const location = useLocation();
 
   const isRootPage = () => {
-    const rootPages = ['/', '/dashboard/npo', '/dashboard/vendor', '/dashboard/sponsor'];
+    const rootPages = [
+      '/',
+      '/role-selection',
+      '/dashboard/npo',
+      '/dashboard/vendor',
+      '/dashboard/sponsor',
+      '/dashboard/super-admin',
+      '/dashboard/analytics'
+    ];
     return rootPages.includes(location.pathname);
   };
 
