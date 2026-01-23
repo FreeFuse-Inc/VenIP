@@ -1,220 +1,184 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
+import QuickAccessGrid from '../components/QuickAccessGrid';
+import UpcomingEventCard from '../components/UpcomingEventCard';
+import SponsorshipCard from '../components/SponsorshipCard';
 import { FeedbackContext } from '../context/FeedbackContext';
+import { CartContext } from '../context/CartContext';
 import '../styles/SponsorDashboard.css';
 
 const SponsorDashboard = () => {
   const navigate = useNavigate();
-  const { feedback, feedbackRequests } = useContext(FeedbackContext);
+  const { feedback } = useContext(FeedbackContext);
+  const { toggleCartSidebar } = useContext(CartContext);
 
-  const sponsorProfile = {
-    name: 'Global Innovations Inc.',
-    missionStatement: 'Supporting community events and initiatives that drive positive change, innovation, and social impact through strategic partnerships and corporate sponsorships.',
-    email: 'partnerships@globalinnovations.com',
-    phone: '+1 (555) 987-6543',
-    website: 'www.globalinnovations.com',
+  const user = {
+    name: 'Emily Davis',
+    role: 'Sponsor',
+    company: 'Global Innovations Inc.',
   };
 
   const sponsoredEvents = [
     {
       id: 1,
       name: 'Annual Gala 2024',
-      category: 'Charity',
-      sponsorshipLevel: 'Gold',
-      amount: '$5,000',
-      date: 'Dec 15, 2024',
-      eventDate: '2024-12-15',
-      engagement: '2,450',
+      tier: 'Gold',
+      amount: '$10,000',
       status: 'Active',
+      benefits: ['Logo on materials', 'VIP table', 'Speaking slot', 'Premium placement'],
+      eventId: 1,
     },
     {
       id: 2,
       name: 'Tech Conference 2025',
-      category: 'Business',
-      sponsorshipLevel: 'Platinum',
-      amount: '$10,000',
-      date: 'Feb 20, 2025',
-      eventDate: '2025-02-20',
-      engagement: '4,800',
-      status: 'Active',
+      tier: 'Platinum',
+      amount: '$25,000',
+      status: 'Pending',
+      benefits: ['Title sponsor', 'Keynote intro', 'Premium booth', 'VIP access'],
+      eventId: 2,
     },
   ];
 
-  const availableEvents = [
+  const upcomingEvents = [
     {
       id: 1,
-      name: 'Community Wellness Summit',
-      description: 'Health and wellness focused event',
-      date: 'Jan 15, 2025',
-      expectedAttendees: '500+',
-      packages: [
-        { name: 'Bronze', price: '$2,000' },
-        { name: 'Silver', price: '$5,000' },
-        { name: 'Gold', price: '$10,000' },
-      ],
+      name: 'Annual Charity Gala',
+      venue: 'Grand Ballroom',
+      date: '2025-03-14',
+      status: 'Published',
     },
     {
       id: 2,
-      name: 'Startup Innovation Forum',
-      description: 'Networking event for startups and investors',
-      date: 'Feb 10, 2025',
-      expectedAttendees: '300+',
-      packages: [
-        { name: 'Sponsor', price: '$3,000' },
-        { name: 'Platinum', price: '$8,000' },
-      ],
+      name: 'Tech Conference 2025',
+      venue: 'Conference Center',
+      date: '2025-04-19',
+      status: 'Published',
+    },
+    {
+      id: 3,
+      name: 'Summer Fundraiser',
+      venue: 'Rooftop Garden',
+      date: '2025-06-09',
+      status: 'Draft',
     },
   ];
 
+  const quickAccessItems = [
+    { id: 'events', label: 'Events', icon: '📅', path: '/events-feed', color: '#D4AF37' },
+    { id: 'sponsorships', label: 'Sponsorships', icon: '💛', path: '/sponsorship-bookings', color: '#FF6B6B' },
+    { id: 'packages', label: 'Packages', icon: '⭐', path: '/sponsorship-analytics', color: '#8B5CF6' },
+    { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings', color: '#6b7280' },
+  ];
+
+  const handleLogout = () => {
+    navigate('/');
+  };
+
   return (
     <main className="sponsor-dashboard">
-      <header className="dashboard-header">
-        <h1 className="dashboard-title">Sponsor Dashboard</h1>
-        <div className="header-buttons">
-          <button className="btn-browse-events" onClick={() => navigate('/events-feed')}>
-            Browse Events
+      <header className="dashboard-header-modern">
+        <div className="header-welcome">
+          <p className="welcome-text">Welcome back,</p>
+          <h1 className="user-name">{user.name}</h1>
+          <span className="role-badge">{user.role}</span>
+        </div>
+        <div className="header-actions">
+          <button className="header-icon-btn" onClick={toggleCartSidebar} title="Cart">
+            🛒
           </button>
-          <button className="btn-view-history" onClick={() => navigate('/sponsorship-analytics')}>
-            View Analytics
+          <button className="header-icon-btn" onClick={handleLogout} title="Logout">
+            ➡️
           </button>
         </div>
       </header>
 
-      <div className="dashboard-content">
-        <section className="profile-section">
-          <div className="profile-header">
-            <div className="profile-avatar">🏛️</div>
-            <div className="profile-main">
-              <h2 className="profile-name">{sponsorProfile.name}</h2>
-              <p className="profile-mission">{sponsorProfile.missionStatement}</p>
-            </div>
-          </div>
-          <div className="profile-contact-grid">
-            <div className="contact-item">
-              <span className="contact-label">📧 Email</span>
-              <p className="contact-value">{sponsorProfile.email}</p>
-            </div>
-            <div className="contact-item">
-              <span className="contact-label">📞 Phone</span>
-              <p className="contact-value">{sponsorProfile.phone}</p>
-            </div>
-            <div className="contact-item">
-              <span className="contact-label">🌐 Website</span>
-              <p className="contact-value">{sponsorProfile.website}</p>
-            </div>
-          </div>
+      <div className="dashboard-content-modern">
+        <section className="metrics-section-modern">
+          <MetricCard 
+            label="Sponsorships" 
+            value="2" 
+            icon="💛"
+            iconBg="gold"
+          />
+          <MetricCard 
+            label="Active" 
+            value="1" 
+            icon="⭐"
+            iconBg="green"
+          />
         </section>
 
-        <section className="metrics-section">
-          <MetricCard label="Total Sponsorships" value="2" />
-          <MetricCard label="Total Engagement Reach" value="7.2K" />
-          <MetricCard label="Available Events" value="12" />
-        </section>
+        <QuickAccessGrid items={quickAccessItems} />
 
-        <section className="sponsored-section">
-          <div className="section-header">
-            <h2>Your Sponsorships</h2>
+        <section className="upcoming-section">
+          <div className="section-header-modern">
+            <h2 className="section-title-modern">Upcoming Events</h2>
+            <button className="see-all-btn" onClick={() => navigate('/events-feed')}>
+              See All
+            </button>
           </div>
-          <div className="sponsored-grid">
-            {sponsoredEvents.map((event) => (
-              <div key={event.id} className="sponsored-card">
-                <div className="event-header">
-                  <h3 className="event-name">{event.name}</h3>
-                  <span className="sponsorship-level">{event.sponsorshipLevel}</span>
-                </div>
-                <div className="event-info-grid">
-                  <p>
-                    <span className="label">Amount:</span> {event.amount}
-                  </p>
-                  <p>
-                    <span className="label">Date:</span> {event.date}
-                  </p>
-                  <p>
-                    <span className="label">Engagement:</span> {event.engagement} people
-                  </p>
-                </div>
-                <button className="analytics-btn" onClick={() => navigate(`/sponsorship-analytics/${event.id}`)}>View Analytics →</button>
-              </div>
+          <div className="upcoming-events-list">
+            {upcomingEvents.map((event) => (
+              <UpcomingEventCard 
+                key={event.id} 
+                event={event}
+                onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
+              />
             ))}
           </div>
         </section>
 
-        <section className="available-events-section">
-          <div className="section-header">
-            <h2>Available Events to Sponsor</h2>
+        <section className="sponsorships-section">
+          <div className="section-header-modern">
+            <h2 className="section-title-modern">Your Sponsorships</h2>
+            <button className="see-all-btn" onClick={() => navigate('/sponsorship-analytics')}>
+              View All
+            </button>
           </div>
-          <div className="events-grid">
-            {availableEvents.map((event) => (
-              <div key={event.id} className="event-card">
-                <div className="event-header">
-                  <h3 className="event-name">{event.name}</h3>
-                </div>
-                <p className="event-description">{event.description}</p>
-                <div className="event-details">
-                  <p>
-                    <span className="detail-label">📅</span> {event.date}
-                  </p>
-                  <p>
-                    <span className="detail-label">👥</span> {event.expectedAttendees}
-                  </p>
-                </div>
 
-                <div className="packages-section">
-                  <h4>Sponsorship Packages:</h4>
-                  <div className="packages-list">
-                    {event.packages.map((pkg, idx) => (
-                      <button key={idx} className="package-btn">
-                        <span>{pkg.name}</span> - <span>{pkg.price}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+          <div className="browse-events-cta" onClick={() => navigate('/events-feed')}>
+            <div className="cta-content">
+              <span className="cta-icon">📅</span>
+              <div className="cta-text">
+                <h3>Browse Events</h3>
+                <p>Find new sponsorship opportunities</p>
               </div>
+            </div>
+            <span className="cta-arrow">→</span>
+          </div>
+
+          <div className="sponsorships-grid">
+            {sponsoredEvents.map((sponsorship) => (
+              <SponsorshipCard 
+                key={sponsorship.id} 
+                sponsorship={sponsorship}
+              />
             ))}
           </div>
         </section>
 
-        <section className="feedback-section">
-          <div className="section-header">
-            <h2>Your Event Feedback</h2>
-            {feedback.length > 0 && <span className="feedback-badge">{feedback.length} total</span>}
-          </div>
-          {feedback.length > 0 ? (
-            <div className="feedback-list">
-              {feedback.slice(0, 3).map((item) => (
-                <div key={item.id} className="feedback-card">
-                  <div className="feedback-content">
-                    <div className="feedback-title-row">
-                      <h4 className="feedback-event">{item.eventName}</h4>
-                      {item.isTestFeedback && <span className="test-badge">🧪 TEST</span>}
-                    </div>
-                    <p className="feedback-meta">
-                      {item.type === 'venue' ? '🏢 Venue Feedback' : '🎯 Service Feedback'} • {item.submittedBy}
-                    </p>
-                    <div className="feedback-ratings-preview">
-                      {Object.entries(item.ratings).slice(0, 2).map(([key, value]) => (
-                        <span key={key} className="rating-item">
-                          {value}/5 ★
-                        </span>
-                      ))}
-                      {Object.keys(item.ratings).length > 2 && <span>...</span>}
-                    </div>
-                    {item.comments && <p className="feedback-comment">{item.comments.substring(0, 100)}...</p>}
+        {feedback.length > 0 && (
+          <section className="feedback-preview-section">
+            <div className="section-header-modern">
+              <h2 className="section-title-modern">Recent Feedback</h2>
+              <span className="feedback-count">{feedback.length} total</span>
+            </div>
+            <div className="feedback-preview-list">
+              {feedback.slice(0, 2).map((item) => (
+                <div key={item.id} className="feedback-preview-card">
+                  <div className="feedback-info">
+                    <h4>{item.eventName}</h4>
+                    <p>{item.type === 'venue' ? '🏢 Venue' : '🎯 Service'} • {item.submittedBy}</p>
                   </div>
-                  <span className={`status-badge ${item.status}`}>{item.status}</span>
+                  <div className="feedback-rating">
+                    {Object.values(item.ratings)[0]}/5 ★
+                  </div>
                 </div>
               ))}
             </div>
-          ) : (
-            <div className="empty-state">
-              <p>No feedback submitted yet. Feedback from past events will appear here.</p>
-              <button className="request-feedback-btn" onClick={() => navigate('/feedback-settings')}>
-                📧 Request Feedback from Past Events
-              </button>
-            </div>
-          )}
-        </section>
+          </section>
+        )}
       </div>
     </main>
   );
