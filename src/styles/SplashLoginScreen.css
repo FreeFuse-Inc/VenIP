@@ -145,23 +145,36 @@
   }
 }
 
-/* Card top icon */
-.card-top-icon {
-  width: 52px;
-  height: 52px;
-  background: #f5f5f7;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
+/* Card top branding */
+.card-brand {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 24px;
-  color: #1a1a1a;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
-.card-top-icon svg {
-  width: 24px;
-  height: 24px;
+.card-brand-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-brand-icon span {
+  font-size: 20px;
+  color: #D4AF37;
+}
+
+.card-brand-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
 }
 
 /* Card title & subtitle */
