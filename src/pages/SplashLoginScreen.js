@@ -278,7 +278,14 @@ const SplashLoginScreen = () => {
                 </div>
 
                 <div className="forgot-password-row">
-                  <button type="button" className="forgot-password-btn">
+                  <button
+                    type="button"
+                    className="forgot-password-btn"
+                    onClick={() => {
+                      setShowForgotPassword(true);
+                      setResetEmail(email); // Pre-fill with current email if any
+                    }}
+                  >
                     Forgot password?
                   </button>
                 </div>
