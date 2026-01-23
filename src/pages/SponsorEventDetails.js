@@ -8,16 +8,23 @@ const SponsorEventDetails = () => {
 
   const event = {
     id: eventId,
-    name: 'Annual Gala 2024',
-    date: 'Dec 15, 2024',
-    time: '7:00 PM',
-    location: 'Downtown Convention Center',
+    name: 'Annual Charity Gala',
+    tagline: 'A night of giving and celebration',
+    date: 'Friday, March 14, 2025',
+    time: '18:00',
+    location: 'Grand Ballroom',
+    address: '123 Luxury Ave, Downtown',
     description:
       'Join us for our Annual Gala, a premier fundraising event celebrating community impact and supporting local nonprofit initiatives. This elegant evening brings together donors, leaders, and community members to make a real difference.',
     cause: 'Community Development',
     impact:
       'Funds raised support education programs, community development, and social welfare initiatives. Your sponsorship directly impacts 5,000+ community members annually.',
     expectedAttendees: 300,
+    budget: '$50,000',
+    venueImage: 'https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=600',
+    venueRating: 4.8,
+    venueCapacity: 500,
+    status: 'Published',
     logo: '🎯',
   };
 
@@ -79,41 +86,74 @@ const SponsorEventDetails = () => {
 
   return (
     <main className="sponsor-event-details">
-      <div className="event-details-header">
-        <h1>{event.name}</h1>
-        <p className="event-meta">
-          📅 {event.date} at {event.time} • 📍 {event.location}
-        </p>
+      {/* Hero Header */}
+      <div className="event-hero">
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <span className="event-status-badge">{event.status}</span>
+          <h1 className="event-title">{event.name}</h1>
+          <p className="event-tagline">{event.tagline}</p>
+        </div>
       </div>
 
       <div className="event-details-content">
-        <div className="event-info-section">
-          <div className="info-card">
-            <h3>About This Event</h3>
-            <p>{event.description}</p>
-            <div className="event-stats">
-              <div className="stat">
-                <span className="stat-label">Expected Attendees:</span>
-                <span className="stat-value">{event.expectedAttendees}+</span>
-              </div>
-              <div className="stat">
-                <span className="stat-label">Cause Area:</span>
-                <span className="stat-value">{event.cause}</span>
-              </div>
+        {/* Event Details Card */}
+        <div className="event-details-card">
+          <div className="detail-row">
+            <div className="detail-icon date-icon">📅</div>
+            <div className="detail-info">
+              <span className="detail-label">Date & Time</span>
+              <span className="detail-value">{event.date}</span>
+              <span className="detail-sub">{event.time}</span>
             </div>
           </div>
 
-          <div className="impact-card">
-            <h3>Impact & Reach</h3>
-            <p>{event.impact}</p>
-            <ul className="impact-list">
-              <li>5,000+ community members supported annually</li>
-              <li>10+ programs funded by sponsorships</li>
-              <li>100% of funds go directly to community initiatives</li>
-            </ul>
+          <div className="detail-row">
+            <div className="detail-icon location-icon">📍</div>
+            <div className="detail-info">
+              <span className="detail-label">Location</span>
+              <span className="detail-value">{event.location}</span>
+              <span className="detail-sub">{event.address}</span>
+            </div>
+          </div>
+
+          <div className="detail-row">
+            <div className="detail-icon attendees-icon">👥</div>
+            <div className="detail-info">
+              <span className="detail-label">Expected Attendees</span>
+              <span className="detail-value">{event.expectedAttendees} people</span>
+            </div>
+          </div>
+
+          <div className="detail-row">
+            <div className="detail-icon budget-icon">💰</div>
+            <div className="detail-info">
+              <span className="detail-label">Budget</span>
+              <span className="detail-value">{event.budget}</span>
+            </div>
           </div>
         </div>
 
+        {/* Venue Card */}
+        <div className="venue-section">
+          <h2 className="section-title">Venue</h2>
+          <div className="venue-card">
+            <div className="venue-image-wrapper">
+              <img src={event.venueImage} alt={event.location} className="venue-image" />
+            </div>
+            <div className="venue-info">
+              <h3 className="venue-name">{event.location}</h3>
+              <p className="venue-address">{event.address}</p>
+              <div className="venue-meta">
+                <span className="venue-rating">⭐ {event.venueRating}</span>
+                <span className="venue-divider">•</span>
+                <span className="venue-capacity">Capacity: {event.venueCapacity}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sponsorship Packages - Keep as is */}
         <div className="sponsorship-tiers">
           <h2>Sponsorship Packages</h2>
           <p className="tiers-intro">Choose the sponsorship level that aligns with your organization's goals</p>
