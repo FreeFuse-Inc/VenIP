@@ -103,21 +103,6 @@
   font-weight: 600;
 }
 
-/* Light mode fallback */
-@media (prefers-color-scheme: light) {
-  .metric-card:not(html.dark-mode .metric-card) {
-    background: white;
-    border-color: #e5e7eb;
-  }
-  
-  .metric-card:not(html.dark-mode .metric-card) .metric-value {
-    color: #1f2937;
-  }
-  
-  .metric-card:not(html.dark-mode .metric-card) .metric-label {
-    color: #6b7280;
-  }
-}
 
 /* Responsive */
 @media (max-width: 768px) {
