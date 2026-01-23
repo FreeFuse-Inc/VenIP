@@ -3,12 +3,13 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  background: var(--bg-primary);
 }
 
 .filter-section {
-  background: white;
+  background: var(--bg-secondary);
   padding: 16px 32px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-primary);
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
@@ -24,7 +25,7 @@
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -38,9 +39,9 @@
 .filter-btn {
   padding: 8px 16px;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  background: white;
-  color: #1f2937;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-card);
+  color: var(--text-primary);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -48,14 +49,14 @@
 }
 
 .filter-btn:hover {
-  border-color: #D4AF37;
-  color: #D4AF37;
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .filter-btn.active {
-  background: #D4AF37;
+  background: var(--accent-gold);
   color: black;
-  border-color: #D4AF37;
+  border-color: var(--accent-gold);
 }
 
 .bookings-list {
@@ -65,17 +66,17 @@
 }
 
 .booking-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .booking-card:hover {
-  border-color: #D4AF37;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-sm);
 }
 
 .booking-header {
@@ -89,13 +90,13 @@
 .booking-event {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 4px 0;
 }
 
 .booking-venue {
   font-size: 14px;
-  color: #1f2937;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -108,18 +109,18 @@
 }
 
 .status-badge.confirmed {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--status-active-bg);
+  color: var(--status-active);
 }
 
 .status-badge.pending {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--status-pending-bg);
+  color: var(--status-pending);
 }
 
 .status-badge.cancelled {
-  background: #fee2e2;
-  color: #991b1b;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
 }
 
 .booking-details {
@@ -128,7 +129,7 @@
   gap: 12px;
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .detail {
@@ -136,7 +137,7 @@
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .detail .icon {
@@ -146,7 +147,7 @@
 .view-details-btn {
   background: none;
   border: none;
-  color: #D4AF37;
+  color: var(--accent-gold);
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -154,21 +155,21 @@
 }
 
 .view-details-btn:hover {
-  color: #C9A227;
+  color: var(--accent-gold-hover);
 }
 
 .booking-detail-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 24px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
   margin: 24px 32px;
 }
 
 .back-btn {
   background: none;
   border: none;
-  color: #D4AF37;
+  color: var(--accent-gold);
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -177,7 +178,7 @@
 }
 
 .back-btn:hover {
-  color: #C9A227;
+  color: var(--accent-gold-hover);
 }
 
 .detail-container {
@@ -195,7 +196,7 @@
 .detail-header h2 {
   font-size: 24px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -214,19 +215,19 @@
 .detail-section h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 8px 0;
 }
 
 .detail-section p {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin: 0;
 }
 
 .detail-section .label {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .action-buttons {
@@ -247,12 +248,12 @@
 }
 
 .btn-approve {
-  background: #10b981;
+  background: var(--status-active);
   color: white;
 }
 
 .btn-approve:hover {
-  background: #059669;
+  background: #16a34a;
 }
 
 .btn-reject {
