@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BackButton from '../components/BackButton';
 import '../styles/Venues.css';
 
 const Venues = () => {
@@ -95,6 +96,7 @@ const Venues = () => {
 
   return (
     <main className="venues-page">
+      <BackButton />
       <header className="page-header">
         <h1 className="page-title">Venues</h1>
         <button className="add-btn" onClick={() => setShowAddForm(true)}>

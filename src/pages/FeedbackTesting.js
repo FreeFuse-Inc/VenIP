@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EventContext } from '../context/EventContext';
 import { FeedbackContext } from '../context/FeedbackContext';
+import BackButton from '../components/BackButton';
 import '../styles/FeedbackTesting.css';
 
 const FeedbackTesting = () => {
@@ -244,6 +245,7 @@ const FeedbackTesting = () => {
 
   return (
     <main className="feedback-testing-page">
+      <BackButton />
       <div className="testing-header">
         <h1 className="page-title">Feedback Testing</h1>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BackButton from '../components/BackButton';
 import '../styles/Vendors.css';
 
 const Vendors = () => {
@@ -116,6 +117,7 @@ const Vendors = () => {
 
   return (
     <main className="vendors-page">
+      <BackButton />
       <header className="page-header">
         <h1 className="page-title">Vendors</h1>
         <button className="add-btn" onClick={() => setShowAddForm(true)}>

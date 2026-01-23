@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FeedbackContext } from '../context/FeedbackContext';
 import { EventContext } from '../context/EventContext';
+import BackButton from '../components/BackButton';
 import '../styles/EventFeedback.css';
 
 const EventFeedback = () => {
@@ -132,6 +133,7 @@ const EventFeedback = () => {
 
   return (
     <main className="event-feedback-page">
+      <BackButton />
       <div className="feedback-header">
         <h1 className="page-title">Event Feedback</h1>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FeedbackContext } from '../context/FeedbackContext';
+import BackButton from '../components/BackButton';
 import '../styles/FeedbackSettings.css';
 
 const FeedbackSettings = () => {
@@ -91,6 +92,7 @@ const FeedbackSettings = () => {
 
   return (
     <main className="feedback-settings-page">
+      <BackButton />
       <div className="settings-header">
         <h1 className="page-title">Feedback Integrations</h1>
       </div>
