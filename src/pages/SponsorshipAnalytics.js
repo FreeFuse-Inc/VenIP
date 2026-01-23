@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import BackButton from '../components/BackButton';
+import PageHeader from '../components/PageHeader';
+import MetricCard from '../components/MetricCard';
 import '../styles/SponsorshipAnalytics.css';
 
 const SponsorshipAnalytics = () => {
@@ -13,7 +14,7 @@ const SponsorshipAnalytics = () => {
       analytics: {
         eventName: 'Annual Gala 2024',
         sponsorshipTier: 'Gold',
-        sponsorshipAmount: '$5,000',
+        sponsorshipAmount: '$10,000',
         eventDate: 'Dec 15, 2024',
         metrics: {
           impressions: '45,230',
@@ -22,11 +23,10 @@ const SponsorshipAnalytics = () => {
           websiteClicks: '892',
           conversions: '34',
           socialReach: '125,680',
-          emailReaches: '28,940',
         },
       },
       roi: {
-        costs: 5000,
+        costs: 10000,
         contactsMade: 287,
         estimatedValue: 28500,
       },
@@ -35,7 +35,7 @@ const SponsorshipAnalytics = () => {
       analytics: {
         eventName: 'Tech Conference 2025',
         sponsorshipTier: 'Platinum',
-        sponsorshipAmount: '$10,000',
+        sponsorshipAmount: '$25,000',
         eventDate: 'Feb 20, 2025',
         metrics: {
           impressions: '78,450',
@@ -44,11 +44,10 @@ const SponsorshipAnalytics = () => {
           websiteClicks: '1,567',
           conversions: '67',
           socialReach: '198,340',
-          emailReaches: '45,680',
         },
       },
       roi: {
-        costs: 10000,
+        costs: 25000,
         contactsMade: 512,
         estimatedValue: 61440,
       },
@@ -61,113 +60,125 @@ const SponsorshipAnalytics = () => {
 
   return (
     <main className="sponsorship-analytics">
-      <BackButton />
-      <div className="analytics-header">
-        <h1>Sponsorship Performance</h1>
-        <p>
-          {analytics.eventName} • {analytics.sponsorshipTier} • {analytics.sponsorshipAmount}
-        </p>
-      </div>
+      <PageHeader 
+        title="My Sponsorships" 
+        showBack={true}
+      />
 
       <div className="analytics-content">
-        <div className="metrics-grid">
-          <div className="metric-card">
-            <h4>Total Impressions</h4>
-            <p className="metric-value">{analytics.metrics.impressions}</p>
-            <span className="metric-label">times your brand was seen</span>
-          </div>
-          <div className="metric-card">
-            <h4>Event Attendees</h4>
-            <p className="metric-value">{analytics.metrics.eventAttendees}</p>
-            <span className="metric-label">direct interactions</span>
-          </div>
-          <div className="metric-card">
-            <h4>Logo Views</h4>
-            <p className="metric-value">{analytics.metrics.logoViews}</p>
-            <span className="metric-label">instances on event materials</span>
-          </div>
-          <div className="metric-card">
-            <h4>Website Clicks</h4>
-            <p className="metric-value">{analytics.metrics.websiteClicks}</p>
-            <span className="metric-label">from event materials</span>
-          </div>
-          <div className="metric-card">
-            <h4>Lead Conversions</h4>
-            <p className="metric-value">{analytics.metrics.conversions}</p>
-            <span className="metric-label">qualified leads generated</span>
-          </div>
-          <div className="metric-card">
-            <h4>Social Media Reach</h4>
-            <p className="metric-value">{analytics.metrics.socialReach}</p>
-            <span className="metric-label">unique accounts reached</span>
-          </div>
-        </div>
+        <section className="summary-metrics">
+          <MetricCard 
+            label="Total Invested" 
+            value={`$${roi.costs.toLocaleString()}`}
+            icon="💰"
+            iconBg="gold"
+          />
+          <MetricCard 
+            label="Active Sponsorships" 
+            value="1"
+            icon="💛"
+            iconBg="green"
+          />
+        </section>
 
-        <div className="detailed-sections">
-          <div className="section-card">
-            <h3>ROI Summary</h3>
-            <div className="roi-breakdown">
-              <div className="roi-item">
-                <span className="label">Sponsorship Investment:</span>
-                <span className="value">${roi.costs.toLocaleString()}</span>
-              </div>
-              <div className="roi-item">
-                <span className="label">Direct Contacts Made:</span>
-                <span className="value">{roi.contactsMade}</span>
-              </div>
-              <div className="roi-item highlight">
-                <span className="label">Estimated Value Generated:</span>
-                <span className="value">${roi.estimatedValue.toLocaleString()}</span>
-              </div>
-              <p className="roi-note">Based on average customer value and engagement metrics</p>
+        <div className="browse-events-cta" onClick={() => navigate('/events-feed')}>
+          <div className="cta-content">
+            <span className="cta-icon">📅</span>
+            <div className="cta-text">
+              <h3>Browse Events</h3>
+              <p>Find new sponsorship opportunities</p>
             </div>
           </div>
+          <span className="cta-arrow">→</span>
+        </div>
 
-          <div className="section-card">
-            <h3>Sponsorship Benefits Activated</h3>
-            <ul className="benefits-list">
-              <li>✓ Logo displayed on event website</li>
-              <li>✓ Social media mentions (5 posts)</li>
-              <li>✓ Recognition in email campaigns</li>
-              <li>✓ Event program listing</li>
-              <li>✓ Booth space provided</li>
-              <li>✓ 6 event tickets fulfilled</li>
-            </ul>
+        <section className="sponsorships-list-section">
+          <h2 className="section-title">Your Sponsorships</h2>
+          
+          <div className="sponsorship-detail-card">
+            <div className="sponsorship-header">
+              <div className="tier-icon gold">
+                <span>👑</span>
+              </div>
+              <div className="tier-info">
+                <h3>{analytics.sponsorshipTier}</h3>
+                <p className="tier-amount">{analytics.sponsorshipAmount}</p>
+              </div>
+              <span className="status-badge active">Active</span>
+            </div>
+
+            <div className="benefits-section">
+              <p className="benefits-label">Benefits:</p>
+              <ul className="benefits-list">
+                <li><span className="check">✓</span> Logo on materials</li>
+                <li><span className="check">✓</span> VIP table</li>
+                <li><span className="check">✓</span> Speaking slot</li>
+                <li className="more-benefits">+1 more benefits</li>
+              </ul>
+            </div>
+
+            <button className="view-event-btn" onClick={() => navigate(`/sponsor-event-details/1`)}>
+              <span>📅</span> View Event
+            </button>
           </div>
 
-          {!showRenewalDecision && (
-            <div className="renewal-prompt">
-              <h3>Ready to Renew or Modify?</h3>
-              <p>
-                Was this sponsorship a success for your organization? Consider renewing or upgrading your sponsorship
-                for maximum impact.
-              </p>
-              <button className="btn-renewal-decision" onClick={() => setShowRenewalDecision(true)}>
-                View Renewal Options →
+          <div className="sponsorship-detail-card">
+            <div className="sponsorship-header">
+              <div className="tier-icon platinum">
+                <span>💎</span>
+              </div>
+              <div className="tier-info">
+                <h3>Platinum</h3>
+                <p className="tier-amount">$25,000</p>
+              </div>
+              <span className="status-badge pending">Pending</span>
+            </div>
+
+            <div className="benefits-section">
+              <p className="benefits-label">Benefits:</p>
+              <ul className="benefits-list">
+                <li><span className="check">✓</span> Title sponsor</li>
+                <li><span className="check">✓</span> Keynote intro</li>
+                <li><span className="check">✓</span> Premium booth</li>
+                <li className="more-benefits">+1 more benefits</li>
+              </ul>
+            </div>
+
+            <button className="view-event-btn" onClick={() => navigate(`/sponsor-event-details/2`)}>
+              <span>📅</span> View Event
+            </button>
+          </div>
+        </section>
+
+        {!showRenewalDecision && (
+          <div className="renewal-prompt">
+            <h3>Ready to Renew or Modify?</h3>
+            <p>Consider renewing or upgrading your sponsorship for maximum impact.</p>
+            <button className="btn-renewal-decision" onClick={() => setShowRenewalDecision(true)}>
+              View Renewal Options →
+            </button>
+          </div>
+        )}
+
+        {showRenewalDecision && (
+          <div className="renewal-section">
+            <h3>What Would You Like to Do?</h3>
+            <div className="renewal-buttons">
+              <button
+                className="btn-renew"
+                onClick={() => navigate(`/modify-sponsorship/${sponsorshipId || 1}`)}
+              >
+                Renew or Upgrade →
+              </button>
+              <button
+                className="btn-end"
+                onClick={() => navigate(`/renewal-decision/${sponsorshipId || 1}`)}
+              >
+                End Sponsorship
               </button>
             </div>
-          )}
-
-          {showRenewalDecision && (
-            <div className="renewal-section">
-              <h3>What Would You Like to Do?</h3>
-              <div className="renewal-buttons">
-                <button
-                  className="btn-renew"
-                  onClick={() => navigate(`/modify-sponsorship/${sponsorshipId || 1}`)}
-                >
-                  Renew or Upgrade Sponsorship →
-                </button>
-                <button
-                  className="btn-end"
-                  onClick={() => navigate(`/renewal-decision/${sponsorshipId || 1}`)}
-                >
-                  End Sponsorship
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </main>
   );
