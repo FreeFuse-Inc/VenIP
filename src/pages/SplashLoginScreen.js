@@ -146,6 +146,56 @@ const SplashLoginScreen = () => {
     setIsRoleDropdownOpen(false);
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+
+    if (!resetEmail) {
+      setResetError('Please enter your email address');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(resetEmail)) {
+      setResetError('Please enter a valid email address');
+      return;
+    }
+
+    if (!isSupabaseConfigured() || !supabase) {
+      // For demo purposes, show success even without Supabase
+      setResetLoading(true);
+      setTimeout(() => {
+        setResetLoading(false);
+        setResetSuccess(true);
+      }, 1500);
+      return;
+    }
+
+    try {
+      setResetLoading(true);
+      setResetError(null);
+
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: window.location.origin + '/auth/reset-password',
+      });
+
+      if (error) throw error;
+
+      setResetSuccess(true);
+    } catch (error) {
+      setResetError(error.message);
+    } finally {
+      setResetLoading(false);
+    }
+  };
+
+  const closeForgotPassword = () => {
+    setShowForgotPassword(false);
+    setResetEmail('');
+    setResetError(null);
+    setResetSuccess(false);
+  };
+
   const selectedRoleData = roles.find(r => r.id === selectedRole);
 
   return (
