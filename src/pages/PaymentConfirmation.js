@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/PaymentConfirmation.css';
 
 const PaymentConfirmation = () => {
@@ -73,6 +74,7 @@ const PaymentConfirmation = () => {
 
   return (
     <main className="payment-confirmation">
+      <BackButton />
       <div className="confirmation-header">
         <h1>Complete Your Sponsorship</h1>
         <p>Annual Gala 2024 • {tier?.toUpperCase()} Tier • ${amount}</p>

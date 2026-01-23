@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/SuggestEvent.css';
 
 const SuggestEvent = () => {
@@ -56,6 +57,7 @@ const SuggestEvent = () => {
 
   return (
     <main className="suggest-event-page">
+      <BackButton />
       <div className="suggest-event-header">
         <h1>Suggest a New Event</h1>
         <p>

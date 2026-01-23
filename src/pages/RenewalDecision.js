@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/RenewalDecision.css';
 
 const RenewalDecision = () => {
@@ -42,6 +43,7 @@ const RenewalDecision = () => {
 
   return (
     <main className="renewal-decision">
+      <BackButton />
       <div className="decision-header">
         <h1>End Sponsorship</h1>
         <p>{sponsorship.eventName} • {sponsorship.tier} Sponsorship</p>

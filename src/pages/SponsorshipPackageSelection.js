@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/SponsorshipPackageSelection.css';
 
 const SponsorshipPackageSelection = () => {
@@ -28,6 +29,7 @@ const SponsorshipPackageSelection = () => {
 
   return (
     <main className="sponsorship-package-selection">
+      <BackButton />
       <div className="selection-header">
         <h1>Select Your Sponsorship Package</h1>
         <p>Annual Gala 2024</p>

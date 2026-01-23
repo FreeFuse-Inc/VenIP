@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/ModifySponsor.css';
 
 const ModifySponsor = () => {
@@ -41,6 +42,7 @@ const ModifySponsor = () => {
 
   return (
     <main className="modify-sponsor">
+      <BackButton />
       <div className="modify-header">
         <h1>Modify Your Sponsorship</h1>
         <p>{currentSponsorship.eventName} • Current: {currentSponsorship.currentTier}</p>
