@@ -1,128 +1,146 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
+import QuickAccessGrid from '../components/QuickAccessGrid';
+import UpcomingEventCard from '../components/UpcomingEventCard';
 import { FeedbackContext } from '../context/FeedbackContext';
+import { CartContext } from '../context/CartContext';
 import '../styles/NPODashboard.css';
 
 const NPODashboard = () => {
   const navigate = useNavigate();
   const { feedback, getNewFeedbackCount } = useContext(FeedbackContext);
+  const { toggleCartSidebar } = useContext(CartContext);
 
-  const npoProfile = {
-    name: 'Community Hearts Foundation',
-    missionStatement: 'Empowering communities through transformative events, volunteer opportunities, and charitable initiatives that create lasting positive impact for underserved populations.',
-    email: 'info@communityhearts.org',
-    phone: '+1 (555) 246-8135',
-    website: 'www.communityhearts.org',
+  const user = {
+    name: 'Sarah Johnson',
+    role: 'Event Organizer',
+    organization: 'Community Hearts Foundation',
   };
 
   const upcomingEvents = [
-    { id: 1, name: 'Annual Gala 2024', date: 'Dec 15, 2024', status: 'Planning' },
-    { id: 2, name: 'Charity Fundraiser', date: 'Jan 10, 2025', status: 'Pending Quotes' },
-    { id: 3, name: 'Community Cleanup', date: 'Jan 20, 2025', status: 'Approved' },
+    { id: 1, name: 'Annual Gala 2024', venue: 'Grand Ballroom', date: '2024-12-15', status: 'Published' },
+    { id: 2, name: 'Charity Fundraiser', venue: 'City Center', date: '2025-01-10', status: 'Draft' },
+    { id: 3, name: 'Community Cleanup', venue: 'Central Park', date: '2025-01-20', status: 'Published' },
+  ];
+
+  const quickAccessItems = [
+    { id: 'create', label: 'Create Event', icon: '➕', path: '/create-event', color: '#D4AF37' },
+    { id: 'events', label: 'My Events', icon: '📅', path: '/bookings', color: '#8B5CF6' },
+    { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors', color: '#22c55e' },
+    { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings', color: '#6b7280' },
   ];
 
   const newFeedbackCount = getNewFeedbackCount();
-  const recentFeedback = feedback.slice(0, 3);
+  const recentFeedback = feedback.slice(0, 2);
+
+  const handleLogout = () => {
+    navigate('/');
+  };
 
   return (
     <main className="npo-dashboard">
-      <header className="dashboard-header">
-        <h1 className="dashboard-title">NPO Dashboard</h1>
-        <button className="create-event-btn" onClick={() => navigate('/create-event')}>
-          + Create Event
-        </button>
+      <header className="dashboard-header-modern">
+        <div className="header-welcome">
+          <p className="welcome-text">Welcome back,</p>
+          <h1 className="user-name">{user.name}</h1>
+          <span className="role-badge">{user.role}</span>
+        </div>
+        <div className="header-actions">
+          <button className="header-icon-btn" onClick={toggleCartSidebar} title="Cart">
+            🛒
+          </button>
+          <button className="header-icon-btn" onClick={handleLogout} title="Logout">
+            ➡️
+          </button>
+        </div>
       </header>
 
-      <div className="dashboard-content">
-        <section className="profile-section">
-          <div className="profile-header">
-            <div className="profile-avatar">❤️</div>
-            <div className="profile-main">
-              <h2 className="profile-name">{npoProfile.name}</h2>
-              <p className="profile-mission">{npoProfile.missionStatement}</p>
-            </div>
-          </div>
-          <div className="profile-contact-grid">
-            <div className="contact-item">
-              <span className="contact-label">📧 Email</span>
-              <p className="contact-value">{npoProfile.email}</p>
-            </div>
-            <div className="contact-item">
-              <span className="contact-label">📞 Phone</span>
-              <p className="contact-value">{npoProfile.phone}</p>
-            </div>
-            <div className="contact-item">
-              <span className="contact-label">🌐 Website</span>
-              <p className="contact-value">{npoProfile.website}</p>
-            </div>
-          </div>
+      <div className="dashboard-content-modern">
+        <section className="metrics-section-modern">
+          <MetricCard 
+            label="Total Events" 
+            value="12" 
+            icon="📅"
+            iconBg="gold"
+          />
+          <MetricCard 
+            label="Pending Quotes" 
+            value="3" 
+            icon="📋"
+            iconBg="purple"
+          />
+          <MetricCard 
+            label="Upcoming" 
+            value="5" 
+            icon="⭐"
+            iconBg="green"
+          />
         </section>
 
-        <section className="metrics-section">
-          <MetricCard label="Total Events" value="12" />
-          <MetricCard label="Pending Vendor Quotes" value="3" />
-          <MetricCard label="Upcoming Events" value="5" />
-        </section>
+        <QuickAccessGrid items={quickAccessItems} />
 
-        <section className="events-section">
-          <div className="section-header">
-            <h2>Recent Events</h2>
+        <section className="upcoming-section">
+          <div className="section-header-modern">
+            <h2 className="section-title-modern">Upcoming Events</h2>
+            <button className="see-all-btn" onClick={() => navigate('/bookings')}>
+              See All
+            </button>
           </div>
-          <div className="events-list">
+          <div className="upcoming-events-list">
             {upcomingEvents.map((event) => (
-              <div key={event.id} className="event-card">
-                <div className="event-info">
-                  <h3 className="event-name">{event.name}</h3>
-                  <p className="event-date">{event.date}</p>
-                </div>
-                <div className="event-status" data-status={event.status.toLowerCase().replace(' ', '-')}>
-                  {event.status}
-                </div>
-                <button className="event-action-btn" onClick={() => navigate(`/event-management/${event.id}`)}>View Details →</button>
-              </div>
+              <UpcomingEventCard 
+                key={event.id} 
+                event={event}
+                onClick={() => navigate(`/event-management/${event.id}`)}
+              />
             ))}
           </div>
         </section>
 
-        <section className="feedback-section">
-          <div className="section-header">
-            <h2>Event Feedback</h2>
-            {newFeedbackCount > 0 && <span className="feedback-badge">{newFeedbackCount} new</span>}
+        <div className="create-event-cta" onClick={() => navigate('/create-event')}>
+          <div className="cta-content">
+            <span className="cta-icon">✨</span>
+            <div className="cta-text">
+              <h3>Create New Event</h3>
+              <p>Start planning your next amazing event</p>
+            </div>
           </div>
-          {recentFeedback.length > 0 ? (
-            <div className="feedback-list">
-              {recentFeedback.map((item) => (
-                <div key={item.id} className="feedback-card">
-                  <div className="feedback-info">
-                    <div className="feedback-title-row">
-                      <h4 className="feedback-event">{item.eventName}</h4>
-                      {item.isTestFeedback && <span className="test-badge">🧪 TEST</span>}
+          <span className="cta-arrow">→</span>
+        </div>
+
+        {(recentFeedback.length > 0 || newFeedbackCount > 0) && (
+          <section className="feedback-section-modern">
+            <div className="section-header-modern">
+              <h2 className="section-title-modern">Event Feedback</h2>
+              {newFeedbackCount > 0 && (
+                <span className="feedback-count">{newFeedbackCount} new</span>
+              )}
+            </div>
+            {recentFeedback.length > 0 ? (
+              <div className="feedback-list-modern">
+                {recentFeedback.map((item) => (
+                  <div key={item.id} className="feedback-card-modern">
+                    <div className="feedback-info">
+                      <h4>{item.eventName}</h4>
+                      <p>{item.type === 'venue' ? '🏢 Venue' : '🎯 Service'} • {item.submittedBy}</p>
                     </div>
-                    <p className="feedback-meta">
-                      {item.type === 'venue' ? '🏢 Venue' : '🎯 Service'} • By {item.submittedBy}
-                    </p>
-                    <p className="feedback-date">{item.submittedAt}</p>
+                    <div className="feedback-rating">
+                      {Object.values(item.ratings)[0]}/5 ★
+                    </div>
                   </div>
-                  <div className="feedback-rating">
-                    <span className="rating-stars">★★★★★</span>
-                    <span className={`status-badge ${item.status}`}>{item.status}</span>
-                  </div>
-                  <button className="view-feedback-btn" onClick={() => navigate(`/event-management/${item.eventId}`)}>
-                    View Details →
-                  </button>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="empty-state">
-              <p>No feedback received yet. Feedback will appear after your events conclude.</p>
-              <button className="setup-btn" onClick={() => navigate('/feedback-settings')}>
-                ⚙️ Set Up Feedback Automation
-              </button>
-            </div>
-          )}
-        </section>
+                ))}
+              </div>
+            ) : (
+              <div className="empty-feedback">
+                <p>No feedback yet. Set up automation to collect feedback after events.</p>
+                <button className="setup-feedback-btn" onClick={() => navigate('/feedback-settings')}>
+                  ⚙️ Set Up Automation
+                </button>
+              </div>
+            )}
+          </section>
+        )}
       </div>
     </main>
   );
