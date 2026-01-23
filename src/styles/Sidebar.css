@@ -1,16 +1,18 @@
 .sidebar {
   width: 160px;
-  background-color: #000000;
+  background-color: var(--sidebar-bg);
   height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 20px 0;
-  color: white;
+  color: var(--sidebar-text);
+  border-right: 1px solid var(--sidebar-border);
+  transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base);
 }
 
 .sidebar-header {
   padding: 20px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--sidebar-border);
 }
 
 .logo {
@@ -24,16 +26,18 @@
 .logo-icon {
   width: 32px;
   height: 32px;
-  background-color: #D4AF37;
+  background-color: var(--accent-gold);
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
+  color: #000000;
 }
 
 .logo-text {
   font-size: 16px;
+  color: var(--text-primary);
 }
 
 .sidebar-nav {
@@ -47,7 +51,7 @@
 
 .sidebar-calendar-container {
   padding: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--sidebar-border);
   max-height: calc(100vh - 300px);
   overflow-y: auto;
   width: 100%;
@@ -57,26 +61,26 @@
 .nav-item {
   border: none;
   background: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sidebar-text);
   cursor: pointer;
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 14px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-base);
   width: 100%;
   justify-content: flex-start;
 }
 
 .nav-item:hover {
-  color: white;
-  background-color: rgba(212, 175, 55, 0.1);
+  color: var(--sidebar-text-hover);
+  background-color: var(--icon-bg-gold);
 }
 
 .nav-item.active {
-  background-color: #D4AF37;
-  color: black;
+  background-color: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
 }
 
 .nav-item.has-submenu {
@@ -89,7 +93,7 @@
   justify-content: center;
   font-size: 10px;
   margin-left: auto;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-base);
 }
 
 .submenu-arrow.expanded {
@@ -97,8 +101,8 @@
 }
 
 .submenu {
-  background-color: rgba(212, 175, 55, 0.05);
-  border-left: 3px solid #D4AF37;
+  background-color: var(--icon-bg-gold);
+  border-left: 3px solid var(--accent-gold);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -107,26 +111,26 @@
 .submenu-item {
   border: none;
   background: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--sidebar-text);
   cursor: pointer;
   padding: 8px 16px 8px 32px;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-base);
   width: 100%;
   justify-content: flex-start;
 }
 
 .submenu-item:hover {
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(212, 175, 55, 0.1);
+  color: var(--sidebar-text-hover);
+  background-color: rgba(212, 175, 55, 0.15);
 }
 
 .submenu-item.active {
-  background-color: rgba(212, 175, 55, 0.15);
-  color: white;
+  background-color: rgba(212, 175, 55, 0.2);
+  color: var(--text-primary);
 }
 
 .submenu-label {
@@ -148,22 +152,22 @@
 .cart-nav-btn {
   border: none;
   background: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sidebar-text);
   cursor: pointer;
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 14px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-base);
   margin: 0;
   position: relative;
   margin-top: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--sidebar-border);
 }
 
 .cart-nav-btn:hover {
-  color: white;
+  color: var(--sidebar-text-hover);
   background-color: rgba(212, 175, 55, 0.2);
 }
 
@@ -185,10 +189,10 @@
 
 .sidebar-footer {
   padding: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--sidebar-border);
   font-size: 12px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--sidebar-text);
 }
 
 .powered-by {
@@ -205,7 +209,7 @@
   margin: 0 0 12px 0;
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sidebar-text);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -218,22 +222,24 @@
   gap: 8px;
   padding: 12px 8px;
   margin: 0 8px 8px 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid transparent;
+  background: var(--bg-card);
+  border: 2px solid var(--border-primary);
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  color: rgba(255, 255, 255, 0.7);
+  transition: all var(--transition-base);
+  color: var(--text-secondary);
 }
 
 .role-card-small:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-secondary);
 }
 
 .role-card-small.active {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+  background: var(--icon-bg-gold);
+  color: var(--text-primary);
+  border-color: var(--accent-gold);
 }
 
 .role-icon-small {
@@ -255,43 +261,41 @@
 
 .change-role-btn {
   width: 100%;
-  background: rgba(212, 175, 55, 0.2);
-  color: rgba(255, 255, 255, 0.8);
+  background: var(--icon-bg-gold);
+  color: var(--text-primary);
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 6px;
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: 16px;
+  transition: all var(--transition-base);
+  margin-bottom: 12px;
 }
 
 .change-role-btn:hover {
-  background: rgba(212, 175, 55, 0.3);
-  color: white;
-  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(212, 175, 55, 0.25);
+  border-color: var(--accent-gold);
 }
 
 .dark-mode-btn {
   width: 100%;
-  background: rgba(212, 175, 55, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
   border-radius: 6px;
   padding: 8px 12px;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: 16px;
+  transition: all var(--transition-base);
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .dark-mode-btn:hover {
-  background: rgba(212, 175, 55, 0.3);
-  color: white;
-  border-color: rgba(212, 175, 55, 0.5);
+  background: var(--bg-card-hover);
+  border-color: var(--accent-gold);
 }
