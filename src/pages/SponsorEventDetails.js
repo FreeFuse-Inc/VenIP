@@ -21,7 +21,7 @@ const SponsorEventDetails = () => {
       'Funds raised support education programs, community development, and social welfare initiatives. Your sponsorship directly impacts 5,000+ community members annually.',
     expectedAttendees: 300,
     budget: '$50,000',
-    venueImage: 'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=800',
+    venueImage: 'https://images.pexels.com/photos/30311728/pexels-photo-30311728.jpeg?auto=compress&cs=tinysrgb&w=800',
     venueRating: 4.8,
     venueCapacity: 500,
     status: 'Published',
