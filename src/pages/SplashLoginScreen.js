@@ -141,15 +141,6 @@ const SplashLoginScreen = () => {
         <div className="bg-circle bg-circle-3"></div>
       </div>
 
-      {/* Fixed top-left VenIP branding */}
-      <header className="splash-page-header">
-        <div className="venip-brand">
-          <div className="brand-icon-wrapper">
-            <span className="brand-icon">✦</span>
-          </div>
-          <span className="brand-name">VenIP</span>
-        </div>
-      </header>
 
       {/* Centered floating login card */}
       <main className="splash-main-content">
