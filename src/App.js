@@ -12,6 +12,7 @@ import BounceRateChart from './components/BounceRateChart';
 import EngagementChart from './components/EngagementChart';
 import VendorList from './components/VendorList';
 import SplashLoginScreen from './pages/SplashLoginScreen';
+import AuthCallback from './pages/AuthCallback';
 import NPODashboard from './pages/NPODashboard';
 import VendorDashboard from './pages/VendorDashboard';
 import SponsorDashboard from './pages/SponsorDashboard';
@@ -68,6 +69,7 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
       
       <Routes>
         <Route path="/" element={<SplashLoginScreen />} />
+        <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/role-selection" element={<SplashLoginScreen />} />
         <Route path="/dashboard/npo" element={<NPODashboard />} />
         <Route path="/dashboard/vendor" element={<VendorDashboard />} />
