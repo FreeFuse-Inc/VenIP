@@ -2,248 +2,341 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: var(--bg-primary);
+  min-height: 100vh;
   overflow-y: auto;
-  background: #f9fafb;
-  padding: 24px 32px;
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: #D4AF37;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 14px;
-  margin-bottom: 24px;
-  transition: all 0.2s ease;
-}
-
-.back-btn:hover {
-  color: #C9A227;
-}
-
-.analytics-header {
-  background: white;
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-  border: 1px solid #e5e7eb;
-}
-
-.analytics-header h1 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0 0 8px 0;
-}
-
-.analytics-header p {
-  font-size: 14px;
-  color: #1f2937;
-  margin: 0;
 }
 
 .analytics-content {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Summary Metrics */
+.summary-metrics {
   display: grid;
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
 }
 
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+/* Browse Events CTA */
+.browse-events-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  background: var(--accent-gold-gradient);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
 }
 
-.metric-card {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  border: 1px solid #e5e7eb;
-  text-align: center;
-  transition: all 0.2s ease;
+.browse-events-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
 }
 
-.metric-card:hover {
-  border-color: #D4AF37;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+.cta-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
 }
 
-.metric-card h4 {
-  font-size: 14px;
+.cta-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-md);
+  font-size: 22px;
+}
+
+.cta-text h3 {
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  color: #1f2937;
-  margin: 0 0 12px 0;
+  color: black;
+  margin: 0 0 var(--space-xs) 0;
 }
 
-.metric-value {
-  font-size: 32px;
-  font-weight: 700;
-  color: #D4AF37;
-  margin: 0 0 8px 0;
-}
-
-.metric-label {
-  font-size: 12px;
-  color: #1f2937;
+.cta-text p {
+  font-size: var(--font-size-sm);
+  color: rgba(0, 0, 0, 0.7);
   margin: 0;
 }
 
-.detailed-sections {
-  display: grid;
-  gap: 20px;
+.cta-arrow {
+  font-size: var(--font-size-xl);
+  color: black;
 }
 
-.section-card {
-  background: white;
-  border-radius: 8px;
-  padding: 24px;
-  border: 1px solid #e5e7eb;
-}
-
-.section-card h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0 0 16px 0;
-}
-
-.roi-breakdown {
-  display: grid;
-  gap: 12px;
-}
-
-.roi-item {
+/* Sponsorships List Section */
+.sponsorships-list-section {
   display: flex;
-  justify-content: space-between;
-  padding: 12px;
-  background: #f9fafb;
-  border-radius: 6px;
-  font-size: 14px;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
-.roi-item .label {
-  color: #1f2937;
-  font-weight: 500;
-}
-
-.roi-item .value {
-  color: #1f2937;
+.section-title {
+  font-size: var(--font-size-lg);
   font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
 }
 
-.roi-item.highlight {
-  background: #dbeafe;
-  color: #0c4a6e;
+/* Sponsorship Detail Card */
+.sponsorship-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
-.roi-note {
-  font-size: 12px;
-  color: #1f2937;
-  margin: 12px 0 0 0;
-  font-style: italic;
+.sponsorship-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.tier-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.tier-icon.gold {
+  background: var(--icon-bg-gold);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.tier-icon.platinum {
+  background: var(--icon-bg-purple);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.tier-info {
+  flex: 1;
+}
+
+.tier-info h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.tier-amount {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin: 0;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.active {
+  background: var(--status-active-bg);
+  color: var(--status-active);
+}
+
+.status-badge.pending {
+  background: var(--status-pending-bg);
+  color: var(--status-pending);
+}
+
+/* Benefits Section */
+.benefits-section {
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-primary);
+}
+
+.benefits-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-sm) 0;
 }
 
 .benefits-list {
   list-style: none;
-  margin: 0;
   padding: 0;
-  display: grid;
-  gap: 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 .benefits-list li {
-  font-size: 14px;
-  color: #1f2937;
-  padding-left: 20px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
 }
 
-.benefits-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #10b981;
-  font-weight: 600;
+.benefits-list .check {
+  color: var(--accent-green);
+  font-weight: 700;
 }
 
+.more-benefits {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  padding-left: calc(var(--space-sm) + 14px);
+}
+
+.view-event-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.view-event-btn:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: black;
+}
+
+/* Renewal Section */
 .renewal-prompt,
 .renewal-section {
-  background: #f0f4ff;
-  border: 1px solid #dbeafe;
-  border-radius: 8px;
-  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
 }
 
 .renewal-prompt h3,
 .renewal-section h3 {
-  color: #0c4a6e;
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm) 0;
 }
 
 .renewal-prompt p {
-  color: #0c4a6e;
-  font-size: 14px;
-  margin: 0 0 16px 0;
-}
-
-.btn-renewal-decision,
-.btn-renew,
-.btn-end {
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-lg) 0;
 }
 
 .btn-renewal-decision {
-  background: #D4AF37;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--accent-gold);
+  border: none;
+  border-radius: var(--radius-md);
   color: black;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
 }
 
 .btn-renewal-decision:hover {
-  background: #3d5fd9;
+  background: var(--accent-gold-hover);
   transform: translateY(-2px);
 }
 
 .renewal-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-lg);
 }
 
 .btn-renew {
-  background: #10b981;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--accent-green);
+  border: none;
+  border-radius: var(--radius-md);
   color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
 }
 
 .btn-renew:hover {
-  background: #059669;
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .btn-end {
-  background: #ef4444;
-  color: white;
+  padding: var(--space-md) var(--space-xl);
+  background: transparent;
+  border: 1px solid var(--accent-red);
+  border-radius: var(--radius-md);
+  color: var(--accent-red);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
 }
 
 .btn-end:hover {
-  background: #dc2626;
+  background: var(--accent-red);
+  color: white;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-  .sponsorship-analytics {
-    padding: 16px;
+  .analytics-content {
+    padding: var(--space-lg);
+    gap: var(--space-lg);
   }
 
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .summary-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .browse-events-cta {
+    padding: var(--space-md);
+  }
+
+  .cta-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
   }
 
   .renewal-buttons {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-content {
+    padding: var(--space-md);
+  }
+
+  .sponsorship-detail-card {
+    padding: var(--space-md);
   }
 }
