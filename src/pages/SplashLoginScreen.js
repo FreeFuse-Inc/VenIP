@@ -5,7 +5,8 @@ import {
   signInWithGoogle,
   signInWithFacebook,
   signInWithApple,
-  isSupabaseConfigured
+  isSupabaseConfigured,
+  supabase
 } from '../utils/supabaseClient';
 import '../styles/SplashLoginScreen.css';
 
@@ -29,6 +30,13 @@ const SplashLoginScreen = () => {
   const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
   const [socialLoading, setSocialLoading] = useState(null);
   const [authError, setAuthError] = useState(null);
+
+  // Forgot Password state
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetSuccess, setResetSuccess] = useState(false);
+  const [resetError, setResetError] = useState(null);
 
   const roles = [
     {
