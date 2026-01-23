@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/Settings.css';
 
 const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconnect }) => {
@@ -448,6 +449,7 @@ const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconn
 
   return (
     <main className="settings-page">
+      <BackButton />
       <header className="page-header">
         <h1 className="page-title">Settings</h1>
       </header>

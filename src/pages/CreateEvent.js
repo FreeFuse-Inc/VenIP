@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/CreateEvent.css';
 
 const CreateEvent = () => {
@@ -63,6 +64,7 @@ const CreateEvent = () => {
 
   return (
     <main className="create-event-container">
+      <BackButton />
       <header className="create-event-header">
         <h1>{isEditMode ? 'Edit Event' : 'Create Event'}</h1>
       </header>
