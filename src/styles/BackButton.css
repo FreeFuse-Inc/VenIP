@@ -75,6 +75,13 @@ html.dark-mode .back-button:hover {
   letter-spacing: 0.3px;
 }
 
+/* Spacer to reserve space for fixed button */
+.back-button-spacer {
+  height: 60px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .back-button {
@@ -82,12 +89,16 @@ html.dark-mode .back-button:hover {
     padding: 10px 16px;
     font-size: 13px;
   }
-  
+
   .back-text {
     display: none;
   }
-  
+
   .back-icon {
     font-size: 18px;
+  }
+
+  .back-button-spacer {
+    height: 50px;
   }
 }
