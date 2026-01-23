@@ -97,6 +97,25 @@ const SponsorEventDetails = () => {
       </div>
 
       <div className="event-details-content">
+        {/* Venue Card */}
+        <div className="venue-section">
+          <h2 className="section-title">Venue</h2>
+          <div className="venue-card">
+            <div className="venue-image-wrapper">
+              <img src={event.venueImage} alt={event.location} className="venue-image" />
+            </div>
+            <div className="venue-info">
+              <h3 className="venue-name">{event.location}</h3>
+              <p className="venue-address">{event.address}</p>
+              <div className="venue-meta">
+                <span className="venue-rating">⭐ {event.venueRating}</span>
+                <span className="venue-divider">•</span>
+                <span className="venue-capacity">Capacity: {event.venueCapacity}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Event Details Card */}
         <div className="event-details-card">
           <div className="detail-row">
@@ -130,25 +149,6 @@ const SponsorEventDetails = () => {
             <div className="detail-info">
               <span className="detail-label">Budget</span>
               <span className="detail-value">{event.budget}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Venue Card */}
-        <div className="venue-section">
-          <h2 className="section-title">Venue</h2>
-          <div className="venue-card">
-            <div className="venue-image-wrapper">
-              <img src={event.venueImage} alt={event.location} className="venue-image" />
-            </div>
-            <div className="venue-info">
-              <h3 className="venue-name">{event.location}</h3>
-              <p className="venue-address">{event.address}</p>
-              <div className="venue-meta">
-                <span className="venue-rating">⭐ {event.venueRating}</span>
-                <span className="venue-divider">•</span>
-                <span className="venue-capacity">Capacity: {event.venueCapacity}</span>
-              </div>
             </div>
           </div>
         </div>
