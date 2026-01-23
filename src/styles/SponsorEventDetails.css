@@ -76,9 +76,9 @@
 
 .detail-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-md);
-  padding: var(--space-md) 0;
+  padding: var(--space-lg) 0;
   border-bottom: 1px solid var(--border-primary);
 }
 
@@ -121,8 +121,7 @@
 .detail-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  flex: 1;
+  gap: var(--space-xs);
 }
 
 .detail-label {
@@ -130,12 +129,14 @@
   color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 .detail-value {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--text-primary);
+  line-height: 1.3;
 }
 
 .detail-sub {
