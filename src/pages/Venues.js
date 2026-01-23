@@ -78,8 +78,10 @@ const Venues = () => {
     capacity: '',
     amenities: '',
     rate: '',
+    image: '',
   });
   const [editingId, setEditingId] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const filterTabs = ['All', 'Available', 'Unavailable'];
 
@@ -95,6 +97,27 @@ const Venues = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image size should be less than 5MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setFormData((prev) => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setImagePreview(null);
+    setFormData((prev) => ({ ...prev, image: '' }));
   };
 
   const handleAddVenue = () => {
@@ -113,7 +136,7 @@ const Venues = () => {
         amenities: formData.amenities.split(',').map((a) => a.trim()).filter(Boolean),
         rate: formData.rate,
         available: true,
-        image: venueImages[Math.floor(Math.random() * venueImages.length)],
+        image: formData.image || venueImages[Math.floor(Math.random() * venueImages.length)],
         rating: (Math.random() * 0.5 + 4.5).toFixed(1),
         reviews: Math.floor(Math.random() * 100 + 20),
       };
@@ -125,7 +148,8 @@ const Venues = () => {
         setVenues([...venues, newVenue]);
       }
 
-      setFormData({ name: '', location: '', capacity: '', amenities: '', rate: '' });
+      setFormData({ name: '', location: '', capacity: '', amenities: '', rate: '', image: '' });
+      setImagePreview(null);
       setShowAddForm(false);
     }
   };
@@ -137,7 +161,9 @@ const Venues = () => {
       capacity: venue.capacity.toString(),
       amenities: venue.amenities.join(', '),
       rate: venue.rate,
+      image: venue.image,
     });
+    setImagePreview(venue.image);
     setEditingId(venue.id);
     setShowAddForm(true);
   };
@@ -252,6 +278,50 @@ const Venues = () => {
                       onChange={handleInputChange}
                       placeholder="e.g., WiFi, Parking, Catering"
                     />
+                  </div>
+                  <div className="form-group full-width">
+                    <label>Venue Photo</label>
+                    <div className="image-upload-area">
+                      {imagePreview ? (
+                        <div className="image-preview-container">
+                          <img
+                            src={imagePreview}
+                            alt="Venue preview"
+                            className="image-preview"
+                          />
+                          <div className="image-preview-actions">
+                            <label className="change-image-btn">
+                              <span>📷 Change Photo</span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                className="hidden-file-input"
+                              />
+                            </label>
+                            <button
+                              type="button"
+                              className="remove-image-btn"
+                              onClick={removeImage}
+                            >
+                              ✕ Remove
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <label className="upload-placeholder">
+                          <div className="upload-icon">📸</div>
+                          <span className="upload-text">Click to upload venue photo</span>
+                          <span className="upload-hint">JPG, PNG or WebP (max 5MB)</span>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="hidden-file-input"
+                          />
+                        </label>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
