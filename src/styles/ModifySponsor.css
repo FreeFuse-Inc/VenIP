@@ -3,14 +3,14 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background: #f9fafb;
+  background: var(--bg-primary);
   padding: 24px 32px;
 }
 
 .back-btn {
   background: none;
   border: none;
-  color: #D4AF37;
+  color: var(--accent-gold);
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -18,24 +18,28 @@
   transition: all 0.2s ease;
 }
 
+.back-btn:hover {
+  color: var(--accent-gold-hover);
+}
+
 .modify-header {
-  background: white;
-  border-radius: 8px;
+  background: var(--bg-card);
+  border-radius: 12px;
   padding: 24px;
   margin-bottom: 24px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
 }
 
 .modify-header h1 {
   font-size: 28px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 8px 0;
 }
 
 .modify-header p {
   font-size: 14px;
-  color: #1f2937;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -49,10 +53,10 @@
 .tier-selection,
 .extension-selection,
 .summary-card {
-  background: white;
-  border-radius: 8px;
+  background: var(--bg-card);
+  border-radius: 12px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
 }
 
 .options-section h3,
@@ -61,7 +65,7 @@
 .summary-card h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 16px 0;
 }
 
@@ -72,20 +76,25 @@
 }
 
 .option-btn {
-  background: #f9fafb;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
+  background: var(--bg-input);
+  border: 2px solid var(--border-primary);
+  border-radius: 10px;
   padding: 16px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   text-align: left;
+  color: var(--text-primary);
 }
 
-.option-btn:hover,
+.option-btn:hover {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold-light);
+}
+
 .option-btn.selected {
-  background: #D4AF37;
-  border-color: #D4AF37;
-  color: black;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-hover) 100%);
+  border-color: var(--accent-gold);
+  color: #000;
 }
 
 .option-title {
@@ -102,7 +111,7 @@
 
 .tier-note {
   font-size: 12px;
-  color: #1f2937;
+  color: var(--text-secondary);
   margin: 0 0 12px 0;
 }
 
@@ -112,21 +121,26 @@
 }
 
 .tier-option {
-  background: #f9fafb;
-  border: 2px solid #e5e7eb;
-  border-radius: 6px;
+  background: var(--bg-input);
+  border: 2px solid var(--border-primary);
+  border-radius: 10px;
   padding: 12px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
 }
 
-.tier-option:hover,
+.tier-option:hover {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold-light);
+}
+
 .tier-option.selected {
-  background: #D4AF37;
-  border-color: #D4AF37;
-  color: white;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-hover) 100%);
+  border-color: var(--accent-gold);
+  color: #000;
 }
 
 .form-group {
@@ -137,23 +151,33 @@
 
 .form-group label {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .form-group select {
   padding: 10px 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
   font-size: 13px;
   font-family: inherit;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px var(--accent-gold-light);
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
   padding: 12px 0;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-primary);
   font-size: 14px;
+  color: var(--text-primary);
 }
 
 .summary-item:last-child {
@@ -161,9 +185,9 @@
 }
 
 .summary-item.highlight {
-  background: #dbeafe;
+  background: var(--accent-gold-light);
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
   margin: 0 -12px;
   padding-left: 12px;
@@ -171,21 +195,22 @@
 
 .btn-confirm {
   width: 100%;
-  background: #D4AF37;
-  color: white;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-hover) 100%);
+  color: #000;
   border: none;
-  border-radius: 6px;
-  padding: 12px 20px;
+  border-radius: 50px;
+  padding: 14px 20px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   margin-top: 16px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .btn-confirm:hover {
-  background: #C9A227;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 @media (max-width: 768px) {
