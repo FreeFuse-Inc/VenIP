@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/RequestVendors.css';
 
 const RequestVendors = () => {
@@ -92,6 +93,7 @@ const RequestVendors = () => {
 
   return (
     <main className="request-vendors-container">
+      <BackButton />
       <div className="request-header">
         <h1>Request More Vendors</h1>
         <p className="event-id-text">Event ID: {eventId}</p>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/InviteAttendees.css';
 
 const InviteAttendees = () => {
@@ -69,6 +70,7 @@ const InviteAttendees = () => {
 
   return (
     <main className="invite-attendees-container">
+      <BackButton />
       <div className="invite-header">
         <h1>Invite Attendees</h1>
         <p className="event-id-text">Event ID: {eventId}</p>

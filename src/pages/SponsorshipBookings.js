@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EventContext } from '../context/EventContext';
+import BackButton from '../components/BackButton';
 import '../styles/SponsorshipBookings.css';
 
 const SponsorshipBookings = () => {
@@ -155,6 +156,7 @@ const SponsorshipBookings = () => {
 
   return (
     <main className="sponsorship-bookings-page">
+      <BackButton />
       <div className="bookings-header">
         <h1 className="page-title">Sponsorship Bookings</h1>
       </div>

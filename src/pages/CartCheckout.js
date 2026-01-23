@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
+import BackButton from '../components/BackButton';
 import BookingConfirmationModal from '../components/BookingConfirmationModal';
 import '../styles/CartCheckout.css';
 
@@ -166,6 +167,7 @@ const CartCheckout = () => {
 
   return (
     <main className="cart-checkout">
+      <BackButton />
       <div className="checkout-header">
         <h1>Complete Your Bookings</h1>
         <p>{cartItems.length} item(s) in cart • Total: ${totalAmount.toFixed(2)}</p>

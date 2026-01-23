@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import '../styles/BookingConfirmation.css';
 
 const BookingConfirmation = () => {
@@ -298,6 +299,7 @@ const BookingConfirmation = () => {
 
   return (
     <main className="booking-confirmation-page">
+      <BackButton />
       <div className="confirmation-header">
         <h1 className="page-title">{getBookingTitle()}</h1>
       </div>
