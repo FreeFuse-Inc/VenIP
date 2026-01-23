@@ -10,7 +10,7 @@
 .back-btn {
   background: none;
   border: none;
-  color: #D4AF37;
+  color: var(--accent-gold);
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
@@ -19,19 +19,19 @@
 }
 
 .back-btn:hover {
-  color: #C9A227;
+  color: var(--accent-gold-hover);
 }
 
 .sponsor-event-details h1 {
   font-size: 28px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 12px 0;
 }
 
 .event-meta {
   font-size: 14px;
-  color: #1f2937;
+  color: var(--text-secondary);
   margin: 0 0 24px 0;
 }
 
@@ -48,24 +48,24 @@
 
 .info-card,
 .impact-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
 }
 
 .info-card h3,
 .impact-card h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 12px 0;
 }
 
 .info-card p,
 .impact-card p {
   font-size: 14px;
-  color: #1f2937;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0 0 12px 0;
 }
@@ -84,11 +84,11 @@
 
 .stat-label {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .stat-value {
-  color: #1f2937;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -100,33 +100,33 @@
 
 .impact-list li {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin: 8px 0;
 }
 
 .impact-list li::before {
   content: '✓ ';
-  color: #10b981;
+  color: var(--accent-green);
   font-weight: 600;
 }
 
 .sponsorship-tiers {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 24px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
 }
 
 .sponsorship-tiers h2 {
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 8px 0;
 }
 
 .tiers-intro {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin: 0 0 20px 0;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .tier-card {
-  background: var(--bg-card);
+  background: var(--bg-secondary);
   border: 2px solid var(--border-primary);
   border-radius: 8px;
   padding: 20px;
@@ -157,27 +157,27 @@
 .tier-header {
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .tier-name {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0 0 8px 0;
 }
 
 .tier-price {
   font-size: 24px;
   font-weight: 700;
-  color: #D4AF37;
+  color: var(--accent-gold);
   margin: 0;
 }
 
 .tier-features {
   font-size: 12px;
   font-weight: 600;
-  color: #D4AF37;
+  color: var(--accent-gold);
   margin: 0 0 12px 0;
 }
 
@@ -190,7 +190,7 @@
 
 .tier-benefits li {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin: 8px 0;
 }
 
@@ -214,20 +214,20 @@
 }
 
 .custom-note {
-  background: #f0f4ff;
-  border: 1px solid #dbeafe;
+  background: var(--icon-bg-blue);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 8px;
   padding: 12px 16px;
 }
 
 .custom-note p {
   font-size: 13px;
-  color: #0c4a6e;
+  color: var(--accent-blue);
   margin: 0;
 }
 
 .custom-note a {
-  color: #D4AF37;
+  color: var(--accent-gold);
   text-decoration: none;
   font-weight: 600;
 }
