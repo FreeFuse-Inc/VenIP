@@ -1,21 +1,21 @@
 .chart-container {
-  background: white;
-  border-radius: 8px;
+  background: var(--bg-card);
+  border-radius: 12px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-primary);
 }
 
 .chart-title {
   margin: 0 0 4px 0;
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .chart-subtitle {
   margin: 0 0 16px 0;
   font-size: 13px;
-  color: #1f2937;
+  color: var(--text-secondary);
 }
 
 .traffic-chart {
@@ -49,7 +49,7 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #1f2937;
+  color: var(--text-secondary);
 }
 
 .legend-color {
@@ -76,8 +76,9 @@
   align-items: center;
   gap: 10px;
   padding: 8px;
-  background: #f9fafb;
-  border-radius: 6px;
+  background: var(--bg-input);
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
 }
 
 .legend-color-box {
@@ -96,10 +97,10 @@
 .legend-label {
   font-size: 13px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .legend-count {
   font-size: 12px;
-  color: #1f2937;
+  color: var(--text-secondary);
 }
