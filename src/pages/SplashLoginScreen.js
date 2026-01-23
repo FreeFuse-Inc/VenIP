@@ -114,7 +114,6 @@ const SplashLoginScreen = () => {
       return;
     }
     
-    // For demo purposes, create the account and log in
     setUserRole(selectedRole);
     navigate(`/dashboard/${selectedRole}`);
   };
@@ -134,229 +133,284 @@ const SplashLoginScreen = () => {
   const selectedRoleData = roles.find(r => r.id === selectedRole);
 
   return (
-    <div className="splash-login-container">
-      <div className="splash-login-content">
-        <div className="splash-logo-section">
-          <div className="splash-logo-icon-wrapper">
-            <span className="splash-logo-stars">✦</span>
+    <div className="splash-page-wrapper">
+      {/* Decorative background elements */}
+      <div className="splash-bg-decoration">
+        <div className="bg-circle bg-circle-1"></div>
+        <div className="bg-circle bg-circle-2"></div>
+        <div className="bg-circle bg-circle-3"></div>
+      </div>
+
+      {/* Fixed top-left VenIP branding */}
+      <header className="splash-page-header">
+        <div className="venip-brand">
+          <div className="brand-icon-wrapper">
+            <span className="brand-icon">✦</span>
           </div>
-          <h1 className="splash-logo-text">VenIP</h1>
-          <p className="splash-tagline">Event Planning & Vendor Management</p>
+          <span className="brand-name">VenIP</span>
         </div>
+      </header>
 
-        <div className="auth-tabs">
-          <button
-            className={`auth-tab ${activeTab === 'signin' ? 'active' : ''}`}
-            onClick={() => setActiveTab('signin')}
-          >
-            Sign In
-          </button>
-          <button
-            className={`auth-tab ${activeTab === 'signup' ? 'active' : ''}`}
-            onClick={() => setActiveTab('signup')}
-          >
-            Sign Up
-          </button>
-        </div>
+      {/* Centered floating login card */}
+      <main className="splash-main-content">
+        <div className="splash-login-card">
+          {/* Card top icon */}
+          <div className="card-top-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+          </div>
 
-        {activeTab === 'signin' ? (
-          <>
-            <form className="splash-login-form" onSubmit={handleLogin}>
+          {/* Card header */}
+          <h2 className="card-title">
+            {activeTab === 'signin' ? 'Sign in with email' : 'Create your account'}
+          </h2>
+          <p className="card-subtitle">
+            Event Planning & Vendor Management Platform
+          </p>
+
+          {/* Auth tabs */}
+          <div className="auth-tabs">
+            <button
+              className={`auth-tab ${activeTab === 'signin' ? 'active' : ''}`}
+              onClick={() => setActiveTab('signin')}
+            >
+              Sign In
+            </button>
+            <button
+              className={`auth-tab ${activeTab === 'signup' ? 'active' : ''}`}
+              onClick={() => setActiveTab('signup')}
+            >
+              Sign Up
+            </button>
+          </div>
+
+          {activeTab === 'signin' ? (
+            <>
+              <form className="splash-login-form" onSubmit={handleLogin}>
+                <div className="input-group">
+                  <div className="input-wrapper">
+                    <span className="input-icon">✉</span>
+                    <input
+                      type="email"
+                      id="email"
+                      className="auth-input"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="input-group">
+                  <div className="input-wrapper">
+                    <span className="input-icon">🔒</span>
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      id="password"
+                      className="auth-input"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? '🙈' : '👁'}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="forgot-password-row">
+                  <button type="button" className="forgot-password-btn">
+                    Forgot password?
+                  </button>
+                </div>
+
+                <button type="submit" className="splash-login-btn">
+                  Get Started
+                </button>
+              </form>
+
+              {/* Divider */}
+              <div className="auth-divider">
+                <span>Or sign in with</span>
+              </div>
+
+              {/* Social login buttons */}
+              <div className="social-login-row">
+                <button type="button" className="social-btn" title="Sign in with Google">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  </svg>
+                </button>
+                <button type="button" className="social-btn" title="Sign in with Facebook">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </button>
+                <button type="button" className="social-btn" title="Sign in with Apple">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Demo Accounts Section */}
+              <div className="demo-accounts-section">
+                <p className="demo-accounts-title">Quick Demo Access</p>
+                <div className="demo-accounts-grid">
+                  {demoAccounts.map((account) => (
+                    <button
+                      key={account.role}
+                      type="button"
+                      className="demo-account-btn"
+                      onClick={() => handleDemoLogin(account)}
+                      style={{ '--accent-color': account.color }}
+                    >
+                      <span className="demo-label">{account.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <form className="splash-login-form signup-form" onSubmit={handleSignup}>
               <div className="input-group">
-                <label htmlFor="email" className="input-label">Email</label>
+                <div className="input-wrapper">
+                  <span className="input-icon">👤</span>
+                  <input
+                    type="text"
+                    id="fullName"
+                    className="auth-input"
+                    placeholder="Full Name"
+                    value={signupFullName}
+                    onChange={(e) => setSignupFullName(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="input-group">
                 <div className="input-wrapper">
                   <span className="input-icon">✉</span>
                   <input
                     type="email"
-                    id="email"
+                    id="signupEmail"
                     className="auth-input"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    value={signupEmail}
+                    onChange={(e) => setSignupEmail(e.target.value)}
                   />
                 </div>
               </div>
 
               <div className="input-group">
-                <label htmlFor="password" className="input-label">Password</label>
                 <div className="input-wrapper">
                   <span className="input-icon">🔒</span>
                   <input
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
+                    type={showSignupPassword ? 'text' : 'password'}
+                    id="signupPassword"
                     className="auth-input"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    value={signupPassword}
+                    onChange={(e) => setSignupPassword(e.target.value)}
                   />
                   <button
                     type="button"
                     className="password-toggle"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowSignupPassword(!showSignupPassword)}
                   >
-                    {showPassword ? '🙈' : '👁'}
+                    {showSignupPassword ? '🙈' : '👁'}
                   </button>
                 </div>
               </div>
 
-              <button type="submit" className="splash-login-btn">
-                Sign In
-              </button>
-            </form>
+              <div className="input-group">
+                <div className="input-wrapper">
+                  <span className="input-icon">🏢</span>
+                  <input
+                    type="text"
+                    id="company"
+                    className="auth-input"
+                    placeholder="Company (Optional)"
+                    value={signupCompany}
+                    onChange={(e) => setSignupCompany(e.target.value)}
+                  />
+                </div>
+              </div>
 
-            <div className="demo-accounts-section">
-              <p className="demo-accounts-title">Demo Accounts</p>
-              <div className="demo-accounts-list">
-                {demoAccounts.map((account) => (
-                  <div
-                    key={account.role}
-                    className="demo-account-item"
-                    onClick={() => handleDemoLogin(account)}
+              <div className="input-group">
+                <div className="role-selector">
+                  <button
+                    type="button"
+                    className={`role-dropdown-trigger ${isRoleDropdownOpen ? 'open' : ''}`}
+                    onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
                   >
-                    <span className="demo-account-label" style={{ color: account.color }}>
-                      {account.label}:
-                    </span>
-                    <span className="demo-account-creds">
-                      {account.email} / {account.password}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </>
-        ) : (
-          <form className="splash-login-form signup-form" onSubmit={handleSignup}>
-            <div className="input-group">
-              <label htmlFor="fullName" className="input-label">Full Name</label>
-              <div className="input-wrapper">
-                <input
-                  type="text"
-                  id="fullName"
-                  className="auth-input"
-                  placeholder="Enter your name"
-                  value={signupFullName}
-                  onChange={(e) => setSignupFullName(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label htmlFor="signupEmail" className="input-label">Email</label>
-              <div className="input-wrapper">
-                <span className="input-icon">✉</span>
-                <input
-                  type="email"
-                  id="signupEmail"
-                  className="auth-input"
-                  placeholder="Enter your email"
-                  value={signupEmail}
-                  onChange={(e) => setSignupEmail(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label htmlFor="signupPassword" className="input-label">Password</label>
-              <div className="input-wrapper">
-                <span className="input-icon">🔒</span>
-                <input
-                  type={showSignupPassword ? 'text' : 'password'}
-                  id="signupPassword"
-                  className="auth-input"
-                  placeholder="Enter your password"
-                  value={signupPassword}
-                  onChange={(e) => setSignupPassword(e.target.value)}
-                />
-                <button
-                  type="button"
-                  className="password-toggle"
-                  onClick={() => setShowSignupPassword(!showSignupPassword)}
-                >
-                  {showSignupPassword ? '🙈' : '👁'}
-                </button>
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label htmlFor="company" className="input-label">Company (Optional)</label>
-              <div className="input-wrapper">
-                <input
-                  type="text"
-                  id="company"
-                  className="auth-input"
-                  placeholder="Your organization"
-                  value={signupCompany}
-                  onChange={(e) => setSignupCompany(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Select Your Role</label>
-              <div className="role-selector">
-                <button
-                  type="button"
-                  className={`role-dropdown-trigger ${isRoleDropdownOpen ? 'open' : ''}`}
-                  onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                >
-                  {selectedRoleData ? (
-                    <div className="selected-role-display">
-                      <span className="role-icon-small" style={{ backgroundColor: `${selectedRoleData.color}20`, color: selectedRoleData.color }}>
-                        {selectedRoleData.icon}
-                      </span>
-                      <div className="role-info">
-                        <span className="role-name-small">{selectedRoleData.name}</span>
-                        <span className="role-desc-small">{selectedRoleData.description}</span>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="selected-role-display">
-                      <span className="role-icon-small placeholder">📅</span>
-                      <div className="role-info">
-                        <span className="role-name-small">Event Organizer</span>
-                        <span className="role-desc-small">Plan and manage events</span>
-                      </div>
-                    </div>
-                  )}
-                  <span className={`dropdown-chevron ${isRoleDropdownOpen ? 'open' : ''}`}>▼</span>
-                </button>
-
-                {isRoleDropdownOpen && (
-                  <div className="role-dropdown-menu">
-                    {roles.map((role) => (
-                      <button
-                        key={role.id}
-                        type="button"
-                        className={`role-option ${selectedRole === role.id ? 'selected' : ''}`}
-                        onClick={() => handleRoleSelect(role.id)}
-                      >
-                        <span className="role-icon-small" style={{ backgroundColor: `${role.color}20`, color: role.color }}>
-                          {role.icon}
+                    {selectedRoleData ? (
+                      <div className="selected-role-display">
+                        <span className="role-icon-small" style={{ backgroundColor: `${selectedRoleData.color}20`, color: selectedRoleData.color }}>
+                          {selectedRoleData.icon}
                         </span>
                         <div className="role-info">
-                          <span className="role-name-small">{role.name}</span>
-                          <span className="role-desc-small">{role.description}</span>
+                          <span className="role-name-small">{selectedRoleData.name}</span>
                         </div>
-                        {selectedRole === role.id && (
-                          <span className="role-check" style={{ color: role.color }}>●</span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                      </div>
+                    ) : (
+                      <div className="selected-role-display">
+                        <span className="role-icon-small placeholder">📋</span>
+                        <div className="role-info">
+                          <span className="role-name-small placeholder-text">Select your role</span>
+                        </div>
+                      </div>
+                    )}
+                    <span className={`dropdown-chevron ${isRoleDropdownOpen ? 'open' : ''}`}>▼</span>
+                  </button>
+
+                  {isRoleDropdownOpen && (
+                    <div className="role-dropdown-menu">
+                      {roles.map((role) => (
+                        <button
+                          key={role.id}
+                          type="button"
+                          className={`role-option ${selectedRole === role.id ? 'selected' : ''}`}
+                          onClick={() => handleRoleSelect(role.id)}
+                        >
+                          <span className="role-icon-small" style={{ backgroundColor: `${role.color}20`, color: role.color }}>
+                            {role.icon}
+                          </span>
+                          <div className="role-info">
+                            <span className="role-name-small">{role.name}</span>
+                            <span className="role-desc-small">{role.description}</span>
+                          </div>
+                          {selectedRole === role.id && (
+                            <span className="role-check" style={{ color: role.color }}>✓</span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <button type="submit" className="splash-login-btn signup-btn">
-              Create Account
-            </button>
-          </form>
-        )}
-
-        <div className="splash-footer">
-          <p>Powered by <span className="splash-brand">FreeFuse</span></p>
+              <button type="submit" className="splash-login-btn signup-btn">
+                Create Account
+              </button>
+            </form>
+          )}
         </div>
-      </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="splash-page-footer">
+        <p>Powered by <span className="splash-brand">FreeFuse</span></p>
+      </footer>
     </div>
   );
 };
