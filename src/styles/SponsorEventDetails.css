@@ -117,6 +117,7 @@
 
 .detail-info {
   display: block;
+  text-align: left !important;
 }
 
 .detail-label {
@@ -126,6 +127,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
+  text-align: left !important;
 }
 
 .detail-value {
@@ -134,6 +136,7 @@
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.4;
+  text-align: left !important;
 }
 
 .detail-sub {
@@ -141,6 +144,7 @@
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
   margin-top: 2px;
+  text-align: left !important;
 }
 
 /* Venue Section */
