@@ -1,0 +1,127 @@
+.upcoming-event-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.upcoming-event-card:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-card-hover);
+}
+
+.event-date-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-primary);
+}
+
+.date-day {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--accent-gold);
+  line-height: 1;
+}
+
+.date-month {
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.event-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs) 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-venue {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-status-wrapper {
+  flex-shrink: 0;
+}
+
+.event-status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.event-action-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.event-action-btn:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: black;
+}
+
+@media (max-width: 480px) {
+  .upcoming-event-card {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .event-date-badge {
+    min-width: 44px;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .date-day {
+    font-size: var(--font-size-lg);
+  }
+
+  .event-info {
+    flex: 1 1 calc(100% - 120px);
+    order: 2;
+  }
+
+  .event-status-wrapper {
+    order: 3;
+    margin-left: auto;
+  }
+}
