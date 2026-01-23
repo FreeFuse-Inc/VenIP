@@ -25,42 +25,36 @@
 }
 
 .back-button:hover {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
-  border-color: rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, #e6c04a 0%, #d4af37 100%);
   color: #1a1a2e;
-  transform: translateY(-2px);
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.12),
-    0 4px 12px rgba(212, 175, 55, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 8px 30px rgba(212, 175, 55, 0.5),
+    0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .back-button:active {
-  transform: translateY(0);
-  box-shadow: 
-    0 2px 10px rgba(0, 0, 0, 0.08),
-    0 1px 4px rgba(212, 175, 55, 0.15);
+  transform: translateY(-1px) scale(1);
+  box-shadow:
+    0 4px 16px rgba(212, 175, 55, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode support */
 html.dark-mode .back-button {
-  background: linear-gradient(135deg, rgba(30, 30, 50, 0.95) 0%, rgba(25, 25, 45, 0.9) 100%);
-  border-color: rgba(212, 175, 55, 0.5);
-  color: rgba(255, 255, 255, 0.95);
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(212, 175, 55, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
+  color: #1a1a2e;
+  box-shadow:
+    0 4px 20px rgba(212, 175, 55, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 html.dark-mode .back-button:hover {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
-  border-color: rgba(212, 175, 55, 0.7);
-  color: #fff;
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.4),
-    0 4px 12px rgba(212, 175, 55, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, #e6c04a 0%, #d4af37 100%);
+  color: #1a1a2e;
+  box-shadow:
+    0 8px 30px rgba(212, 175, 55, 0.6),
+    0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .back-icon {
