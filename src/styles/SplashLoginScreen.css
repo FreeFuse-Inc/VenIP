@@ -773,6 +773,16 @@ html.dark-mode .social-btn:hover {
   background: #333333;
 }
 
+html.dark-mode .auth-error-message {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+html.dark-mode .btn-spinner {
+  border-color: #3a3a3a;
+  border-top-color: #D4AF37;
+}
+
 html.dark-mode .demo-accounts-section {
   background: rgba(255, 255, 255, 0.03);
   border-color: #3a3a3a;
