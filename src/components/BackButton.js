@@ -29,15 +29,18 @@ const BackButton = () => {
   }
 
   return (
-    <button
-      className="back-button"
-      onClick={handleGoBack}
-      title="Go back to previous page"
-      aria-label="Go back to previous page"
-    >
-      <span className="back-icon">←</span>
-      <span className="back-text">Back</span>
-    </button>
+    <>
+      <div className="back-button-spacer" aria-hidden="true" />
+      <button
+        className="back-button"
+        onClick={handleGoBack}
+        title="Go back to previous page"
+        aria-label="Go back to previous page"
+      >
+        <span className="back-icon">←</span>
+        <span className="back-text">Back</span>
+      </button>
+    </>
   );
 };
 
