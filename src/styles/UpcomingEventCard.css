@@ -69,9 +69,15 @@
 }
 
 .upcoming-event-card:hover::after {
-  box-shadow: 
+  box-shadow:
     0 12px 24px -8px rgba(0, 0, 0, 0.12),
     0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+/* Active/Pressed state */
+.upcoming-event-card:active {
+  transform: scale(0.98) translateY(-2px);
+  transition: transform 0.1s ease;
 }
 
 /* ============================================
