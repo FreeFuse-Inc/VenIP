@@ -86,13 +86,13 @@ const EventDetails = () => {
     },
   ]);
 
-  // Timeline data
+  // Timeline data - dynamic based on event
   const timelineItems = [
-    { id: 1, title: 'Event Created', date: 'Nov 28, 2024', status: 'completed' },
-    { id: 2, title: 'Vendors Invited', date: 'Dec 1, 2024', status: 'completed' },
-    { id: 3, title: 'Awaiting Quotes', date: 'Expected: Dec 8, 2024', status: 'in-progress' },
-    { id: 4, title: 'Vendor Approvals', date: 'Expected: Dec 12, 2024', status: 'pending' },
-    { id: 5, title: 'Event Date', date: 'Dec 15, 2024 at 7:00 PM', status: 'pending' },
+    { id: 1, title: 'Event Created', date: 'Event Posted', status: 'completed' },
+    { id: 2, title: 'Vendors Invited', date: 'Invitations Sent', status: 'completed' },
+    { id: 3, title: 'Awaiting Quotes', date: 'In Progress', status: 'in-progress' },
+    { id: 4, title: 'Vendor Approvals', date: 'Pending', status: 'pending' },
+    { id: 5, title: 'Event Date', date: `${event.displayDate} at ${event.time}`, status: 'pending' },
   ];
 
   // Define tabs based on role
