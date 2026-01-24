@@ -399,6 +399,23 @@
     padding: var(--space-md);
   }
 
+  .upcoming-hero {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .hero-icon-wrap {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-icon {
+    font-size: 20px;
+  }
+
+  .upcoming-hero .hero-title {
+    font-size: var(--font-size-lg);
+  }
+
   .cta-icon {
     width: 40px;
     height: 40px;
