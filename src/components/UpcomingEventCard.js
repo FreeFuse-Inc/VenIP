@@ -53,7 +53,7 @@ const UpcomingEventCard = ({
   const hasDetails = service || budget || quotedPrice;
 
   return (
-    <div className={`upcoming-event-card ${featured ? 'featured' : ''}`} onClick={handleClick}>
+    <div className={`upcoming-event-card ${featured ? 'featured' : ''}`} onClick={handleClick} style={style}>
       {/* Decorative accent line */}
       <div className="card-accent-line"></div>
 
