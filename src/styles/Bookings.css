@@ -683,7 +683,7 @@
 
 .btn-confirm {
   background: var(--accent-green);
-  border: 1px solid var(--accent-green);
+  border-color: var(--accent-green);
   color: white;
 }
 
