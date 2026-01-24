@@ -27,9 +27,10 @@
     #2d2d44 40%,
     #3a3a52 100%
   );
-  padding: 100px var(--space-xl) var(--space-xl);
+  padding: 80px var(--space-xl) var(--space-xl);
   border-bottom: none;
   overflow: hidden;
+  min-height: 180px;
 }
 
 .bookings-hero .hero-decoration {
