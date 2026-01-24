@@ -678,7 +678,7 @@
 
 .btn-confirm {
   background: var(--accent-green);
-  border: none;
+  border: 1px solid var(--accent-green);
   color: white;
 }
 
