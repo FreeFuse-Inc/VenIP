@@ -1,16 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import QuickAccessGrid from '../components/QuickAccessGrid';
 import UpcomingEventCard from '../components/UpcomingEventCard';
 import { FeedbackContext } from '../context/FeedbackContext';
 import { CartContext } from '../context/CartContext';
+import { RoleContext } from '../context/RoleContext';
 import '../styles/NPODashboard.css';
 
 const NPODashboard = () => {
   const navigate = useNavigate();
   const { feedback, getNewFeedbackCount } = useContext(FeedbackContext);
   const { toggleCartSidebar } = useContext(CartContext);
+  const { setUserRole } = useContext(RoleContext);
+
+  // Set user role when dashboard loads
+  useEffect(() => {
+    setUserRole('npo');
+  }, [setUserRole]);
 
   const user = {
     name: 'Sarah Johnson',
