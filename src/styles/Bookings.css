@@ -366,7 +366,7 @@
 }
 
 .calendar-day.has-events:not(.selected) {
-  background: var(--bg-card);
+  background: var(--bg-secondary);
 }
 
 /* Calendar Stats */
@@ -848,7 +848,7 @@ html.dark-mode .calendar-day .day-number {
 }
 
 html.dark-mode .calendar-day.has-events:not(.selected) {
-  background: var(--bg-card-hover);
+  background: var(--bg-secondary);
 }
 
 html.dark-mode .calendar-day:not(.empty):hover {
