@@ -11,53 +11,17 @@ const EventDetails = () => {
   const { eventId } = useParams();
   const { userRole } = useContext(RoleContext);
 
+  // ALL HOOKS MUST BE AT THE TOP - before any conditional returns
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('overview');
+
   // Determine user type
   const isVendor = userRole === 'vendor';
   const isOrganizer = userRole === 'npo';
 
-  // Load event data based on eventId
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadedEvent = getEventById(eventId);
-    if (loadedEvent) {
-      // Format the date for display
-      const dateInfo = formatEventDate(loadedEvent.date);
-      setEvent({
-        ...loadedEvent,
-        displayDate: dateInfo.full,
-        budget: loadedEvent.totalBudget,
-      });
-    }
-    setLoading(false);
-  }, [eventId]);
-
-  // Show loading or not found states
-  if (loading) {
-    return (
-      <main className="event-details-page">
-        <BackButton />
-        <div className="loading-state">Loading event details...</div>
-      </main>
-    );
-  }
-
-  if (!event) {
-    return (
-      <main className="event-details-page">
-        <BackButton />
-        <div className="not-found-state">
-          <h2>Event Not Found</h2>
-          <p>The event you're looking for doesn't exist.</p>
-          <button className="btn-primary" onClick={() => navigate(-1)}>Go Back</button>
-        </div>
-      </main>
-    );
-  }
-
-  // Vendor requests data (for organizers)
-  const [vendorRequests] = useState([
+  // Vendor requests data (for organizers) - static mock data
+  const vendorRequests = [
     {
       id: 1,
       vendorName: 'BrightEvents',
@@ -84,41 +48,78 @@ const EventDetails = () => {
       quotedPrice: '$1,200',
       expectedResponse: 'Dec 6, 2024',
     },
-  ]);
-
-  // Timeline data - dynamic based on event
-  const timelineItems = [
-    { id: 1, title: 'Event Created', date: 'Event Posted', status: 'completed' },
-    { id: 2, title: 'Vendors Invited', date: 'Invitations Sent', status: 'completed' },
-    { id: 3, title: 'Awaiting Quotes', date: 'In Progress', status: 'in-progress' },
-    { id: 4, title: 'Vendor Approvals', date: 'Pending', status: 'pending' },
-    { id: 5, title: 'Event Date', date: `${event.displayDate} at ${event.time}`, status: 'pending' },
   ];
+
+  // Load event data based on eventId
+  useEffect(() => {
+    const loadedEvent = getEventById(eventId);
+    if (loadedEvent) {
+      const dateInfo = formatEventDate(loadedEvent.date);
+      setEvent({
+        ...loadedEvent,
+        displayDate: dateInfo.full,
+        budget: loadedEvent.totalBudget,
+      });
+    }
+    setLoading(false);
+  }, [eventId]);
 
   // Define tabs based on role
   const getTabs = () => {
     const baseTabs = [
       { id: 'overview', label: 'Overview', icon: '📋' },
     ];
-    
+
     if (isVendor) {
       baseTabs.push({ id: 'quote', label: 'Submit Quote', icon: '💰' });
     }
-    
+
     if (isOrganizer) {
       baseTabs.push(
         { id: 'vendors', label: 'Vendor Requests', icon: '👥' },
         { id: 'budget', label: 'Budget & Attendees', icon: '📊' },
       );
     }
-    
+
     baseTabs.push({ id: 'timeline', label: 'Timeline', icon: '📅' });
-    
+
     return baseTabs;
   };
 
   const tabs = getTabs();
-  const [activeTab, setActiveTab] = useState('overview');
+
+  // Timeline data - dynamic based on event
+  const timelineItems = event ? [
+    { id: 1, title: 'Event Created', date: 'Event Posted', status: 'completed' },
+    { id: 2, title: 'Vendors Invited', date: 'Invitations Sent', status: 'completed' },
+    { id: 3, title: 'Awaiting Quotes', date: 'In Progress', status: 'in-progress' },
+    { id: 4, title: 'Vendor Approvals', date: 'Pending', status: 'pending' },
+    { id: 5, title: 'Event Date', date: `${event.displayDate} at ${event.time}`, status: 'pending' },
+  ] : [];
+
+  // Show loading state
+  if (loading) {
+    return (
+      <main className="event-details-page">
+        <BackButton />
+        <div className="loading-state">Loading event details...</div>
+      </main>
+    );
+  }
+
+  // Show not found state
+  if (!event) {
+    return (
+      <main className="event-details-page">
+        <BackButton />
+        <div className="not-found-state">
+          <h2>Event Not Found</h2>
+          <p>The event you're looking for doesn't exist.</p>
+          <button className="btn-primary" onClick={() => navigate(-1)}>Go Back</button>
+        </div>
+      </main>
+    );
+  }
 
   // Calculate percentages
   const budgetPercentage = (event.budgetUsed / event.budget) * 100;
