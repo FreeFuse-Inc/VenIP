@@ -27,10 +27,10 @@
     #2d2d44 40%,
     #3a3a52 100%
   );
-  padding: 80px var(--space-xl) var(--space-2xl);
+  padding: 100px var(--space-xl) var(--space-2xl);
   border-bottom: none;
   overflow: hidden;
-  min-height: 200px;
+  min-height: 220px;
 }
 
 .hero-content {
