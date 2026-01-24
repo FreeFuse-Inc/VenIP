@@ -350,13 +350,11 @@
 }
 
 .calendar-day.has-events {
-  background: var(--bg-card) !important;
-  border: 2px solid var(--accent-gold) !important;
+  position: relative;
 }
 
 .calendar-day.has-events .day-number {
-  color: var(--accent-gold);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .more-events {
