@@ -664,7 +664,7 @@
 
 .btn-view-details {
   background: transparent;
-  border: 1px solid var(--accent-gold);
+  border-color: var(--accent-gold);
   color: var(--accent-gold);
 }
 
