@@ -757,40 +757,127 @@ html.dark-mode .bookings-hero {
 }
 
 html.dark-mode .calendar-card {
-  background: rgba(30, 30, 30, 0.9);
+  background: var(--bg-card);
+  border-color: var(--border-primary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 html.dark-mode .details-card {
-  background: rgba(30, 30, 30, 0.9);
+  background: var(--bg-card);
+  border-color: var(--border-primary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* Booking Cards Dark Mode */
 html.dark-mode .booking-card {
-  background: rgba(40, 40, 40, 0.8);
+  background: var(--bg-card);
+  border-color: var(--border-primary);
 }
 
+html.dark-mode .booking-card:hover {
+  border-color: var(--accent-gold);
+}
+
+html.dark-mode .booking-event-name {
+  color: var(--text-primary);
+}
+
+html.dark-mode .booking-venue {
+  color: var(--text-secondary);
+}
+
+html.dark-mode .booking-meta {
+  border-color: var(--border-primary);
+}
+
+html.dark-mode .booking-meta .meta-item {
+  color: var(--text-secondary);
+}
+
+html.dark-mode .booking-meta .meta-item.highlight {
+  color: var(--accent-gold);
+}
+
+html.dark-mode .vendor-label {
+  color: var(--text-secondary);
+}
+
+html.dark-mode .vendor-name {
+  color: var(--text-primary);
+}
+
+html.dark-mode .contact-person,
+html.dark-mode .contact-phone {
+  color: var(--text-secondary);
+}
+
+html.dark-mode .details-title {
+  color: var(--text-primary);
+}
+
+html.dark-mode .details-subtitle {
+  color: var(--text-secondary);
+}
+
+/* Calendar Dark Mode */
 html.dark-mode .calendar-day {
-  background: rgba(40, 40, 40, 0.5);
+  background: var(--bg-secondary);
+  border-color: var(--border-primary);
+}
+
+html.dark-mode .calendar-day .day-number {
+  color: var(--text-primary);
 }
 
 html.dark-mode .calendar-day.has-events:not(.selected) {
-  background: rgba(50, 50, 50, 0.8);
+  background: var(--bg-card-hover);
 }
 
 html.dark-mode .calendar-day:not(.empty):hover {
-  background: rgba(60, 60, 60, 0.8);
+  background: var(--bg-card-hover);
+  border-color: var(--accent-gold);
+}
+
+html.dark-mode .calendar-day.today {
+  background: var(--accent-gold-light);
+  border-color: var(--accent-gold);
 }
 
 html.dark-mode .calendar-stat-item {
-  background: rgba(40, 40, 40, 0.5);
+  background: var(--bg-secondary);
+}
+
+html.dark-mode .calendar-stat-value {
+  color: var(--text-primary);
+}
+
+html.dark-mode .calendar-stat-label {
+  color: var(--text-secondary);
+}
+
+html.dark-mode .month-title {
+  color: var(--text-primary);
+}
+
+html.dark-mode .weekday {
+  color: var(--text-secondary);
 }
 
 html.dark-mode .hero-stat {
   background: rgba(40, 40, 40, 0.6);
   border-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .btn-view-details {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+html.dark-mode .btn-view-details:hover {
+  background: var(--accent-gold);
+  color: black;
 }
 
 /* ============================================
