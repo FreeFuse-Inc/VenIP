@@ -646,16 +646,12 @@
 
 .btn-view-details,
 .btn-confirm {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
   gap: var(--space-sm);
   padding: 14px var(--space-md);
   height: 48px;
-  min-height: 48px;
-  max-height: 48px;
   box-sizing: border-box;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
@@ -663,6 +659,7 @@
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   margin: 0;
+  border: 1px solid transparent;
 }
 
 .btn-view-details {
