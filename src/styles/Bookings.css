@@ -139,9 +139,9 @@
 
 .bookings-split-view {
   display: grid;
-  grid-template-columns: minmax(480px, 520px) 1fr;
-  gap: var(--space-lg);
-  padding: var(--space-lg);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md);
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
