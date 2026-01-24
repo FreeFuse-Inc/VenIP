@@ -99,17 +99,34 @@ const SponsorDashboard = () => {
         <QuickAccessGrid items={quickAccessItems} />
 
         <section className="upcoming-section">
-          <div className="section-header-modern">
-            <h2 className="section-title-modern">Upcoming Events</h2>
-            <button className="see-all-btn" onClick={() => navigate('/events-feed')}>
+          {/* Mini Hero Banner */}
+          <div className="upcoming-hero">
+            <div className="hero-decoration">
+              <div className="decoration-circle decoration-1"></div>
+              <div className="decoration-circle decoration-2"></div>
+            </div>
+            <div className="upcoming-hero-content">
+              <div className="hero-icon-wrap">
+                <span className="hero-icon">📅</span>
+              </div>
+              <div className="hero-text">
+                <h2 className="hero-title">Upcoming Events</h2>
+                <p className="hero-subtitle">{upcomingEvents.length} events on your calendar</p>
+              </div>
+            </div>
+            <button className="hero-see-all-btn" onClick={() => navigate('/events-feed')}>
               See All
+              <span className="btn-arrow">→</span>
             </button>
           </div>
+
+          {/* Event Cards with staggered animation */}
           <div className="upcoming-events-list">
-            {upcomingEvents.map((event) => (
-              <UpcomingEventCard 
-                key={event.id} 
+            {upcomingEvents.map((event, index) => (
+              <UpcomingEventCard
+                key={event.id}
                 event={event}
+                style={{ animationDelay: `${0.1 + index * 0.08}s` }}
                 onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
               />
             ))}
