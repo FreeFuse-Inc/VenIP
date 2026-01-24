@@ -92,7 +92,7 @@ const NPODashboard = () => {
               <UpcomingEventCard 
                 key={event.id} 
                 event={event}
-                onClick={() => navigate(`/event-management/${event.id}`)}
+                onClick={() => navigate(`/event-details/${event.id}`)}
               />
             ))}
           </div>
