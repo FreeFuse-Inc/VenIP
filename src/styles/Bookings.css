@@ -24,10 +24,12 @@
     #2d2d44 40%,
     #3a3a52 100%
   );
-  padding: var(--space-xl);
+  padding: var(--space-xl) var(--space-xl) var(--space-2xl);
   border-bottom: none;
   overflow: hidden;
-  min-height: 140px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
 }
 
 .bookings-hero .hero-decoration {
