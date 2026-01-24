@@ -673,6 +673,10 @@
 }
 
 .btn-confirm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--space-sm) var(--space-md);
   background: var(--accent-green);
   border: none;
