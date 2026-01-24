@@ -1,16 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import QuickAccessGrid from '../components/QuickAccessGrid';
 import UpcomingEventCard from '../components/UpcomingEventCard';
 import FilterTabs from '../components/FilterTabs';
 import { CartContext } from '../context/CartContext';
+import { RoleContext } from '../context/RoleContext';
 import '../styles/VendorDashboard.css';
 
 const VendorDashboard = () => {
   const navigate = useNavigate();
   const { toggleCartSidebar } = useContext(CartContext);
+  const { setUserRole } = useContext(RoleContext);
   const [activeTab, setActiveTab] = useState('browse');
+
+  // Set user role when dashboard loads
+  useEffect(() => {
+    setUserRole('vendor');
+  }, [setUserRole]);
 
   const user = {
     name: 'Michael Chen',
