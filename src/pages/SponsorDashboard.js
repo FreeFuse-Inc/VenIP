@@ -146,16 +146,42 @@ const SponsorDashboard = () => {
 
           {/* Event Cards with staggered animation */}
           <div className="upcoming-events-list">
-            {upcomingEvents.map((event, index) => (
-              <UpcomingEventCard
-                key={event.id}
-                event={event}
-                style={{ animationDelay: `${0.1 + index * 0.08}s` }}
-                onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
-              />
-            ))}
+            {upcomingEvents.length > 0 ? (
+              upcomingEvents.map((event, index) => (
+                <UpcomingEventCard
+                  key={event.id}
+                  event={event}
+                  style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                  onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
+                />
+              ))
+            ) : (
+              <div className="empty-events-message">
+                <p>No upcoming events scheduled</p>
+              </div>
+            )}
           </div>
         </section>
+
+        {/* Past Events Section */}
+        {pastEvents.length > 0 && (
+          <section className="past-events-section">
+            <div className="section-header-modern">
+              <h2 className="section-title-modern">📜 Past Events</h2>
+              <span className="past-events-count">{pastEvents.length} completed</span>
+            </div>
+            <div className="past-events-list">
+              {pastEvents.map((event, index) => (
+                <UpcomingEventCard
+                  key={event.id}
+                  event={event}
+                  style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                  onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="sponsorships-section">
           <div className="section-header-modern">
