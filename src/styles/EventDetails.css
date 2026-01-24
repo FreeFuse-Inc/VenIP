@@ -11,19 +11,26 @@
   min-height: 100vh;
 }
 
+/* Override back button spacer for this page */
+.event-details-page .back-button-spacer {
+  display: none;
+}
+
 /* ============================================
    Hero Header Section
    ============================================ */
 
 .event-hero {
   position: relative;
-  background: linear-gradient(135deg, 
-    var(--bg-card) 0%, 
-    var(--bg-secondary) 100%
+  background: linear-gradient(160deg,
+    #1a1a2e 0%,
+    #2d2d44 40%,
+    #3a3a52 100%
   );
-  padding: var(--space-2xl) var(--space-xl);
-  border-bottom: 1px solid var(--border-primary);
+  padding: 80px var(--space-xl) var(--space-2xl);
+  border-bottom: none;
   overflow: hidden;
+  min-height: 200px;
 }
 
 .hero-content {
@@ -44,9 +51,10 @@
 .event-title {
   font-size: var(--font-size-4xl);
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 var(--space-md) 0;
   line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-meta {
@@ -61,7 +69,7 @@
   align-items: center;
   gap: var(--space-xs);
   font-size: var(--font-size-base);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .meta-icon {
