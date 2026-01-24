@@ -642,21 +642,25 @@
   margin-top: var(--space-md);
 }
 
-.btn-view-details {
+.btn-view-details,
+.btn-confirm {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  background: transparent;
-  border: 1px solid var(--accent-gold);
+  padding: 12px var(--space-md);
   border-radius: var(--radius-md);
-  color: var(--accent-gold);
   font-size: var(--font-size-sm);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.btn-view-details {
+  background: transparent;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .btn-view-details:hover {
