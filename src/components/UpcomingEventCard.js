@@ -50,33 +50,65 @@ const UpcomingEventCard = ({
     }
   };
 
+  const hasDetails = service || budget || quotedPrice;
+
   return (
-    <div className="upcoming-event-card" onClick={handleClick}>
+    <div className={`upcoming-event-card ${featured ? 'featured' : ''}`} onClick={handleClick}>
+      {/* Decorative accent line */}
+      <div className="card-accent-line"></div>
+
       <div className="event-date-badge">
         <span className="date-day">{day}</span>
         <span className="date-month">{month}</span>
       </div>
-      
-      <div className="event-info">
-        <h4 className="event-name">{event.name || event.title}</h4>
-        <p className="event-venue">{event.venue || event.location}</p>
+
+      <div className="event-content">
+        <div className="event-info">
+          <h4 className="event-name">{event.name || event.title}</h4>
+          <p className="event-venue">
+            <span className="venue-icon">📍</span>
+            {event.venue || event.location}
+          </p>
+        </div>
+
+        {hasDetails && (
+          <div className="event-tags">
+            {service && (
+              <span className="event-tag service-tag">
+                <span className="tag-icon">🛠️</span>
+                {service}
+              </span>
+            )}
+            {budget && (
+              <span className="event-tag budget-tag">
+                <span className="tag-icon">💰</span>
+                {budget}
+              </span>
+            )}
+            {quotedPrice && (
+              <span className="event-tag quote-tag">
+                <span className="tag-icon">📝</span>
+                Quote: {quotedPrice}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="event-status-wrapper">
-        <span 
+        <span
           className="event-status-badge"
-          style={{ 
+          style={{
             backgroundColor: statusStyle.bg,
             color: statusStyle.color
           }}
         >
           {event.status}
         </span>
+        {showActions && (
+          <button className="event-action-btn">→</button>
+        )}
       </div>
-
-      {showActions && (
-        <button className="event-action-btn">→</button>
-      )}
     </div>
   );
 };
