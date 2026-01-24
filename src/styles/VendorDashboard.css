@@ -87,11 +87,44 @@
   gap: var(--space-md);
 }
 
-/* Events Tabs Section */
+/* ============================================
+   Events Tabs Section - Elite Design
+   ============================================ */
+
 .events-tabs-section {
   display: flex;
   flex-direction: column;
+}
+
+/* Section Container with subtle background */
+.events-section-container {
+  position: relative;
+  background: linear-gradient(180deg,
+    var(--bg-card) 0%,
+    var(--bg-secondary) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
   gap: var(--space-lg);
+  overflow: hidden;
+}
+
+/* Subtle decorative gradient in corner */
+.events-section-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle,
+    rgba(212, 175, 55, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
 .tab-content {
@@ -107,67 +140,44 @@
   gap: var(--space-md);
 }
 
+/* Event Job Card - Animation wrapper */
 .event-job-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
   cursor: pointer;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards;
 }
 
 .event-job-card .upcoming-event-card {
   cursor: pointer;
 }
 
-.job-details {
-  display: flex;
-  gap: var(--space-sm);
-  padding-left: 66px;
+/* Staggered animation keyframes */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.service-tag {
-  padding: 4px 10px;
-  background: var(--icon-bg-purple);
-  color: var(--accent-purple);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+/* Dark mode adjustments */
+html.dark-mode .events-section-container {
+  background: linear-gradient(180deg,
+    rgba(30, 30, 30, 0.9) 0%,
+    rgba(20, 20, 20, 0.95) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.budget-tag {
-  padding: 4px 10px;
-  background: var(--icon-bg-green);
-  color: var(--accent-green);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-}
-
-/* Proposals List */
-.proposals-list-modern {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.proposal-card-modern {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.proposal-details {
-  display: flex;
-  gap: var(--space-sm);
-  padding-left: 66px;
-}
-
-.quoted-price {
-  padding: 4px 10px;
-  background: var(--icon-bg-gold);
-  color: var(--accent-gold);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+html.dark-mode .events-section-container::before {
+  background: radial-gradient(circle,
+    rgba(212, 175, 55, 0.08) 0%,
+    transparent 70%
+  );
 }
 
 /* Suggest Event CTA */
