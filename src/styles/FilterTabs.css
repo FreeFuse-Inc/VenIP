@@ -1,7 +1,14 @@
+/* ============================================
+   Filter Tabs - Elite Design
+   ============================================ */
+
 .filter-tabs {
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
+  display: inline-flex;
+  gap: var(--space-xs);
+  padding: 6px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-primary);
 }
 
 .filter-tabs-compact .filter-tab {
@@ -14,54 +21,107 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-sm) var(--space-lg);
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
+  background: transparent;
+  border: none;
   border-radius: var(--radius-full);
   font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  position: relative;
 }
 
 .filter-tab:hover {
-  border-color: var(--border-secondary);
   color: var(--text-primary);
+  background: var(--bg-card-hover);
 }
 
+/* Active tab styling */
 .filter-tab.active {
   background: var(--accent-gold);
-  border-color: var(--accent-gold);
   color: black;
+  box-shadow: 
+    0 2px 8px rgba(212, 175, 55, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filter-tab.active:hover {
+  background: var(--accent-gold-hover);
 }
 
 .tab-icon {
   font-size: var(--font-size-sm);
+  transition: transform 0.2s ease;
+}
+
+.filter-tab:hover .tab-icon {
+  transform: scale(1.1);
+}
+
+.filter-tab.active .tab-icon {
+  transform: scale(1.05);
 }
 
 .tab-label {
   font-weight: 500;
 }
 
-.tab-count {
-  padding: 2px 8px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
+.filter-tab.active .tab-label {
   font-weight: 600;
 }
 
-.filter-tab.active .tab-count {
-  background: rgba(0, 0, 0, 0.2);
+.tab-count {
+  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
+
+.filter-tab.active .tab-count {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Dark Mode
+   ============================================ */
+
+html.dark-mode .filter-tabs {
+  background: rgba(30, 30, 30, 0.8);
+  border-color: var(--border-secondary);
+}
+
+html.dark-mode .filter-tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark-mode .filter-tab.active {
+  background: var(--accent-gold);
+  color: black;
+  box-shadow: 
+    0 2px 12px rgba(212, 175, 55, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
 
 @media (max-width: 480px) {
   .filter-tabs {
+    width: 100%;
     overflow-x: auto;
     flex-wrap: nowrap;
-    padding-bottom: var(--space-xs);
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .filter-tab {
