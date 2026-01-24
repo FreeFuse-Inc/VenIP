@@ -209,16 +209,12 @@ function App() {
               <FeedbackProvider>
                 <ZIndexProvider>
                   <Router>
-                    <div style={{ position: 'relative' }}>
-                      <AppContent
-                        chatGPTConnected={chatGPTConnected}
-                        onChatGPTConnect={handleChatGPTConnect}
-                        onChatGPTDisconnect={handleChatGPTDisconnect}
-                        chatGPTKey={chatGPTKey}
-                      />
-                      <CartSidebar />
-                      <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />
-                    </div>
+                    <AppContent
+                      chatGPTConnected={chatGPTConnected}
+                      onChatGPTConnect={handleChatGPTConnect}
+                      onChatGPTDisconnect={handleChatGPTDisconnect}
+                      chatGPTKey={chatGPTKey}
+                    />
                   </Router>
                 </ZIndexProvider>
               </FeedbackProvider>
