@@ -11,7 +11,7 @@ const Bookings = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   // Enhanced booking data with varied dates
-  const [bookings] = useState([
+  const [bookings, setBookings] = useState([
     {
       id: 1,
       eventName: 'Annual Gala 2024',
@@ -218,6 +218,17 @@ const Bookings = () => {
 
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  // Handle confirming a pending booking
+  const handleConfirmBooking = (bookingId) => {
+    setBookings(prevBookings =>
+      prevBookings.map(booking =>
+        booking.id === bookingId
+          ? { ...booking, status: 'Confirmed' }
+          : booking
+      )
+    );
+  };
+
   return (
     <main className="bookings-page">
       <BackButton />
@@ -392,8 +403,12 @@ const Bookings = () => {
                           {booking.venueName}
                         </p>
                       </div>
-                      <span className={`status-badge ${booking.status.toLowerCase()}`}>
-                        {booking.status}
+                      <span
+                        className={`status-badge ${booking.status.toLowerCase()} ${booking.status === 'Pending' ? 'clickable' : ''}`}
+                        onClick={() => booking.status === 'Pending' && handleConfirmBooking(booking.id)}
+                        title={booking.status === 'Pending' ? 'Click to confirm this booking' : ''}
+                      >
+                        {booking.status === 'Pending' ? '✓ Tap to Confirm' : booking.status}
                       </span>
                     </div>
 
@@ -432,9 +447,6 @@ const Bookings = () => {
                         View Details
                         <span className="btn-arrow">→</span>
                       </button>
-                      {booking.status === 'Pending' && (
-                        <button className="btn-confirm">Confirm</button>
-                      )}
                     </div>
                   </div>
                 ))
