@@ -92,6 +92,7 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
             />
           }
         />
+        <Route path="/event-details/:eventId" element={<EventDetails />} />
         <Route path="/event-management/:eventId" element={<EventManagement />} />
         <Route path="/event-details-vendor/:eventId" element={<EventDetailsVendor />} />
         <Route path="/submit-quote/:eventId" element={<SubmitQuote />} />
