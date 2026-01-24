@@ -64,10 +64,17 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
     }
   }, [location.pathname]);
 
+  // Also hide cart and assistant on auth callback
+  const isAuthPage = location.pathname === '/' || location.pathname === '/auth/callback' || location.pathname === '/role-selection';
+
   return (
     <div className="app-container">
       {!isRoleSelectionPage && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} showRoleSelection={false} />}
-      
+
+      {/* Hide cart and assistant on login/auth pages */}
+      {!isAuthPage && <CartSidebar />}
+      {!isAuthPage && <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />}
+
       <Routes>
         <Route path="/" element={<SplashLoginScreen />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
