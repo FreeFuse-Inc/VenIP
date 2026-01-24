@@ -34,18 +34,18 @@ const FeedbackTesting = () => {
     })) || [];
 
   const venueFields = [
-    { key: 'location', label: 'Location & Accessibility' },
-    { key: 'cleanliness', label: 'Cleanliness & Maintenance' },
-    { key: 'amenities', label: 'Amenities & Facilities' },
-    { key: 'staff', label: 'Staff & Service' },
-    { key: 'value', label: 'Value for Price' },
+    { key: 'location', label: 'Location & Accessibility', icon: '📍' },
+    { key: 'cleanliness', label: 'Cleanliness & Maintenance', icon: '✨' },
+    { key: 'amenities', label: 'Amenities & Facilities', icon: '🏋️' },
+    { key: 'staff', label: 'Staff & Service', icon: '👥' },
+    { key: 'value', label: 'Value for Price', icon: '💎' },
   ];
 
   const serviceFields = [
-    { key: 'quality', label: 'Quality of Work' },
-    { key: 'timeliness', label: 'Timeliness & Delivery' },
-    { key: 'professionalism', label: 'Professionalism' },
-    { key: 'value', label: 'Value for Price' },
+    { key: 'quality', label: 'Quality of Work', icon: '⭐' },
+    { key: 'timeliness', label: 'Timeliness & Delivery', icon: '⏱️' },
+    { key: 'professionalism', label: 'Professionalism', icon: '👔' },
+    { key: 'value', label: 'Value for Price', icon: '💎' },
   ];
 
   const fields = feedbackType === 'venue' ? venueFields : serviceFields;
@@ -221,7 +221,7 @@ const FeedbackTesting = () => {
     };
 
     submitFeedback(feedbackData);
-    setSuccessMessage(`✅ Test feedback submitted for ${selectedEventData.name}!`);
+    setSuccessMessage(`Test feedback submitted for ${selectedEventData.name}!`);
     setSubmitted(true);
 
     setTimeout(() => {
@@ -230,14 +230,28 @@ const FeedbackTesting = () => {
     }, 2500);
   };
 
+  // Calculate completion percentage
+  const totalRatings = Object.values(formData.ratings).filter(r => r > 0).length;
+  const completionPercent = fields.length > 0 ? Math.round((totalRatings / fields.length) * 100) : 0;
+
   if (submitted) {
     return (
       <main className="feedback-testing-page">
-        <div className="success-container">
-          <div className="success-icon">✓</div>
-          <h2 className="success-title">Test Feedback Submitted!</h2>
-          <p className="success-message">{successMessage}</p>
-          <p className="success-subtitle">Returning to dashboard...</p>
+        <div className="success-overlay">
+          <div className="success-container">
+            <div className="success-decoration">
+              <div className="success-ring"></div>
+              <div className="success-ring delay-1"></div>
+              <div className="success-ring delay-2"></div>
+            </div>
+            <div className="success-icon">✓</div>
+            <h2 className="success-title">Feedback Submitted!</h2>
+            <p className="success-message">{successMessage}</p>
+            <div className="success-progress">
+              <div className="success-progress-bar"></div>
+            </div>
+            <p className="success-subtitle">Returning to dashboard...</p>
+          </div>
         </div>
       </main>
     );
@@ -246,44 +260,76 @@ const FeedbackTesting = () => {
   return (
     <main className="feedback-testing-page">
       <BackButton />
-      <div className="testing-header">
-        <h1 className="page-title">Feedback Testing</h1>
+      
+      {/* Hero Section */}
+      <div className="feedback-hero">
+        <div className="hero-decoration">
+          <div className="decoration-circle decoration-1"></div>
+          <div className="decoration-circle decoration-2"></div>
+        </div>
+        <div className="hero-content">
+          <div className="hero-main">
+            <h1 className="feedback-title">Feedback Testing</h1>
+            <p className="feedback-subtitle">Submit test feedback to preview how the system works</p>
+          </div>
+          <div className="hero-stats">
+            <div className="hero-stat test-mode">
+              <span className="stat-icon">🧪</span>
+              <span className="stat-label">Test Mode</span>
+            </div>
+            <div className="hero-stat">
+              <span className="stat-number">{uniqueEvents.length}</span>
+              <span className="stat-label">Events</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="testing-container">
+      <div className="feedback-content">
         {/* Template Management Section */}
-        <div className="template-management-section">
-          <div className="template-header">
-            <h3>📋 Custom Feedback Template</h3>
+        <div className="template-management-card">
+          <div className="template-card-header">
+            <div className="template-icon-wrap">
+              <span className="template-icon">📋</span>
+            </div>
+            <div className="template-header-text">
+              <h3>Custom Template</h3>
+              <p>Upload your own feedback form template</p>
+            </div>
             <button
               type="button"
               className="btn-upload-template"
               onClick={() => setShowUploadModal(true)}
             >
-              {uploadedTemplate ? '📁 Replace Template' : '📁 Upload Template'}
+              <span className="btn-icon">📁</span>
+              {uploadedTemplate ? 'Replace' : 'Upload'}
             </button>
           </div>
 
           {uploadedTemplate && (
             <div className="template-info">
-              <div className="template-details">
-                <span className="template-name">📄 {uploadedTemplate.name}</span>
-                <span className="template-date">Uploaded: {uploadedTemplate.uploadedAt}</span>
+              <div className="template-file-info">
+                <span className="file-icon">📄</span>
+                <div className="file-details">
+                  <span className="file-name">{uploadedTemplate.name}</span>
+                  <span className="file-date">Uploaded: {uploadedTemplate.uploadedAt}</span>
+                </div>
               </div>
               <button
                 type="button"
                 className="btn-remove-template"
                 onClick={handleRemoveTemplate}
               >
-                ✕ Remove
+                ✕
               </button>
             </div>
           )}
 
           {!uploadedTemplate && (
-            <p className="template-hint">
-              💡 Upload a custom PDF, HTML, JSON, Word document, or text file to replace the generic feedback form.
-            </p>
+            <div className="template-hint">
+              <span className="hint-icon">💡</span>
+              <p>Upload PDF, HTML, JSON, Word, or text files to replace the default form</p>
+            </div>
           )}
         </div>
 
@@ -291,165 +337,243 @@ const FeedbackTesting = () => {
           <div className="custom-template-container">
             <div className="template-intro">
               <h2>Custom Feedback Form</h2>
-              <p>Your uploaded template is displayed below. Fill it out and submit as test feedback.</p>
+              <p>Your uploaded template is displayed below</p>
             </div>
             {renderTemplate()}
             <div className="template-form-actions">
               <button
                 type="button"
-                className="cancel-btn"
+                className="btn-secondary"
                 onClick={() => navigate('/dashboard/sponsor')}
               >
                 Cancel
               </button>
               <button
                 type="button"
-                className="submit-btn"
+                className="btn-primary"
                 onClick={handleSubmit}
               >
-                Submit Custom Feedback
+                <span>Submit Feedback</span>
+                <span className="btn-arrow">→</span>
               </button>
             </div>
           </div>
         ) : (
-          <>
-            <div className="testing-intro">
-              <div className="intro-icon">🧪</div>
-              <h2>Test Event Feedback Submission</h2>
-              <p>Submit test feedback for existing events to see how it appears in your Event Feedback section.</p>
-              <p className="test-note">💡 Test submissions will be marked with a test badge on the dashboard.</p>
-            </div>
-
-            <form className="testing-form" onSubmit={handleSubmit}>
-          {/* Event Selection */}
-          <div className="form-section">
-            <h3 className="section-title">Select Event</h3>
-            <div className="form-group">
-              <label htmlFor="event-select">Choose an Event *</label>
-              <select
-                id="event-select"
-                value={selectedEvent}
-                onChange={handleEventChange}
-                required
-              >
-                <option value="">-- Select an Event --</option>
-                {uniqueEvents.map((event) => (
-                  <option key={event.id} value={event.id}>
-                    {event.name} ({event.date})
-                  </option>
-                ))}
-              </select>
-              {uniqueEvents.length === 0 && (
-                <p className="info-text">
-                  💡 No events found. Create some sponsorships first to test feedback.
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Feedback Type Selection */}
-          <div className="form-section">
-            <h3 className="section-title">Feedback Type</h3>
-            <div className="feedback-type-buttons">
-              <button
-                type="button"
-                className={`type-btn ${feedbackType === 'venue' ? 'active' : ''}`}
-                onClick={() => handleFeedbackTypeChange('venue')}
-              >
-                <span className="type-icon">🏢</span>
-                <span className="type-label">Venue Feedback</span>
-              </button>
-              <button
-                type="button"
-                className={`type-btn ${feedbackType === 'service' ? 'active' : ''}`}
-                onClick={() => handleFeedbackTypeChange('service')}
-              >
-                <span className="type-icon">🎯</span>
-                <span className="type-label">Service Feedback</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Submitter Info */}
-          <div className="form-section">
-            <h3 className="section-title">Submitter Information</h3>
-            <div className="form-group">
-              <label htmlFor="name">Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          </div>
-
-          {/* Ratings */}
-          <div className="form-section">
-            <h3 className="section-title">Ratings</h3>
-            <p className="section-subtitle">Rate on a scale of 1 to 5 stars</p>
-
-            <div className="ratings-grid">
-              {fields.map((field) => (
-                <div key={field.key} className="rating-card">
-                  <label>{field.label}</label>
-                  <div className="star-rating">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        type="button"
-                        className={`star ${formData.ratings[field.key] >= star ? 'filled' : ''}`}
-                        onClick={() => handleRatingChange(field.key, star)}
-                        aria-label={`Rate ${star} stars`}
+          <div className="feedback-split-view">
+            {/* Left Panel - Form */}
+            <div className="form-panel">
+              <form className="testing-form" onSubmit={handleSubmit}>
+                {/* Event Selection */}
+                <div className="form-section" style={{ animationDelay: '0.1s' }}>
+                  <div className="section-header">
+                    <span className="section-icon">🎯</span>
+                    <h3 className="section-title">Select Event</h3>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="event-select">Choose an Event</label>
+                    <div className="select-wrapper">
+                      <select
+                        id="event-select"
+                        value={selectedEvent}
+                        onChange={handleEventChange}
+                        required
                       >
-                        ★
-                      </button>
-                    ))}
-                    <span className="rating-value">
-                      {formData.ratings[field.key] > 0 ? `${formData.ratings[field.key]}/5` : 'Not rated'}
-                    </span>
+                        <option value="">-- Select an Event --</option>
+                        {uniqueEvents.map((event) => (
+                          <option key={event.id} value={event.id}>
+                            {event.name} ({event.date})
+                          </option>
+                        ))}
+                      </select>
+                      <span className="select-arrow">▼</span>
+                    </div>
+                    {uniqueEvents.length === 0 && (
+                      <p className="info-text">
+                        <span className="info-icon">💡</span>
+                        No events found. Create sponsorships first to test feedback.
+                      </p>
+                    )}
                   </div>
                 </div>
-              ))}
+
+                {/* Feedback Type Selection */}
+                <div className="form-section" style={{ animationDelay: '0.2s' }}>
+                  <div className="section-header">
+                    <span className="section-icon">📝</span>
+                    <h3 className="section-title">Feedback Type</h3>
+                  </div>
+                  <div className="feedback-type-buttons">
+                    <button
+                      type="button"
+                      className={`type-btn ${feedbackType === 'venue' ? 'active' : ''}`}
+                      onClick={() => handleFeedbackTypeChange('venue')}
+                    >
+                      <span className="type-icon">🏢</span>
+                      <span className="type-label">Venue</span>
+                      <span className="type-desc">Rate the location</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`type-btn ${feedbackType === 'service' ? 'active' : ''}`}
+                      onClick={() => handleFeedbackTypeChange('service')}
+                    >
+                      <span className="type-icon">🎯</span>
+                      <span className="type-label">Service</span>
+                      <span className="type-desc">Rate the provider</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Submitter Info */}
+                <div className="form-section" style={{ animationDelay: '0.3s' }}>
+                  <div className="section-header">
+                    <span className="section-icon">👤</span>
+                    <h3 className="section-title">Your Information</h3>
+                  </div>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="name">Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Enter your email"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ratings */}
+                <div className="form-section ratings-section" style={{ animationDelay: '0.4s' }}>
+                  <div className="section-header">
+                    <span className="section-icon">⭐</span>
+                    <div className="section-title-group">
+                      <h3 className="section-title">Ratings</h3>
+                      <span className="completion-badge">
+                        {completionPercent}% Complete
+                      </span>
+                    </div>
+                  </div>
+                  <p className="section-subtitle">Rate each category from 1 to 5 stars</p>
+
+                  <div className="ratings-grid">
+                    {fields.map((field, index) => (
+                      <div 
+                        key={field.key} 
+                        className={`rating-card ${formData.ratings[field.key] > 0 ? 'rated' : ''}`}
+                        style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+                      >
+                        <div className="rating-card-header">
+                          <span className="rating-icon">{field.icon}</span>
+                          <label>{field.label}</label>
+                        </div>
+                        <div className="star-rating">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <button
+                              key={star}
+                              type="button"
+                              className={`star ${formData.ratings[field.key] >= star ? 'filled' : ''}`}
+                              onClick={() => handleRatingChange(field.key, star)}
+                              aria-label={`Rate ${star} stars`}
+                            >
+                              ★
+                            </button>
+                          ))}
+                        </div>
+                        <span className="rating-value">
+                          {formData.ratings[field.key] > 0 
+                            ? `${formData.ratings[field.key]}/5` 
+                            : 'Not rated'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <div className="form-actions">
+                  <button 
+                    type="button" 
+                    className="btn-secondary" 
+                    onClick={() => navigate('/dashboard/sponsor')}
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="submit" 
+                    className="btn-primary" 
+                    disabled={uniqueEvents.length === 0}
+                  >
+                    <span>Submit Test Feedback</span>
+                    <span className="btn-arrow">→</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* Right Panel - Info */}
+            <div className="info-panel">
+              <div className="info-card">
+                <div className="info-card-header">
+                  <span className="info-card-icon">💡</span>
+                  <h4>How It Works</h4>
+                </div>
+                <ul className="info-list">
+                  <li>
+                    <span className="step-number">1</span>
+                    <span>Select an event from your sponsorships</span>
+                  </li>
+                  <li>
+                    <span className="step-number">2</span>
+                    <span>Choose between venue or service feedback</span>
+                  </li>
+                  <li>
+                    <span className="step-number">3</span>
+                    <span>Rate each aspect on a 1-5 star scale</span>
+                  </li>
+                  <li>
+                    <span className="step-number">4</span>
+                    <span>Submit to see it on your dashboard</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="info-card highlight">
+                <div className="info-card-header">
+                  <span className="info-card-icon">🏷️</span>
+                  <h4>Test Badge</h4>
+                </div>
+                <p className="info-description">
+                  Test submissions will appear in your "Event Feedback" section with a special test badge for easy identification.
+                </p>
+              </div>
+
+              <div className="info-card">
+                <div className="info-card-header">
+                  <span className="info-card-icon">📊</span>
+                  <h4>Live Preview</h4>
+                </div>
+                <p className="info-description">
+                  Experience the complete feedback flow and see how ratings appear in real-time on your dashboard.
+                </p>
+              </div>
             </div>
           </div>
-
-          {/* Submit Button */}
-          <div className="form-actions">
-            <button type="button" className="cancel-btn" onClick={() => navigate('/dashboard/sponsor')}>
-              Cancel
-            </button>
-            <button type="submit" className="submit-btn" disabled={uniqueEvents.length === 0}>
-              Submit Test Feedback
-            </button>
-          </div>
-            </form>
-
-            <div className="testing-info">
-              <h4>💡 How This Works</h4>
-              <ul>
-                <li>Select an event from your sponsorships</li>
-                <li>Choose between venue or service feedback</li>
-                <li>Rate each aspect on a 1-5 star scale</li>
-                <li>Click submit to add it to your dashboard</li>
-                <li>Test feedback will appear in "Your Event Feedback" section with a test badge</li>
-                <li>This helps you see how the feedback system works in real-time</li>
-              </ul>
-            </div>
-          </>
         )}
       </div>
 
@@ -458,7 +582,10 @@ const FeedbackTesting = () => {
         <div className="modal-overlay" onClick={() => setShowUploadModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Upload Feedback Template</h2>
+              <div className="modal-title-group">
+                <span className="modal-icon">📁</span>
+                <h2>Upload Template</h2>
+              </div>
               <button
                 className="close-btn"
                 onClick={() => setShowUploadModal(false)}
@@ -469,23 +596,27 @@ const FeedbackTesting = () => {
 
             <div className="modal-body">
               <div className="upload-info">
-                <p><strong>Supported Formats:</strong></p>
-                <ul>
-                  <li>PDF (.pdf)</li>
-                  <li>HTML (.html)</li>
-                  <li>JSON (.json)</li>
-                  <li>Word Documents (.doc, .docx)</li>
-                  <li>Plain Text (.txt)</li>
-                </ul>
-                <p className="size-limit">Max file size: 5MB</p>
+                <h4>Supported Formats</h4>
+                <div className="format-tags">
+                  <span className="format-tag">PDF</span>
+                  <span className="format-tag">HTML</span>
+                  <span className="format-tag">JSON</span>
+                  <span className="format-tag">Word</span>
+                  <span className="format-tag">Text</span>
+                </div>
+                <p className="size-limit">Maximum file size: 5MB</p>
               </div>
 
               {uploadError && (
-                <div className="error-message">{uploadError}</div>
+                <div className="error-message">
+                  <span className="error-icon">⚠️</span>
+                  {uploadError}
+                </div>
               )}
 
-              <div className="file-upload-group">
-                <label htmlFor="template-file">Select Template File</label>
+              <div className="file-upload-area">
+                <div className="upload-icon">📤</div>
+                <p className="upload-text">Click to select or drag a file here</p>
                 <input
                   type="file"
                   id="template-file"
@@ -496,7 +627,7 @@ const FeedbackTesting = () => {
 
               <div className="modal-actions">
                 <button
-                  className="btn-cancel"
+                  className="btn-secondary"
                   onClick={() => setShowUploadModal(false)}
                 >
                   Cancel
