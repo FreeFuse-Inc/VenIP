@@ -158,7 +158,7 @@
   height: 400px;
   top: -200px;
   right: -100px;
-  background: rgba(212, 175, 55, 0.08);
+  background: rgba(212, 175, 55, 0.15);
 }
 
 .decoration-2 {
@@ -166,7 +166,7 @@
   height: 300px;
   bottom: -150px;
   left: 20%;
-  background: rgba(139, 92, 246, 0.05);
+  background: rgba(139, 92, 246, 0.1);
 }
 
 /* ============================================
