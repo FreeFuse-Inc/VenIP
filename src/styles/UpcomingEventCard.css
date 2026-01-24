@@ -2,6 +2,18 @@
    Elite Event Card - Award-Winning Design
    ============================================ */
 
+/* Entrance Animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .upcoming-event-card {
   position: relative;
   display: flex;
@@ -14,6 +26,9 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  /* Entrance animation */
+  animation: fadeSlideUp 0.5s ease forwards;
+  opacity: 0;
 }
 
 /* Multi-layer shadow for depth */
