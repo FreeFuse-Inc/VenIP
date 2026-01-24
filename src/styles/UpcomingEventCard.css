@@ -143,6 +143,8 @@
 
 .upcoming-event-card:hover .event-date-badge {
   border-color: var(--accent-gold);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
 }
 
 .date-day {
