@@ -16,6 +16,34 @@
   display: none;
 }
 
+/* Loading and Not Found States */
+.loading-state,
+.not-found-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: var(--space-2xl);
+  text-align: center;
+}
+
+.loading-state {
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.not-found-state h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.not-found-state p {
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-xl) 0;
+}
+
 /* ============================================
    Hero Header Section
    ============================================ */
