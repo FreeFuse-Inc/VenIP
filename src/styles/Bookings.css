@@ -685,6 +685,7 @@
   background: var(--accent-green);
   border-color: var(--accent-green);
   color: white;
+  margin-top: -8px;
 }
 
 .btn-confirm:hover {
