@@ -45,9 +45,8 @@ const UpcomingEventCard = ({
   const handleClick = () => {
     if (onClick) {
       onClick(event);
-    } else if (event.id) {
-      navigate(`/event-management/${event.id}`);
     }
+    // Navigation is handled by parent component
   };
 
   const hasDetails = service || budget || quotedPrice;
