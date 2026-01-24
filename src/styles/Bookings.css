@@ -68,10 +68,12 @@
   gap: var(--space-xl);
   max-width: 1400px;
   margin: 0 auto;
+  padding-top: var(--space-lg);
 }
 
 .hero-main {
   flex: 1;
+  padding-bottom: var(--space-md);
 }
 
 .bookings-title {
