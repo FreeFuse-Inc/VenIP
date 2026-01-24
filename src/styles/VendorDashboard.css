@@ -232,7 +232,10 @@ html.dark-mode .events-section-container::before {
   color: black;
 }
 
-/* Responsive */
+/* ============================================
+   Responsive Design
+   ============================================ */
+
 @media (max-width: 768px) {
   .dashboard-header-modern {
     padding: var(--space-lg);
@@ -247,10 +250,9 @@ html.dark-mode .events-section-container::before {
     grid-template-columns: 1fr 1fr;
   }
 
-  .job-details,
-  .proposal-details {
-    padding-left: 0;
-    flex-wrap: wrap;
+  .events-section-container {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
   }
 
   .suggest-event-cta {
@@ -279,6 +281,11 @@ html.dark-mode .events-section-container::before {
 
   .metrics-section-modern {
     grid-template-columns: 1fr;
+  }
+
+  .events-section-container {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
   }
 
   .header-icon-btn {
