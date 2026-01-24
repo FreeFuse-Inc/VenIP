@@ -126,43 +126,52 @@ const VendorDashboard = () => {
         <QuickAccessGrid items={quickAccessItems} />
 
         <section className="events-tabs-section">
-          <FilterTabs 
-            tabs={tabs}
-            activeTab={activeTab}
-            onChange={setActiveTab}
-          />
+          <div className="events-section-container">
+            <FilterTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              onChange={setActiveTab}
+            />
 
-          <div className="tab-content">
-            {activeTab === 'browse' && (
-              <div className="events-list-modern">
-                {availableEvents.map((event) => (
-                  <div 
-                    key={event.id} 
-                    className="event-job-card"
-                    onClick={() => navigate(`/event-details-vendor/${event.id}`)}
-                  >
-                    <UpcomingEventCard event={event} />
-                    <div className="job-details">
-                      <span className="service-tag">{event.service}</span>
-                      <span className="budget-tag">💰 {event.budget}</span>
+            <div className="tab-content">
+              {activeTab === 'browse' && (
+                <div className="events-list-modern">
+                  {availableEvents.map((event, index) => (
+                    <div
+                      key={event.id}
+                      className={`event-job-card ${index === 0 ? 'featured' : ''}`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                      onClick={() => navigate(`/event-details-vendor/${event.id}`)}
+                    >
+                      <UpcomingEventCard
+                        event={event}
+                        service={event.service}
+                        budget={event.budget}
+                        featured={index === 0}
+                      />
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
 
-            {activeTab === 'proposals' && (
-              <div className="proposals-list-modern">
-                {myProposals.map((proposal) => (
-                  <div key={proposal.id} className="proposal-card-modern">
-                    <UpcomingEventCard event={proposal} />
-                    <div className="proposal-details">
-                      <span className="quoted-price">Quote: {proposal.quotedPrice}</span>
+              {activeTab === 'proposals' && (
+                <div className="events-list-modern">
+                  {myProposals.map((proposal, index) => (
+                    <div
+                      key={proposal.id}
+                      className={`event-job-card ${index === 0 ? 'featured' : ''}`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <UpcomingEventCard
+                        event={proposal}
+                        quotedPrice={proposal.quotedPrice}
+                        featured={index === 0}
+                      />
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
