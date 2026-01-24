@@ -11,10 +11,7 @@
   min-height: 100vh;
 }
 
-/* Override back button spacer for this page */
-.bookings-page .back-button-spacer {
-  display: none;
-}
+/* The back button spacer provides top spacing */
 
 /* ============================================
    Hero Header
