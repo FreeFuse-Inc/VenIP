@@ -122,6 +122,130 @@
   flex-direction: column;
 }
 
+/* ============================================
+   Upcoming Events Mini Hero
+   ============================================ */
+
+.upcoming-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  background: linear-gradient(135deg,
+    #1a1a2e 0%,
+    #2d2d44 50%,
+    #3a3a52 100%
+  );
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+}
+
+.upcoming-hero .hero-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.upcoming-hero .decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.upcoming-hero .decoration-1 {
+  width: 200px;
+  height: 200px;
+  top: -100px;
+  right: -50px;
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.upcoming-hero .decoration-2 {
+  width: 150px;
+  height: 150px;
+  bottom: -75px;
+  left: 30%;
+  background: rgba(139, 92, 246, 0.15);
+}
+
+.upcoming-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hero-icon-wrap {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-lg);
+}
+
+.hero-icon {
+  font-size: 24px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.upcoming-hero .hero-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.upcoming-hero .hero-subtitle {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.hero-see-all-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  color: #ffffff;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-see-all-btn:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: black;
+}
+
+.hero-see-all-btn .btn-arrow {
+  transition: transform 0.2s ease;
+}
+
+.hero-see-all-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
 .upcoming-events-list {
   display: flex;
   flex-direction: column;
