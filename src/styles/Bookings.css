@@ -649,7 +649,9 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: 12px var(--space-md);
+  padding: 14px var(--space-md);
+  height: 48px;
+  box-sizing: border-box;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
   font-weight: 600;
