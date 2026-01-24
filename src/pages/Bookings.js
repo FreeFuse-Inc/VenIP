@@ -94,7 +94,7 @@ const Bookings = () => {
       id: 7,
       eventName: 'Art Exhibition Opening',
       venueName: 'City Art Gallery',
-      date: '2025-02-14',
+      date: '2026-02-14',
       time: '6:00 PM',
       attendees: 200,
       status: 'Pending',
