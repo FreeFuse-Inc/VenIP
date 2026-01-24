@@ -6,6 +6,7 @@ import UpcomingEventCard from '../components/UpcomingEventCard';
 import SponsorshipCard from '../components/SponsorshipCard';
 import { FeedbackContext } from '../context/FeedbackContext';
 import { CartContext } from '../context/CartContext';
+import { EventContext } from '../context/EventContext';
 import '../styles/SponsorDashboard.css';
 
 const SponsorDashboard = () => {
