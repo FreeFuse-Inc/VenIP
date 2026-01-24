@@ -1,37 +1,60 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import FilterTabs from '../components/FilterTabs';
 import { RoleContext } from '../context/RoleContext';
+import { getEventById, formatEventDate } from '../utils/eventsData';
 import '../styles/EventDetails.css';
 
 const EventDetails = () => {
   const navigate = useNavigate();
   const { eventId } = useParams();
   const { userRole } = useContext(RoleContext);
-  
+
   // Determine user type
   const isVendor = userRole === 'vendor';
   const isOrganizer = userRole === 'npo';
-  
-  // Event data (would come from API in production)
-  const [event] = useState({
-    id: eventId || 1,
-    name: 'Annual Gala 2024',
-    date: 'Dec 15, 2024',
-    time: '7:00 PM',
-    location: 'Downtown Convention Center',
-    description: 'Annual fundraising gala to support local communities. Looking for professional catering services to serve 300 guests.',
-    serviceNeeded: 'Catering',
-    budgetRange: '$5,000 - $10,000',
-    eventType: 'Fundraising Gala',
-    additionalInfo: 'Vegetarian and vegan options required. Dietary restrictions must be accommodated.',
-    status: 'Planning',
-    budget: 15000,
-    budgetUsed: 4500,
-    attendeeTarget: 300,
-    attendeeConfirmed: 45,
-  });
+
+  // Load event data based on eventId
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadedEvent = getEventById(eventId);
+    if (loadedEvent) {
+      // Format the date for display
+      const dateInfo = formatEventDate(loadedEvent.date);
+      setEvent({
+        ...loadedEvent,
+        displayDate: dateInfo.full,
+        budget: loadedEvent.totalBudget,
+      });
+    }
+    setLoading(false);
+  }, [eventId]);
+
+  // Show loading or not found states
+  if (loading) {
+    return (
+      <main className="event-details-page">
+        <BackButton />
+        <div className="loading-state">Loading event details...</div>
+      </main>
+    );
+  }
+
+  if (!event) {
+    return (
+      <main className="event-details-page">
+        <BackButton />
+        <div className="not-found-state">
+          <h2>Event Not Found</h2>
+          <p>The event you're looking for doesn't exist.</p>
+          <button className="btn-primary" onClick={() => navigate(-1)}>Go Back</button>
+        </div>
+      </main>
+    );
+  }
 
   // Vendor requests data (for organizers)
   const [vendorRequests] = useState([
