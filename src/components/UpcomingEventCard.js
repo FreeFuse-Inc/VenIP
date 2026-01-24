@@ -2,10 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/UpcomingEventCard.css';
 
-const UpcomingEventCard = ({ 
-  event, 
+const UpcomingEventCard = ({
+  event,
   onClick,
-  showActions = false 
+  showActions = false,
+  service,
+  budget,
+  quotedPrice,
+  featured = false
 }) => {
   const navigate = useNavigate();
 
