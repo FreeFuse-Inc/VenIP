@@ -772,7 +772,7 @@ html.dark-mode .details-card {
 
 /* Booking Cards Dark Mode */
 html.dark-mode .booking-card {
-  background: var(--bg-card);
+  background: #2a2a2a;
   border-color: var(--border-primary);
 }
 
@@ -780,8 +780,16 @@ html.dark-mode .booking-card:hover {
   border-color: var(--accent-gold);
 }
 
+html.dark-mode .booking-card-header {
+  background: #3a3a3a;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin: calc(-1 * var(--space-lg));
+  margin-bottom: var(--space-md);
+}
+
 html.dark-mode .booking-event-name {
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 html.dark-mode .booking-venue {
