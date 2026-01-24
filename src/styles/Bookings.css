@@ -639,7 +639,7 @@
 .booking-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: stretch;
+  align-items: start;
   gap: var(--space-sm);
   margin-top: var(--space-md);
 }
