@@ -9,7 +9,8 @@ const UpcomingEventCard = ({
   service,
   budget,
   quotedPrice,
-  featured = false
+  featured = false,
+  style = {}
 }) => {
   const navigate = useNavigate();
 
