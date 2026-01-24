@@ -361,10 +361,6 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
-.calendar-day.has-events:not(.selected) {
-  background: var(--bg-secondary);
-}
-
 /* Calendar Stats */
 .calendar-stats {
   display: flex;
