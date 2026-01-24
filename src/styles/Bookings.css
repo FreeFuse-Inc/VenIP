@@ -677,19 +677,9 @@
 }
 
 .btn-confirm {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-sm) var(--space-md);
   background: var(--accent-green);
   border: none;
-  border-radius: var(--radius-md);
   color: white;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .btn-confirm:hover {
