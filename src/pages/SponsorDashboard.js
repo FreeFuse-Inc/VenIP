@@ -42,14 +42,38 @@ const SponsorDashboard = () => {
     return tierBenefits[tier] || tierBenefits['Gold'];
   }
 
-  // Use actual events from context, mapped to the expected format
-  const upcomingEvents = events.map(event => ({
-    id: event.id,
-    name: event.name,
-    venue: event.location,
-    date: event.date,
-    status: event.status === 'Active' ? 'Published' : event.status,
-  }));
+  // Get today's date for comparison
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Filter events into upcoming (future) and past
+  const upcomingEvents = events
+    .filter(event => {
+      const eventDate = new Date(event.date);
+      return eventDate >= today;
+    })
+    .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date ascending (soonest first)
+    .map(event => ({
+      id: event.id,
+      name: event.name,
+      venue: event.location,
+      date: event.date,
+      status: event.status === 'Active' ? 'Published' : event.status,
+    }));
+
+  const pastEvents = events
+    .filter(event => {
+      const eventDate = new Date(event.date);
+      return eventDate < today;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date descending (most recent first)
+    .map(event => ({
+      id: event.id,
+      name: event.name,
+      venue: event.location,
+      date: event.date,
+      status: 'Completed',
+    }));
 
   const quickAccessItems = [
     { id: 'events', label: 'Events', icon: '📅', path: '/events-feed', color: '#D4AF37' },
