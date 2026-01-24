@@ -351,10 +351,6 @@
   position: relative;
 }
 
-.calendar-day.has-events .day-number {
-  font-weight: 600;
-}
-
 .more-events {
   font-size: 9px;
   font-weight: 700;
@@ -845,10 +841,6 @@ html.dark-mode .calendar-day {
 
 html.dark-mode .calendar-day .day-number {
   color: var(--text-primary);
-}
-
-html.dark-mode .calendar-day.has-events:not(.selected) {
-  background: var(--bg-secondary);
 }
 
 html.dark-mode .calendar-day:not(.empty):hover {
