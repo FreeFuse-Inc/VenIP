@@ -6,6 +6,7 @@ import UpcomingEventCard from '../components/UpcomingEventCard';
 import FilterTabs from '../components/FilterTabs';
 import { CartContext } from '../context/CartContext';
 import { RoleContext } from '../context/RoleContext';
+import { getAvailableEvents, getProposalEvents } from '../utils/eventsData';
 import '../styles/VendorDashboard.css';
 
 const VendorDashboard = () => {
