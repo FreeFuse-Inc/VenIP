@@ -13,6 +13,7 @@ const SponsorDashboard = () => {
   const navigate = useNavigate();
   const { feedback } = useContext(FeedbackContext);
   const { toggleCartSidebar } = useContext(CartContext);
+  const { events, sponsorships } = useContext(EventContext);
 
   const user = {
     name: 'Emily Davis',
@@ -20,50 +21,35 @@ const SponsorDashboard = () => {
     company: 'Global Innovations Inc.',
   };
 
-  const sponsoredEvents = [
-    {
-      id: 1,
-      name: 'Annual Gala 2024',
-      tier: 'Gold',
-      amount: '$10,000',
-      status: 'Active',
-      benefits: ['Logo on materials', 'VIP table', 'Speaking slot', 'Premium placement'],
-      eventId: 1,
-    },
-    {
-      id: 2,
-      name: 'Tech Conference 2025',
-      tier: 'Platinum',
-      amount: '$25,000',
-      status: 'Pending',
-      benefits: ['Title sponsor', 'Keynote intro', 'Premium booth', 'VIP access'],
-      eventId: 2,
-    },
-  ];
+  // Map sponsorships to display format
+  const sponsoredEvents = sponsorships.map(s => ({
+    id: s.id,
+    name: s.eventName,
+    tier: s.sponsorshipLevel,
+    amount: s.amount,
+    status: s.status,
+    benefits: getBenefitsForTier(s.sponsorshipLevel),
+    eventId: s.eventId,
+  }));
 
-  const upcomingEvents = [
-    {
-      id: 1,
-      name: 'Annual Charity Gala',
-      venue: 'Grand Ballroom',
-      date: '2025-03-14',
-      status: 'Published',
-    },
-    {
-      id: 2,
-      name: 'Tech Conference 2025',
-      venue: 'Conference Center',
-      date: '2025-04-19',
-      status: 'Published',
-    },
-    {
-      id: 3,
-      name: 'Summer Fundraiser',
-      venue: 'Rooftop Garden',
-      date: '2025-06-09',
-      status: 'Draft',
-    },
-  ];
+  function getBenefitsForTier(tier) {
+    const tierBenefits = {
+      'Bronze': ['Logo on materials', 'Certificate', '2 tickets'],
+      'Silver': ['Logo on materials', 'Social media', '4 tickets', 'Booth space'],
+      'Gold': ['Logo on materials', 'VIP table', 'Speaking slot', 'Premium placement'],
+      'Platinum': ['Title sponsor', 'Keynote intro', 'Premium booth', 'VIP access'],
+    };
+    return tierBenefits[tier] || tierBenefits['Gold'];
+  }
+
+  // Use actual events from context, mapped to the expected format
+  const upcomingEvents = events.map(event => ({
+    id: event.id,
+    name: event.name,
+    venue: event.location,
+    date: event.date,
+    status: event.status === 'Active' ? 'Published' : event.status,
+  }));
 
   const quickAccessItems = [
     { id: 'events', label: 'Events', icon: '📅', path: '/events-feed', color: '#D4AF37' },
