@@ -135,7 +135,7 @@ const SponsorDashboard = () => {
               </div>
               <div className="hero-text">
                 <h2 className="hero-title">Upcoming Events</h2>
-                <p className="hero-subtitle">{upcomingEvents.length} events on your calendar</p>
+                <p className="hero-subtitle">{upcomingEvents.length} upcoming event{upcomingEvents.length !== 1 ? 's' : ''}</p>
               </div>
             </div>
             <button className="hero-see-all-btn" onClick={() => navigate('/events-feed')}>
