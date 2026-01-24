@@ -26,54 +26,12 @@ const VendorDashboard = () => {
     company: 'Premium Catering Co.',
   };
 
-  const availableEvents = [
-    {
-      id: 1,
-      name: 'Annual Gala 2024',
-      venue: 'Downtown Convention Center',
-      date: '2024-12-15',
-      status: 'Open',
-      service: 'Catering',
-      budget: '$5,000 - $10,000',
-    },
-    {
-      id: 2,
-      name: 'Charity Fundraiser',
-      venue: 'Grand Hotel',
-      date: '2025-01-10',
-      status: 'Open',
-      service: 'Decorations',
-      budget: '$3,000 - $6,000',
-    },
-    {
-      id: 3,
-      name: 'Community Cleanup',
-      venue: 'Central Park',
-      date: '2025-01-20',
-      status: 'Open',
-      service: 'Photography',
-      budget: '$1,500 - $3,000',
-    },
-  ];
-
-  const myProposals = [
-    {
-      id: 1,
-      name: 'Corporate Awards Night',
-      venue: 'Business Center',
-      date: '2024-12-20',
-      status: 'Pending',
-      quotedPrice: '$4,500',
-    },
-    {
-      id: 2,
-      name: 'Wedding Celebration',
-      venue: 'Garden Estate',
-      date: '2024-11-28',
-      status: 'Active',
-      quotedPrice: '$3,200',
-    },
-  ];
+  // Get events from shared data source
+  const availableEvents = getAvailableEvents();
+  const myProposals = getProposalEvents().map(event => ({
+    ...event,
+    quotedPrice: event.id === 4 ? '$4,500' : '$3,200', // Mock quoted prices
+  }));
 
   const quickAccessItems = [
     { id: 'browse', label: 'Browse Jobs', icon: '🔍', path: '/vendors', color: '#D4AF37' },
