@@ -141,7 +141,7 @@ const VendorDashboard = () => {
                       key={event.id}
                       className={`event-job-card ${index === 0 ? 'featured' : ''}`}
                       style={{ animationDelay: `${index * 0.1}s` }}
-                      onClick={() => navigate(`/event-details-vendor/${event.id}`)}
+                      onClick={() => navigate(`/event-details/${event.id}`)}
                     >
                       <UpcomingEventCard
                         event={event}
