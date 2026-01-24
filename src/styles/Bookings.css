@@ -637,8 +637,9 @@
 
 /* Booking Actions */
 .booking-actions {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: var(--space-sm);
   margin-top: var(--space-md);
 }
