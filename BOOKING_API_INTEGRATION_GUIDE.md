@@ -48,13 +48,13 @@ REACT_APP_VIATOR_API_KEY=your_key_here
 Replace the mock functions with real API calls. Example:
 
 ```javascript
-// Before (Mock)
+//Before (Mock)
 searchHotels: async (params) => {
   await new Promise(resolve => setTimeout(resolve, 500));
   return generateHotels(params.destination, params.checkIn, params.checkOut, params.guests);
 }
 
-// After (Real API)
+//After (Real API)
 searchHotels: async (params) => {
   const apiKey = process.env.REACT_APP_BOOKING_API_KEY;
   const response = await fetch('https://api.booking.com/hotels', {
