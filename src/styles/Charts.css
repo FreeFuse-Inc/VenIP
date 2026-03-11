@@ -1,0 +1,106 @@
+.chart-container {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-primary);
+}
+
+.chart-title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chart-subtitle {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.traffic-chart {
+  grid-column: 1 / -1;
+}
+
+.bounce-rate-chart {
+  grid-column: 1 / 2;
+}
+
+.engagement-chart {
+  grid-column: 1 / -1;
+}
+
+.system-kpi-chart,
+.revenue-trend-chart,
+.role-distribution-chart {
+  min-height: 350px;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.distribution-chart-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.distribution-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.distribution-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: var(--bg-input);
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+}
+
+.legend-color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legend-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.legend-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+}

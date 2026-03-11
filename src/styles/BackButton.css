@@ -1,0 +1,104 @@
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 180px;
+  z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 50px;
+  color: #1a1a2e;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 20px rgba(212, 175, 55, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #e6c04a 0%, #d4af37 100%);
+  color: #1a1a2e;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 8px 30px rgba(212, 175, 55, 0.5),
+    0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:active {
+  transform: translateY(-1px) scale(1);
+  box-shadow:
+    0 4px 16px rgba(212, 175, 55, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode support */
+html.dark-mode .back-button {
+  background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
+  color: #1a1a2e;
+  box-shadow:
+    0 4px 20px rgba(212, 175, 55, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .back-button:hover {
+  background: linear-gradient(135deg, #e6c04a 0%, #d4af37 100%);
+  color: #1a1a2e;
+  box-shadow:
+    0 8px 30px rgba(212, 175, 55, 0.6),
+    0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.back-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-icon {
+  transform: translateX(-3px);
+}
+
+.back-text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Spacer to reserve space for fixed button */
+.back-button-spacer {
+  height: 60px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .back-button {
+    left: 20px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .back-text {
+    display: none;
+  }
+
+  .back-icon {
+    font-size: 18px;
+  }
+
+  .back-button-spacer {
+    height: 50px;
+  }
+}

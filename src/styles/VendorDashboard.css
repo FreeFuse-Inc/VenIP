@@ -1,0 +1,295 @@
+.vendor-dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Modern Header */
+.dashboard-header-modern {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-xl);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.header-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.welcome-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.user-name {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--icon-bg-gold);
+  color: var(--accent-gold);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  width: fit-content;
+  margin-top: var(--space-xs);
+}
+
+.header-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.header-icon-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.header-icon-btn:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* Dashboard Content */
+.dashboard-content-modern {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Metrics Section */
+.metrics-section-modern {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+/* ============================================
+   Events Tabs Section - Elite Design
+   ============================================ */
+
+.events-tabs-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section Container with subtle background */
+.events-section-container {
+  position: relative;
+  background: linear-gradient(180deg,
+    var(--bg-card) 0%,
+    var(--bg-secondary) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  overflow: hidden;
+}
+
+/* Subtle decorative gradient in corner */
+.events-section-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle,
+    rgba(212, 175, 55, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Events List */
+.events-list-modern {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Event Job Card - Animation wrapper */
+.event-job-card {
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards;
+}
+
+.event-job-card .upcoming-event-card {
+  cursor: pointer;
+}
+
+/* Staggered animation keyframes */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode adjustments */
+html.dark-mode .events-section-container {
+  background: linear-gradient(180deg,
+    rgba(30, 30, 30, 0.9) 0%,
+    rgba(20, 20, 20, 0.95) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+html.dark-mode .events-section-container::before {
+  background: radial-gradient(circle,
+    rgba(212, 175, 55, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+/* Suggest Event CTA */
+.suggest-event-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  background: var(--accent-gold-gradient);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.suggest-event-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.cta-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cta-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-md);
+  font-size: 22px;
+}
+
+.cta-text h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: black;
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.cta-text p {
+  font-size: var(--font-size-sm);
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.cta-arrow {
+  font-size: var(--font-size-xl);
+  color: black;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  .dashboard-header-modern {
+    padding: var(--space-lg);
+  }
+
+  .dashboard-content-modern {
+    padding: var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  .metrics-section-modern {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .events-section-container {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .suggest-event-cta {
+    padding: var(--space-md);
+  }
+
+  .cta-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header-modern {
+    padding: var(--space-md);
+  }
+
+  .user-name {
+    font-size: var(--font-size-xl);
+  }
+
+  .dashboard-content-modern {
+    padding: var(--space-md);
+  }
+
+  .metrics-section-modern {
+    grid-template-columns: 1fr;
+  }
+
+  .events-section-container {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .header-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

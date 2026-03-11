@@ -1,0 +1,125 @@
+.metric-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--border-primary);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  transition: all var(--transition-base);
+}
+
+.metric-card:hover {
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-card-compact {
+  padding: var(--space-md);
+}
+
+.metric-card-compact .metric-icon-wrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.metric-card-compact .metric-icon {
+  font-size: 18px;
+}
+
+.metric-card-compact .metric-value {
+  font-size: var(--font-size-2xl);
+}
+
+.metric-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-icon {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.metric-value {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs) 0;
+  line-height: 1.2;
+}
+
+.metric-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  font-weight: 500;
+}
+
+.metric-subtitle {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+  margin: var(--space-xs) 0 0 0;
+}
+
+.metric-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.trend-up {
+  background-color: var(--status-active-bg);
+  color: var(--status-active);
+}
+
+.trend-down {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.trend-icon {
+  font-size: 10px;
+}
+
+.trend-value {
+  font-weight: 600;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .metric-card {
+    padding: var(--space-md);
+  }
+  
+  .metric-value {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .metric-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .metric-icon {
+    font-size: 18px;
+  }
+}

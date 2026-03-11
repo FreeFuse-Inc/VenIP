@@ -1,0 +1,277 @@
+.renewal-decision {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #f9fafb;
+  padding: 24px 32px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #D4AF37;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  color: #C9A227;
+}
+
+.decision-header {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.decision-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.decision-header p {
+  font-size: 14px;
+  color: #1f2937;
+  margin: 0;
+}
+
+.decision-content {
+  display: grid;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.warning-card {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.warning-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.warning-card h3 {
+  color: #92400e;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.warning-card p {
+  color: #92400e;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.impact-section,
+.details-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.impact-section h3,
+.details-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.impact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.impact-list li {
+  font-size: 14px;
+  color: #1f2937;
+  padding-left: 20px;
+  position: relative;
+}
+
+.impact-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item .label {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.detail-item .value {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn-cancel,
+.btn-end-confirm {
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.btn-cancel:hover {
+  background: #e5e7eb;
+}
+
+.btn-end-confirm {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-end-confirm:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+.footer-note {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+  color: #1f2937;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #D4AF37;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 4px;
+  font-size: inherit;
+}
+
+.link-btn:hover {
+  color: #C9A227;
+}
+
+.end-sponsorship-confirmed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.confirmation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.confirmation-icon {
+  width: 60px;
+  height: 60px;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 20px;
+}
+
+.confirmation-card h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.confirmation-card p {
+  font-size: 14px;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.confirmation-message {
+  font-size: 13px;
+  color: #1f2937;
+  font-style: italic;
+}
+
+.btn-return {
+  background: #D4AF37;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+}
+
+.btn-return:hover {
+  background: #C9A227;
+}
+
+@media (max-width: 768px) {
+  .renewal-decision {
+    padding: 16px;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+}

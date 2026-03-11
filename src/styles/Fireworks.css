@@ -1,0 +1,281 @@
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1500;
+}
+
+.firework-particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  animation: explode var(--duration, 3s) ease-out forwards;
+  animation-delay: var(--delay, 0s);
+  box-shadow: 0 0 8px currentColor;
+}
+
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+.firework-particle:nth-child(1) {
+  --tx: 120px;
+  --ty: 0px;
+}
+
+.firework-particle:nth-child(2) {
+  --tx: 110px;
+  --ty: 40px;
+}
+
+.firework-particle:nth-child(3) {
+  --tx: 85px;
+  --ty: 75px;
+}
+
+.firework-particle:nth-child(4) {
+  --tx: 40px;
+  --ty: 110px;
+}
+
+.firework-particle:nth-child(5) {
+  --tx: 0px;
+  --ty: 120px;
+}
+
+.firework-particle:nth-child(6) {
+  --tx: -40px;
+  --ty: 110px;
+}
+
+.firework-particle:nth-child(7) {
+  --tx: -75px;
+  --ty: 85px;
+}
+
+.firework-particle:nth-child(8) {
+  --tx: -110px;
+  --ty: 40px;
+}
+
+.firework-particle:nth-child(9) {
+  --tx: -120px;
+  --ty: 0px;
+}
+
+.firework-particle:nth-child(10) {
+  --tx: -110px;
+  --ty: -40px;
+}
+
+.firework-particle:nth-child(11) {
+  --tx: -85px;
+  --ty: -75px;
+}
+
+.firework-particle:nth-child(12) {
+  --tx: -40px;
+  --ty: -110px;
+}
+
+.firework-particle:nth-child(13) {
+  --tx: 0px;
+  --ty: -120px;
+}
+
+.firework-particle:nth-child(14) {
+  --tx: 40px;
+  --ty: -110px;
+}
+
+.firework-particle:nth-child(15) {
+  --tx: 75px;
+  --ty: -85px;
+}
+
+.firework-particle:nth-child(16) {
+  --tx: 110px;
+  --ty: -40px;
+}
+
+.firework-particle:nth-child(17) {
+  --tx: 130px;
+  --ty: 20px;
+}
+
+.firework-particle:nth-child(18) {
+  --tx: 120px;
+  --ty: 50px;
+}
+
+.firework-particle:nth-child(19) {
+  --tx: 95px;
+  --ty: 85px;
+}
+
+.firework-particle:nth-child(20) {
+  --tx: 60px;
+  --ty: 120px;
+}
+
+.firework-particle:nth-child(21) {
+  --tx: 15px;
+  --ty: 135px;
+}
+
+.firework-particle:nth-child(22) {
+  --tx: -30px;
+  --ty: 130px;
+}
+
+.firework-particle:nth-child(23) {
+  --tx: -75px;
+  --ty: 100px;
+}
+
+.firework-particle:nth-child(24) {
+  --tx: -115px;
+  --ty: 60px;
+}
+
+.firework-particle:nth-child(25) {
+  --tx: -135px;
+  --ty: 15px;
+}
+
+.firework-particle:nth-child(26) {
+  --tx: -130px;
+  --ty: -30px;
+}
+
+.firework-particle:nth-child(27) {
+  --tx: -100px;
+  --ty: -75px;
+}
+
+.firework-particle:nth-child(28) {
+  --tx: -60px;
+  --ty: -115px;
+}
+
+.firework-particle:nth-child(29) {
+  --tx: -15px;
+  --ty: -135px;
+}
+
+.firework-particle:nth-child(30) {
+  --tx: 30px;
+  --ty: -130px;
+}
+
+.firework-particle:nth-child(31) {
+  --tx: 75px;
+  --ty: -100px;
+}
+
+.firework-particle:nth-child(32) {
+  --tx: 115px;
+  --ty: -60px;
+}
+
+.firework-particle:nth-child(33) {
+  --tx: 125px;
+  --ty: 35px;
+}
+
+.firework-particle:nth-child(34) {
+  --tx: 105px;
+  --ty: 70px;
+}
+
+.firework-particle:nth-child(35) {
+  --tx: 70px;
+  --ty: 105px;
+}
+
+.firework-particle:nth-child(36) {
+  --tx: 35px;
+  --ty: 125px;
+}
+
+.firework-particle:nth-child(37) {
+  --tx: -5px;
+  --ty: 130px;
+}
+
+.firework-particle:nth-child(38) {
+  --tx: -45px;
+  --ty: 115px;
+}
+
+.firework-particle:nth-child(39) {
+  --tx: -85px;
+  --ty: 80px;
+}
+
+.firework-particle:nth-child(40) {
+  --tx: -115px;
+  --ty: 35px;
+}
+
+.firework-particle:nth-child(41) {
+  --tx: -130px;
+  --ty: -10px;
+}
+
+.firework-particle:nth-child(42) {
+  --tx: -120px;
+  --ty: -50px;
+}
+
+.firework-particle:nth-child(43) {
+  --tx: -90px;
+  --ty: -95px;
+}
+
+.firework-particle:nth-child(44) {
+  --tx: -50px;
+  --ty: -125px;
+}
+
+.firework-particle:nth-child(45) {
+  --tx: -5px;
+  --ty: -135px;
+}
+
+.firework-particle:nth-child(46) {
+  --tx: 45px;
+  --ty: -120px;
+}
+
+.firework-particle:nth-child(47) {
+  --tx: 90px;
+  --ty: -95px;
+}
+
+.firework-particle:nth-child(48) {
+  --tx: 125px;
+  --ty: -50px;
+}
+
+.firework-particle:nth-child(49) {
+  --tx: 135px;
+  --ty: 5px;
+}
+
+.firework-particle:nth-child(50) {
+  --tx: 115px;
+  --ty: 55px;
+}
