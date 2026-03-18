@@ -12,91 +12,101 @@
 }
 
 .venues-page-content {
+  padding: var(--space-xl);
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
-  padding: var(--space-xl);
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
-/* Metrics Section */
-.venues-metrics-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-lg);
-}
-
-.metric-pill {
+/* Controls Section - horizontal flow */
+.venues-controls {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-lg);
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  transition: all 0.3s ease;
-}
-
-.metric-pill:hover {
-  border-color: var(--accent-gold);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
-  transform: translateY(-2px);
-}
-
-.metric-value {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent-gold);
-  line-height: 1;
-  margin-bottom: var(--space-sm);
-}
-
-.metric-label {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  text-align: center;
+  gap: var(--space-md);
 }
 
 /* Add Venue Button */
 .add-venue-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: 8px 16px;
-  background: var(--accent-gold);
-  color: var(--bg-primary);
+  gap: 8px;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
   border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .add-venue-btn:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
-.add-icon {
+.add-venue-btn .add-icon {
   font-size: 18px;
+  font-weight: 700;
 }
 
-/* Controls Section */
-.venues-controls {
+/* Stats Pills - horizontal row */
+.venues-metrics-section {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.venues-metrics-section .metric-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 50px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.venues-metrics-section .metric-pill:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.venues-metrics-section .metric-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.venues-metrics-section .metric-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.venues-metrics-section .metric-pill:nth-child(2) .metric-value {
+  color: var(--status-active);
+}
+
+.venues-metrics-section .metric-pill:nth-child(3) .metric-value {
+  color: #f59e0b;
 }
 
 /* Form Modal Overlay */
 .venue-form-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,33 +116,30 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .venue-form-modal {
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-lg);
-  max-width: 600px;
   width: 100%;
+  max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  animation: slideUp 0.3s ease;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes slideUp {
   from {
-    transform: translateY(20px);
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -145,28 +152,30 @@
 }
 
 .form-modal-header h2 {
-  font-size: var(--font-size-xl);
+  font-size: 20px;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0;
 }
 
 .close-form-btn {
-  background: transparent;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   border: none;
-  font-size: 24px;
-  cursor: pointer;
+  background: var(--bg-input);
   color: var(--text-secondary);
-  transition: color 0.3s ease;
-  padding: 0;
-  width: 32px;
-  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .close-form-btn:hover {
-  color: var(--text-primary);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
 }
 
 /* Form Body */
@@ -177,13 +186,13 @@
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 8px;
 }
 
 .form-group.full-width {
@@ -191,33 +200,36 @@
 }
 
 .form-group label {
-  font-size: var(--font-size-sm);
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .form-group input {
-  padding: 8px 12px;
-  background: var(--bg-primary);
+  padding: 12px 16px;
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: var(--bg-input);
   color: var(--text-primary);
-  transition: border-color 0.3s ease;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--accent-gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 /* Image Upload Area */
 .image-upload-area {
-  border: 2px dashed var(--border-primary);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
-  background: var(--bg-primary);
+  width: 100%;
 }
 
 .upload-placeholder {
@@ -225,22 +237,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-md);
+  padding: 32px;
+  border: 2px dashed var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-placeholder:hover {
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.05);
 }
 
 .upload-icon {
   font-size: 40px;
+  margin-bottom: 12px;
 }
 
 .upload-text {
-  font-size: var(--font-size-sm);
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
+  margin-bottom: 4px;
 }
 
 .upload-hint {
-  font-size: var(--font-size-xs);
+  font-size: 12px;
   color: var(--text-secondary);
 }
 
@@ -250,29 +273,37 @@
 
 .image-preview-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-primary);
 }
 
 .image-preview {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
-  border-radius: var(--radius-md);
+  display: block;
 }
 
 .image-preview-actions {
   display: flex;
-  gap: var(--space-sm);
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg-input);
+  border-top: 1px solid var(--border-primary);
 }
 
 .change-image-btn,
 .remove-image-btn {
   flex: 1;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -280,62 +311,65 @@
 }
 
 .change-image-btn {
-  background: var(--bg-primary);
-  border: 1px solid var(--border-primary);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
 }
 
 .change-image-btn:hover {
-  border-color: var(--accent-gold);
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
 }
 
 .remove-image-btn {
   background: rgba(239, 68, 68, 0.1);
-  color: #EF4444;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .remove-image-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
+  background: #ef4444;
+  color: white;
 }
 
 /* Form Actions */
 .form-modal-actions {
   display: flex;
   gap: var(--space-md);
+  justify-content: flex-end;
   padding: var(--space-lg);
   border-top: 1px solid var(--border-primary);
 }
 
 .btn-cancel,
 .btn-save {
-  flex: 1;
-  padding: 10px 16px;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
   border: none;
+  transition: all 0.3s ease;
 }
 
 .btn-cancel {
-  background: transparent;
+  background: var(--bg-input);
   color: var(--text-primary);
-  border: 1px solid var(--border-primary);
 }
 
 .btn-cancel:hover {
-  background: var(--bg-hover);
+  background: var(--bg-card-hover);
 }
 
 .btn-save {
-  background: var(--accent-gold);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .btn-save:hover {
-  opacity: 0.9;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
 /* Grid Section */
@@ -347,7 +381,7 @@
 
 .venues-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--space-lg);
 }
 
@@ -359,63 +393,54 @@
   justify-content: center;
   padding: var(--space-3xl);
   text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
 }
 
-.empty-icon {
-  font-size: 64px;
-  margin-bottom: var(--space-lg);
+.empty-state-venues .empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
 }
 
 .empty-state-venues h3 {
-  font-size: var(--font-size-xl);
+  font-size: 20px;
   color: var(--text-primary);
-  margin: 0 0 var(--space-md) 0;
+  margin: 0 0 8px 0;
 }
 
 .empty-state-venues p {
   font-size: var(--font-size-base);
   color: var(--text-secondary);
+  margin: 0;
   max-width: 400px;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .venues-page-content {
     padding: var(--space-lg);
     gap: var(--space-lg);
   }
 
   .venues-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-md);
-  }
-
-  .metric-pill {
-    padding: var(--space-md);
-  }
-
-  .metric-value {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .venues-page-content {
-    padding: var(--space-md);
+    grid-template-columns: 1fr;
     gap: var(--space-md);
   }
 
   .venues-metrics-section {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
+    flex-wrap: wrap;
   }
 
-  .venues-grid {
-    grid-template-columns: 1fr;
+  .venues-metrics-section .metric-pill {
+    flex: 1;
+    min-width: 100px;
+    justify-content: center;
   }
 
   .venues-controls {
-    gap: var(--space-md);
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .form-grid {
@@ -423,18 +448,26 @@
   }
 
   .venue-form-modal {
-    max-width: 100%;
+    margin: var(--space-md);
   }
+}
 
-  .form-modal-header {
+@media (max-width: 480px) {
+  .venues-page-content {
     padding: var(--space-md);
   }
 
-  .form-modal-body {
-    padding: var(--space-md);
+  .add-venue-btn {
+    padding: 10px 18px;
+    font-size: 13px;
   }
+}
 
-  .form-modal-actions {
-    padding: var(--space-md);
-  }
+/* Dark Mode Enhancements */
+html.dark-mode .venue-form-modal {
+  background: var(--bg-secondary);
+}
+
+html.dark-mode .venues-metrics-section .metric-pill {
+  background: rgba(255, 255, 255, 0.03);
 }

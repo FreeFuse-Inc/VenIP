@@ -59,9 +59,9 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
 
     if (userRole === 'npo') {
       return [
-        ...baseItems,
+        { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: getDashboardPath() },
+        { id: 'npo-venues', label: 'Venues', icon: '📍', path: '/npo-venues' },
         { id: 'npo-sponsors', label: 'Sponsors', icon: '🏆', path: '/npo-sponsors' },
-        { id: 'npo-venues', label: 'NPO Venues', icon: '🏛️', path: '/npo-venues' },
         { id: 'calendar', label: 'Calendar', icon: '📅', path: '/bookings' },
         { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
         { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
