@@ -42,14 +42,38 @@ const SponsorDashboard = () => {
     return tierBenefits[tier] || tierBenefits['Gold'];
   }
 
-  // Use actual events from context, mapped to the expected format
-  const upcomingEvents = events.map(event => ({
-    id: event.id,
-    name: event.name,
-    venue: event.location,
-    date: event.date,
-    status: event.status === 'Active' ? 'Published' : event.status,
-  }));
+  // Get today's date for comparison
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Filter events into upcoming (future) and past
+  const upcomingEvents = events
+    .filter(event => {
+      const eventDate = new Date(event.date);
+      return eventDate >= today;
+    })
+    .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date ascending (soonest first)
+    .map(event => ({
+      id: event.id,
+      name: event.name,
+      venue: event.location,
+      date: event.date,
+      status: event.status === 'Active' ? 'Published' : event.status,
+    }));
+
+  const pastEvents = events
+    .filter(event => {
+      const eventDate = new Date(event.date);
+      return eventDate < today;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date descending (most recent first)
+    .map(event => ({
+      id: event.id,
+      name: event.name,
+      venue: event.location,
+      date: event.date,
+      status: 'Completed',
+    }));
 
   const quickAccessItems = [
     { id: 'events', label: 'Events', icon: '📅', path: '/events-feed', color: '#D4AF37' },
@@ -111,7 +135,7 @@ const SponsorDashboard = () => {
               </div>
               <div className="hero-text">
                 <h2 className="hero-title">Upcoming Events</h2>
-                <p className="hero-subtitle">{upcomingEvents.length} events on your calendar</p>
+                <p className="hero-subtitle">{upcomingEvents.length} upcoming event{upcomingEvents.length !== 1 ? 's' : ''}</p>
               </div>
             </div>
             <button className="hero-see-all-btn" onClick={() => navigate('/events-feed')}>
@@ -122,16 +146,42 @@ const SponsorDashboard = () => {
 
           {/* Event Cards with staggered animation */}
           <div className="upcoming-events-list">
-            {upcomingEvents.map((event, index) => (
-              <UpcomingEventCard
-                key={event.id}
-                event={event}
-                style={{ animationDelay: `${0.1 + index * 0.08}s` }}
-                onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
-              />
-            ))}
+            {upcomingEvents.length > 0 ? (
+              upcomingEvents.map((event, index) => (
+                <UpcomingEventCard
+                  key={event.id}
+                  event={event}
+                  style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                  onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
+                />
+              ))
+            ) : (
+              <div className="empty-events-message">
+                <p>No upcoming events scheduled</p>
+              </div>
+            )}
           </div>
         </section>
+
+        {/* Past Events Section */}
+        {pastEvents.length > 0 && (
+          <section className="past-events-section">
+            <div className="section-header-modern">
+              <h2 className="section-title-modern">📜 Past Events</h2>
+              <span className="past-events-count">{pastEvents.length} completed</span>
+            </div>
+            <div className="past-events-list">
+              {pastEvents.map((event, index) => (
+                <UpcomingEventCard
+                  key={event.id}
+                  event={event}
+                  style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                  onClick={() => navigate(`/sponsor-event-details/${event.id}`)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="sponsorships-section">
           <div className="section-header-modern">
