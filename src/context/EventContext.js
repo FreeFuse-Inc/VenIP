@@ -127,6 +127,94 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
+  const [sponsors, setSponsors] = useState([
+    {
+      id: 1,
+      companyName: 'Acme Corporation',
+      industry: 'Technology',
+      contactPerson: 'John Smith',
+      email: 'john@acme.com',
+      sponsorshipLevel: 'Platinum',
+      investment: '$10,000',
+      status: 'Active',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=300&fit=crop',
+      rating: 4.8,
+      reviews: 124,
+      benefits: ['Logo Placement', 'VIP Access', 'Social Media', 'Keynote Slot'],
+      available: false,
+      createdByNPO: 'npo',
+      createdAt: today,
+    },
+    {
+      id: 2,
+      companyName: 'Green Earth Foundation',
+      industry: 'Environmental',
+      contactPerson: 'Lisa Green',
+      email: 'lisa@greenearth.org',
+      sponsorshipLevel: 'Gold',
+      investment: '$5,000',
+      status: 'Active',
+      image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&h=300&fit=crop',
+      rating: 4.9,
+      reviews: 89,
+      benefits: ['Logo Placement', 'Booth Space', 'Newsletter Feature'],
+      available: false,
+      createdByNPO: 'npo',
+      createdAt: today,
+    },
+    {
+      id: 3,
+      companyName: 'Metro Financial Group',
+      industry: 'Finance',
+      contactPerson: 'Robert Chen',
+      email: 'robert@metrofinancial.com',
+      sponsorshipLevel: 'Gold',
+      investment: '$7,500',
+      status: 'Active',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=300&fit=crop',
+      rating: 4.5,
+      reviews: 67,
+      benefits: ['Logo Placement', 'VIP Access', 'Panel Speaker'],
+      available: false,
+      createdByNPO: 'npo',
+      createdAt: '2025-01-10',
+    },
+    {
+      id: 4,
+      companyName: 'Sunrise Media',
+      industry: 'Media',
+      contactPerson: 'Amanda Torres',
+      email: 'amanda@sunrisemedia.com',
+      sponsorshipLevel: 'Silver',
+      investment: '$3,000',
+      status: 'Pending',
+      image: 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=500&h=300&fit=crop',
+      rating: 4.7,
+      reviews: 156,
+      benefits: ['Social Media', 'Event Coverage', 'Press Release'],
+      available: false,
+      createdByNPO: 'npo',
+      createdAt: '2025-01-05',
+    },
+    {
+      id: 5,
+      companyName: 'CloudTech Solutions',
+      industry: 'Technology',
+      contactPerson: 'David Park',
+      email: 'david@cloudtech.io',
+      sponsorshipLevel: 'Bronze',
+      investment: '$1,500',
+      status: 'Available',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop',
+      rating: 4.9,
+      reviews: 42,
+      benefits: ['Logo Placement', 'Booth Space'],
+      available: true,
+      createdByNPO: 'sponsor',
+      createdAt: '2025-01-01',
+    },
+  ]);
+
   const [venues, setVenues] = useState([
     {
       id: 1,
@@ -346,6 +434,40 @@ export const EventProvider = ({ children }) => {
     return venues.filter((v) => v.available && v.createdByNPO !== excludeNPOId);
   }, [venues]);
 
+  const createSponsor = useCallback((sponsorData, npoId) => {
+    setSponsors((prev) => {
+      const newId = Math.max(...prev.map((s) => s.id), 0) + 1;
+      const newSponsor = {
+        id: newId,
+        ...sponsorData,
+        createdByNPO: npoId || 'npo',
+        createdAt: getLocalDateString(),
+        available: sponsorData.available !== undefined ? sponsorData.available : false,
+        rating: sponsorData.rating || 4.5,
+        reviews: sponsorData.reviews || 0,
+      };
+      return [...prev, newSponsor];
+    });
+  }, []);
+
+  const updateSponsor = useCallback((id, updatedData) => {
+    setSponsors((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, ...updatedData } : s))
+    );
+  }, []);
+
+  const deleteSponsor = useCallback((id) => {
+    setSponsors((prev) => prev.filter((s) => s.id !== id));
+  }, []);
+
+  const getNPOSponsorCompanies = useCallback((npoId) => {
+    return sponsors.filter((s) => s.createdByNPO === npoId);
+  }, [sponsors]);
+
+  const getAvailableSponsorCompanies = useCallback((excludeNPOId) => {
+    return sponsors.filter((s) => s.available && s.createdByNPO !== excludeNPOId);
+  }, [sponsors]);
+
   const getNPOSponsors = useCallback((eventIds) => {
     return sponsorships.filter((s) => eventIds.includes(s.eventId));
   }, [sponsorships]);
@@ -361,21 +483,27 @@ export const EventProvider = ({ children }) => {
     sponsorships,
     vendorQuotes,
     venues,
+    sponsors,
     createEvent,
     createEventWithSponsorship,
     createSponsorship,
+    createSponsor,
     createVenue,
     getEventsByRole,
     getEventById,
     updateEvent,
     updateSponsorship,
+    updateSponsor,
     updateVenue,
     deleteEvent,
     deleteSponsorship,
+    deleteSponsor,
     deleteVenue,
     getNPOVenues,
     getAvailableVenues,
     getNPOSponsors,
+    getNPOSponsorCompanies,
+    getAvailableSponsorCompanies,
     getNPOEventIds,
   };
 

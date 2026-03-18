@@ -17,7 +17,7 @@ const NPODashboard = () => {
   const { feedback, getNewFeedbackCount } = useContext(FeedbackContext);
   const { toggleCartSidebar } = useContext(CartContext);
   const { setUserRole } = useContext(RoleContext);
-  const { getNPOSponsors, getNPOEventIds, getNPOVenues } = useContext(EventContext);
+  const { getNPOSponsorCompanies, getNPOVenues } = useContext(EventContext);
   const { user: currentUser } = useContext(UserContext);
 
   // Set user role when dashboard loads
@@ -32,13 +32,9 @@ const NPODashboard = () => {
   };
 
   // Get NPO's sponsors and venues
-  const npoEventIds = useMemo(() => {
-    return getNPOEventIds(currentUser?.id || 'npo');
-  }, [getNPOEventIds, currentUser?.id]);
-
   const npoSponsors = useMemo(() => {
-    return getNPOSponsors(npoEventIds).slice(0, 3); // Show top 3 sponsors
-  }, [getNPOSponsors, npoEventIds]);
+    return getNPOSponsorCompanies(currentUser?.id || 'npo').slice(0, 3); // Show top 3 sponsors
+  }, [getNPOSponsorCompanies, currentUser?.id]);
 
   const npoVenues = useMemo(() => {
     return getNPOVenues(currentUser?.id || 'npo').slice(0, 3); // Show top 3 venues
