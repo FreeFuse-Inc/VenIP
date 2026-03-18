@@ -267,7 +267,38 @@
   background: var(--accent-gold-hover);
 }
 
+/* Sponsors Overview Section */
+.sponsors-overview-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sponsors-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Venues Overview Section */
+.venues-overview-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.venues-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+  .sponsors-overview-grid,
+  .venues-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .dashboard-header-modern {
     padding: var(--space-lg);
@@ -291,6 +322,11 @@
     height: 40px;
     font-size: 18px;
   }
+
+  .sponsors-overview-grid,
+  .venues-overview-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -313,5 +349,10 @@
   .header-icon-btn {
     width: 40px;
     height: 40px;
+  }
+
+  .sponsors-overview-grid,
+  .venues-overview-grid {
+    grid-template-columns: 1fr;
   }
 }

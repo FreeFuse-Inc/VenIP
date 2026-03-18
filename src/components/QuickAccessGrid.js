@@ -24,14 +24,21 @@ const QuickAccessGrid = ({ items }) => {
             className="quick-access-item"
             onClick={() => navigate(item.path)}
           >
-            <div 
-              className="quick-access-icon"
-              style={{ 
-                backgroundColor: `${item.color}15`,
-                borderColor: `${item.color}30`
-              }}
-            >
-              <span style={{ color: item.color }}>{item.icon}</span>
+            <div className="quick-access-icon-wrapper">
+              <div
+                className="quick-access-icon"
+                style={{
+                  backgroundColor: `${item.color}15`,
+                  borderColor: `${item.color}30`
+                }}
+              >
+                <span style={{ color: item.color }}>{item.icon}</span>
+              </div>
+              {item.badge !== null && item.badge !== undefined && item.badge > 0 && (
+                <span className="quick-access-badge" style={{ backgroundColor: item.color }}>
+                  {item.badge}
+                </span>
+              )}
             </div>
             <span className="quick-access-label">{item.label}</span>
           </button>

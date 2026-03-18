@@ -127,6 +127,65 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
+  const [venues, setVenues] = useState([
+    {
+      id: 1,
+      name: 'Downtown Convention Center',
+      location: 'Downtown District',
+      capacity: 1000,
+      amenities: ['WiFi', 'Parking', 'Catering', 'AV Equipment'],
+      rate: '$2,500/day',
+      available: true,
+      image: 'https://images.unsplash.com/photo-1519167758993-c8585aa81ead?w=500&h=300&fit=crop',
+      rating: 4.8,
+      reviews: 124,
+      createdByNPO: 'npo',
+      createdAt: today,
+    },
+    {
+      id: 2,
+      name: 'Community Center Hall',
+      location: 'Midtown',
+      capacity: 500,
+      amenities: ['WiFi', 'Parking', 'Sound System'],
+      rate: '$1,200/day',
+      available: true,
+      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&h=300&fit=crop',
+      rating: 4.5,
+      reviews: 89,
+      createdByNPO: 'npo',
+      createdAt: today,
+    },
+    {
+      id: 3,
+      name: 'Tech Hub Building',
+      location: 'Innovation Park',
+      capacity: 800,
+      amenities: ['WiFi', 'High-speed Internet', 'Presentation Tech', 'Breakout Rooms'],
+      rate: '$3,000/day',
+      available: true,
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop',
+      rating: 4.9,
+      reviews: 156,
+      createdByNPO: 'npo',
+      createdAt: '2025-01-10',
+    },
+    {
+      id: 4,
+      name: 'Riverside Park Pavilion',
+      location: 'Riverside',
+      capacity: 300,
+      amenities: ['Outdoor Space', 'Parking', 'Restrooms'],
+      rate: '$800/day',
+      available: true,
+      image: 'https://images.unsplash.com/photo-1509439773649-0a0eb3706ead?w=500&h=300&fit=crop',
+      rating: 4.6,
+      reviews: 78,
+      createdByNPO: 'sponsor',
+      createdAt: '2025-01-05',
+    },
+  ]);
+
   const createEvent = useCallback((eventData) => {
     const eventDate = eventData.date || getLocalDateString();
     const newEventId = Math.max(...events.map((e) => e.id), 0) + 1;
@@ -253,19 +312,71 @@ export const EventProvider = ({ children }) => {
     setSponsorships((prev) => prev.filter((s) => s.id !== id));
   }, []);
 
+  const createVenue = useCallback((venueData, createdByNPO) => {
+    setVenues((prev) => {
+      const newId = Math.max(...prev.map((v) => v.id), 0) + 1;
+      const newVenue = {
+        id: newId,
+        ...venueData,
+        createdByNPO: createdByNPO || 'npo',
+        createdAt: getLocalDateString(),
+        available: venueData.available !== undefined ? venueData.available : true,
+        rating: venueData.rating || 4.5,
+        reviews: venueData.reviews || 0,
+      };
+      return [...prev, newVenue];
+    });
+  }, []);
+
+  const updateVenue = useCallback((id, updatedData) => {
+    setVenues((prev) =>
+      prev.map((v) => (v.id === id ? { ...v, ...updatedData } : v))
+    );
+  }, []);
+
+  const deleteVenue = useCallback((id) => {
+    setVenues((prev) => prev.filter((v) => v.id !== id));
+  }, []);
+
+  const getNPOVenues = useCallback((npoId) => {
+    return venues.filter((v) => v.createdByNPO === npoId);
+  }, [venues]);
+
+  const getAvailableVenues = useCallback((excludeNPOId) => {
+    return venues.filter((v) => v.available && v.createdByNPO !== excludeNPOId);
+  }, [venues]);
+
+  const getNPOSponsors = useCallback((eventIds) => {
+    return sponsorships.filter((s) => eventIds.includes(s.eventId));
+  }, [sponsorships]);
+
+  const getNPOEventIds = useCallback((npoId) => {
+    return events
+      .filter((e) => e.createdBy === npoId)
+      .map((e) => e.id);
+  }, [events]);
+
   const value = {
     events,
     sponsorships,
     vendorQuotes,
+    venues,
     createEvent,
     createEventWithSponsorship,
     createSponsorship,
+    createVenue,
     getEventsByRole,
     getEventById,
     updateEvent,
     updateSponsorship,
+    updateVenue,
     deleteEvent,
     deleteSponsorship,
+    deleteVenue,
+    getNPOVenues,
+    getAvailableVenues,
+    getNPOSponsors,
+    getNPOEventIds,
   };
 
   return <EventContext.Provider value={value}>{children}</EventContext.Provider>;

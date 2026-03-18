@@ -1,0 +1,144 @@
+/* ============================================
+   NPO Sponsors Page - Sponsors Management
+   ============================================ */
+
+.npo-sponsors-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.sponsors-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Metrics Section */
+.sponsors-metrics-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.metric-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.metric-pill:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.metric-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Controls Section */
+.sponsors-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Grid Section */
+.sponsors-grid-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Empty State */
+.empty-state-sponsors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl);
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: var(--space-lg);
+}
+
+.empty-state-sponsors h3 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.empty-state-sponsors p {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  max-width: 400px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sponsors-page-content {
+    padding: var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  .sponsors-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .metric-pill {
+    padding: var(--space-md);
+  }
+
+  .metric-value {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsors-page-content {
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .sponsors-metrics-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsors-controls {
+    gap: var(--space-md);
+  }
+}

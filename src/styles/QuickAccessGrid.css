@@ -50,6 +50,30 @@
   transform: scale(1.1);
 }
 
+.quick-access-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-access-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border: 2px solid var(--bg-card);
+}
+
 .quick-access-label {
   font-size: var(--font-size-sm);
   font-weight: 500;

@@ -1,11 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import QuickAccessGrid from '../components/QuickAccessGrid';
 import UpcomingEventCard from '../components/UpcomingEventCard';
+import SponsorCard from '../components/SponsorCard';
+import VenueCard from '../components/VenueCard';
 import { FeedbackContext } from '../context/FeedbackContext';
 import { CartContext } from '../context/CartContext';
 import { RoleContext } from '../context/RoleContext';
+import { EventContext } from '../context/EventContext';
+import { UserContext } from '../context/UserContext';
 import '../styles/NPODashboard.css';
 
 const NPODashboard = () => {
@@ -13,6 +17,8 @@ const NPODashboard = () => {
   const { feedback, getNewFeedbackCount } = useContext(FeedbackContext);
   const { toggleCartSidebar } = useContext(CartContext);
   const { setUserRole } = useContext(RoleContext);
+  const { getNPOSponsors, getNPOEventIds, getNPOVenues } = useContext(EventContext);
+  const { user: currentUser } = useContext(UserContext);
 
   // Set user role when dashboard loads
   useEffect(() => {
@@ -25,6 +31,19 @@ const NPODashboard = () => {
     organization: 'Community Hearts Foundation',
   };
 
+  // Get NPO's sponsors and venues
+  const npoEventIds = useMemo(() => {
+    return getNPOEventIds(currentUser?.id || 'npo');
+  }, [getNPOEventIds, currentUser?.id]);
+
+  const npoSponsors = useMemo(() => {
+    return getNPOSponsors(npoEventIds).slice(0, 3); // Show top 3 sponsors
+  }, [getNPOSponsors, npoEventIds]);
+
+  const npoVenues = useMemo(() => {
+    return getNPOVenues(currentUser?.id || 'npo').slice(0, 3); // Show top 3 venues
+  }, [getNPOVenues, currentUser?.id]);
+
   const upcomingEvents = [
     { id: 1, name: 'Annual Gala 2024', venue: 'Grand Ballroom', date: '2024-12-15', status: 'Published' },
     { id: 2, name: 'Charity Fundraiser', venue: 'City Center', date: '2025-01-10', status: 'Draft' },
@@ -32,10 +51,10 @@ const NPODashboard = () => {
   ];
 
   const quickAccessItems = [
-    { id: 'create', label: 'Create Event', icon: '➕', path: '/create-event', color: '#D4AF37' },
-    { id: 'events', label: 'My Events', icon: '📅', path: '/bookings', color: '#8B5CF6' },
-    { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors', color: '#22c55e' },
-    { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings', color: '#6b7280' },
+    { id: 'create', label: 'Create Event', icon: '➕', path: '/create-event', color: '#D4AF37', badge: null },
+    { id: 'events', label: 'My Events', icon: '📅', path: '/bookings', color: '#8B5CF6', badge: null },
+    { id: 'sponsors', label: 'Sponsors', icon: '🏆', path: '/npo-sponsors', color: '#FDB022', badge: npoSponsors.length },
+    { id: 'venues', label: 'Venues', icon: '🏛️', path: '/npo-venues', color: '#10B981', badge: npoVenues.length },
   ];
 
   const newFeedbackCount = getNewFeedbackCount();
@@ -65,22 +84,22 @@ const NPODashboard = () => {
 
       <div className="dashboard-content-modern">
         <section className="metrics-section-modern">
-          <MetricCard 
-            label="Total Events" 
-            value="12" 
+          <MetricCard
+            label="Total Events"
+            value="12"
             icon="📅"
             iconBg="gold"
           />
-          <MetricCard 
-            label="Pending Quotes" 
-            value="3" 
-            icon="📋"
-            iconBg="purple"
+          <MetricCard
+            label="Active Sponsors"
+            value={npoSponsors.length}
+            icon="🏆"
+            iconBg="amber"
           />
-          <MetricCard 
-            label="Upcoming" 
-            value="5" 
-            icon="⭐"
+          <MetricCard
+            label="Owned Venues"
+            value={npoVenues.length}
+            icon="🏛️"
             iconBg="green"
           />
         </section>
@@ -96,14 +115,57 @@ const NPODashboard = () => {
           </div>
           <div className="upcoming-events-list">
             {upcomingEvents.map((event) => (
-              <UpcomingEventCard 
-                key={event.id} 
+              <UpcomingEventCard
+                key={event.id}
                 event={event}
                 onClick={() => navigate(`/event-details/${event.id}`)}
               />
             ))}
           </div>
         </section>
+
+        {npoSponsors.length > 0 && (
+          <section className="sponsors-overview-section">
+            <div className="section-header-modern">
+              <h2 className="section-title-modern">Your Sponsors & Partners</h2>
+              <button className="see-all-btn" onClick={() => navigate('/npo-sponsors')}>
+                View All
+              </button>
+            </div>
+            <div className="sponsors-overview-grid">
+              {npoSponsors.map((sponsor, index) => (
+                <SponsorCard
+                  key={sponsor.id}
+                  sponsor={sponsor}
+                  onClick={() => navigate('/npo-sponsors')}
+                  style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {npoVenues.length > 0 && (
+          <section className="venues-overview-section">
+            <div className="section-header-modern">
+              <h2 className="section-title-modern">Your Venues & Bookings</h2>
+              <button className="see-all-btn" onClick={() => navigate('/npo-venues')}>
+                Browse All
+              </button>
+            </div>
+            <div className="venues-overview-grid">
+              {npoVenues.map((venue, index) => (
+                <VenueCard
+                  key={venue.id}
+                  venue={venue}
+                  isOwned={true}
+                  onClick={() => navigate('/npo-venues')}
+                  style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className="create-event-cta" onClick={() => navigate('/create-event')}>
           <div className="cta-content">
