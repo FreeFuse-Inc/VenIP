@@ -57,6 +57,17 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
       ];
     }
 
+    if (userRole === 'npo') {
+      return [
+        ...baseItems,
+        { id: 'npo-sponsors', label: 'Sponsors', icon: '🏆', path: '/npo-sponsors' },
+        { id: 'npo-venues', label: 'NPO Venues', icon: '🏛️', path: '/npo-venues' },
+        { id: 'calendar', label: 'Calendar', icon: '📅', path: '/bookings' },
+        { id: 'vendors', label: 'Vendors', icon: '👥', path: '/vendors' },
+        { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
+      ];
+    }
+
     return [
       ...baseItems,
       { id: 'calendar', label: 'Calendar', icon: '📅', path: '/bookings' },
