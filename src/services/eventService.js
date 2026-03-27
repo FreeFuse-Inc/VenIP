@@ -1,3 +1,5 @@
+import { supabase, isSupabaseConfigured } from '../utils/supabaseClient';
+
 // Helper to get today's date string
 const getLocalDateString = () => {
   const now = new Date();
@@ -6,6 +8,24 @@ const getLocalDateString = () => {
   const day = String(now.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
+
+// ─── Snake ↔ Camel helpers ──────────────────────────────────────────────────
+
+const toCamel = (s) => s.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
+const toSnake = (s) => s.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
+
+const mapKeys = (obj, fn) => {
+  if (Array.isArray(obj)) return obj.map((item) => mapKeys(item, fn));
+  if (obj !== null && typeof obj === 'object' && !(obj instanceof Date)) {
+    return Object.fromEntries(
+      Object.entries(obj).map(([k, v]) => [fn(k), v])
+    );
+  }
+  return obj;
+};
+
+const snakeToCamel = (obj) => mapKeys(obj, toCamel);
+const camelToSnake = (obj) => mapKeys(obj, toSnake);
 
 // ─── Mock Data ──────────────────────────────────────────────────────────────
 
@@ -475,46 +495,258 @@ const buildMockVenues = () => {
 
 const eventService = {
   // ── Events ──
-  getEvents(useTestData) {
+  async getEvents(useTestData) {
     if (useTestData) return buildMockEvents();
-    // Supabase: would call supabase.from('events').select('*')
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('events')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getEvents error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async createEvent(eventData) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('events')
+      .insert(camelToSnake(eventData))
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async updateEvent(id, updates) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('events')
+      .update(camelToSnake(updates))
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async deleteEvent(id) {
+    if (!isSupabaseConfigured()) return;
+    const { error } = await supabase.from('events').delete().eq('id', id);
+    if (error) throw error;
   },
 
   // ── Sponsorships ──
-  getSponsorships(useTestData) {
+  async getSponsorships(useTestData) {
     if (useTestData) return buildMockSponsorships();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('sponsorships')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getSponsorships error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async createSponsorship(sponsorshipData) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('sponsorships')
+      .insert(camelToSnake(sponsorshipData))
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async updateSponsorship(id, updates) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('sponsorships')
+      .update(camelToSnake(updates))
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async deleteSponsorship(id) {
+    if (!isSupabaseConfigured()) return;
+    const { error } = await supabase.from('sponsorships').delete().eq('id', id);
+    if (error) throw error;
   },
 
   // ── Vendor Quotes ──
-  getVendorQuotes(useTestData) {
+  async getVendorQuotes(useTestData) {
     if (useTestData) return buildMockVendorQuotes();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('vendor_quotes')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getVendorQuotes error:', error); return []; }
+    return (data || []).map(snakeToCamel);
   },
 
   // ── Sponsors ──
-  getSponsors(useTestData) {
+  async getSponsors(useTestData) {
     if (useTestData) return buildMockSponsors();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('sponsors')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getSponsors error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async createSponsor(sponsorData) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('sponsors')
+      .insert(camelToSnake(sponsorData))
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async updateSponsor(id, updates) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('sponsors')
+      .update(camelToSnake(updates))
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async deleteSponsor(id) {
+    if (!isSupabaseConfigured()) return;
+    const { error } = await supabase.from('sponsors').delete().eq('id', id);
+    if (error) throw error;
   },
 
   // ── Vendor Services ──
-  getVendorServices(useTestData) {
+  async getVendorServices(useTestData) {
     if (useTestData) return buildMockVendorServices();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('vendor_services')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getVendorServices error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async createVendorService(serviceData) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('vendor_services')
+      .insert(camelToSnake(serviceData))
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async updateVendorService(id, updates) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('vendor_services')
+      .update(camelToSnake(updates))
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async deleteVendorService(id) {
+    if (!isSupabaseConfigured()) return;
+    const { error } = await supabase.from('vendor_services').delete().eq('id', id);
+    if (error) throw error;
   },
 
   // ── Vendor Commitments ──
-  getVendorCommitments(useTestData) {
+  async getVendorCommitments(useTestData) {
     if (useTestData) return buildMockVendorCommitments();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('vendor_commitments')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getVendorCommitments error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async updateVendorCommitmentStatus(id, status) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('vendor_commitments')
+      .update({ status })
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
   },
 
   // ── Venues ──
-  getVenues(useTestData) {
+  async getVenues(useTestData) {
     if (useTestData) return buildMockVenues();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('venues')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getVenues error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async createVenue(venueData) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('venues')
+      .insert(camelToSnake(venueData))
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async updateVenue(id, updates) {
+    if (!isSupabaseConfigured()) return null;
+    const { data, error } = await supabase
+      .from('venues')
+      .update(camelToSnake(updates))
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async deleteVenue(id) {
+    if (!isSupabaseConfigured()) return;
+    const { error } = await supabase.from('venues').delete().eq('id', id);
+    if (error) throw error;
   },
 };
 

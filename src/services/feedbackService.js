@@ -1,3 +1,25 @@
+import { supabase, isSupabaseConfigured } from '../utils/supabaseClient';
+
+// ─── Snake ↔ Camel helpers ──────────────────────────────────────────────────
+
+const toCamel = (s) => s.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
+const toSnake = (s) => s.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
+
+const mapKeys = (obj, fn) => {
+  if (Array.isArray(obj)) return obj.map((item) => mapKeys(item, fn));
+  if (obj !== null && typeof obj === 'object' && !(obj instanceof Date)) {
+    return Object.fromEntries(
+      Object.entries(obj).map(([k, v]) => [fn(k), v])
+    );
+  }
+  return obj;
+};
+
+const snakeToCamel = (obj) => mapKeys(obj, toCamel);
+const camelToSnake = (obj) => mapKeys(obj, toSnake);
+
+// ─── Mock Data ──────────────────────────────────────────────────────────────
+
 const buildMockFeedback = () => [
   {
     id: 1,
@@ -46,15 +68,73 @@ const buildDefaultIntegrations = () => ({
   },
 });
 
+// ─── Service API ────────────────────────────────────────────────────────────
+
 const feedbackService = {
-  getFeedback(useTestData) {
+  async getFeedback(useTestData) {
     if (useTestData) return buildMockFeedback();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('feedback')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getFeedback error:', error); return []; }
+    return (data || []).map(snakeToCamel);
   },
 
-  getFeedbackRequests(useTestData) {
+  async createFeedback(feedbackData) {
+    if (!isSupabaseConfigured()) return null;
+
+    const { data, error } = await supabase
+      .from('feedback')
+      .insert(camelToSnake(feedbackData))
+      .select()
+      .single();
+
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async updateFeedbackStatus(feedbackId, status) {
+    if (!isSupabaseConfigured()) return null;
+
+    const { data, error } = await supabase
+      .from('feedback')
+      .update({ status })
+      .eq('id', feedbackId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return snakeToCamel(data);
+  },
+
+  async getFeedbackRequests(useTestData) {
     if (useTestData) return buildMockFeedbackRequests();
-    return [];
+    if (!isSupabaseConfigured()) return [];
+
+    const { data, error } = await supabase
+      .from('feedback_requests')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) { console.error('getFeedbackRequests error:', error); return []; }
+    return (data || []).map(snakeToCamel);
+  },
+
+  async createFeedbackRequest(requestData) {
+    if (!isSupabaseConfigured()) return null;
+
+    const { data, error } = await supabase
+      .from('feedback_requests')
+      .insert(camelToSnake(requestData))
+      .select()
+      .single();
+
+    if (error) throw error;
+    return snakeToCamel(data);
   },
 
   getIntegrations(useTestData) {
