@@ -2,7 +2,7 @@
 
 .dev-toolbar {
   position: fixed;
-  bottom: 90px;
+  bottom: 160px;
   right: 24px;
   background: #1a1a2e;
   border-radius: 14px;
@@ -120,7 +120,7 @@
 
 .dev-toolbar-collapsed {
   position: fixed;
-  bottom: 90px;
+  bottom: 160px;
   right: 24px;
   width: 36px;
   height: 36px;
@@ -150,12 +150,12 @@
 
 @media (max-width: 768px) {
   .dev-toolbar {
-    bottom: 80px;
+    bottom: 150px;
     right: 16px;
   }
 
   .dev-toolbar-collapsed {
-    bottom: 80px;
+    bottom: 150px;
     right: 16px;
   }
 }
