@@ -49,6 +49,8 @@ import CartCheckout from './pages/CartCheckout';
 import BookingHistory from './pages/BookingHistory';
 import NPOSponsors from './pages/NPOSponsors';
 import NPOVenues from './pages/NPOVenues';
+import VendorServices from './pages/VendorServices';
+import VendorCommitments from './pages/VendorCommitments';
 import { FeedbackProvider } from './context/FeedbackContext';
 import { ZIndexProvider } from './context/ZIndexContext';
 import { DarkModeProvider } from './context/DarkModeContext';
@@ -92,6 +94,8 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
         <Route path="/booking-history" element={<BookingHistory />} />
         <Route path="/npo-sponsors" element={<NPOSponsors />} />
         <Route path="/npo-venues" element={<NPOVenues />} />
+        <Route path="/vendor-services" element={<VendorServices />} />
+        <Route path="/vendor-commitments" element={<VendorCommitments />} />
         <Route path="/vendors" element={<Vendors />} />
         <Route
           path="/settings"

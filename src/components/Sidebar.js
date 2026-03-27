@@ -68,6 +68,16 @@ const Sidebar = ({ activeTab, setActiveTab, showRoleSelection }) => {
       ];
     }
 
+    if (userRole === 'vendor') {
+      return [
+        { id: 'dashboard', label: 'Dashboard', icon: '🏠', path: '/dashboard/vendor' },
+        { id: 'vendor-services', label: 'My Services', icon: '🛠️', path: '/vendor-services' },
+        { id: 'vendor-commitments', label: 'Commitments', icon: '📋', path: '/vendor-commitments' },
+        { id: 'calendar', label: 'Calendar', icon: '📅', path: '/bookings' },
+        { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings' },
+      ];
+    }
+
     return [
       ...baseItems,
       { id: 'calendar', label: 'Calendar', icon: '📅', path: '/bookings' },

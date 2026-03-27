@@ -1,21 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import QuickAccessGrid from '../components/QuickAccessGrid';
-import UpcomingEventCard from '../components/UpcomingEventCard';
-import FilterTabs from '../components/FilterTabs';
 import { CartContext } from '../context/CartContext';
 import { RoleContext } from '../context/RoleContext';
-import { getAvailableEvents, getProposalEvents } from '../utils/eventsData';
+import { EventContext } from '../context/EventContext';
 import '../styles/VendorDashboard.css';
 
 const VendorDashboard = () => {
   const navigate = useNavigate();
   const { toggleCartSidebar } = useContext(CartContext);
   const { setUserRole } = useContext(RoleContext);
-  const [activeTab, setActiveTab] = useState('browse');
+  const { getVendorServices, getVendorCommitments } = useContext(EventContext);
 
-  // Set user role when dashboard loads
   useEffect(() => {
     setUserRole('vendor');
   }, [setUserRole]);
@@ -26,27 +23,41 @@ const VendorDashboard = () => {
     company: 'Premium Catering Co.',
   };
 
-  // Get events from shared data source
-  const availableEvents = getAvailableEvents();
-  const myProposals = getProposalEvents().map(event => ({
-    ...event,
-    quotedPrice: event.id === 4 ? '$4,500' : '$3,200', // Mock quoted prices
-  }));
+  const services = useMemo(() => getVendorServices('vendor'), [getVendorServices]);
+  const commitments = useMemo(() => getVendorCommitments('vendor'), [getVendorCommitments]);
+
+  const activeServices = services.filter(s => s.availability === 'Available').length;
+  const pendingBookings = commitments.filter(c => c.status === 'Pending').length;
+  const confirmedJobs = commitments.filter(c => c.status === 'Confirmed').length;
+
+  const upcomingCommitments = commitments
+    .filter(c => c.status === 'Confirmed' || c.status === 'Pending')
+    .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate))
+    .slice(0, 5);
 
   const quickAccessItems = [
-    { id: 'browse', label: 'Browse Jobs', icon: '🔍', path: '/vendors', color: '#D4AF37' },
-    { id: 'proposals', label: 'My Proposals', icon: '📋', path: '/vendor-checklist', color: '#8B5CF6' },
+    { id: 'services', label: 'My Services', icon: '🛠️', path: '/vendor-services', color: '#D4AF37' },
+    { id: 'commitments', label: 'Commitments', icon: '📋', path: '/vendor-commitments', color: '#8B5CF6' },
     { id: 'suggest', label: 'Suggest Event', icon: '💡', path: '/suggest-event', color: '#22c55e' },
     { id: 'settings', label: 'Settings', icon: '⚙️', path: '/settings', color: '#6b7280' },
   ];
 
-  const tabs = [
-    { id: 'browse', label: 'Browse Events', icon: '🔍' },
-    { id: 'proposals', label: 'My Proposals', icon: '📋' },
-  ];
-
   const handleLogout = () => {
     navigate('/');
+  };
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr + 'T00:00:00');
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  };
+
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 'Confirmed': return 'confirmed';
+      case 'Pending': return 'pending';
+      default: return '';
+    }
   };
 
   return (
@@ -70,71 +81,61 @@ const VendorDashboard = () => {
       <div className="dashboard-content-modern">
         <section className="metrics-section-modern">
           <MetricCard 
-            label="Active Quotes" 
-            value="5" 
-            icon="📋"
+            label="Active Services" 
+            value={String(activeServices)}
+            icon="🛠️"
             iconBg="gold"
           />
           <MetricCard 
-            label="Awaiting Response" 
-            value="2" 
+            label="Pending Bookings" 
+            value={String(pendingBookings)}
             icon="⏳"
             iconBg="purple"
           />
           <MetricCard 
-            label="Jobs in Progress" 
-            value="1" 
-            icon="🔧"
+            label="Confirmed Jobs" 
+            value={String(confirmedJobs)}
+            icon="✅"
             iconBg="green"
           />
         </section>
 
         <QuickAccessGrid items={quickAccessItems} />
 
+        {/* Upcoming Commitments Section */}
         <section className="events-tabs-section">
           <div className="events-section-container">
-            <FilterTabs
-              tabs={tabs}
-              activeTab={activeTab}
-              onChange={setActiveTab}
-            />
+            <h3 className="upcoming-section-title">Upcoming Commitments</h3>
 
             <div className="tab-content">
-              {activeTab === 'browse' && (
+              {upcomingCommitments.length > 0 ? (
                 <div className="events-list-modern">
-                  {availableEvents.map((event, index) => (
+                  {upcomingCommitments.map((commitment, index) => (
                     <div
-                      key={event.id}
-                      className={`event-job-card ${index === 0 ? 'featured' : ''}`}
+                      key={commitment.id}
+                      className="commitment-preview-card"
                       style={{ animationDelay: `${index * 0.1}s` }}
-                      onClick={() => navigate(`/event-details/${event.id}`)}
+                      onClick={() => navigate('/vendor-commitments')}
                     >
-                      <UpcomingEventCard
-                        event={event}
-                        service={event.service}
-                        budget={event.budget}
-                        featured={index === 0}
-                      />
+                      <div className={`commitment-preview-status ${getStatusClass(commitment.status)}`}>
+                        {commitment.status}
+                      </div>
+                      <div className="commitment-preview-info">
+                        <h4 className="commitment-preview-event">{commitment.eventName}</h4>
+                        <p className="commitment-preview-service">{commitment.serviceName}</p>
+                        <div className="commitment-preview-meta">
+                          <span>📅 {formatDate(commitment.eventDate)}</span>
+                          <span>📍 {commitment.eventLocation}</span>
+                          <span className="commitment-preview-price">{commitment.agreedPrice}</span>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
-              )}
-
-              {activeTab === 'proposals' && (
-                <div className="events-list-modern">
-                  {myProposals.map((proposal, index) => (
-                    <div
-                      key={proposal.id}
-                      className={`event-job-card ${index === 0 ? 'featured' : ''}`}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      <UpcomingEventCard
-                        event={proposal}
-                        quotedPrice={proposal.quotedPrice}
-                        featured={index === 0}
-                      />
-                    </div>
-                  ))}
+              ) : (
+                <div className="no-commitments-message">
+                  <span className="no-commitments-icon">📋</span>
+                  <p>No upcoming commitments</p>
                 </div>
               )}
             </div>

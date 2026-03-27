@@ -1,0 +1,774 @@
+/* ============================================
+   Vendor Services Page - Service Offerings
+   ============================================ */
+
+.vendor-services-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.services-page-content {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Stats Pills - horizontal row */
+.services-stats {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.services-stats .stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 50px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.services-stats .stat-pill:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.services-stats .stat-pill-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.services-stats .stat-pill-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.services-stats .stat-pill:nth-child(2) .stat-pill-value {
+  color: var(--status-active);
+}
+
+.services-stats .stat-pill:nth-child(3) .stat-pill-value {
+  color: #f59e0b;
+}
+
+.services-stats .stat-pill:nth-child(4) .stat-pill-value {
+  color: #3b82f6;
+}
+
+/* Add Service Button */
+.add-service-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.add-service-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+.add-service-btn .add-icon {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Controls Section - horizontal flow */
+.services-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ============================================
+   Service Card
+   ============================================ */
+
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: serviceFadeSlideUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes serviceFadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Image Section */
+.service-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-card-image {
+  transform: scale(1.08);
+}
+
+.service-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  pointer-events: none;
+}
+
+/* Category Badge */
+.service-category-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+  background: rgba(212, 175, 55, 0.9);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Availability Badge */
+.service-availability-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+}
+
+.service-availability-badge.available {
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.service-availability-badge.unavailable {
+  background: rgba(107, 114, 128, 0.9);
+  color: white;
+}
+
+/* Price Badge */
+.service-price-badge {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Content Section */
+.service-card-content {
+  padding: var(--space-lg);
+}
+
+.service-card-header {
+  margin-bottom: var(--space-md);
+}
+
+.service-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+/* Rating */
+.service-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.service-rating-stars {
+  display: flex;
+}
+
+.service-rating .star {
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+.service-rating .star.filled {
+  color: #fbbf24;
+}
+
+.service-rating .star.half {
+  color: #fbbf24;
+  opacity: 0.6;
+}
+
+.service-rating-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.service-review-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Description */
+.service-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-md) 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Feature Chips */
+.service-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--space-md);
+}
+
+.feature-chip {
+  background: var(--icon-bg-blue);
+  color: var(--accent-blue);
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.feature-chip:hover {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.feature-chip.more {
+  background: var(--bg-input);
+  color: var(--text-secondary);
+}
+
+/* Actions */
+.service-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.service-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-service-edit {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.btn-service-edit:hover {
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-service-delete {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-service-delete:hover {
+  background: #ef4444;
+  color: white;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.service-action-btn .btn-icon {
+  font-size: 16px;
+}
+
+/* ============================================
+   Form Modal Overlay
+   ============================================ */
+
+.service-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-lg);
+  animation: serviceFadeIn 0.3s ease;
+}
+
+@keyframes serviceFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.service-form-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  animation: serviceSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes serviceSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-form-modal .form-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.service-form-modal .form-modal-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.service-form-modal .close-form-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.service-form-modal .close-form-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.service-form-modal .form-modal-body {
+  padding: var(--space-lg);
+}
+
+.service-form-modal .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.service-form-modal .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-form-modal .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.service-form-modal .form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.service-form-modal .form-group input,
+.service-form-modal .form-group select,
+.service-form-modal .form-group textarea {
+  padding: 12px 16px;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.service-form-modal .form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.service-form-modal .form-group input:focus,
+.service-form-modal .form-group select:focus,
+.service-form-modal .form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.service-form-modal .form-group input::placeholder,
+.service-form-modal .form-group textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Image Upload */
+.service-form-modal .image-upload-area {
+  width: 100%;
+}
+
+.service-form-modal .upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border: 2px dashed var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.service-form-modal .upload-placeholder:hover {
+  border-color: var(--accent-gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.service-form-modal .upload-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.service-form-modal .upload-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.service-form-modal .upload-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.service-form-modal .hidden-file-input {
+  display: none;
+}
+
+.service-form-modal .image-preview-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-primary);
+}
+
+.service-form-modal .image-preview {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.service-form-modal .image-preview-actions {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg-input);
+  border-top: 1px solid var(--border-primary);
+}
+
+.service-form-modal .change-image-btn,
+.service-form-modal .remove-image-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.service-form-modal .change-image-btn {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.service-form-modal .change-image-btn:hover {
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
+}
+
+.service-form-modal .remove-image-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.service-form-modal .remove-image-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Form Actions */
+.service-form-modal .form-modal-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: flex-end;
+  padding: var(--space-lg);
+  border-top: 1px solid var(--border-primary);
+}
+
+.service-form-modal .btn-cancel,
+.service-form-modal .btn-save {
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.service-form-modal .btn-cancel {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.service-form-modal .btn-cancel:hover {
+  background: var(--bg-card-hover);
+}
+
+.service-form-modal .btn-save {
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.service-form-modal .btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* ============================================
+   Grid Section
+   ============================================ */
+
+.services-grid-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+
+.empty-state-services {
+  grid-column: 1 / -1;
+  padding: var(--space-2xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.empty-state-services .empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+}
+
+.empty-state-services h3 {
+  font-size: 20px;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.empty-state-services p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+  .services-page-content {
+    padding: var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .services-stats {
+    flex-wrap: wrap;
+  }
+
+  .services-stats .stat-pill {
+    flex: 1;
+    min-width: 100px;
+    justify-content: center;
+  }
+
+  .services-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .service-form-modal .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-form-modal {
+    margin: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-page-content {
+    padding: var(--space-md);
+  }
+
+  .service-image-wrapper {
+    height: 160px;
+  }
+
+  .service-card-content {
+    padding: var(--space-md);
+  }
+
+  .add-service-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .service-card-actions {
+    flex-direction: column;
+  }
+}
+
+/* Dark Mode */
+html.dark-mode .service-card {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+html.dark-mode .service-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark-mode .service-form-modal {
+  background: var(--bg-secondary);
+}
+
+html.dark-mode .services-stats .stat-pill {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+html.dark-mode .feature-chip {
+  background: rgba(59, 130, 246, 0.15);
+}

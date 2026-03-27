@@ -180,6 +180,105 @@ html.dark-mode .events-section-container::before {
   );
 }
 
+/* Upcoming Section Title */
+.upcoming-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Commitment Preview Card */
+.commitment-preview-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards;
+}
+
+.commitment-preview-card:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+}
+
+.commitment-preview-status {
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.commitment-preview-status.confirmed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.commitment-preview-status.pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.commitment-preview-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.commitment-preview-event {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.commitment-preview-service {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+}
+
+.commitment-preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.commitment-preview-price {
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.no-commitments-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-xl);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.no-commitments-icon {
+  font-size: 40px;
+  margin-bottom: var(--space-sm);
+}
+
+.no-commitments-message p {
+  margin: 0;
+  font-size: 14px;
+}
+
 /* Suggest Event CTA */
 .suggest-event-cta {
   display: flex;

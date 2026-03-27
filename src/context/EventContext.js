@@ -215,6 +215,187 @@ export const EventProvider = ({ children }) => {
     },
   ]);
 
+  const [vendorServices, setVendorServices] = useState([
+    {
+      id: 1,
+      vendorId: 'vendor',
+      serviceName: 'Premium Catering Package',
+      category: 'Catering',
+      description: 'Full-service catering for events up to 500 guests including menu customization, wait staff, and cleanup.',
+      priceRange: '$2,000 - $8,000',
+      basePrice: 2000,
+      image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=500&h=300&fit=crop',
+      rating: 4.8,
+      reviews: 124,
+      features: ['Menu Customization', 'Wait Staff', 'Bar Service', 'Cleanup'],
+      availability: 'Available',
+      createdAt: today,
+    },
+    {
+      id: 2,
+      vendorId: 'vendor',
+      serviceName: 'DJ & Entertainment Package',
+      category: 'Entertainment',
+      description: 'Professional DJ services with sound system, lighting, and MC for events of any size.',
+      priceRange: '$1,500 - $5,000',
+      basePrice: 1500,
+      image: 'https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?w=500&h=300&fit=crop',
+      rating: 4.9,
+      reviews: 89,
+      features: ['Sound System', 'LED Lighting', 'MC Services', 'Custom Playlists'],
+      availability: 'Available',
+      createdAt: today,
+    },
+    {
+      id: 3,
+      vendorId: 'vendor',
+      serviceName: 'Event Photography & Video',
+      category: 'Photography',
+      description: 'Capture every moment with professional photography and videography coverage.',
+      priceRange: '$1,200 - $4,000',
+      basePrice: 1200,
+      image: 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=500&h=300&fit=crop',
+      rating: 4.7,
+      reviews: 156,
+      features: ['Photo Coverage', 'Video Coverage', 'Drone Shots', 'Same-Day Edits'],
+      availability: 'Available',
+      createdAt: today,
+    },
+    {
+      id: 4,
+      vendorId: 'vendor',
+      serviceName: 'Floral & Décor Design',
+      category: 'Décor',
+      description: 'Transform any venue with stunning floral arrangements and custom décor design.',
+      priceRange: '$800 - $6,000',
+      basePrice: 800,
+      image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500&h=300&fit=crop',
+      rating: 4.6,
+      reviews: 67,
+      features: ['Floral Arrangements', 'Table Settings', 'Stage Design', 'Theme Décor'],
+      availability: 'Unavailable',
+      createdAt: '2026-01-10',
+    },
+    {
+      id: 5,
+      vendorId: 'vendor',
+      serviceName: 'Event Coordination',
+      category: 'Coordination',
+      description: 'End-to-end event coordination and day-of management to ensure seamless execution.',
+      priceRange: '$1,000 - $3,500',
+      basePrice: 1000,
+      image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=500&h=300&fit=crop',
+      rating: 4.9,
+      reviews: 42,
+      features: ['Timeline Management', 'Vendor Coordination', 'Day-of Management', 'Guest Management'],
+      availability: 'Available',
+      createdAt: '2026-01-05',
+    },
+    {
+      id: 6,
+      vendorId: 'vendor',
+      serviceName: 'AV & Sound Systems',
+      category: 'AV/Sound',
+      description: 'Professional audio-visual equipment rental and technical support for conferences and events.',
+      priceRange: '$1,800 - $7,000',
+      basePrice: 1800,
+      image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500&h=300&fit=crop',
+      rating: 4.5,
+      reviews: 98,
+      features: ['Projectors & Screens', 'Microphones', 'Live Streaming', 'Technical Support'],
+      availability: 'Available',
+      createdAt: '2026-02-01',
+    },
+  ]);
+
+  const [vendorCommitments, setVendorCommitments] = useState([
+    {
+      id: 1,
+      vendorId: 'vendor',
+      serviceId: 1,
+      serviceName: 'Premium Catering Package',
+      eventName: 'Summer Charity Gala',
+      clientName: 'Green Earth Foundation',
+      clientEmail: 'events@greenearth.org',
+      clientPhone: '(555) 111-2222',
+      eventDate: '2026-04-15',
+      eventLocation: 'Downtown Convention Center',
+      attendees: 300,
+      agreedPrice: '$4,500',
+      status: 'Confirmed',
+      bookedAt: '2026-03-01',
+      notes: 'Vegan options required for 30% of guests',
+    },
+    {
+      id: 2,
+      vendorId: 'vendor',
+      serviceId: 2,
+      serviceName: 'DJ & Entertainment Package',
+      eventName: 'Tech Conference 2026',
+      clientName: 'Innovate Labs',
+      clientEmail: 'events@innovatelabs.com',
+      clientPhone: '(555) 333-4444',
+      eventDate: '2026-05-20',
+      eventLocation: 'Tech Hub Building',
+      attendees: 800,
+      agreedPrice: '$3,200',
+      status: 'Pending',
+      bookedAt: '2026-03-10',
+      notes: 'Need opening and closing sets, plus background music during breaks',
+    },
+    {
+      id: 3,
+      vendorId: 'vendor',
+      serviceId: 3,
+      serviceName: 'Event Photography & Video',
+      eventName: 'Community Wellness Summit',
+      clientName: 'Healthy Living Corp',
+      clientEmail: 'media@healthyliving.org',
+      clientPhone: '(555) 555-6666',
+      eventDate: '2026-03-10',
+      eventLocation: 'Community Center Hall',
+      attendees: 200,
+      agreedPrice: '$2,800',
+      status: 'Completed',
+      bookedAt: '2026-02-15',
+      notes: 'Delivered 500+ photos and highlight reel',
+    },
+    {
+      id: 4,
+      vendorId: 'vendor',
+      serviceId: 1,
+      serviceName: 'Premium Catering Package',
+      eventName: 'Annual Awards Night',
+      clientName: 'Metro Financial Group',
+      clientEmail: 'events@metrofinancial.com',
+      clientPhone: '(555) 777-8888',
+      eventDate: '2026-06-01',
+      eventLocation: 'Riverside Park Pavilion',
+      attendees: 150,
+      agreedPrice: '$3,800',
+      status: 'Confirmed',
+      bookedAt: '2026-03-15',
+      notes: 'Black-tie dinner service, premium bar package',
+    },
+    {
+      id: 5,
+      vendorId: 'vendor',
+      serviceId: 5,
+      serviceName: 'Event Coordination',
+      eventName: 'Spring Fundraiser',
+      clientName: 'Sunrise Media',
+      clientEmail: 'hello@sunrisemedia.com',
+      clientPhone: '(555) 999-0000',
+      eventDate: '2026-04-28',
+      eventLocation: 'Downtown Convention Center',
+      attendees: 400,
+      agreedPrice: '$2,500',
+      status: 'Cancelled',
+      bookedAt: '2026-02-20',
+      notes: 'Event postponed to later date',
+    },
+  ]);
+
   const [venues, setVenues] = useState([
     {
       id: 1,
@@ -478,12 +659,54 @@ export const EventProvider = ({ children }) => {
       .map((e) => e.id);
   }, [events]);
 
+  // Vendor Services CRUD
+  const createVendorService = useCallback((serviceData, vendorId) => {
+    setVendorServices((prev) => {
+      const newId = Math.max(...prev.map((s) => s.id), 0) + 1;
+      const newService = {
+        id: newId,
+        ...serviceData,
+        vendorId: vendorId || 'vendor',
+        createdAt: getLocalDateString(),
+        rating: serviceData.rating || 4.5,
+        reviews: serviceData.reviews || 0,
+      };
+      return [...prev, newService];
+    });
+  }, []);
+
+  const updateVendorService = useCallback((id, updates) => {
+    setVendorServices((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, ...updates } : s))
+    );
+  }, []);
+
+  const deleteVendorService = useCallback((id) => {
+    setVendorServices((prev) => prev.filter((s) => s.id !== id));
+  }, []);
+
+  const getVendorServices = useCallback((vendorId) => {
+    return vendorServices.filter((s) => s.vendorId === vendorId);
+  }, [vendorServices]);
+
+  const getVendorCommitments = useCallback((vendorId) => {
+    return vendorCommitments.filter((c) => c.vendorId === vendorId);
+  }, [vendorCommitments]);
+
+  const updateCommitmentStatus = useCallback((id, newStatus) => {
+    setVendorCommitments((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, status: newStatus } : c))
+    );
+  }, []);
+
   const value = {
     events,
     sponsorships,
     vendorQuotes,
     venues,
     sponsors,
+    vendorServices,
+    vendorCommitments,
     createEvent,
     createEventWithSponsorship,
     createSponsorship,
@@ -505,6 +728,12 @@ export const EventProvider = ({ children }) => {
     getNPOSponsorCompanies,
     getAvailableSponsorCompanies,
     getNPOEventIds,
+    createVendorService,
+    updateVendorService,
+    deleteVendorService,
+    getVendorServices,
+    getVendorCommitments,
+    updateCommitmentStatus,
   };
 
   return <EventContext.Provider value={value}>{children}</EventContext.Provider>;
