@@ -1,78 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import PageHeader from '../components/PageHeader';
 import SearchBar from '../components/SearchBar';
 import FilterTabs from '../components/FilterTabs';
 import '../styles/Vendors.css';
 
+const MOCK_VENDORS = [
+  {
+    id: 1,
+    name: 'BrightEvents',
+    category: 'Event Planning',
+    rating: 4.8,
+    reviews: 128,
+    phone: '(555) 123-4567',
+    email: 'contact@brightevents.com',
+    services: ['Event Planning', 'Coordination', 'Décor'],
+    status: 'Active',
+    image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: true,
+  },
+  {
+    id: 2,
+    name: 'Catering Pros',
+    category: 'Catering',
+    rating: 4.6,
+    reviews: 95,
+    phone: '(555) 234-5678',
+    email: 'info@cateringpros.com',
+    services: ['Catering', 'Menu Planning', 'Bar Service'],
+    status: 'Active',
+    image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: false,
+  },
+  {
+    id: 3,
+    name: 'Fresh Floral',
+    category: 'Decorations',
+    rating: 4.9,
+    reviews: 156,
+    phone: '(555) 345-6789',
+    email: 'hello@freshfloral.com',
+    services: ['Floral Arrangements', 'Décor Design', 'Setup'],
+    status: 'Active',
+    image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: true,
+  },
+  {
+    id: 4,
+    name: 'Harmony Music',
+    category: 'Entertainment',
+    rating: 4.7,
+    reviews: 82,
+    phone: '(555) 456-7890',
+    email: 'booking@harmonymusic.com',
+    services: ['DJ Services', 'Live Band', 'Sound System'],
+    status: 'Active',
+    image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: false,
+  },
+  {
+    id: 5,
+    name: 'Premier Photography',
+    category: 'Photography',
+    rating: 4.9,
+    reviews: 210,
+    phone: '(555) 567-8901',
+    email: 'book@premierphotography.com',
+    services: ['Event Photography', 'Videography', 'Photo Booth'],
+    status: 'Active',
+    image: 'https://images.pexels.com/photos/3379934/pexels-photo-3379934.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: true,
+  },
+];
+
 const Vendors = () => {
-  const [vendors, setVendors] = useState([
-    {
-      id: 1,
-      name: 'BrightEvents',
-      category: 'Event Planning',
-      rating: 4.8,
-      reviews: 128,
-      phone: '(555) 123-4567',
-      email: 'contact@brightevents.com',
-      services: ['Event Planning', 'Coordination', 'Décor'],
-      status: 'Active',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
-      featured: true,
-    },
-    {
-      id: 2,
-      name: 'Catering Pros',
-      category: 'Catering',
-      rating: 4.6,
-      reviews: 95,
-      phone: '(555) 234-5678',
-      email: 'info@cateringpros.com',
-      services: ['Catering', 'Menu Planning', 'Bar Service'],
-      status: 'Active',
-      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',
-      featured: false,
-    },
-    {
-      id: 3,
-      name: 'Fresh Floral',
-      category: 'Decorations',
-      rating: 4.9,
-      reviews: 156,
-      phone: '(555) 345-6789',
-      email: 'hello@freshfloral.com',
-      services: ['Floral Arrangements', 'Décor Design', 'Setup'],
-      status: 'Active',
-      image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=800',
-      featured: true,
-    },
-    {
-      id: 4,
-      name: 'Harmony Music',
-      category: 'Entertainment',
-      rating: 4.7,
-      reviews: 82,
-      phone: '(555) 456-7890',
-      email: 'booking@harmonymusic.com',
-      services: ['DJ Services', 'Live Band', 'Sound System'],
-      status: 'Active',
-      image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800',
-      featured: false,
-    },
-    {
-      id: 5,
-      name: 'Premier Photography',
-      category: 'Photography',
-      rating: 4.9,
-      reviews: 210,
-      phone: '(555) 567-8901',
-      email: 'book@premierphotography.com',
-      services: ['Event Photography', 'Videography', 'Photo Booth'],
-      status: 'Active',
-      image: 'https://images.pexels.com/photos/3379934/pexels-photo-3379934.jpeg?auto=compress&cs=tinysrgb&w=800',
-      featured: true,
-    },
-  ]);
+  const { useTestData } = useDataMode();
+  const [vendors, setVendors] = useState(() => useTestData ? MOCK_VENDORS : []);
+
+  useEffect(() => {
+    setVendors(useTestData ? MOCK_VENDORS : []);
+  }, [useTestData]);
 
   const [showAddForm, setShowAddForm] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');

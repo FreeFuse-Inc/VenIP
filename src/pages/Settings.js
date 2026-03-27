@@ -1,25 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import '../styles/Settings.css';
 
+const MOCK_SETTINGS = {
+  organizationName: 'VenIP Events',
+  contactEmail: 'admin@venip.com',
+  phone: '(555) 123-4567',
+  address: '123 Main St, Downtown',
+  timezone: 'UTC-5 (EST)',
+  language: 'English',
+};
+
+const EMPTY_SETTINGS = {
+  organizationName: '',
+  contactEmail: '',
+  phone: '',
+  address: '',
+  timezone: 'UTC-5 (EST)',
+  language: 'English',
+};
+
+const MOCK_PROFILE = {
+  firstName: 'John',
+  lastName: 'Smith',
+  email: 'john.smith@venip.com',
+  role: 'Administrator',
+};
+
+const EMPTY_PROFILE = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  role: '',
+};
+
 const Settings = ({ chatGPTConnected = false, onChatGPTConnect, onChatGPTDisconnect }) => {
   const navigate = useNavigate();
-  const [settings, setSettings] = useState({
-    organizationName: 'VenIP Events',
-    contactEmail: 'admin@venip.com',
-    phone: '(555) 123-4567',
-    address: '123 Main St, Downtown',
-    timezone: 'UTC-5 (EST)',
-    language: 'English',
-  });
+  const { useTestData } = useDataMode();
+  const [settings, setSettings] = useState(() => useTestData ? MOCK_SETTINGS : EMPTY_SETTINGS);
+  const [userProfile, setUserProfile] = useState(() => useTestData ? MOCK_PROFILE : EMPTY_PROFILE);
 
-  const [userProfile] = useState({
-    firstName: 'John',
-    lastName: 'Smith',
-    email: 'john.smith@venip.com',
-    role: 'Administrator',
-  });
+  useEffect(() => {
+    setSettings(useTestData ? MOCK_SETTINGS : EMPTY_SETTINGS);
+    setUserProfile(useTestData ? MOCK_PROFILE : EMPTY_PROFILE);
+  }, [useTestData]);
 
   const [notifications, setNotifications] = useState({
     emailNotifications: true,

@@ -1,73 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import PageHeader from '../components/PageHeader';
 import SearchBar from '../components/SearchBar';
 import FilterTabs from '../components/FilterTabs';
 import '../styles/Venues.css';
 
+const MOCK_VENUES = [
+  {
+    id: 1,
+    name: 'Downtown Convention Center',
+    location: 'Downtown',
+    capacity: 1000,
+    amenities: ['WiFi', 'Parking', 'Catering', 'Audio/Video'],
+    rate: '$50/hour',
+    available: true,
+    image: 'https://images.pexels.com/photos/2833037/pexels-photo-2833037.jpeg?auto=compress&cs=tinysrgb&w=800',
+    rating: 4.8,
+    reviews: 124,
+  },
+  {
+    id: 2,
+    name: 'Grand Hotel Ballroom',
+    location: 'Uptown',
+    capacity: 500,
+    amenities: ['WiFi', 'Catering', 'Decorations'],
+    rate: '$75/hour',
+    available: true,
+    image: 'https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=800',
+    rating: 4.9,
+    reviews: 89,
+  },
+  {
+    id: 3,
+    name: 'Central Park Pavilion',
+    location: 'Central Park',
+    capacity: 300,
+    amenities: ['Tables', 'Chairs', 'Lighting'],
+    rate: '$30/hour',
+    available: false,
+    image: 'https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=800',
+    rating: 4.5,
+    reviews: 67,
+  },
+  {
+    id: 4,
+    name: 'Skyline Rooftop Terrace',
+    location: 'Financial District',
+    capacity: 200,
+    amenities: ['WiFi', 'Bar', 'Lighting', 'Sound System'],
+    rate: '$120/hour',
+    available: true,
+    image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',
+    rating: 4.7,
+    reviews: 156,
+  },
+  {
+    id: 5,
+    name: 'Historic Manor Estate',
+    location: 'Westside',
+    capacity: 400,
+    amenities: ['Gardens', 'Parking', 'Catering', 'Bridal Suite'],
+    rate: '$95/hour',
+    available: true,
+    image: 'https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=800',
+    rating: 4.9,
+    reviews: 203,
+  },
+];
+
 const Venues = () => {
-  const [venues, setVenues] = useState([
-    {
-      id: 1,
-      name: 'Downtown Convention Center',
-      location: 'Downtown',
-      capacity: 1000,
-      amenities: ['WiFi', 'Parking', 'Catering', 'Audio/Video'],
-      rate: '$50/hour',
-      available: true,
-      image: 'https://images.pexels.com/photos/2833037/pexels-photo-2833037.jpeg?auto=compress&cs=tinysrgb&w=800',
-      rating: 4.8,
-      reviews: 124,
-    },
-    {
-      id: 2,
-      name: 'Grand Hotel Ballroom',
-      location: 'Uptown',
-      capacity: 500,
-      amenities: ['WiFi', 'Catering', 'Decorations'],
-      rate: '$75/hour',
-      available: true,
-      image: 'https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=800',
-      rating: 4.9,
-      reviews: 89,
-    },
-    {
-      id: 3,
-      name: 'Central Park Pavilion',
-      location: 'Central Park',
-      capacity: 300,
-      amenities: ['Tables', 'Chairs', 'Lighting'],
-      rate: '$30/hour',
-      available: false,
-      image: 'https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=800',
-      rating: 4.5,
-      reviews: 67,
-    },
-    {
-      id: 4,
-      name: 'Skyline Rooftop Terrace',
-      location: 'Financial District',
-      capacity: 200,
-      amenities: ['WiFi', 'Bar', 'Lighting', 'Sound System'],
-      rate: '$120/hour',
-      available: true,
-      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',
-      rating: 4.7,
-      reviews: 156,
-    },
-    {
-      id: 5,
-      name: 'Historic Manor Estate',
-      location: 'Westside',
-      capacity: 400,
-      amenities: ['Gardens', 'Parking', 'Catering', 'Bridal Suite'],
-      rate: '$95/hour',
-      available: true,
-      image: 'https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=800',
-      rating: 4.9,
-      reviews: 203,
-    },
-  ]);
+  const { useTestData } = useDataMode();
+  const [venues, setVenues] = useState(() => useTestData ? MOCK_VENUES : []);
+
+  useEffect(() => {
+    setVenues(useTestData ? MOCK_VENUES : []);
+  }, [useTestData]);
 
   const [showAddForm, setShowAddForm] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');

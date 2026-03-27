@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import '../styles/InviteAttendees.css';
+
+const MOCK_INVITEES = [
+  { id: 1, email: 'john@example.com', name: 'John Smith', status: 'Invited' },
+  { id: 2, email: 'jane@example.com', name: 'Jane Doe', status: 'Accepted' },
+  { id: 3, email: 'bob@example.com', name: 'Bob Johnson', status: 'Pending' },
+];
 
 const InviteAttendees = () => {
   const navigate = useNavigate();
   const { eventId } = useParams();
-  const [invitees, setInvitees] = useState([
-    { id: 1, email: 'john@example.com', name: 'John Smith', status: 'Invited' },
-    { id: 2, email: 'jane@example.com', name: 'Jane Doe', status: 'Accepted' },
-    { id: 3, email: 'bob@example.com', name: 'Bob Johnson', status: 'Pending' },
-  ]);
+  const { useTestData } = useDataMode();
+  const [invitees, setInvitees] = useState(() => useTestData ? MOCK_INVITEES : []);
+
+  useEffect(() => {
+    setInvitees(useTestData ? MOCK_INVITEES : []);
+  }, [useTestData]);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: '',

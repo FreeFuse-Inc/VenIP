@@ -1,12 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import '../styles/RequestVendors.css';
+
+const MOCK_VENDOR_REQUESTS = [
+  {
+    id: 1,
+    serviceType: 'Catering Services',
+    vendorsRequested: 3,
+    status: 'In Progress',
+    dateRequested: 'Dec 1, 2024',
+  },
+  {
+    id: 2,
+    serviceType: 'Decorations & Floral',
+    vendorsRequested: 2,
+    status: 'Quotes Received',
+    dateRequested: 'Dec 2, 2024',
+  },
+];
 
 const RequestVendors = () => {
   const navigate = useNavigate();
   const { eventId } = useParams();
-  
+  const { useTestData } = useDataMode();
+
   const serviceCategories = [
     'Catering Services',
     'Decorations & Floral',
@@ -19,22 +38,11 @@ const RequestVendors = () => {
   ];
 
   const [selectedServices, setSelectedServices] = useState([]);
-  const [vendorRequests, setVendorRequests] = useState([
-    {
-      id: 1,
-      serviceType: 'Catering Services',
-      vendorsRequested: 3,
-      status: 'In Progress',
-      dateRequested: 'Dec 1, 2024',
-    },
-    {
-      id: 2,
-      serviceType: 'Decorations & Floral',
-      vendorsRequested: 2,
-      status: 'Quotes Received',
-      dateRequested: 'Dec 2, 2024',
-    },
-  ]);
+  const [vendorRequests, setVendorRequests] = useState(() => useTestData ? MOCK_VENDOR_REQUESTS : []);
+
+  useEffect(() => {
+    setVendorRequests(useTestData ? MOCK_VENDOR_REQUESTS : []);
+  }, [useTestData]);
   const [showForm, setShowForm] = useState(false);
   const [requestStatus, setRequestStatus] = useState(null);
 

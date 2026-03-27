@@ -1,54 +1,80 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import '../styles/EventManagement.css';
+
+const MOCK_EVENT = {
+  name: 'Annual Gala 2024',
+  date: 'Dec 15, 2024',
+  time: '7:00 PM',
+  location: 'Downtown Convention Center',
+  description: 'Annual fundraising gala to support local communities',
+  status: 'Planning',
+  budget: 15000,
+  budgetUsed: 4500,
+  attendeeTarget: 300,
+  attendeeConfirmed: 45,
+};
+
+const EMPTY_EVENT = {
+  name: '',
+  date: '',
+  time: '',
+  location: '',
+  description: '',
+  status: 'Planning',
+  budget: 0,
+  budgetUsed: 0,
+  attendeeTarget: 0,
+  attendeeConfirmed: 0,
+};
+
+const MOCK_VENDOR_REQUESTS = [
+  {
+    id: 1,
+    vendorName: 'BrightEvents',
+    serviceType: 'Event Planning & Coordination',
+    status: 'Quote Pending',
+    sentDate: 'Dec 1, 2024',
+    expectedResponse: 'Dec 8, 2024',
+  },
+  {
+    id: 2,
+    vendorName: 'Catering Pros',
+    serviceType: 'Catering Services',
+    status: 'Quote Received',
+    sentDate: 'Dec 1, 2024',
+    quotedPrice: '$3,500',
+    expectedResponse: 'Dec 5, 2024',
+  },
+  {
+    id: 3,
+    vendorName: 'Fresh Floral',
+    serviceType: 'Floral Decorations',
+    status: 'Quote Received',
+    sentDate: 'Dec 2, 2024',
+    quotedPrice: '$1,200',
+    expectedResponse: 'Dec 6, 2024',
+  },
+];
 
 const EventManagement = () => {
   const navigate = useNavigate();
   const { eventId } = useParams();
+  const { useTestData } = useDataMode();
 
-  const [event] = useState({
+  const [event, setEvent] = useState(() => ({
     id: eventId || 1,
-    name: 'Annual Gala 2024',
-    date: 'Dec 15, 2024',
-    time: '7:00 PM',
-    location: 'Downtown Convention Center',
-    description: 'Annual fundraising gala to support local communities',
-    status: 'Planning',
-    budget: 15000,
-    budgetUsed: 4500,
-    attendeeTarget: 300,
-    attendeeConfirmed: 45,
-  });
+    ...(useTestData ? MOCK_EVENT : EMPTY_EVENT),
+  }));
 
-  const [vendorRequests] = useState([
-    {
-      id: 1,
-      vendorName: 'BrightEvents',
-      serviceType: 'Event Planning & Coordination',
-      status: 'Quote Pending',
-      sentDate: 'Dec 1, 2024',
-      expectedResponse: 'Dec 8, 2024',
-    },
-    {
-      id: 2,
-      vendorName: 'Catering Pros',
-      serviceType: 'Catering Services',
-      status: 'Quote Received',
-      sentDate: 'Dec 1, 2024',
-      quotedPrice: '$3,500',
-      expectedResponse: 'Dec 5, 2024',
-    },
-    {
-      id: 3,
-      vendorName: 'Fresh Floral',
-      serviceType: 'Floral Decorations',
-      status: 'Quote Received',
-      sentDate: 'Dec 2, 2024',
-      quotedPrice: '$1,200',
-      expectedResponse: 'Dec 6, 2024',
-    },
-  ]);
+  const [vendorRequests, setVendorRequests] = useState(() => useTestData ? MOCK_VENDOR_REQUESTS : []);
+
+  useEffect(() => {
+    setEvent({ id: eventId || 1, ...(useTestData ? MOCK_EVENT : EMPTY_EVENT) });
+    setVendorRequests(useTestData ? MOCK_VENDOR_REQUESTS : []);
+  }, [useTestData, eventId]);
 
   const [activeTab, setActiveTab] = useState('overview');
 

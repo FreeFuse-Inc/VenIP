@@ -1,109 +1,116 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDataMode } from '../services/dataMode';
 import BackButton from '../components/BackButton';
 import FilterTabs from '../components/FilterTabs';
 import '../styles/Bookings.css';
 
+const MOCK_BOOKINGS = [
+  {
+    id: 1,
+    eventName: 'Annual Gala 2024',
+    venueName: 'Downtown Convention Center',
+    date: '2026-01-14',
+    time: '7:00 PM',
+    attendees: 250,
+    status: 'Confirmed',
+    vendorName: 'BrightEvents',
+    contactPerson: 'John Smith',
+    phone: '(555) 123-4567',
+    service: 'Catering',
+  },
+  {
+    id: 2,
+    eventName: 'Charity Fundraiser',
+    venueName: 'Grand Hotel Ballroom',
+    date: '2026-01-14',
+    time: '6:30 PM',
+    attendees: 180,
+    status: 'Pending',
+    vendorName: 'Catering Pros',
+    contactPerson: 'Sarah Johnson',
+    phone: '(555) 234-5678',
+    service: 'Full Service',
+  },
+  {
+    id: 3,
+    eventName: 'Community Cleanup',
+    venueName: 'Central Park Pavilion',
+    date: '2026-01-20',
+    time: '9:00 AM',
+    attendees: 120,
+    status: 'Confirmed',
+    vendorName: 'Fresh Floral',
+    contactPerson: 'Mike Davis',
+    phone: '(555) 345-6789',
+    service: 'Decorations',
+  },
+  {
+    id: 4,
+    eventName: 'Tech Summit 2026',
+    venueName: 'Innovation Hub',
+    date: '2026-01-22',
+    time: '10:00 AM',
+    attendees: 400,
+    status: 'Confirmed',
+    vendorName: 'AudioVisual Pro',
+    contactPerson: 'Lisa Chen',
+    phone: '(555) 456-7890',
+    service: 'AV Equipment',
+  },
+  {
+    id: 5,
+    eventName: 'Wedding Reception',
+    venueName: 'Sunset Gardens',
+    date: '2026-01-25',
+    time: '4:00 PM',
+    attendees: 150,
+    status: 'Pending',
+    vendorName: 'Elegant Events',
+    contactPerson: 'Emily White',
+    phone: '(555) 567-8901',
+    service: 'Photography',
+  },
+  {
+    id: 6,
+    eventName: 'Corporate Retreat',
+    venueName: 'Mountain Lodge Resort',
+    date: '2026-02-05',
+    time: '8:00 AM',
+    attendees: 75,
+    status: 'Confirmed',
+    vendorName: 'Adventure Tours',
+    contactPerson: 'Tom Wilson',
+    phone: '(555) 678-9012',
+    service: 'Team Building',
+  },
+  {
+    id: 7,
+    eventName: 'Art Exhibition Opening',
+    venueName: 'City Art Gallery',
+    date: '2026-02-14',
+    time: '6:00 PM',
+    attendees: 200,
+    status: 'Pending',
+    vendorName: 'Gallery Services',
+    contactPerson: 'Anna Martinez',
+    phone: '(555) 789-0123',
+    service: 'Event Setup',
+  },
+];
+
 const Bookings = () => {
   const navigate = useNavigate();
+  const { useTestData } = useDataMode();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
 
-  // Enhanced booking data with varied dates
-  const [bookings, setBookings] = useState([
-    {
-      id: 1,
-      eventName: 'Annual Gala 2024',
-      venueName: 'Downtown Convention Center',
-      date: '2026-01-14',
-      time: '7:00 PM',
-      attendees: 250,
-      status: 'Confirmed',
-      vendorName: 'BrightEvents',
-      contactPerson: 'John Smith',
-      phone: '(555) 123-4567',
-      service: 'Catering',
-    },
-    {
-      id: 2,
-      eventName: 'Charity Fundraiser',
-      venueName: 'Grand Hotel Ballroom',
-      date: '2026-01-14',
-      time: '6:30 PM',
-      attendees: 180,
-      status: 'Pending',
-      vendorName: 'Catering Pros',
-      contactPerson: 'Sarah Johnson',
-      phone: '(555) 234-5678',
-      service: 'Full Service',
-    },
-    {
-      id: 3,
-      eventName: 'Community Cleanup',
-      venueName: 'Central Park Pavilion',
-      date: '2026-01-20',
-      time: '9:00 AM',
-      attendees: 120,
-      status: 'Confirmed',
-      vendorName: 'Fresh Floral',
-      contactPerson: 'Mike Davis',
-      phone: '(555) 345-6789',
-      service: 'Decorations',
-    },
-    {
-      id: 4,
-      eventName: 'Tech Summit 2026',
-      venueName: 'Innovation Hub',
-      date: '2026-01-22',
-      time: '10:00 AM',
-      attendees: 400,
-      status: 'Confirmed',
-      vendorName: 'AudioVisual Pro',
-      contactPerson: 'Lisa Chen',
-      phone: '(555) 456-7890',
-      service: 'AV Equipment',
-    },
-    {
-      id: 5,
-      eventName: 'Wedding Reception',
-      venueName: 'Sunset Gardens',
-      date: '2026-01-25',
-      time: '4:00 PM',
-      attendees: 150,
-      status: 'Pending',
-      vendorName: 'Elegant Events',
-      contactPerson: 'Emily White',
-      phone: '(555) 567-8901',
-      service: 'Photography',
-    },
-    {
-      id: 6,
-      eventName: 'Corporate Retreat',
-      venueName: 'Mountain Lodge Resort',
-      date: '2026-02-05',
-      time: '8:00 AM',
-      attendees: 75,
-      status: 'Confirmed',
-      vendorName: 'Adventure Tours',
-      contactPerson: 'Tom Wilson',
-      phone: '(555) 678-9012',
-      service: 'Team Building',
-    },
-    {
-      id: 7,
-      eventName: 'Art Exhibition Opening',
-      venueName: 'City Art Gallery',
-      date: '2026-02-14',
-      time: '6:00 PM',
-      attendees: 200,
-      status: 'Pending',
-      vendorName: 'Gallery Services',
-      contactPerson: 'Anna Martinez',
-      phone: '(555) 789-0123',
-      service: 'Event Setup',
-    },
-  ]);
+  const [bookings, setBookings] = useState(() => useTestData ? MOCK_BOOKINGS : []);
+
+  useEffect(() => {
+    setBookings(useTestData ? MOCK_BOOKINGS : []);
+  }, [useTestData]);
 
   // Calendar utility functions
   const getDaysInMonth = (date) => {
