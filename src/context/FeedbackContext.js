@@ -1,55 +1,22 @@
-import React, { createContext, useState, useCallback } from 'react';
+import React, { createContext, useState, useCallback, useEffect } from 'react';
+import { useDataMode } from '../services/dataMode';
+import feedbackService from '../services/feedbackService';
 
 export const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
-  const [feedback, setFeedback] = useState([
-    {
-      id: 1,
-      eventId: 1,
-      eventName: 'Annual Gala 2024',
-      eventDate: '2024-12-15',
-      submittedBy: 'John Sponsor',
-      submittedByRole: 'sponsor',
-      submittedAt: '2024-12-16',
-      type: 'venue',
-      ratings: {
-        location: 5,
-        cleanliness: 4,
-        amenities: 5,
-        staff: 4,
-        value: 4,
-      },
-      comments: 'Great venue for the event. Staff was helpful.',
-      status: 'new',
-    },
-  ]);
+  const { useTestData } = useDataMode();
 
-  const [feedbackRequests, setFeedbackRequests] = useState([
-    {
-      id: 1,
-      eventId: 2,
-      eventName: 'Community Cleanup',
-      eventDate: '2025-01-20',
-      recipients: ['vendor@example.com'],
-      feedbackType: 'service',
-      status: 'pending',
-      sentAt: '2025-01-21',
-    },
-  ]);
+  const [feedback, setFeedback] = useState(() => feedbackService.getFeedback(useTestData));
+  const [feedbackRequests, setFeedbackRequests] = useState(() => feedbackService.getFeedbackRequests(useTestData));
+  const [integrations, setIntegrations] = useState(() => feedbackService.getIntegrations(useTestData));
 
-  const [integrations, setIntegrations] = useState({
-    zapier: {
-      connected: false,
-      apiKey: '',
-      webhookUrl: '',
-    },
-    stripe: {
-      connected: false,
-      apiKey: '',
-      stripeConnectId: '',
-    },
-  });
+  // Re-initialize when data mode changes
+  useEffect(() => {
+    setFeedback(feedbackService.getFeedback(useTestData));
+    setFeedbackRequests(feedbackService.getFeedbackRequests(useTestData));
+    setIntegrations(feedbackService.getIntegrations(useTestData));
+  }, [useTestData]);
 
   const submitFeedback = useCallback((feedbackData) => {
     const newFeedback = {

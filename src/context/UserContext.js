@@ -1,46 +1,24 @@
 import React, { createContext, useState, useEffect } from 'react';
+import userService from '../services/userService';
+import { useDataMode } from '../services/dataMode';
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const { useTestData } = useDataMode();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('venip_user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Error parsing stored user:', error);
-        initializeNewUser();
-      }
-    } else {
-      initializeNewUser();
-    }
+    const loadedUser = userService.loadUser(useTestData);
+    setUser(loadedUser);
     setIsLoading(false);
-  }, []);
-
-  const initializeNewUser = () => {
-    const newUser = {
-      id: `user_${Date.now()}`,
-      email: null,
-      fullName: null,
-      companyName: null,
-      phone: null,
-      billingAddress: null,
-      cart: [],
-      bookingHistory: [],
-      createdAt: new Date().toISOString(),
-    };
-    setUser(newUser);
-    localStorage.setItem('venip_user', JSON.stringify(newUser));
-  };
+  }, [useTestData]);
 
   const updateUser = (updates) => {
     const updatedUser = { ...user, ...updates };
     setUser(updatedUser);
-    localStorage.setItem('venip_user', JSON.stringify(updatedUser));
+    userService.saveUser(updatedUser);
   };
 
   const addToCart = (item) => {

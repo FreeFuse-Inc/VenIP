@@ -54,7 +54,10 @@ import VendorCommitments from './pages/VendorCommitments';
 import { FeedbackProvider } from './context/FeedbackContext';
 import { ZIndexProvider } from './context/ZIndexContext';
 import { DarkModeProvider } from './context/DarkModeContext';
+import { DataModeProvider } from './services/dataMode';
+import { AuthProvider } from './context/AuthContext';
 import AIAssistant from './components/AIAssistant';
+import DevToolbar from './components/DevToolbar';
 import './App.css';
 
 function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, chatGPTKey }) {
@@ -77,6 +80,7 @@ function AppContent({ chatGPTConnected, onChatGPTConnect, onChatGPTDisconnect, c
 
       {/* Hide cart and assistant on login/auth pages */}
       {!isAuthPage && <CartSidebar />}
+      {!isAuthPage && <DevToolbar />}
       {!isAuthPage && <AIAssistant chatGPTConnected={chatGPTConnected} chatGPTKey={chatGPTKey} />}
 
       <Routes>
@@ -210,26 +214,30 @@ function App() {
 
   return (
     <DarkModeProvider>
-      <UserProvider>
-        <CartProvider>
-          <RoleProvider>
-            <EventProvider>
-              <FeedbackProvider>
-                <ZIndexProvider>
-                  <Router>
-                    <AppContent
+      <DataModeProvider>
+        <AuthProvider>
+          <UserProvider>
+            <CartProvider>
+              <RoleProvider>
+                <EventProvider>
+                  <FeedbackProvider>
+                    <ZIndexProvider>
+                      <Router>
+                        <AppContent
                       chatGPTConnected={chatGPTConnected}
                       onChatGPTConnect={handleChatGPTConnect}
                       onChatGPTDisconnect={handleChatGPTDisconnect}
                       chatGPTKey={chatGPTKey}
-                    />
-                  </Router>
-                </ZIndexProvider>
-              </FeedbackProvider>
-            </EventProvider>
-          </RoleProvider>
-        </CartProvider>
-      </UserProvider>
+                        />
+                      </Router>
+                    </ZIndexProvider>
+                  </FeedbackProvider>
+                </EventProvider>
+              </RoleProvider>
+            </CartProvider>
+          </UserProvider>
+        </AuthProvider>
+      </DataModeProvider>
     </DarkModeProvider>
   );
 }

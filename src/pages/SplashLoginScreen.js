@@ -100,9 +100,29 @@ const SplashLoginScreen = () => {
     },
   ];
 
-  const handleLogin = (e) => {
+  const supabaseReady = isSupabaseConfigured();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
+
+    if (supabaseReady && supabase) {
+      // Real email/password login via Supabase
+      if (!email || !password) {
+        setAuthError('Please enter your email and password');
+        return;
+      }
+      try {
+        setAuthError(null);
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        navigate('/auth/callback');
+      } catch (err) {
+        setAuthError(err.message);
+      }
+      return;
+    }
+
+    // Demo mode
     const matchedAccount = demoAccounts.find(
       acc => acc.email === email && acc.password === password
     );
@@ -117,19 +137,42 @@ const SplashLoginScreen = () => {
     }
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    
+
     if (!signupFullName || !signupEmail || !signupPassword) {
       alert('Please fill in all required fields');
       return;
     }
-    
+
     if (!selectedRole) {
       alert('Please select a role');
       return;
     }
-    
+
+    if (supabaseReady && supabase) {
+      try {
+        setAuthError(null);
+        const { error } = await supabase.auth.signUp({
+          email: signupEmail,
+          password: signupPassword,
+          options: {
+            data: {
+              full_name: signupFullName,
+              company_name: signupCompany,
+              role: selectedRole,
+            },
+          },
+        });
+        if (error) throw error;
+        alert('Check your email for a confirmation link!');
+      } catch (err) {
+        setAuthError(err.message);
+      }
+      return;
+    }
+
+    // Demo mode
     setUserRole(selectedRole);
     navigate(`/dashboard/${selectedRole}`);
   };
@@ -396,23 +439,25 @@ const SplashLoginScreen = () => {
                 </button>
               </div>
 
-              {/* Demo Accounts Section */}
-              <div className="demo-accounts-section">
-                <p className="demo-accounts-title">Quick Demo Access</p>
-                <div className="demo-accounts-grid">
-                  {demoAccounts.map((account) => (
-                    <button
-                      key={account.role}
-                      type="button"
-                      className="demo-account-btn"
-                      onClick={() => handleDemoLogin(account)}
-                      style={{ '--accent-color': account.color }}
-                    >
-                      <span className="demo-label">{account.label}</span>
-                    </button>
-                  ))}
+              {/* Demo Accounts Section — hidden when Supabase is configured */}
+              {!supabaseReady && (
+                <div className="demo-accounts-section">
+                  <p className="demo-accounts-title">Quick Demo Access</p>
+                  <div className="demo-accounts-grid">
+                    {demoAccounts.map((account) => (
+                      <button
+                        key={account.role}
+                        type="button"
+                        className="demo-account-btn"
+                        onClick={() => handleDemoLogin(account)}
+                        style={{ '--accent-color': account.color }}
+                      >
+                        <span className="demo-label">{account.label}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </>
           ) : (
             <form className="splash-login-form signup-form" onSubmit={handleSignup}>

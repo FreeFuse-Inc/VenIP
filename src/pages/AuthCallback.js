@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../utils/supabaseClient';
+import { RoleContext } from '../context/RoleContext';
 
 const AuthCallback = () => {
   const navigate = useNavigate();
+  const { setUserRole } = useContext(RoleContext);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -14,19 +16,36 @@ const AuthCallback = () => {
       }
 
       try {
-        // Get the session from the URL hash
         const { data: { session }, error: authError } = await supabase.auth.getSession();
-        
+
         if (authError) {
           throw authError;
         }
 
         if (session) {
-          // Successfully authenticated - redirect to dashboard
-          // Default to NPO role for OAuth users
-          navigate('/dashboard/npo');
+          // Try to determine role from user metadata or profiles table
+          const userMeta = session.user?.user_metadata;
+          let role = userMeta?.role || null;
+
+          // If no role in metadata, try fetching from profiles table
+          if (!role) {
+            try {
+              const { data: profile } = await supabase
+                .from('profiles')
+                .select('role')
+                .eq('id', session.user.id)
+                .single();
+              role = profile?.role || null;
+            } catch {
+              // profiles table may not exist yet — that's fine
+            }
+          }
+
+          // Default to npo if no role found
+          role = role || 'npo';
+          setUserRole(role);
+          navigate(`/dashboard/${role}`);
         } else {
-          // No session found - redirect back to login
           navigate('/');
         }
       } catch (err) {
@@ -36,7 +55,7 @@ const AuthCallback = () => {
     };
 
     handleAuthCallback();
-  }, [navigate]);
+  }, [navigate, setUserRole]);
 
   if (error) {
     return (
