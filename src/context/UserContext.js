@@ -18,8 +18,8 @@ export const UserProvider = ({ children }) => {
     const load = async () => {
       setIsLoading(true);
 
+      // Always use test data mode or if no auth user yet
       if (useTestData || !authUser?.id) {
-        // Test-data mode or no auth — use localStorage
         const loadedUser = userService.loadUser(useTestData);
         if (!cancelled) {
           setUser(loadedUser);
@@ -31,9 +31,9 @@ export const UserProvider = ({ children }) => {
       // Live mode — load profile, cart, and booking history from Supabase
       try {
         const [profile, cart, bookingHistory] = await Promise.all([
-          userService.loadProfile(authUser.id),
-          userService.getCart(authUser.id),
-          userService.getBookingHistory(authUser.id),
+          Promise.resolve(userService.loadProfile(authUser.id)),
+          Promise.resolve(userService.getCart(authUser.id)),
+          Promise.resolve(userService.getBookingHistory(authUser.id)),
         ]);
 
         if (!cancelled) {
@@ -52,7 +52,6 @@ export const UserProvider = ({ children }) => {
       } catch (err) {
         console.error('UserContext load error:', err);
         if (!cancelled) {
-          // Fallback to localStorage on error
           setUser(userService.loadUser(true));
         }
       } finally {

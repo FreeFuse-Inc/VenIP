@@ -23,17 +23,21 @@ export const FeedbackProvider = ({ children }) => {
     const loadAll = async () => {
       try {
         const [fb, fbReqs] = await Promise.all([
-          feedbackService.getFeedback(useTestData),
-          feedbackService.getFeedbackRequests(useTestData),
+          Promise.resolve(feedbackService.getFeedback(useTestData)),
+          Promise.resolve(feedbackService.getFeedbackRequests(useTestData)),
         ]);
 
         if (!cancelled) {
-          setFeedback(fb);
-          setFeedbackRequests(fbReqs);
+          setFeedback(fb || []);
+          setFeedbackRequests(fbReqs || []);
           setIntegrations(feedbackService.getIntegrations(useTestData));
         }
       } catch (err) {
         console.error('FeedbackContext loadAll error:', err);
+        if (!cancelled) {
+          setFeedback([]);
+          setFeedbackRequests([]);
+        }
       } finally {
         if (!cancelled) setIsLoading(false);
       }

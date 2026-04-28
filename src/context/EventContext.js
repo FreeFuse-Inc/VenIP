@@ -36,26 +36,35 @@ export const EventProvider = ({ children }) => {
     const loadAll = async () => {
       try {
         const [ev, sp, vq, spon, vs, vc, ven] = await Promise.all([
-          eventService.getEvents(useTestData),
-          eventService.getSponsorships(useTestData),
-          eventService.getVendorQuotes(useTestData),
-          eventService.getSponsors(useTestData),
-          eventService.getVendorServices(useTestData),
-          eventService.getVendorCommitments(useTestData),
-          eventService.getVenues(useTestData),
+          Promise.resolve(eventService.getEvents(useTestData)),
+          Promise.resolve(eventService.getSponsorships(useTestData)),
+          Promise.resolve(eventService.getVendorQuotes(useTestData)),
+          Promise.resolve(eventService.getSponsors(useTestData)),
+          Promise.resolve(eventService.getVendorServices(useTestData)),
+          Promise.resolve(eventService.getVendorCommitments(useTestData)),
+          Promise.resolve(eventService.getVenues(useTestData)),
         ]);
 
         if (!cancelled) {
-          setEvents(ev);
-          setSponsorships(sp);
-          setVendorQuotes(vq);
-          setSponsors(spon);
-          setVendorServices(vs);
-          setVendorCommitments(vc);
-          setVenues(ven);
+          setEvents(ev || []);
+          setSponsorships(sp || []);
+          setVendorQuotes(vq || []);
+          setSponsors(spon || []);
+          setVendorServices(vs || []);
+          setVendorCommitments(vc || []);
+          setVenues(ven || []);
         }
       } catch (err) {
         console.error('EventContext loadAll error:', err);
+        if (!cancelled) {
+          setEvents([]);
+          setSponsorships([]);
+          setVendorQuotes([]);
+          setSponsors([]);
+          setVendorServices([]);
+          setVendorCommitments([]);
+          setVenues([]);
+        }
       } finally {
         if (!cancelled) setIsLoading(false);
       }
